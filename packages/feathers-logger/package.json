@@ -1,0 +1,54 @@
+{
+	"name": "@snickbit/feathers-logger",
+	"version": "0.1.9",
+	"license": "MIT",
+	"main": "./dist/index.js",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"exports": {
+		"require": "./dist/index.js",
+		"import": "./dist/index.mjs",
+		"types": "./dist/index.d.ts"
+	},
+	"engines": {
+		"node": ">= 12"
+	},
+	"scripts": {
+		"clean": "shx rm -rf ./dist",
+		"depcheck": "depcheck",
+		"build": "tsup",
+		"build:meta": "tsup --minify --metafile",
+		"prod": "tsup --minify",
+		"watch": "tsup --watch"
+	},
+	"dependencies": {
+		"@snickbit/out": "^2.0.7",
+		"@snickbit/utilities": "^3.0.7",
+		"axios": "^0.26.1",
+		"browser-or-node": "^2.0.0"
+	},
+	"devDependencies": {
+		"@remedyred/indexer": "^2.0.72",
+		"jest": "^27.5.1",
+		"@feathersjs/feathers": "^5.0.0-pre.18",
+		"tsup": "^5.12.6"
+	},
+	"jest": {
+		"testEnvironment": "node"
+	},
+	"tsup": {
+		"entry": [
+			"src/index.js"
+		],
+		"clean": true,
+		"dts": true,
+		"format": [
+			"esm",
+			"cjs"
+		]
+	},
+	"description": ""
+}
