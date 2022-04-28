@@ -1,0 +1,11 @@
+[
+	{
+		"index": "src/index.ts",
+		"files": [
+			{
+				"export": "individual",
+				"dir": "src"
+			}
+		]
+	}
+]

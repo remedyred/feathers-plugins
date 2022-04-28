@@ -1,0 +1,72 @@
+{
+	"name": "@snickbit/feathers-files",
+	"description": "Files adapter for FeathersJS",
+	"version": "1.0.19",
+	"license": "MIT",
+	"main": "./dist/index.js",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"exports": {
+		"require": "./dist/index.js",
+		"import": "./dist/index.mjs",
+		"types": "./dist/index.d.ts"
+	},
+	"engines": {
+		"node": ">= 12"
+	},
+	"scripts": {
+		"clean": "shx rm -rf ./dist",
+		"build": "tsup",
+		"build:meta": "tsup --minify --metafile",
+		"prod": "tsup --minify",
+		"watch": "tsup --watch",
+		"index": "indexer src",
+		"depcheck": "depcheck"
+	},
+	"dependencies": {
+		"@aws-sdk/client-s3": "^3.67.0",
+		"@feathersjs/adapter-commons": "^5.0.0-pre.18",
+		"@feathersjs/errors": "^5.0.0-pre.18",
+		"@feathersjs/feathers": "^5.0.0-pre.18",
+		"@snickbit/feathers-helpers": "^0.0.29",
+		"@snickbit/node-utilities": "^4.2.21",
+		"@snickbit/out": "^2.0.5",
+		"@snickbit/utilities": "^3.0.5",
+		"@types/express": "^4.17.13",
+		"express": "^4.18.0",
+		"fast-glob": "^3.2.11",
+		"fs-extra": "^10.1.0",
+		"mime": "^3.0.0",
+		"multer": "^1.4.4",
+		"sift": "^16.0.0"
+	},
+	"devDependencies": {
+		"@remedyred/indexer": "^2.0.74",
+		"@types/jest": "^27.4.1",
+		"@types/multer": "^1.4.7",
+		"jest": "^27.5.1",
+		"shx": "^0.3.4",
+		"ts-jest": "^27.1.4",
+		"@feathersjs/feathers": "^5.0.0-pre.18",
+		"tsup": "^5.12.6",
+		"typescript": "^4.6.3"
+	},
+	"jest": {
+		"preset": "ts-jest",
+		"testEnvironment": "node"
+	},
+	"tsup": {
+		"entry": [
+			"src/index.ts"
+		],
+		"clean": true,
+		"dts": true,
+		"format": [
+			"esm",
+			"cjs"
+		]
+	}
+}
