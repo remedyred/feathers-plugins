@@ -1,0 +1,71 @@
+[
+	{
+		"index": "src/utilities/index.js",
+		"files": [
+			{
+				"export": "skip",
+				"dir": "src/utilities"
+			}
+		]
+	},
+	{
+		"index": "src/tasks/index.js",
+		"files": [
+			{
+				"export": "skip",
+				"dir": "src/tasks"
+			}
+		]
+	},
+	{
+		"index": "src/queue/index.js",
+		"files": [
+			{
+				"export": "skip",
+				"dir": "src/queue"
+			}
+		]
+	},
+	{
+		"index": "src/index.js",
+		"files": [
+			{
+				"export": "group",
+				"file": "src/commands"
+			},
+			{
+				"export": "individual",
+				"file": "src/tasks/task.js"
+			},
+			{
+				"export": "skip",
+				"dir": "src/queue"
+			},
+			{
+				"export": "skip",
+				"dir": "src/tasks"
+			},
+			{
+				"export": "skip",
+				"dir": "src/utilities"
+			},
+			{
+				"export": "skip",
+				"dir": "src/commands"
+			},
+			{
+				"export": "individual",
+				"dir": "src"
+			}
+		]
+	},
+	{
+		"index": "src/commands/index.js",
+		"files": [
+			{
+				"export": "group",
+				"dir": "src/commands"
+			}
+		]
+	}
+]
