@@ -1,7 +1,7 @@
 {
 	"name": "@snickbit/feathers-tasks",
 	"description": "Task management for FeathersJS",
-	"version": "1.0.27",
+	"version": "1.0.28",
 	"license": "MIT",
 	"main": "./dist/index.js",
 	"module": "./dist/index.mjs",
