@@ -1,4 +1,4 @@
-import {cli} from '@remedyred/node-cli'
+import {cli} from '@snickbit/node-cli'
 import {out} from '@snickbit/out'
 import {Task} from '../tasks/task'
 import {useQueue} from '../utilities/state'

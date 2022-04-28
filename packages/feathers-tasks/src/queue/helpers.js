@@ -1,4 +1,4 @@
-import {dates} from '@remedyred/dates'
+import {dates} from '@snickbit/dates'
 import {typeOf} from '@snickbit/utilities'
 import {useQueue} from '../utilities/state'
 import {QueueService} from './queue.service'

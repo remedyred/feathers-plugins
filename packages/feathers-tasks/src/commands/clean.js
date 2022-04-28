@@ -1,5 +1,5 @@
 import {NotFound} from '@feathersjs/errors'
-import {cli} from '@remedyred/node-cli'
+import {cli} from '@snickbit/node-cli'
 import {confirm} from '@snickbit/node-utilities'
 import {out} from '@snickbit/out'
 import {useQueue} from '../utilities/state'
