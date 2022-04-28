@@ -1,0 +1,60 @@
+{
+	"name": "@snickbit/feathers-mongo",
+	"description": "Extended functionality for FeathersJS MongoDB database adapter",
+	"version": "0.0.63",
+	"license": "MIT",
+	"main": "./dist/index.js",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"exports": {
+		"require": "./dist/index.js",
+		"import": "./dist/index.mjs",
+		"types": "./dist/index.d.ts"
+	},
+	"engines": {
+		"node": ">= 12"
+	},
+	"scripts": {
+		"clean": "shx rm -rf ./dist",
+		"depcheck": "depcheck",
+		"build": "tsup",
+		"build:meta": "yarn build --metafile",
+		"prod": "yarn build --minify",
+		"watch": "yarn build --watch"
+	},
+	"dependencies": {
+		"@snickbit/feathers-model": "^0.0.37",
+		"@snickbit/out": "^2.0.7",
+		"@snickbit/utilities": "^3.0.7",
+		"feathers-mongodb": "^6.4.1",
+		"mongodb": "^4.5.0"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.17.9",
+		"@babel/preset-env": "^7.16.11",
+		"@remedyred/indexer": "^2.0.72",
+		"babel-jest": "^27.5.1",
+		"babel-plugin-add-module-exports": "^1.0.4",
+		"jest": "^27.5.1",
+		"tsup": "^5.12.6"
+	},
+	"jest": {
+		"testEnvironment": "node"
+	},
+	"tsup": {
+		"entry": [
+			"src/index.js"
+		],
+		"clean": true,
+		"dts": true,
+		"format": [
+			"esm",
+			"cjs"
+		]
+	},
+	"keywords": [],
+	"author": ""
+}
