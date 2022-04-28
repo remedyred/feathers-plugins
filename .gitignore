@@ -1,0 +1,19 @@
+# hidden folders & junk files
+.*/
+.*
+*.iml
+
+# Log files
+logs/
+
+# Dependencies
+node_modules/
+yarn.lock
+
+# Compiled files
+dist/
+bin/
+
+# Keep
+!.changeset/
+!.gitignore
