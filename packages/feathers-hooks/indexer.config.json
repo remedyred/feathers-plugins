@@ -1,0 +1,24 @@
+[
+	{
+		"index": "src/hooks/index.js",
+		"files": [
+			{
+				"export": "group",
+				"file": "src/hooks/before"
+			},
+			{
+				"export": "skip",
+				"dir": "src/hooks/before"
+			}
+		]
+	},
+	{
+		"index": "src/hooks/before/index.js",
+		"files": [
+			{
+				"export": "group",
+				"dir": "src/hooks/before"
+			}
+		]
+	}
+]

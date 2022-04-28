@@ -1,0 +1,49 @@
+{
+	"name": "@snickbit/feathers-hooks",
+	"description": "Dynamic hook loader for Feathers",
+	"version": "0.0.10",
+	"license": "MIT",
+	"main": "./dist/index.js",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"exports": {
+		"require": "./dist/index.js",
+		"import": "./dist/index.mjs",
+		"types": "./dist/index.d.ts"
+	},
+	"engines": {
+		"node": ">= 12"
+	},
+	"scripts": {
+		"clean": "shx rm -rf ./dist",
+		"depcheck": "depcheck",
+		"build": "tsup",
+		"build:meta": "tsup --minify --metafile",
+		"prod": "tsup --minify",
+		"watch": "tsup --watch",
+		"index": "indexer src/hooks"
+	},
+	"devDependencies": {
+		"@remedyred/indexer": "^2.0.72",
+		"jest": "^27.5.1",
+		"@feathersjs/feathers": "^5.0.0-pre.18",
+		"tsup": "^5.12.6"
+	},
+	"jest": {
+		"testEnvironment": "node"
+	},
+	"tsup": {
+		"entry": [
+			"src/index.js"
+		],
+		"clean": true,
+		"dts": true,
+		"format": [
+			"esm",
+			"cjs"
+		]
+	}
+}
