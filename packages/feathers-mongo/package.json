@@ -21,24 +21,24 @@
 		"clean": "shx rm -rf ./dist",
 		"depcheck": "depcheck",
 		"build": "tsup",
-		"build:meta": "yarn build --metafile",
-		"prod": "yarn build --minify",
-		"watch": "yarn build --watch"
+		"build:meta": "tsup --minify --metafile",
+		"prod": "tsup --minify",
+		"watch": "tsup --watch"
 	},
 	"dependencies": {
-		"@snickbit/feathers-model": "^0.0.37",
+		"@feathersjs/adapter-commons": "^5.0.0-pre.18",
+		"@feathersjs/errors": "^5.0.0-pre.18",
+		"@feathersjs/feathers": "^5.0.0-pre.18",
+		"@snickbit/feathers-model": "workspace:^0.0.37",
 		"@snickbit/out": "^2.0.7",
 		"@snickbit/utilities": "^3.0.7",
 		"feathers-mongodb": "^6.4.1",
 		"mongodb": "^4.5.0"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.17.9",
-		"@babel/preset-env": "^7.16.11",
 		"@remedyred/indexer": "^2.0.72",
-		"babel-jest": "^27.5.1",
-		"babel-plugin-add-module-exports": "^1.0.4",
 		"jest": "^27.5.1",
+		"@feathersjs/feathers": "^5.0.0-pre.18",
 		"tsup": "^5.12.6"
 	},
 	"jest": {
@@ -46,7 +46,7 @@
 	},
 	"tsup": {
 		"entry": [
-			"src/index.js"
+			"src/index.ts"
 		],
 		"clean": true,
 		"dts": true,
@@ -54,7 +54,5 @@
 			"esm",
 			"cjs"
 		]
-	},
-	"keywords": [],
-	"author": ""
+	}
 }

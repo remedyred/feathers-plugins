@@ -1,6 +1,7 @@
 import {BadRequest} from '@feathersjs/errors'
 import {out} from '@snickbit/out'
 import {escapeRegExp, isEmpty, isObject, isString, objectExcept, objectPull} from '@snickbit/utilities'
+import {SearchOptions} from './index'
 
 /**
  * Adds " around `str` and removes any " in `str`.
@@ -8,7 +9,7 @@ import {escapeRegExp, isEmpty, isObject, isString, objectExcept, objectPull} fro
  */
 const escape = str => '"' + str.replace(/"/g, '') + '"'
 
-export function transformSearchFieldsInQuery(query, options, fieldName) {
+export function transformSearchFieldsInQuery(query: any, options: SearchOptions, fieldName?: string) {
 	const makeRegex = value => {
 		try {
 			value = escapeRegExp(value)
@@ -62,7 +63,7 @@ export function transformSearchFieldsInQuery(query, options, fieldName) {
 	return newQuery
 }
 
-export function fullTextSearch(query, options) {
+export function fullTextSearch(query: any, options: any) {
 	if (!query) return query
 
 	let $search = objectPull(query, '$search')
@@ -76,7 +77,7 @@ export function fullTextSearch(query, options) {
 	let $diacriticSensitive = objectPull(query, '$diacriticSensitive')
 	if ($diacriticSensitive === undefined) $diacriticSensitive = options.diacriticSensitive
 
-	let $text = {}
+	let $text: any = {}
 
 	if ($search) {
 		$text.$search = options.escape ? escape($search) : $search
