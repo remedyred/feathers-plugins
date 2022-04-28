@@ -26,25 +26,20 @@
 		"watch": "tsup --watch"
 	},
 	"dependencies": {
-		"@feathersjs/adapter-commons": "^4.5.12",
-		"@feathersjs/errors": "^4.5.12",
+		"@feathersjs/adapter-commons": "^5.0.0-pre.18",
+		"@feathersjs/errors": "^5.0.0-pre.18",
 		"@snickbit/feathers-helpers": "^0.0.29",
 		"@snickbit/model": "^1.0.22",
-		"@snickbit/out": "^2.0.7",
-		"@snickbit/utilities": "^3.0.7",
 		"feathers-memory": "^4.1.0"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.17.9",
-		"@babel/preset-env": "^7.16.11",
 		"@remedyred/indexer": "^2.0.72",
-		"babel-jest": "^27.5.1",
-		"babel-plugin-add-module-exports": "^1.0.4",
 		"jest": "^27.5.1",
+		"@feathersjs/feathers": "^5.0.0-pre.18",
 		"tsup": "^5.12.6"
 	},
 	"peerDependencies": {
-		"@feathersjs/feathers": "^4.5.12"
+		"@feathersjs/feathers": "^5.0.0-pre.18"
 	},
 	"jest": {
 		"testEnvironment": "node"
