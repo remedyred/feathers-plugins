@@ -25,8 +25,8 @@
 		"watch": "tsup --watch"
 	},
 	"dependencies": {
-		"@snickbit/feathers-logger": "^0.1.9",
-		"@snickbit/feathers-mongo": "^0.0.63"
+		"@snickbit/feathers-logger": "^0.1.10",
+		"@snickbit/feathers-mongo": "^0.0.64"
 	},
 	"devDependencies": {
 		"@remedyred/indexer": "^2.0.72",

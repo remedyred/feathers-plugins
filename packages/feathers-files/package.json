@@ -31,7 +31,7 @@
 		"@feathersjs/adapter-commons": "^5.0.0-pre.18",
 		"@feathersjs/errors": "^5.0.0-pre.18",
 		"@feathersjs/feathers": "^5.0.0-pre.18",
-		"@snickbit/feathers-helpers": "^0.0.29",
+		"@snickbit/feathers-helpers": "^0.0.30",
 		"@snickbit/node-utilities": "^4.2.21",
 		"@snickbit/out": "^2.0.5",
 		"@snickbit/utilities": "^3.0.5",

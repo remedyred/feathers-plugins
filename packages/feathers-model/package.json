@@ -28,7 +28,7 @@
 	"dependencies": {
 		"@feathersjs/adapter-commons": "^5.0.0-pre.18",
 		"@feathersjs/errors": "^5.0.0-pre.18",
-		"@snickbit/feathers-helpers": "^0.0.29",
+		"@snickbit/feathers-helpers": "^0.0.30",
 		"@snickbit/model": "^1.0.22",
 		"feathers-memory": "^4.1.0"
 	},
