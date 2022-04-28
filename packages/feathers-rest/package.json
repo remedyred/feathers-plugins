@@ -1,0 +1,55 @@
+{
+	"name": "@snickbit/feathers-rest",
+	"description": "RESTful API for FeathersJS",
+	"version": "0.0.30",
+	"license": "MIT",
+	"main": "./dist/index.js",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"exports": {
+		"require": "./dist/index.js",
+		"import": "./dist/index.mjs",
+		"types": "./dist/index.d.ts"
+	},
+	"engines": {
+		"node": ">= 12"
+	},
+	"scripts": {
+		"clean": "shx rm -rf ./dist",
+		"depcheck": "depcheck",
+		"build": "tsup",
+		"build:meta": "tsup --minify --metafile",
+		"prod": "tsup --minify",
+		"watch": "tsup --watch"
+	},
+	"dependencies": {
+		"@feathersjs/adapter-commons": "^5.0.0-pre.18",
+		"@feathersjs/feathers": "^5.0.0-pre.18",
+		"@snickbit/feathers-helpers": "^0.0.29",
+		"@snickbit/out": "^2.0.7",
+		"axios": "^0.26.1"
+	},
+	"devDependencies": {
+		"@remedyred/indexer": "^2.0.72",
+		"jest": "^27.5.1",
+		"@feathersjs/feathers": "^5.0.0-pre.18",
+		"tsup": "^5.12.6"
+	},
+	"jest": {
+		"testEnvironment": "node"
+	},
+	"tsup": {
+		"entry": [
+			"src/index.js"
+		],
+		"clean": true,
+		"dts": true,
+		"format": [
+			"esm",
+			"cjs"
+		]
+	}
+}
