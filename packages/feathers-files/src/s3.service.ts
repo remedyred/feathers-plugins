@@ -144,12 +144,6 @@ export class S3Service extends FileService {
 		return this.filterFiles(files, params)
 	}
 
-	protected parseParams(params: FileParams, data?: FileData): ParsedParams {
-		params = super.parseParams(params, data)
-		params.path = this.stripUrl(params.path)
-		return params
-	}
-
 	async _create(data, params) {
 		params = this.parseParams(params, data)
 		return this._uploadContent(params.path, this._getContent(data), params)
@@ -169,5 +163,9 @@ export class S3Service extends FileService {
 		return this.client.send(new DeleteObjectCommand(this.bucketParams({key: id}, params)))
 	}
 
-
+	protected parseParams(params: FileParams, data?: FileData): ParsedParams {
+		params = super.parseParams(params, data)
+		params.path = this.stripUrl(params.path)
+		return params
+	}
 }
