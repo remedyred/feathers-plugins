@@ -22,7 +22,7 @@
 		"depcheck": "depcheck",
 		"build": "tsup",
 		"meta": "npm run prod --metafile",
-		"prod": "npm run prod",
+		"prod": "npm run build --minify",
 		"watch": "npm run build --watch",
 		"index": "indexer src/hooks"
 	},
