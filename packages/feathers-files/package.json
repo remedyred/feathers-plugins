@@ -20,9 +20,9 @@
 	"scripts": {
 		"clean": "shx rm -rf ./dist",
 		"build": "tsup",
-		"build:meta": "tsup --minify --metafile",
-		"prod": "tsup --minify",
-		"watch": "tsup --watch",
+		"meta": "npm run prod --metafile",
+		"prod": "npm run prod",
+		"watch": "npm run build --watch",
 		"index": "indexer src",
 		"depcheck": "depcheck"
 	},

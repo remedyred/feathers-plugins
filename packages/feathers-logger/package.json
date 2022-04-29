@@ -20,9 +20,9 @@
 		"clean": "shx rm -rf ./dist",
 		"depcheck": "depcheck",
 		"build": "tsup",
-		"build:meta": "tsup --minify --metafile",
-		"prod": "tsup --minify",
-		"watch": "tsup --watch"
+		"meta": "npm run prod --metafile",
+		"prod": "npm run prod",
+		"watch": "npm run build --watch"
 	},
 	"dependencies": {
 		"@snickbit/out": "^2.0.16",
