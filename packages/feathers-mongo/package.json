@@ -31,14 +31,14 @@
 		"@feathersjs/feathers": "^5.0.0-pre.18",
 		"@snickbit/feathers-model": "^0.0.40",
 		"@snickbit/out": "^2.0.17",
-		"@snickbit/utilities": "^3.0.7",
+		"@snickbit/utilities": "^3.0.14",
 		"feathers-mongodb": "^6.4.1",
 		"mongodb": "^4.5.0"
 	},
 	"devDependencies": {
-		"@remedyred/indexer": "^2.0.72",
-		"jest": "^27.5.1",
 		"@feathersjs/feathers": "^5.0.0-pre.18",
+		"@remedyred/indexer": "^2.0.77",
+		"jest": "^27.5.1",
 		"tsup": "^5.12.6"
 	},
 	"jest": {

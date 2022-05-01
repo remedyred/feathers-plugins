@@ -35,13 +35,13 @@
 		"@snickbit/node-cli": "^1.0.38",
 		"@snickbit/node-utilities": "^4.2.30",
 		"@snickbit/out": "^2.0.17",
-		"@snickbit/utilities": "^3.0.7",
+		"@snickbit/utilities": "^3.0.14",
 		"bullmq": "^1.80.1",
 		"ioredis": "^5.0.4"
 	},
 	"devDependencies": {
 		"@feathersjs/feathers": "^5.0.0-pre.18",
-		"@remedyred/indexer": "^2.0.72",
+		"@remedyred/indexer": "^2.0.77",
 		"esbuild": "^0.14.36",
 		"jest": "^27.5.1",
 		"tsup": "^5.12.6"
