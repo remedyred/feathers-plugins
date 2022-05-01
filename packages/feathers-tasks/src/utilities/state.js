@@ -51,8 +51,7 @@ export const defaultConfig = {
 		limiter: {
 			max: 10,
 			duration: 1000
-		},
-		sandbox: false
+		}
 	}
 }
 

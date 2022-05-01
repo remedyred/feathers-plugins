@@ -25,12 +25,6 @@ export default async argv => cli(argv).args({
 		type: 'number',
 		description: 'The number of jobs to process concurrently',
 		default: 10
-	},
-	sandbox: {
-		alias: 's',
-		description: 'Run the jobs in a sandbox',
-		type: 'boolean',
-		default: false
 	}
 }).run().then(async args => {
 	const queue = useQueue(args.queue)
