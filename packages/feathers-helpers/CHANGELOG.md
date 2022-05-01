@@ -1,5 +1,12 @@
 # @snickbit/feathers-helpers Changelog
 
+## 0.0.39
+
+### Patch Changes
+
+- [719c4b7](https://github.com/snickbit/feathers/commit/719c4b7) **chore**:  update dependencies
+
+
 ## 0.0.38
 
 ### Patch Changes

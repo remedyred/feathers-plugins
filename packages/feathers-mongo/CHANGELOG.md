@@ -1,5 +1,12 @@
 # @snickbit/feathers-mongo Changelog
 
+## 0.0.67
+
+### Patch Changes
+
+- [719c4b7](https://github.com/snickbit/feathers/commit/719c4b7) **chore**:  update dependencies
+
+
 ## 0.0.66
 
 ### Patch Changes

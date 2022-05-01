@@ -1,7 +1,7 @@
 {
 	"name": "@snickbit/feathers-model",
 	"description": "Data models for FeathersJS",
-	"version": "0.0.40",
+	"version": "0.0.41",
 	"license": "MIT",
 	"main": "./dist/index.js",
 	"module": "./dist/index.mjs",
@@ -28,8 +28,8 @@
 	"dependencies": {
 		"@feathersjs/adapter-commons": "^5.0.0-pre.18",
 		"@feathersjs/errors": "^5.0.0-pre.18",
-		"@snickbit/feathers-helpers": "^0.0.38",
-		"@snickbit/model": "^1.0.33",
+		"@snickbit/feathers-helpers": "^0.0.39",
+		"@snickbit/model": "^1.0.34",
 		"feathers-memory": "^4.1.0"
 	},
 	"devDependencies": {

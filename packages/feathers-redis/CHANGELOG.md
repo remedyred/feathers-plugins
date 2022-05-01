@@ -1,5 +1,12 @@
 # @snickbit/feathers-redis Changelog
 
+## 0.0.34
+
+### Patch Changes
+
+- [719c4b7](https://github.com/snickbit/feathers/commit/719c4b7) **chore**:  update dependencies
+
+
 ## 0.0.33
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @snickbit/feathers-logger Changelog
 
+## 0.1.13
+
+### Patch Changes
+
+- [719c4b7](https://github.com/snickbit/feathers/commit/719c4b7) **chore**:  update dependencies
+
+
 ## 0.1.12
 
 ### Patch Changes
