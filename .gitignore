@@ -8,11 +8,10 @@ logs/
 
 # Dependencies
 node_modules/
-yarn.lock
+*.lock
 
 # Compiled files
 dist/
-bin/
 
 # Keep
 !.changeset/
