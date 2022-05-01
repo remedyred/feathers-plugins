@@ -1,6 +1,6 @@
 {
 	"name": "@snickbit/feathers-rest",
-	"description": "RESTful API for FeathersJS",
+	"description": "Feathers service for interactive with REST APIs",
 	"version": "0.0.34",
 	"license": "MIT",
 	"main": "./dist/index.js",

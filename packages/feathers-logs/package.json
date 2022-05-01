@@ -1,5 +1,6 @@
 {
 	"name": "@snickbit/feathers-logs",
+	"description": "A Feathers.js service that logs events to MongoDB",
 	"version": "0.1.13",
 	"license": "MIT",
 	"main": "./dist/index.js",
@@ -47,6 +48,5 @@
 			"esm",
 			"cjs"
 		]
-	},
-	"description": ""
+	}
 }

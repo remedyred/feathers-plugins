@@ -1,5 +1,6 @@
 {
 	"name": "@snickbit/feathers-logger",
+	"desciption": "Client for @snickbit/feathers-logs",
 	"version": "0.1.13",
 	"license": "MIT",
 	"main": "./dist/index.js",
