@@ -29,7 +29,7 @@
 		"@feathersjs/adapter-commons": "5.0.0-pre.18",
 		"@feathersjs/errors": "5.0.0-pre.18",
 		"@snickbit/feathers-helpers": "^0.0.40",
-		"@snickbit/utilities": "^3.0.14",
+		"@snickbit/utilities": "^3.0.16",
 		"ioredis": "^5.0.4",
 		"sift": "^16.0.0"
 	},

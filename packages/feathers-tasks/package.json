@@ -35,7 +35,7 @@
 		"@snickbit/node-cli": "^1.0.40",
 		"@snickbit/node-utilities": "^4.2.32",
 		"@snickbit/out": "^2.0.20",
-		"@snickbit/utilities": "^3.0.14",
+		"@snickbit/utilities": "^3.0.16",
 		"bullmq": "^1.80.1",
 		"ioredis": "^5.0.4"
 	},

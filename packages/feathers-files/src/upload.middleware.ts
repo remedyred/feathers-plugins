@@ -4,15 +4,8 @@ import {Out} from '@snickbit/out'
 import {RequestHandler} from 'express'
 import {NextFunction} from '@feathersjs/feathers'
 
-/**
- * @inheritDoc
- */
 export type UploadOptions = multer.Options
 
-
-/**
- * @inheritDoc
- */
 export interface UploadRequest extends Express.Request {
 	method: string
 	feathers: any

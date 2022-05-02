@@ -13,14 +13,14 @@
 
 - [@snickbit/feathers-auth-api](#snickbit-feathers-auth-api)
 - [@snickbit/feathers-files](#snickbit-feathers-files)
-- [@snickbit/feathers-logger](#snickbit-feathers-logger)
 - [@snickbit/feathers-helpers](#snickbit-feathers-helpers)
 - [@snickbit/feathers-hooks](#snickbit-feathers-hooks)
-- [@snickbit/feathers-model](#snickbit-feathers-model)
+- [@snickbit/feathers-logger](#snickbit-feathers-logger)
 - [@snickbit/feathers-logs](#snickbit-feathers-logs)
+- [@snickbit/feathers-model](#snickbit-feathers-model)
 - [@snickbit/feathers-mongo](#snickbit-feathers-mongo)
-- [@snickbit/feathers-rest](#snickbit-feathers-rest)
 - [@snickbit/feathers-redis](#snickbit-feathers-redis)
+- [@snickbit/feathers-rest](#snickbit-feathers-rest)
 - [@snickbit/feathers-tasks](#snickbit-feathers-tasks)
 - [@snickbit/feathers-up](#snickbit-feathers-up)
 
@@ -56,18 +56,6 @@ Files adapter for FeathersJS
 
 
 
-<div id="@snickbit/feathers-logger">
-	<h3>
-		<a href="https://github.com/snickbit/feathers/tree/main/packages/feathers-logger">
-			@snickbit/feathers-logger
-		</a>
-	</h3>
-</div>
-
-Logging client for FeathersJS. Pairs with [@snickbit/feathers-logs](https://github.com/snickbit/feathers/blob/main/packages/feathers-logs).
-
-
-
 <div id="@snickbit/feathers-helpers">
 	<h3>
 		<a href="https://github.com/snickbit/feathers/tree/main/packages/feathers-helpers">
@@ -92,15 +80,15 @@ Dynamic hook loader for Feathers
 
 
 
-<div id="@snickbit/feathers-model">
+<div id="@snickbit/feathers-logger">
 	<h3>
-		<a href="https://github.com/snickbit/feathers/tree/main/packages/feathers-model">
-			@snickbit/feathers-model
+		<a href="https://github.com/snickbit/feathers/tree/main/packages/feathers-logger">
+			@snickbit/feathers-logger
 		</a>
 	</h3>
 </div>
 
-Data models for FeathersJS using [@snickbit/model](https://github.com/snickbit/snickbit.js/tree/main/packages/model).
+Logging client for FeathersJS. Pairs with [@snickbit/feathers-logs](https://github.com/snickbit/feathers/blob/main/packages/feathers-logs).
 
 
 
@@ -116,6 +104,18 @@ A Feathers.js service that logs events to MongoDB. Pairs with [@snickbit/feather
 
 
 
+<div id="@snickbit/feathers-model">
+	<h3>
+		<a href="https://github.com/snickbit/feathers/tree/main/packages/feathers-model">
+			@snickbit/feathers-model
+		</a>
+	</h3>
+</div>
+
+Data models for FeathersJS using [@snickbit/model](https://github.com/snickbit/snickbit.js/tree/main/packages/model).
+
+
+
 <div id="@snickbit/feathers-mongo">
 	<h3>
 		<a href="https://github.com/snickbit/feathers/tree/main/packages/feathers-mongo">
@@ -128,18 +128,6 @@ Wrapper for [feathers-mongo](https://github.com/feathersjs-ecosystem/feathers-mo
 
 
 
-<div id="@snickbit/feathers-rest">
-	<h3>
-		<a href="https://github.com/snickbit/feathers/tree/main/packages/feathers-rest">
-			@snickbit/feathers-rest
-		</a>
-	</h3>
-</div>
-
-Feathers service for interactive with REST APIs
-
-
-
 <div id="@snickbit/feathers-redis">
 	<h3>
 		<a href="https://github.com/snickbit/feathers/tree/main/packages/feathers-redis">
@@ -149,6 +137,18 @@ Feathers service for interactive with REST APIs
 </div>
 
 Redis service for FeathersJS.
+
+
+
+<div id="@snickbit/feathers-rest">
+	<h3>
+		<a href="https://github.com/snickbit/feathers/tree/main/packages/feathers-rest">
+			@snickbit/feathers-rest
+		</a>
+	</h3>
+</div>
+
+Feathers service for interactive with REST APIs
 
 
 

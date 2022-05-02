@@ -31,7 +31,7 @@
 		"@feathersjs/feathers": "5.0.0-pre.18",
 		"@snickbit/feathers-model": "^0.0.42",
 		"@snickbit/out": "^2.0.20",
-		"@snickbit/utilities": "^3.0.14",
+		"@snickbit/utilities": "^3.0.16",
 		"feathers-mongodb": "^6.4.1",
 		"mongodb": "^4.5.0"
 	},
