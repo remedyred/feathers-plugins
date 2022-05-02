@@ -28,9 +28,9 @@
 	},
 	"dependencies": {
 		"@aws-sdk/client-s3": "^3.67.0",
-		"@feathersjs/adapter-commons": "^5.0.0-pre.18",
-		"@feathersjs/errors": "^5.0.0-pre.18",
-		"@feathersjs/feathers": "^5.0.0-pre.18",
+		"@feathersjs/adapter-commons": "5.0.0-pre.18",
+		"@feathersjs/errors": "5.0.0-pre.18",
+		"@feathersjs/feathers": "5.0.0-pre.18",
 		"@snickbit/feathers-helpers": "^0.0.39",
 		"@snickbit/node-utilities": "^4.2.31",
 		"@snickbit/out": "^2.0.18",
@@ -44,7 +44,7 @@
 		"sift": "^16.0.0"
 	},
 	"devDependencies": {
-		"@feathersjs/feathers": "^5.0.0-pre.18",
+		"@feathersjs/feathers": "5.0.0-pre.18",
 		"@remedyred/indexer": "^2.0.77",
 		"@types/jest": "^27.4.1",
 		"@types/multer": "^1.4.7",

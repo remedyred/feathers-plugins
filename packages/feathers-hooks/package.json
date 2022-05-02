@@ -27,7 +27,7 @@
 		"index": "indexer src/hooks"
 	},
 	"devDependencies": {
-		"@feathersjs/feathers": "^5.0.0-pre.18",
+		"@feathersjs/feathers": "5.0.0-pre.18",
 		"@remedyred/indexer": "^2.0.77",
 		"jest": "^27.5.1",
 		"tsup": "^5.12.6"

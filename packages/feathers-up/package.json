@@ -26,10 +26,10 @@
 		"watch": "npm run build -- --watch"
 	},
 	"dependencies": {
-		"@feathersjs/configuration": "^5.0.0-pre.18",
-		"@feathersjs/express": "^5.0.0-pre.18",
-		"@feathersjs/feathers": "^5.0.0-pre.18",
-		"@feathersjs/socketio": "^5.0.0-pre.18",
+		"@feathersjs/configuration": "5.0.0-pre.18",
+		"@feathersjs/express": "5.0.0-pre.18",
+		"@feathersjs/feathers": "5.0.0-pre.18",
+		"@feathersjs/socketio": "5.0.0-pre.18",
 		"@sentry/node": "^6.19.6",
 		"@snickbit/feathers-hooks": "^0.0.13",
 		"@snickbit/feathers-logger": "^0.1.13",
@@ -49,7 +49,7 @@
 		"socket.io": "^4.5.0"
 	},
 	"devDependencies": {
-		"@feathersjs/feathers": "^5.0.0-pre.18",
+		"@feathersjs/feathers": "5.0.0-pre.18",
 		"@remedyred/indexer": "^2.0.77",
 		"jest": "^27.5.1",
 		"tsup": "^5.12.6"
