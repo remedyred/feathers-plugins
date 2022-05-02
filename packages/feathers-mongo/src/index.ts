@@ -17,12 +17,15 @@ export interface IndexDefinition {
 export interface MongoServiceOptions extends MongoDBServiceOptions {
 	collection: string
 	asModel?: Model | boolean
-	search: SearchOptions
-	indexes: IndexDefinition[]
-	cache: boolean
-	softDelete: boolean
-	timestamps: false | TimestampsOptions
+	search?: SearchOptions
+	indexes?: IndexDefinition[]
+	cache?: boolean
+	disableObjectify?: boolean
+	softDelete?: boolean
+	timestamps?: boolean | TimestampsOptions
 }
+
+export type ServiceOptions = Partial<MongoServiceOptions>
 
 export interface TimestampsOptions {
 	created?: boolean | string
@@ -125,18 +128,10 @@ export default class MongoService extends Service implements InternalServiceMeth
 	Cache: any
 	out: Out
 
-	/**
-	 * @param {MongoServiceOptions} options
-	 * @param {Application} app
-	 */
-	constructor(options: MongoServiceOptions, app: Application) {
+	constructor(options: ServiceOptions, app: Application) {
 		if (!options.collection) throw new Error('MongoService: options.collection is required')
 
 		const configOptions = app.get('mongodb')?.options || {}
-
-		/**
-		 * @type {MongoServiceOptions}
-		 */
 		options = {
 			id: '_id',
 			disableObjectify: true,
@@ -156,14 +151,10 @@ export default class MongoService extends Service implements InternalServiceMeth
 			...options
 		}
 
-		/**
-		 * @type {MongoDBServiceOptions}
-		 */
 		const mongodbOptions = objectOnly(options, ['events', 'multi', 'id', 'paginate', 'whitelist', 'filters', 'Model', 'disableObjectify'])
-		super(mongodbOptions)
+		super(mongodbOptions as MongoDBServiceOptions)
 
-		/** @type {MongoServiceOptions} */
-		this.options = options
+		this.options = options as MongoServiceOptions
 
 		this.out = new Out('mongo')
 
@@ -192,8 +183,26 @@ export default class MongoService extends Service implements InternalServiceMeth
 		})
 	}
 
-	get timestamps(): false | TimestampsOptions {
-		return this.options.timestamps
+	get timestamps(): TimestampsOptions {
+		if (this.options.timestamps === true) {
+			const timestamps: TimestampsOptions = {
+				created: '_created',
+				updated: '_updated',
+				deleted: null
+			}
+			if (this.options.softDelete) {
+				timestamps.deleted = '_deleted'
+			}
+			return timestamps
+		} else if (this.options.timestamps) {
+			return this.options.timestamps
+		} else {
+			return {
+				created: null,
+				updated: null,
+				deleted: null
+			}
+		}
 	}
 
 	#timestamps() {
