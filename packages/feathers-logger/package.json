@@ -21,9 +21,9 @@
 		"clean": "shx rm -rf ./dist",
 		"depcheck": "depcheck",
 		"build": "tsup",
-		"meta": "npm run prod --metafile",
-		"prod": "npm run build --minify",
-		"watch": "npm run build --watch"
+		"meta": "npm run prod -- --metafile",
+		"prod": "npm run build -- --minify",
+		"watch": "npm run build -- --watch"
 	},
 	"dependencies": {
 		"@snickbit/out": "^2.0.18",
@@ -42,7 +42,7 @@
 	},
 	"tsup": {
 		"entry": [
-			"src/index.js"
+			"src/index.ts"
 		],
 		"clean": true,
 		"dts": true,
@@ -50,6 +50,5 @@
 			"esm",
 			"cjs"
 		]
-	},
-	"description": ""
+	}
 }

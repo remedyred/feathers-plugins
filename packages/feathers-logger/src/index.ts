@@ -1,32 +1,62 @@
-import out from '@snickbit/out'
+import {Out} from '@snickbit/out'
 import {objectCopy, overloadOptions} from '@snickbit/utilities'
 import axios from 'axios'
 import {isBrowser, isNode} from 'browser-or-node'
 
-const _out = out.app('logger')
+export type LoggerOptions = Partial<LoggerConfig>
+
+export interface LoggerConfig {
+	endpoint: string;
+	service: any;
+	auth: import('axios').AxiosBasicCredentials;
+	immediate: boolean;
+	global: boolean;
+	out: import('@snickbit/out').Out | null;
+	defaultLevel: 'log' | 'info' | 'warn' | 'error' | 'fatal';
+	headers?: { [key: string]: string };
+}
+
+interface ParsedLoggerOptions {
+	channel?: string
+	context?: LoggerContext
+	options?: LoggerOptions
+}
+
+export type LoggerContext = {
+	[key: string]: any;
+};
+
+export interface LoggerPayload {
+	_id?: any;
+	channel: string,
+	context: any,
+	messages: any[]
+}
 
 export class Logger {
-	options = {
+	#out: Out
+	options: LoggerOptions = {
 		auth: null,
 		out: null
 	}
-
-	payload = {
+	payload: LoggerPayload = {
 		channel: 'default',
 		context: null,
 		messages: []
 	}
-
 	sent_messages = 0
-
 	request = null
 
+	constructor(options?: LoggerOptions, context?: LoggerContext);
+	constructor(channel?: string, options?: LoggerOptions, context?: LoggerContext);
 	constructor(...args) {
 		const {channel, options, context} = this.#parseLoggerArgs(args, [
 			{channel: 'string', options: 'object', context: 'object'},
 			{options: 'object', context: 'object'},
 			{options: 'object'}
 		])
+
+		this.#out = new Out('logger')
 
 		this.config(options)
 		this.channel(channel)
@@ -42,7 +72,7 @@ export class Logger {
 	}
 
 	#parseLoggerArgs(args, schemas) {
-		let {channel, options, context} = overloadOptions(args, schemas)
+		let {channel, options, context} = overloadOptions(args, schemas) as ParsedLoggerOptions
 
 		channel = channel || 'default'
 
@@ -67,13 +97,16 @@ export class Logger {
 
 	reset() {
 		this.payload = {
+			channel: 'default',
 			context: null,
 			messages: []
 		}
 		return this
 	}
 
-	new(...args) {
+	clone(context?: LoggerContext, config?: LoggerOptions): Logger;
+	clone(channel?: string, context?: LoggerContext, config?: LoggerOptions): Logger;
+	clone(...args) {
 		const {channel, options, context} = this.#parseLoggerArgs(args, [
 			{channel: 'string', context: 'object', options: 'object'},
 			{context: 'object', options: 'object'},
@@ -124,7 +157,7 @@ export class Logger {
 				this.out[level](message)
 			}
 		} catch (e) {
-			_out.error(e)
+			this.#out.error(e)
 		}
 		this.payload.messages.push({
 			level,
@@ -138,14 +171,14 @@ export class Logger {
 		return this
 	}
 
-	addLogs(messages, level) {
+	addLogs(messages, level?) {
 		level = level || this.options.defaultLevel || 'log'
 		for (let message of messages) {
 			this.addLog(message, level, false)
 		}
 
 		if (this.options.immediate) {
-			_out.warn('immediately sending')
+			this.#out.warn('immediately sending')
 			return this.send()
 		}
 		return this
@@ -185,23 +218,23 @@ export class Logger {
 
 	send() {
 		if (!this.options.service && !this.options.endpoint) {
-			_out.warn('No endpoint or Feathers service specified')
+			this.#out.warn('No endpoint or Feathers service specified')
 
-			out.log(...this.logs)
+			this.#out.log(...this.logs)
 
 			return undefined
 		}
 
 		if (!this.options.global && this.request) {
-			_out.warn('Already sending, wait for the previous request to finish')
+			this.#out.warn('Already sending, wait for the previous request to finish')
 			return this.request.then(() => {
 				this.request = null
-				_out.debug('Request finished, check if more logs are available to send: ', {messages: this.payload.messages.length, sent: this.sent_messages, shouldSend: this.payload.messages.length > this.sent_messages}, this.payload.messages)
+				this.#out.debug('Request finished, check if more logs are available to send: ', {messages: this.payload.messages.length, sent: this.sent_messages, shouldSend: this.payload.messages.length > this.sent_messages}, this.payload.messages)
 				return this.payload.messages.length > this.sent_messages ? this.send() : Promise.resolve()
 			})
 		}
 
-		const payload = objectCopy(this.payload)
+		const payload = objectCopy(this.payload) as LoggerPayload
 		if (this.options.global) {
 			this.payload.messages = []
 		}
@@ -216,11 +249,11 @@ export class Logger {
 				},
 				auth: this.options?.auth
 			}
-			_out.debug('Sending Logger data to endpoint', this.logs.length + ' logs', this.options.endpoint)
+			this.#out.debug('Sending Logger data to endpoint', this.logs.length + ' logs', this.options.endpoint)
 			this.request = axios.post(this.options.endpoint, payload, config)
 		} else {
 			const service = this.options?.service
-			_out.debug('Sending Logger data to service', this.logs.length + ' logs')
+			this.#out.debug('Sending Logger data to service', this.logs.length + ' logs')
 
 			if (payload?._id) {
 				this.request = service.patch(payload._id, payload)
@@ -230,16 +263,16 @@ export class Logger {
 		}
 
 		return this.request
-			.then(response => {
-				if (!this.options.global) {
-					_out.debug('Saving response')
-					this.payload._id = response?._id || response?.data?._id
-					_out.debug('Updating sent messages', {current: this.sent_messages, plus: sending_messages, total: this.sent_messages + sending_messages})
-					this.sent_messages += sending_messages
-				}
-				return response
-			})
-			.catch(err => _out.alert('Error sending Logger data', err))
+		.then(response => {
+			if (!this.options.global) {
+				this.#out.debug('Saving response')
+				this.payload._id = response?._id || response?.data?._id
+				this.#out.debug('Updating sent messages', {current: this.sent_messages, plus: sending_messages, total: this.sent_messages + sending_messages})
+				this.sent_messages += sending_messages
+			}
+			return response
+		})
+		.catch(err => this.#out.error('Error sending Logger data', err))
 	}
 }
 
