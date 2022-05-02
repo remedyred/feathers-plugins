@@ -1,5 +1,14 @@
 # @snickbit/feathers-rest Changelog
 
+## 0.0.35
+
+### Patch Changes
+
+- [2aff954](https://github.com/snickbit/feathers/commit/2aff954) **fix**:  pin feathers version
+- [66eb0b5](https://github.com/snickbit/feathers/commit/66eb0b5) **refactor**(feathers-rest):  typescript rewrite
+- [44ca51e](https://github.com/snickbit/feathers/commit/44ca51e) **docs**:  update
+
+
 ## 0.0.34
 
 ### Patch Changes

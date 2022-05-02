@@ -1,5 +1,15 @@
 # @snickbit/feathers-files Changelog
 
+## 1.0.24
+
+### Patch Changes
+
+- [2aff954](https://github.com/snickbit/feathers/commit/2aff954) **fix**:  pin feathers version
+- [393104b](https://github.com/snickbit/feathers/commit/393104b) **fix**:  update usage of makeBuffer/bufferStream
+- [886e7eb](https://github.com/snickbit/feathers/commit/886e7eb) **chore**:  update build config
+- [44ca51e](https://github.com/snickbit/feathers/commit/44ca51e) **docs**:  update
+
+
 ## 1.0.23
 
 ### Patch Changes

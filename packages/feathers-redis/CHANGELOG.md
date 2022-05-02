@@ -1,5 +1,14 @@
 # @snickbit/feathers-redis Changelog
 
+## 0.0.35
+
+### Patch Changes
+
+- [2aff954](https://github.com/snickbit/feathers/commit/2aff954) **fix**:  pin feathers version
+- [b5cbfed](https://github.com/snickbit/feathers/commit/b5cbfed) **refactor**(feathers-redis):  typescript rewrite
+- [44ca51e](https://github.com/snickbit/feathers/commit/44ca51e) **docs**:  update
+
+
 ## 0.0.34
 
 ### Patch Changes
