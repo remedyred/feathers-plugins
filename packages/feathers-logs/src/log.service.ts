@@ -1,15 +1,15 @@
 import MongoService from '@snickbit/feathers-mongo'
 
 export class LogService extends MongoService {
+	public Model: any
+
 	constructor(app) {
-		const options = {
+		super({
 			paginate: app.get('paginate'),
 			disableObjectify: false,
 			collection: 'logs',
 			timestamps: true
-		}
-
-		super(options, app)
+		}, app)
 	}
 
 	async channels() {
