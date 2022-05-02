@@ -1,4 +1,4 @@
-import Model from '@snickbit/feathers-model'
+import {Model} from '@snickbit/feathers-model'
 import {uuid} from '@snickbit/utilities'
 
 export class TaskItem extends Model {

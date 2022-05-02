@@ -1,5 +1,5 @@
 import {Unprocessable} from '@feathersjs/errors'
-import Model from '@snickbit/feathers-model'
+import {Model} from '@snickbit/feathers-model'
 import {out} from '@snickbit/out'
 import {objectOnly} from '@snickbit/utilities'
 import {Job} from 'bullmq'
