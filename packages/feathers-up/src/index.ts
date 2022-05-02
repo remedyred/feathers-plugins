@@ -1,107 +1,102 @@
 import configuration from '@feathersjs/configuration'
-import express from '@feathersjs/express'
+import express, {Application as ExpressApplication, errorHandler as expressErrorHandler, json as expressJson, notFound as expressNotFound, rest as expressRest, RestOptions, urlencoded} from '@feathersjs/express'
 import {feathers} from '@feathersjs/feathers'
 import socketio from '@feathersjs/socketio'
 import * as Sentry from '@sentry/node'
 import setHooks from '@snickbit/feathers-hooks'
 import logs from '@snickbit/feathers-logs'
-import Model from '@snickbit/model'
+import {Model} from '@snickbit/model'
 import {findUp} from '@snickbit/node-utilities'
-import {out} from '@snickbit/out'
+import {Out} from '@snickbit/out'
 import {isArray, isFunction, isObject, objectCopy} from '@snickbit/utilities'
 import compress from 'compression'
-import cors from 'cors'
-import helmet from 'helmet'
+import cors, {CorsOptions} from 'cors'
+import helmet, {HelmetOptions} from 'helmet'
 import Redis from 'ioredis'
 import knex from 'knex'
 import KnexMysql from 'knex/lib/dialects/mysql'
 import {ray} from 'node-ray'
 import path from 'path'
+import {OptionsJson, OptionsUrlencoded} from 'body-parser'
+import {RequestHandler} from 'express'
+import Logger from '@snickbit/feathers-logger'
+import {ZlibOptions} from 'zlib'
+import {ServerOptions} from 'socket.io'
 
-/**
- * @typedef {import('@feathersjs/express').ErrorHandlerOptions} ErrorHandlerOptions
- * @typedef {import('@feathersjs/express').RestOptions} RestOptions
- * @typedef {import('socket.io').ServerOptions} ServerOptions
- * @typedef {import('body-parser').OptionsJson} OptionsJson
- * @typedef {import('body-parser').OptionsUrlencoded} OptionsUrlencoded
- * @typedef {import('express').RequestHandler} RequestHandler
- * @typedef {import('cors').CorsOptions} CorsOptions
- * @typedef {import('helmet').HelmetOptions} HelmetOptions
- * @typedef {import('@snickbit/feathers-logger').Logger} Logger
- * @typedef {import('@snickbit/out').Out} Out
- */
+export interface CompressOptions extends ZlibOptions {
+	filter?: () => boolean
+	threshold?: number
+}
 
-/**
- * @type {App}
- */
-let app
+export interface AppSetupExpress {
+	json?: OptionsJson
+	urlencoded?: OptionsUrlencoded
+	rest?: RestOptions | RequestHandler
+	express?: {
+		notFound: {
+			verbose: boolean
+		}
+	}
+	errorHandler: {
+		html: boolean,
+		logger: Out
+	}
+}
 
-/**
- * @typedef {Object} CompressOptions
- * @augments {ZlibOptions}
- * @property {Function} [filter=() => true]
- * @property {Number} [threshold=1024]
- */
+export interface AppSetup {
+	paths?: AppSetupPaths
+	helmet?: Partial<HelmetOptions>
+	cors?: CorsOptions
+	compress?: CompressOptions
+	express?: AppSetupExpress
+	socketio?: ServerOptions
+	middleware?: (...args) => any
+	authentication?: (...args) => any
+	services?: (...args) => any
+	channels?: (...args) => any
+	hooks?: (...args) => any
+}
 
-/**
- * @typedef {Object} AppSetupPaths
- * @property {String} [root]
- * @property {String} [storage]
- * @property {String} [uploads]
- * @property {String} [temp]
- */
+export type AppSetupPaths = {
+	root?: string;
+	storage?: string;
+	uploads?: string;
+	temp?: string;
+};
 
-/**
- * @typedef {Object} AppSetupExpress
- * @property {OptionsJson} [json]
- * @property {OptionsUrlencoded} [urlencoded={extended: true}]
- * @property {RestOptions | RequestHandler} [rest]
- * @property {{ verbose: Boolean }} [express.notFound = {verbose: process.env.NODE_ENV !== 'production'}]
- * @property {ErrorHandlerOptions} [errorHandler={html: false, logger: app.out.alert}]
- */
+export interface FeathersUpOverrides {
+	out: Out;
+	log: typeof Logger;
+	error: typeof Logger;
+}
 
-/**
- * @typedef {Object} AppSetup
- * @property {AppSetupPaths} [paths]
- * @property {Partial<HelmetOptions>} [helmet={contentSecurityPolicy: false}]
- * @property {CorsOptions} [cors]
- * @property {CompressOptions} [compress]
- * @property {AppSetupExpress} [express]
- * @property {ServerOptions} [socketio]
- * @property {Function} [middleware]
- * @property {Function} [authentication]
- * @property {Function} [services]
- * @property {Function} [channels]
- * @property {Function|Object} [hooks]
- */
+export interface Application extends ExpressApplication {
+	out: Out;
+	log: typeof Logger;
+	error: typeof Logger;
+}
 
-/**
- * @param {String} [appType='server']
- * @param {AppSetup} [setup]
- * @return {App|ExpressApp}
- */
-export function useApp(appType = 'server', setup = {}) {
+let app: Application
+
+export function useApp(appType = 'server', setup: AppSetup = {}) {
 	if (app) return app
 	else return feathersUp(appType, setup)
 }
 
-/**
- * @param {String} [appType='server']
- * @param {AppSetup|Model} [setup]
- * @return {App|ExpressApp}
- */
-export function feathersUp(appType = 'server', setup = {}) {
+export function feathersUp(appType = 'server', setup: AppSetup | Model = {}): Application {
 	if (app) return app
 
 	setup = new Model(setup)
 
-	const instance = feathers()
-	// noinspection JSValidateTypes
-	app = appType === 'cli' ? instance : express(instance)
+	let instance = feathers()
+	instance = appType === 'cli' ? instance : express(instance) as ExpressApplication
+
+	app = instance as Application
+
 	app.set('appType', appType)
 	app.set('env', process.env.NODE_ENV || 'development')
 
-	app.out = out.app(appType, 0)
+	app.out = new Out(appType)
 	app.out.block.info(`Initializing {cyan}${appType}{/cyan} in {magenta}${app.get('env')}{/megenta} mode`)
 
 	process.on('unhandledRejection', (reason, promise) => {
@@ -166,13 +161,11 @@ export function feathersUp(appType = 'server', setup = {}) {
 	if (plugins.sentry) {
 		Sentry.init({
 			dsn: plugins.sentry.dsn,
-			environment: process.env.NODE_ENV,
-			version: app.get('version')
+			environment: process.env.NODE_ENV
 		})
 
 		if (appType === 'server') {
 			app.out.verbose('Enable sentry request handler')
-			// noinspection JSCheckFunctionSignatures
 			app.use(Sentry.Handlers.requestHandler())
 		}
 	}
@@ -213,11 +206,11 @@ export function feathersUp(appType = 'server', setup = {}) {
 		app.use(helmet(setup.get('helmet') || {contentSecurityPolicy: false}))
 		app.use(cors(setup.get('cors')))
 		app.use(compress(setup.get('compress')))
-		app.use(express.json(setup.get('express.json')))
-		app.use(express.urlencoded(setup.get('express.urlencoded') || {extended: true}))
+		app.use(expressJson(setup.get('express.json')))
+		app.use(urlencoded(setup.get('express.urlencoded') || {extended: true}))
 
 		app.out.verbose('Set up Plugins and providers...')
-		app.configure(express.rest(setup.get('express.rest')))
+		app.configure(expressRest(setup.get('express.rest')))
 		app.configure(socketio(setup.get('socketio')))
 
 		app.out.verbose('Configure middleware')
@@ -274,8 +267,8 @@ export function feathersUp(appType = 'server', setup = {}) {
 			app.use(Sentry.Handlers.errorHandler())
 		}
 		app.out.verbose('Configure a middleware for 404s and the error handler')
-		app.use(express.notFound(setup.get('express.notFound') || {verbose: process.env.NODE_ENV !== 'production'}))
-		app.use(express.errorHandler(setup.get('express.errorHandler') || {
+		app.use(expressNotFound(setup.get('express.notFound') || {verbose: process.env.NODE_ENV !== 'production'}))
+		app.use(expressErrorHandler(setup.get('express.errorHandler') || {
 			html: false,
 			logger: app.error.log
 		}))

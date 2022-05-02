@@ -21,9 +21,9 @@
 		"clean": "shx rm -rf ./dist",
 		"depcheck": "depcheck",
 		"build": "tsup",
-		"meta": "npm run prod --metafile",
-		"prod": "npm run build --minify",
-		"watch": "npm run build --watch"
+		"meta": "npm run prod -- --metafile",
+		"prod": "npm run build -- --minify",
+		"watch": "npm run build -- --watch"
 	},
 	"dependencies": {
 		"@feathersjs/configuration": "^5.0.0-pre.18",
@@ -32,6 +32,7 @@
 		"@feathersjs/socketio": "^5.0.0-pre.18",
 		"@sentry/node": "^6.19.6",
 		"@snickbit/feathers-hooks": "^0.0.13",
+		"@snickbit/feathers-logger": "^0.1.13",
 		"@snickbit/feathers-logs": "^0.1.13",
 		"@snickbit/model": "^1.0.34",
 		"@snickbit/node-utilities": "^4.2.31",
@@ -44,7 +45,8 @@
 		"helmet": "^5.0.2",
 		"ioredis": "^5.0.4",
 		"knex": "^2.0.0",
-		"node-ray": "^1.18.0"
+		"node-ray": "^1.18.0",
+		"socket.io": "^4.5.0"
 	},
 	"devDependencies": {
 		"@feathersjs/feathers": "^5.0.0-pre.18",
@@ -57,7 +59,7 @@
 	},
 	"tsup": {
 		"entry": [
-			"src/index.js"
+			"src/index.ts"
 		],
 		"clean": true,
 		"dts": true,
