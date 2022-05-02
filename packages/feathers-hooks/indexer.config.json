@@ -1,6 +1,6 @@
 [
 	{
-		"index": "src/hooks/index.js",
+		"index": "src/hooks/index.ts",
 		"files": [
 			{
 				"export": "group",
@@ -13,7 +13,7 @@
 		]
 	},
 	{
-		"index": "src/hooks/before/index.js",
+		"index": "src/hooks/before/index.ts",
 		"files": [
 			{
 				"export": "group",

@@ -21,9 +21,9 @@
 		"clean": "shx rm -rf ./dist",
 		"depcheck": "depcheck",
 		"build": "tsup",
-		"meta": "npm run prod --metafile",
-		"prod": "npm run build --minify",
-		"watch": "npm run build --watch",
+		"meta": "npm run prod -- --metafile",
+		"prod": "npm run build -- --minify",
+		"watch": "npm run build -- --watch",
 		"index": "indexer src/hooks"
 	},
 	"devDependencies": {
@@ -37,7 +37,7 @@
 	},
 	"tsup": {
 		"entry": [
-			"src/index.js"
+			"src/index.ts"
 		],
 		"clean": true,
 		"dts": true,

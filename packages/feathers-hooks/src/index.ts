@@ -1,3 +1,5 @@
+import {Application, Hook} from '@feathersjs/feathers'
+
 const hook_types = [
 	'before',
 	'after',
@@ -14,7 +16,16 @@ const hook_names = [
 	'remove'
 ]
 
-export default function setHooks(app, hooks = {}) {
+export interface Hooks {
+	[key: string]: Hook | HookImport
+}
+
+export interface HookImport {
+	readonly default: Hook
+}
+
+
+export default function setHooks(app: Application, hooks: Hooks = {}) {
 	const app_hooks = {}
 
 	hooks = hooks || {}
