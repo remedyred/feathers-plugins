@@ -1,8 +1,8 @@
 import {DeleteObjectCommand, GetObjectCommand, HeadObjectCommand, ListObjectsCommand, PutObjectCommand, S3} from '@aws-sdk/client-s3'
 import {Out} from '@snickbit/out'
-import {getFile, saveFile} from '@snickbit/node-utilities'
+import {bufferStream, getFile, makeBuffer, saveFile} from '@snickbit/node-utilities'
 import {FileData, FileId, FileParams, FileService, FileServiceOptions, ParsedParams} from './file.service'
-import {bufferStream, makeBuffer, objectPull} from '@snickbit/utilities'
+import {objectPull} from '@snickbit/utilities'
 import mime from 'mime/lite'
 import {Readable} from 'stream'
 
