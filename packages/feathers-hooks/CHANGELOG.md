@@ -1,5 +1,14 @@
 # @snickbit/feathers-hooks Changelog
 
+## 0.0.15
+
+### Patch Changes
+
+- [2aff954](https://github.com/snickbit/feathers/commit/2aff954) **fix**:  pin feathers version
+- [4f03efe](https://github.com/snickbit/feathers/commit/4f03efe) **refactor**(feathers-hooks):  typescript rewrite
+- [44ca51e](https://github.com/snickbit/feathers/commit/44ca51e) **docs**:  update
+
+
 ## 0.0.14
 
 ### Patch Changes

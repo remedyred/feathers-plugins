@@ -1,5 +1,15 @@
 # @snickbit/feathers-mongo Changelog
 
+## 0.0.68
+
+### Patch Changes
+
+- [2aff954](https://github.com/snickbit/feathers/commit/2aff954) **fix**:  pin feathers version
+- [213d037](https://github.com/snickbit/feathers/commit/213d037) **chore**:  update build config
+- [1d0fba5](https://github.com/snickbit/feathers/commit/1d0fba5) **fix**(feathers-mongo):  adjust timestamp getter, fix type definitions
+- [44ca51e](https://github.com/snickbit/feathers/commit/44ca51e) **docs**:  update
+
+
 ## 0.0.67
 
 ### Patch Changes

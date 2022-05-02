@@ -1,5 +1,15 @@
 # @snickbit/feathers-logger Changelog
 
+## 0.1.14
+
+### Patch Changes
+
+- [2aff954](https://github.com/snickbit/feathers/commit/2aff954) **fix**:  pin feathers version
+- [0e82ccf](https://github.com/snickbit/feathers/commit/0e82ccf) **chore**:  update dependencies
+- [90061c8](https://github.com/snickbit/feathers/commit/90061c8) **refactor**(feathers-logger):  typescript rewrite
+- [44ca51e](https://github.com/snickbit/feathers/commit/44ca51e) **docs**:  update
+
+
 ## 0.1.13
 
 ### Patch Changes

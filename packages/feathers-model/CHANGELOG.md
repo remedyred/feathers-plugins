@@ -1,5 +1,14 @@
 # @snickbit/feathers-model Changelog
 
+## 0.0.42
+
+### Patch Changes
+
+- [2aff954](https://github.com/snickbit/feathers/commit/2aff954) **fix**:  pin feathers version
+- [e35caf9](https://github.com/snickbit/feathers/commit/e35caf9) **chore**:  update build config
+- [44ca51e](https://github.com/snickbit/feathers/commit/44ca51e) **docs**:  update
+
+
 ## 0.0.41
 
 ### Patch Changes

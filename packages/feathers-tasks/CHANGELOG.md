@@ -1,5 +1,14 @@
 # @snickbit/feathers-tasks Changelog
 
+## 1.0.32
+
+### Patch Changes
+
+- [2aff954](https://github.com/snickbit/feathers/commit/2aff954) **fix**:  pin feathers version
+- [e67f2fc](https://github.com/snickbit/feathers/commit/e67f2fc) **fix**(feathers-tasks):  correct imports
+- [44ca51e](https://github.com/snickbit/feathers/commit/44ca51e) **docs**:  update
+
+
 ## 1.0.31
 
 ### Patch Changes

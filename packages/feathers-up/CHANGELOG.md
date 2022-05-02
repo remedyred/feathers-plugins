@@ -1,5 +1,14 @@
 # @snickbit/feathers-up Changelog
 
+## 0.1.11
+
+### Patch Changes
+
+- [2aff954](https://github.com/snickbit/feathers/commit/2aff954) **fix**:  pin feathers version
+- [556e059](https://github.com/snickbit/feathers/commit/556e059) **refactor**(feathers-up):  typescript rewrite
+- [44ca51e](https://github.com/snickbit/feathers/commit/44ca51e) **docs**:  update
+
+
 ## 0.1.10
 
 ### Patch Changes
