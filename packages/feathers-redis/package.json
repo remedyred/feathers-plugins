@@ -21,9 +21,9 @@
 		"clean": "shx rm -rf ./dist",
 		"depcheck": "depcheck",
 		"build": "tsup",
-		"meta": "npm run prod --metafile",
-		"prod": "npm run build --minify",
-		"watch": "npm run build --watch"
+		"meta": "npm run prod -- --metafile",
+		"prod": "npm run build -- --minify",
+		"watch": "npm run build -- --watch"
 	},
 	"dependencies": {
 		"@feathersjs/adapter-commons": "^5.0.0-pre.18",
@@ -44,7 +44,7 @@
 	},
 	"tsup": {
 		"entry": [
-			"src/index.js"
+			"src/index.ts"
 		],
 		"clean": true,
 		"dts": true,
