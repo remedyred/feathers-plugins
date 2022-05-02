@@ -1,37 +1,112 @@
-import {AdapterService} from '@feathersjs/adapter-commons'
+import {AdapterService, ServiceOptions} from '@feathersjs/adapter-commons'
 import {Unprocessable} from '@feathersjs/errors'
-import {filterResults} from '@snickbit/feathers-helpers'
-import {out} from '@snickbit/out'
-import {arrayWrap, isObject, objectHasMethod, objectOnly} from '@snickbit/utilities'
-import {Queue} from 'bullmq'
+import {filterResults, Results} from '@snickbit/feathers-helpers'
+import {Out} from '@snickbit/out'
+import {arrayWrap, objectOnly} from '@snickbit/utilities'
+import {Job as JobBase, Queue} from 'bullmq'
 import {Task} from '../tasks/task'
-import {getConfig, useConnection} from '../utilities/state'
+import {ConnectionConfig, defaultWatcherConfig, defaultWorkerConfig, getConfig, useConnection, WatcherConfig, WorkerConfig} from '../utilities/state'
 import {jobToPayload} from './helpers'
-import {QueueWatcher} from './queue.watcher'
-import {QueueWorker} from './queue.worker'
+import {QueueWatcher, WatcherOptions} from './queue.watcher'
+import {QueueWorker, WorkerOptions} from './queue.worker'
+import {FeathersService, Id, Params} from '@feathersjs/feathers'
+import {booleanConfig} from '../utilities/helpers'
 
-/**
- * @type QueueService
- */
+export interface QueueServiceOptions extends ServiceOptions {
+	name: string
+	defaultJobOptions?: JobOptions
+	watcher?: WatcherOptions | boolean
+	worker?: WorkerOptions | boolean
+	Model?: any
+	connection?: any
+}
+
+export interface QueueServiceConfig extends ServiceOptions {
+	name: string
+	defaultJobOptions?: JobOptions
+	watcher?: WatcherConfig
+	worker?: WorkerConfig
+	Model?: any
+	connection?: any
+}
+
+export interface JobOptions {
+	attempts?: number
+	backoff?: BackoffOptions
+}
+
+export interface BackoffOptions {
+	type?: string
+	delay?: number
+	max?: number
+}
+
+export interface BullJob extends JobBase {
+	status?: string
+}
+
+export interface TaskRequestBase {
+	name?: string
+	job?: string
+	payload?: any
+	data?: any
+	progress?: TaskProgress
+	options?: any
+	toJSON?: () => TaskRequest
+}
+
+export interface TaskProgress {
+	total?: number
+	current?: number
+}
+
+export interface TaskRequestModel {
+	toJSON: () => TaskRequest
+}
+
+export interface TaskPayload {
+	data: any
+	name: string
+	progress: TaskProgress
+}
+
+type RequireAtLeastOne<T, Keys extends keyof T = keyof T> =
+	Pick<T, Exclude<keyof T, Keys>>
+	& {
+	[K in Keys]-?: Required<Pick<T, K>> & Partial<Pick<T, Exclude<Keys, K>>>
+}[Keys]
+
+export type TaskRequest = RequireAtLeastOne<TaskRequestBase, 'name' | 'job'>
+
+export interface QueueFeathersService extends FeathersService {
+	options: QueueServiceConfig
+	queueOptions: any
+	out: Out
+	queue: Queue
+	worker: QueueWorker
+	watcher: QueueWatcher
+	connection: ConnectionConfig
+}
+
 export class QueueService extends AdapterService {
+	declare options: QueueServiceConfig
+	queueOptions: any
+	out: Out
+	queue: Queue
+	worker: QueueWorker
+	watcher: QueueWatcher
+	connection: ConnectionConfig
 
-	/**
-	 * @type {Partial<QueueServiceOptions>}
-	 */
-	options
-
-	/**
-	 * @param {Partial<QueueServiceOptions>} options
-	 */
-	constructor(options) {
+	constructor(options: QueueServiceOptions) {
 		if (typeof options === 'string') options = {name: /** @type {string} */ options}
 		if (!options.name) options.name = 'default'
 
 		super(options)
-		this.out = out.app(`queue:${options.name}`)
+		this.out = new Out(`queue:${options.name}`)
 
-		this.options = {
-			...objectOnly(getConfig(), ['defaultJobOptions', 'limiter', 'streams', 'watcher', 'worker']),
+		const {defaultJobOptions, watcher, worker} = getConfig()
+
+		const _options = {
 			id: 'id',
 			events: ['created', 'updated', 'patched', 'removed'],
 			paginate: {},
@@ -39,28 +114,25 @@ export class QueueService extends AdapterService {
 			filters: ['$asPayload'],
 			whitelist: [],
 			Model: Task,
+			defaultJobOptions,
+			watcher,
+			worker,
 			...options
 		}
 
-		if (!isObject(this.options.watcher)) {
-			this.options.watcher = {enabled: this.options.watcher}
-		}
+		_options.watcher = booleanConfig(_options.watcher, defaultWatcherConfig) as WatcherConfig
+		_options.worker = booleanConfig(_options.watcher, defaultWorkerConfig) as WorkerConfig
 
-		if (!isObject(this.options.worker)) {
-			this.options.worker = {enabled: this.options.worker}
-		}
+		this.queueOptions = objectOnly(_options, ['defaultJobOptions', 'limiter', 'streams'])
+		this.queueOptions.connection = this.connection = _options?.connection || useConnection()
 
-		if (this.options.watcher?.events) {
-			this.options.events = this.options.watcher.events
-		}
+		this.out = new Out(`queue:${_options.name}`)
 
-		this.queueOptions = objectOnly(this.options, ['defaultJobOptions', 'limiter', 'streams'])
-		this.queueOptions.connection = this.options?.connection || useConnection()
-
-		this.out = out.app(`queue:${this.options.name}`)
-
-		this.out.extra(objectOnly(this.options, ['defaultJobOptions', 'name'])).ev(5).verbose('Setting up BullMQ Redis connection')
+		this.out.extra(objectOnly(_options, ['defaultJobOptions', 'name'])).ev(5).verbose('Setting up BullMQ Redis connection')
 		this.queue = new Queue(this.name, this.queueOptions)
+
+
+		this.options = _options as QueueServiceConfig
 
 		this.queue.waitUntilReady().then(() => {
 			if (this.options.watcher.enabled) {
@@ -83,7 +155,7 @@ export class QueueService extends AdapterService {
 		return this.options.name
 	}
 
-	asModel(job, options) {
+	asModel(job, options?) {
 		return new this.Model(job, options)
 	}
 
@@ -91,7 +163,7 @@ export class QueueService extends AdapterService {
 		if (!this.worker && this.options.worker) {
 			this.worker = new QueueWorker({
 				name: this.name,
-				...(isObject(this.options.worker) ? this.options.worker : getConfig().worker)
+				...this.options.worker
 			})
 		}
 
@@ -103,10 +175,10 @@ export class QueueService extends AdapterService {
 	}
 
 	async startWatcher() {
-		if (!this.watcher && this.options.watcher) {
+		if (!this.watcher && this.options.watcher && this.options.watcher.enabled) {
 			this.watcher = new QueueWatcher({
 				name: this.name,
-				...(isObject(this.options.watcher) ? this.options.watcher : getConfig().watcher)
+				...this.options.watcher
 			})
 		}
 		return this.watcher.start()
@@ -144,16 +216,12 @@ export class QueueService extends AdapterService {
 		return this.queue.trimEvents(maxLength)
 	}
 
-	async getEntries(params = {}) {
+	async getEntries(params: Params = {}): Promise<any[]> {
 		const {query} = this.filterQuery(params)
-
-		return this._find(Object.assign({}, params, {
-			paginate: false,
-			query
-		}))
+		return await this._find(Object.assign({}, params, {paginate: false, query})) as any[]
 	}
 
-	async _find(params) {
+	async _find(params: Params): Promise<any[] | Results> {
 		let types = []
 		if (params?.query?.status) {
 			types = arrayWrap(params.query.status)
@@ -197,9 +265,9 @@ export class QueueService extends AdapterService {
 		return filterResults(jobs, params, this.options)
 	}
 
-	async _get(id, params = {}) {
-		if (!this.queue) this.setup()
-		const job = await this.queue.getJob(id)
+	async _get(id: Id, params: Params = {}) {
+		if (!this.queue) await this.setup()
+		const job: BullJob = await this.queue.getJob(id as string)
 		if (job) {
 			job.status = await job.getState()
 			if (job.data) {
@@ -215,7 +283,7 @@ export class QueueService extends AdapterService {
 		}
 	}
 
-	async _create(data, params) {
+	async _create(data: any, params?: Params) {
 		const {payload, options} = this.prepParams(data, params)
 		const job = await this.queue.add(payload.name, payload.data, options)
 		return this.asModel(job)
@@ -223,8 +291,6 @@ export class QueueService extends AdapterService {
 
 	async _update(id, data, params) {
 		const {payload, options} = this.prepParams(data, params, id)
-
-		/** @type {Job} */
 		const job = await this.queue.getJob(id)
 		if (!job) throw new Unprocessable(`Job not found`, {id})
 
@@ -256,11 +322,11 @@ export class QueueService extends AdapterService {
 		return this.queue.remove(id)
 	}
 
-	prepParams(request, context, id) {
-		let payload = {}
+	prepParams(request: TaskRequest | TaskRequestModel, context, id?) {
+		let payload: Partial<TaskPayload> = {}
 		let options = {}
 
-		if (objectHasMethod(request, 'toJSON')) request = request.toJSON()
+		if ('toJSON' in request) request = request.toJSON() as TaskRequest
 
 		if (request.payload) {
 			request.data = {
@@ -272,7 +338,7 @@ export class QueueService extends AdapterService {
 		payload.data = request.data || {}
 
 		if (!id) {
-			let job_name = request.job || request.name || payload.data?.name
+			let job_name = request?.job || request?.name || payload.data?.name
 			if (!job_name) throw new Unprocessable('Missing required job name', request)
 
 			payload.name = job_name

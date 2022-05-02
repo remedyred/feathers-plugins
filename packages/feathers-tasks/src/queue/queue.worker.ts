@@ -1,22 +1,26 @@
-import {cleanup} from '@snickbit/node-utilities'
-import {out} from '@snickbit/out'
+import {beforeExit} from '@snickbit/node-utilities'
+import {Out, out} from '@snickbit/out'
 import {objectOnly} from '@snickbit/utilities'
 import {Worker} from 'bullmq'
 import {Task} from '../tasks/task'
 import {getConfig, useConnection} from '../utilities/state'
 import {parseQueueChildOptions} from './helpers'
+import {QueueService} from './queue.service'
+
+export interface QueueWorkerConfig extends WorkerOptions {
+	name: string;
+	enabled: boolean
+	queue: QueueService
+}
+
+export type QueueWorkerOptions = Partial<QueueWorkerConfig>
 
 export class QueueWorker {
-	/** @type {Worker} */
-	worker
+	worker: Worker
+	options: QueueWorkerOptions
+	out: Out
 
-	/** @type {QueueWorkerOptions} */
-	options
-
-	/**
-	 * @param {QueueWorkerOptions} options
-	 */
-	constructor(options) {
+	constructor(options: QueueWorkerOptions) {
 		options = parseQueueChildOptions(options)
 
 		this.options = {
@@ -51,7 +55,7 @@ export class QueueWorker {
 		this.worker = new Worker(this.options.name, processor, this.options)
 		this.out.verbose('Worker Started')
 
-		cleanup(() => this.stop())
+		beforeExit(() => this.stop())
 
 		return this.worker
 	}

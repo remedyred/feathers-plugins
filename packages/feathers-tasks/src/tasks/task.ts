@@ -8,6 +8,19 @@ import {getApp, useQueue, useTask, useTasks} from '../utilities/state'
 
 /** @class {TaskInstance} Task */
 export class Task extends Model {
+	public _job: any
+	public set: any
+	public is_new: any
+	public id: any
+	public resetOut: any
+	public options: any
+	public get: any
+	public service: any
+	public out: any
+	public coalesce: any
+	public _save: any
+	public push: any
+	public data: any
 	looping = false
 
 	constructor(job, options = {}) {
@@ -167,7 +180,7 @@ export class Task extends Model {
 		return makeTaskItem(this.get('items').find(item => item.id === id), this, options)
 	}
 
-	items(items, options = {}) {
+	items(items?, options = {}) {
 		if (items === undefined) {
 			return this.get('items').map(item => makeTaskItem(item, this, options))
 		}

@@ -2,6 +2,13 @@ import {Model} from '@snickbit/feathers-model'
 import {uuid} from '@snickbit/utilities'
 
 export class TaskItem extends Model {
+	public patch: any
+	public options: any
+	public parent: any
+	public out: any
+	public id: any
+	public get: any
+	public set: any
 
 	/**
 	 *

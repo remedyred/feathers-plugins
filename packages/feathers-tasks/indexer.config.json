@@ -1,6 +1,6 @@
 [
 	{
-		"index": "src/utilities/index.js",
+		"index": "src/utilities/index.ts",
 		"files": [
 			{
 				"export": "skip",
@@ -9,7 +9,7 @@
 		]
 	},
 	{
-		"index": "src/tasks/index.js",
+		"index": "src/tasks/index.ts",
 		"files": [
 			{
 				"export": "skip",
@@ -18,7 +18,7 @@
 		]
 	},
 	{
-		"index": "src/queue/index.js",
+		"index": "src/queue/index.ts",
 		"files": [
 			{
 				"export": "skip",
@@ -27,7 +27,7 @@
 		]
 	},
 	{
-		"index": "src/index.js",
+		"index": "src/index.ts",
 		"files": [
 			{
 				"export": "group",
@@ -35,7 +35,7 @@
 			},
 			{
 				"export": "individual",
-				"file": "src/tasks/task.js"
+				"file": "src/tasks/task.ts"
 			},
 			{
 				"export": "skip",
@@ -60,7 +60,7 @@
 		]
 	},
 	{
-		"index": "src/commands/index.js",
+		"index": "src/commands/index.ts",
 		"files": [
 			{
 				"export": "group",
