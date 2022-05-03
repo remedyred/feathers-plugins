@@ -48,5 +48,11 @@
 			"esm",
 			"cjs"
 		]
+	},
+	"nx": {
+		"implicitDependencies": [
+			"@snickbit/feathers-logger",
+			"@snickbit/feathers-mongo"
+		]
 	}
 }

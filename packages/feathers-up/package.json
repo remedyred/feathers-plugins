@@ -67,5 +67,16 @@
 			"esm",
 			"cjs"
 		]
+	},
+	"nx": {
+		"implicitDependencies": [
+			"@snickbit/feathers-hooks",
+			"@snickbit/feathers-logger",
+			"@snickbit/feathers-logs",
+			"@snickbit/model",
+			"@snickbit/node-utilities",
+			"@snickbit/out",
+			"@snickbit/utilities"
+		]
 	}
 }

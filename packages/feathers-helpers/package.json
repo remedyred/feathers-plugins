@@ -60,5 +60,11 @@
 			"esm",
 			"cjs"
 		]
+	},
+	"nx": {
+		"implicitDependencies": [
+			"@snickbit/out",
+			"@snickbit/utilities"
+		]
 	}
 }

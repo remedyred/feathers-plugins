@@ -51,5 +51,11 @@
 			"esm",
 			"cjs"
 		]
+	},
+	"nx": {
+		"implicitDependencies": [
+			"@snickbit/feathers-helpers",
+			"@snickbit/out"
+		]
 	}
 }
