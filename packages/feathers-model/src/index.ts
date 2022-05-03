@@ -133,12 +133,4 @@ export class Model extends BaseModel {
 	async fresh() {
 		return callMethod(this, '_fresh')
 	}
-
-	toString() {
-		return this.data.toString()
-	}
-
-	toJSON() {
-		return this.get()
-	}
 }
