@@ -1,6 +1,6 @@
 import {Conflict, NotFound} from '@feathersjs/errors'
 import {callMethod, safeCallMethod} from '@snickbit/feathers-helpers'
-import {Model as BaseModel, ModelOptions as BaseModelOptions} from '@snickbit/model'
+import {Model as BaseModel, ModelOptions as BaseModelOptions, ModelSchema as BaseModelSchema} from '@snickbit/model'
 import {Service} from 'feathers-memory'
 import {InternalServiceMethods} from '@feathersjs/adapter-commons'
 
@@ -9,6 +9,8 @@ export interface ModelOptions extends BaseModelOptions {
 	disableCommit?: boolean
 	soft_delete?: boolean
 }
+
+export type ModelSchema = BaseModelSchema
 
 export interface ModelService extends InternalServiceMethods {
 	asModel: boolean | Model;
