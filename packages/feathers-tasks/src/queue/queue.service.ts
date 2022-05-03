@@ -5,12 +5,15 @@ import {Out} from '@snickbit/out'
 import {arrayWrap, objectOnly} from '@snickbit/utilities'
 import {Job as JobBase, Queue} from 'bullmq'
 import {Task} from '../tasks/task'
-import {ConnectionConfig, defaultWatcherConfig, defaultWorkerConfig, getConfig, useConnection, WatcherConfig, WorkerConfig} from '../utilities/state'
+import {defaultWatcherConfig, defaultWorkerConfig, WatcherConfig, WorkerConfig} from '../utilities/config'
 import {jobToPayload} from './helpers'
 import {QueueWatcher, WatcherOptions} from './queue.watcher'
 import {QueueWorker, WorkerOptions} from './queue.worker'
 import {FeathersService, Id, Params} from '@feathersjs/feathers'
-import {booleanConfig} from '../utilities/helpers'
+import {booleanConfig, getConfig, useConnection} from '../utilities/helpers'
+import {ObliterateOpts} from 'bullmq/dist/esm/classes/queue'
+import {FinishedStatus} from 'bullmq/dist/esm/types'
+import {ConnectionOptions} from 'bullmq/dist/esm/interfaces/redis-options'
 
 export interface QueueServiceOptions extends ServiceOptions {
 	name: string
@@ -78,15 +81,7 @@ type RequireAtLeastOne<T, Keys extends keyof T = keyof T> =
 
 export type TaskRequest = RequireAtLeastOne<TaskRequestBase, 'name' | 'job'>
 
-export interface QueueFeathersService extends FeathersService {
-	options: QueueServiceConfig
-	queueOptions: any
-	out: Out
-	queue: Queue
-	worker: QueueWorker
-	watcher: QueueWatcher
-	connection: ConnectionConfig
-}
+export type FeathersQueueService = QueueService & FeathersService
 
 export class QueueService extends AdapterService {
 	declare options: QueueServiceConfig
@@ -95,10 +90,10 @@ export class QueueService extends AdapterService {
 	queue: Queue
 	worker: QueueWorker
 	watcher: QueueWatcher
-	connection: ConnectionConfig
+	connection: ConnectionOptions
 
 	constructor(options: QueueServiceOptions) {
-		if (typeof options === 'string') options = {name: /** @type {string} */ options}
+		if (typeof options === 'string') options = {name: options}
 		if (!options.name) options.name = 'default'
 
 		super(options)
@@ -184,35 +179,35 @@ export class QueueService extends AdapterService {
 		return this.watcher.start()
 	}
 
-	async pause() {
+	async pause(): Promise<void> {
 		return this.queue.pause()
 	}
 
-	async resume() {
+	async resume(): Promise<void> {
 		return this.queue.resume()
 	}
 
-	async isPaused() {
+	async isPaused(): Promise<boolean> {
 		return this.queue.isPaused()
 	}
 
-	async drain() {
-		return this.queue.drain()
+	async drain(delayed?: boolean): Promise<void> {
+		return this.queue.drain(delayed)
 	}
 
-	async clean(grace, limit, type) {
+	async clean(grace: number, limit: number, type?: 'completed' | 'wait' | 'active' | 'paused' | 'delayed' | 'failed'): Promise<string[]> {
 		return this.queue.clean(grace, limit, type)
 	}
 
-	async obliterate() {
-		return this.queue.obliterate()
+	async obliterate(opts?: ObliterateOpts): Promise<void> {
+		return this.queue.obliterate(opts)
 	}
 
-	async retryJobs() {
-		return this.queue.retryJobs()
+	async retryJobs(opts?: { count?: number; state?: FinishedStatus; timestamp?: number; }): Promise<void> {
+		return this.queue.retryJobs(opts)
 	}
 
-	async trimEvents(maxLength) {
+	async trimEvents(maxLength: number): Promise<number> {
 		return this.queue.trimEvents(maxLength)
 	}
 

@@ -1,7 +1,7 @@
 import {cli} from '@snickbit/node-cli'
 import {out} from '@snickbit/out'
 import {Task} from '../tasks/task'
-import {useQueue} from '../utilities/state'
+import {useQueue} from '../utilities/helpers'
 
 export const name = 'queue:run'
 export default async argv => cli(argv)

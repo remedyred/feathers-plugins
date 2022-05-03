@@ -1,11 +1,10 @@
 import {beforeExit} from '@snickbit/node-utilities'
-import {Out, out} from '@snickbit/out'
-import {objectOnly} from '@snickbit/utilities'
+import {Out} from '@snickbit/out'
 import {Worker} from 'bullmq'
 import {Task} from '../tasks/task'
-import {getConfig, useConnection} from '../utilities/state'
-import {parseQueueChildOptions} from './helpers'
-import {QueueService} from './queue.service'
+import {WorkerConfig} from '../utilities/config'
+import {FeathersQueueService, QueueService} from './queue.service'
+import {getWorkerConfig, useQueue} from '../utilities/helpers'
 
 export interface QueueWorkerConfig extends WorkerOptions {
 	name: string;
@@ -13,25 +12,32 @@ export interface QueueWorkerConfig extends WorkerOptions {
 	queue: QueueService
 }
 
-export type QueueWorkerOptions = Partial<QueueWorkerConfig>
+export interface WorkerOptions extends WorkerConfig {
+	name: string
+}
 
 export class QueueWorker {
 	worker: Worker
-	options: QueueWorkerOptions
+	options: WorkerOptions
+	queue: FeathersQueueService
 	out: Out
 
-	constructor(options: QueueWorkerOptions) {
-		options = parseQueueChildOptions(options)
+	constructor(options: WorkerOptions) {
+		const {enabled, concurrency, limiter} = getWorkerConfig()
 
-		this.options = {
-			...objectOnly(getConfig(), ['limiter', 'streams']),
-			concurrency: 10,
-			limiter: {},
-			...options,
-			connection: options.connection || useConnection()
+		this.queue = useQueue(options.name)
+		if (!this.queue) throw new Error(`Queue ${options.name} not found`)
+
+		options = {
+			enabled,
+			concurrency,
+			limiter,
+			...options
 		}
 
-		this.out = out.app(`worker:${this.options.name}`)
+		this.out = new Out(`worker:${options.name}`)
+
+		this.options = options
 	}
 
 	start() {
@@ -44,10 +50,10 @@ export class QueueWorker {
 					await task.run()
 					this.out.success(`Job ${job.name} Complete`)
 				} catch (e) {
-					this.out.extra(e).alert(`Job ${job.name} failed with error: ` + e.message)
+					this.out.extra(e).error(`Job ${job.name} failed with error: ${e.message}`)
 				}
 			} else {
-				this.out.alert(`Job Not Found: ${job.name}`)
+				this.out.error(`Job Not Found: ${job.name}`)
 			}
 		}
 

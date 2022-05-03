@@ -19,7 +19,7 @@
 	},
 	"scripts": {
 		"clean": "shx rm -rf ./dist",
-		"index": "indexer src/commands",
+		"index": "indexer src",
 		"depcheck": "depcheck",
 		"build": "tsup",
 		"meta": "npm run prod -- --metafile",

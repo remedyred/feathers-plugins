@@ -1,16 +1,16 @@
 import {dates} from '@snickbit/dates'
-import {useQueue} from '../utilities/state'
-import {QueueFeathersService} from './queue.service'
+import {QueueService} from './queue.service'
+import {useQueue} from '../utilities/helpers'
 
 export interface QueueChildOptions {
-	queue?: QueueFeathersService
+	queue?: QueueService
 	name?: string
 }
 
 export function parseQueueChildOptions(options: QueueChildOptions | string = {}) {
 	if (typeof options === 'string') options = {name: options as string} as QueueChildOptions
 	if (!options.queue && options.name) {
-		options.queue = useQueue(options.queue)
+		options.queue = useQueue(options.name)
 		if (!options.queue) {
 			throw new Error(`Queue ${options.queue} does not exist`)
 		}

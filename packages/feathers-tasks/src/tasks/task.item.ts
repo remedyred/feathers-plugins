@@ -1,22 +1,12 @@
 import {Model} from '@snickbit/feathers-model'
 import {uuid} from '@snickbit/utilities'
+import {Task} from './task'
+import {out} from '@snickbit/out'
 
 export class TaskItem extends Model {
-	public patch: any
-	public options: any
-	public parent: any
-	public out: any
-	public id: any
-	public get: any
-	public set: any
+	parent: Task
 
-	/**
-	 *
-	 * @param {any} data
-	 * @param {Task} parent
-	 * @param {object} options
-	 */
-	constructor(data, parent, options) {
+	constructor(data: any, parent: Task, options: any = {}) {
 		let is_new = !(data instanceof TaskItem)
 
 		if (is_new) {
@@ -34,19 +24,18 @@ export class TaskItem extends Model {
 
 		this.options.root = 'value'
 
-		/** @type {Task} */
 		this.parent = parent
 		if (is_new) {
 			this.commit()
 		}
-		parent.resetOut()
+		parent.setTaskOut()
 	}
 
-	log(...args) {
+	log(...args: any[]) {
 		this.out.log(...args)
 		if (this.parent.options.logs) {
 			this.parent.job().then(job => {
-				if (job) job.log(...args)
+				if (job) job.log(JSON.stringify(args)).catch(err => out.error(err))
 			}).catch(e => this.out.error('Error logging to job', e))
 		}
 	}

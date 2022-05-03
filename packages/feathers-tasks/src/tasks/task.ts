@@ -1,41 +1,36 @@
 import {Unprocessable} from '@feathersjs/errors'
-import {Model} from '@snickbit/feathers-model'
+import {Model, ModelOptions, ModelSchema} from '@snickbit/feathers-model'
+import {ParsedImport} from '@snickbit/node-utilities'
 import {out} from '@snickbit/out'
 import {objectOnly} from '@snickbit/utilities'
 import {Job} from 'bullmq'
-import {makeTaskItem} from '../utilities/helpers'
-import {getApp, useQueue, useTask, useTasks} from '../utilities/state'
+import {getApp, makeTaskItem, useQueue, useTask, useTasks} from '../utilities/helpers'
 
-/** @class {TaskInstance} Task */
+export interface TaskOptions extends ModelOptions {
+	queue?: string
+	logs?: boolean
+	synchronous?: boolean
+}
+
 export class Task extends Model {
-	public _job: any
-	public set: any
-	public is_new: any
-	public id: any
-	public resetOut: any
-	public options: any
-	public get: any
-	public service: any
-	public out: any
-	public coalesce: any
-	public _save: any
-	public push: any
-	public data: any
+	private _job?: Job
 	looping = false
+	queue: string
+	declare options: TaskOptions
 
-	constructor(job, options = {}) {
+	constructor(job, options: TaskOptions = {}) {
 		const task = useTask(job?.name)
 		if (!task) {
-			return out.throw(`Error finding task '${job?.name}'. Available tasks: `, Object.keys(useTasks()).join(', '))
+			out.throw(`Error finding task '${job?.name}'. Available tasks: `, Object.keys(useTasks()).join(', '))
 		}
 
 		options.queue = options.queue || 'default'
 		const service = useQueue(options.queue)
 		if (!service) {
-			return out.throw(`Error finding queue '${options.queue}'. It may not have been initialized.`)
+			out.throw(`Error finding queue '${options.queue}'. It may not have been initialized.`)
 		}
 
-		const schema = {
+		const schema: ModelSchema = {
 			title: {
 				type: 'string'
 			},
@@ -107,8 +102,12 @@ export class Task extends Model {
 		return this.get('payload')
 	}
 
-	get task() {
+	get task(): ParsedImport {
 		return useTask(this.get('.name'))
+	}
+
+	setTaskOut() {
+		this.resetOut()
 	}
 
 	async job() {
@@ -118,11 +117,11 @@ export class Task extends Model {
 		return this._job
 	}
 
-	log(...args) {
+	log(...args: any[]) {
 		this.out.log(...args)
 		if (this.options.logs) {
 			this.job().then(job => {
-				if (job) job.log(...args)
+				if (job) job.log(JSON.stringify(args)).catch(err => out.error(err))
 			}).catch(e => this.out.error('Error logging to job', e))
 		}
 	}
@@ -232,9 +231,5 @@ export class Task extends Model {
 			throw new Unprocessable(`Task ${this.get('.name')} does not exist`)
 		}
 		return await this.task.handler(this, getApp())
-	}
-
-	toJSON() {
-		return this.data.get()
 	}
 }

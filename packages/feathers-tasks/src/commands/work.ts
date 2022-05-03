@@ -1,6 +1,6 @@
 import {NotFound} from '@feathersjs/errors'
 import {cli} from '@snickbit/node-cli'
-import {useQueue} from '../utilities/state'
+import {useQueue} from '../utilities/helpers'
 
 export const name = 'queue:work'
 export default async argv => cli(argv).args({

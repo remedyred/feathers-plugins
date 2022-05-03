@@ -1,5 +1,26 @@
 [
 	{
+		"index": "src/index.js",
+		"files": [
+			{
+				"export": "group",
+				"file": "src/commands/"
+			},
+			{
+				"export": "skip",
+				"file": "src/queue/"
+			},
+			{
+				"export": "skip",
+				"file": "src/tasks/"
+			},
+			{
+				"export": "skip",
+				"file": "src/utilities/"
+			}
+		]
+	},
+	{
 		"index": "src/utilities/index.ts",
 		"files": [
 			{

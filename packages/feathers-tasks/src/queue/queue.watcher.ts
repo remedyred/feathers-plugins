@@ -1,21 +1,36 @@
 import {beforeExit} from '@snickbit/node-utilities'
 import {Out} from '@snickbit/out'
-import {isObject, parse} from '@snickbit/utilities'
 import {QueueEvents, QueueEventsListener, QueueScheduler} from 'bullmq'
-import {all_events, event_args, getWatcherConfig, useConnection, useQueue, WatcherConfig} from '../utilities/state'
+import {all_events, WatcherConfig} from '../utilities/config'
 import {jobToPayload} from './helpers'
-import {QueueFeathersService} from './queue.service'
+import {FeathersQueueService} from './queue.service'
+import {getWatcherConfig, useConnection, useQueue} from '../utilities/helpers'
 
-export type QueueEvent = keyof QueueEventsListener | 'all'
+export type BullQueueEvent = keyof QueueEventsListener
+
+export type QueueEvent = BullQueueEvent | 'all'
 
 export interface WatcherOptions extends WatcherConfig {
 	name: string
 }
 
+export interface JobEventData {
+	jobId?: string;
+	failedReason?: string;
+	prev?: string;
+	delay?: number;
+	returnvalue?: string;
+	count?: string;
+	name?: string;
+	opts?: string;
+	data?: number | object | string;
+	attemptsMade?: string;
+}
+
 export class QueueWatcher {
 	scheduler: QueueScheduler
 	listener: QueueEvents
-	queue: QueueFeathersService
+	queue: FeathersQueueService
 	options: WatcherOptions
 	out: Out
 
@@ -50,6 +65,45 @@ export class QueueWatcher {
 		return this.options.name
 	}
 
+	private async handleEvent(event: 'active', args: { jobId: string; prev?: string; }, id: string): Promise<void>;
+	private async handleEvent(event: 'added', args: { jobId: string; name: string; data: string; opts: string; }, id: string): Promise<void>;
+	private async handleEvent(event: 'cleaned', args: { count: string; }, id: string): Promise<void>;
+	private async handleEvent(event: 'completed', args: { jobId: string; returnvalue: string; prev?: string; }, id: string): Promise<void>;
+	private async handleEvent(event: 'delayed', args: { jobId: string; delay: number; }, id: string): Promise<void>;
+	private async handleEvent(event: 'drained', id: string): Promise<void>;
+	private async handleEvent(event: 'error', args: Error): Promise<void>;
+	private async handleEvent(event: 'failed', args: { jobId: string; failedReason: string; prev?: string; }): Promise<void>;
+	private async handleEvent(event: 'paused', args: Record<string, never>, id: string): Promise<void>;
+	private async handleEvent(event: 'progress', args: { jobId: string; data: number | object; }, id: string): Promise<void>;
+	private async handleEvent(event: 'removed', args: { jobId: string; }, id: string): Promise<void>;
+	private async handleEvent(event: 'resumed', args: Record<string, never>, id: string): Promise<void>;
+	private async handleEvent(event: 'retries-exhausted', args: { jobId: string; attemptsMade: string; }, id: string): Promise<void>;
+	private async handleEvent(event: 'stalled', args: { jobId: string; }, id: string): Promise<void>;
+	private async handleEvent(event: 'waiting', args: { jobId: string; }, id: string): Promise<void>;
+	private async handleEvent(event: 'waiting-children', args: { jobId: string; }, id: string): Promise<void>;
+	private async handleEvent(event: BullQueueEvent, argsOrIdOrError?: JobEventData | Error | string, optionalId?: string): Promise<void> {
+		let data: any = {}
+		let id: string
+
+		if (typeof argsOrIdOrError === 'string') {
+			id = argsOrIdOrError
+		} else if (argsOrIdOrError instanceof Error) {
+			data = {error: argsOrIdOrError}
+		} else {
+			id = optionalId
+			data = argsOrIdOrError
+		}
+
+		if (id) {
+			const job = await this.queue._get(id, {asTask: false})
+			data = jobToPayload(job)
+		}
+
+		this.out.label(event).verbose(data)
+		this.queue.emit(event, data)
+		this.queue.emit('all', {event, ...data})
+	}
+
 	start() {
 		const connection = this.queue.connection || useConnection()
 
@@ -64,34 +118,12 @@ export class QueueWatcher {
 
 		this.out.debug('Listening for queue events: ' + events.join(', '))
 
-		let all = events.includes('all')
-		if (all) events.splice(events.indexOf('all'), 1)
+		if (events.includes('all')) {
+			events = events.filter(event => event !== 'all')
+		}
 
-		for (let event of events) {
-			this.listener.on(event, async (...args) => {
-				let data = {}
-				for (let event_arg of event_args[event]) {
-					const value = parse(args.shift())
-					if (isObject(value)) {
-						data = {...data, ...value}
-					} else {
-						data[event_arg] = value
-					}
-				}
-
-				const jobId = data.jobId || data.id
-
-				if (jobId) {
-					const job = await queue._get(jobId, {asTask: false})
-					data = jobToPayload(job)
-				}
-
-				this.out.label(event).verbose(data)
-				queue.emit(event, data)
-				if (all) {
-					queue.emit('all', {event, ...data})
-				}
-			})
+		for (let event of events as BullQueueEvent[]) {
+			this.listener.on(event, this.handleEvent.bind(this, event))
 		}
 
 		this.out.verbose('Watcher Started')

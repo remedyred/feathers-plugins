@@ -2,7 +2,7 @@ import {NotFound} from '@feathersjs/errors'
 import {cli} from '@snickbit/node-cli'
 import {confirm} from '@snickbit/node-utilities'
 import {out} from '@snickbit/out'
-import {useQueue} from '../utilities/state'
+import {useQueue} from '../utilities/helpers'
 
 export const name = 'queue:clean'
 export default async argv => cli(argv)
@@ -22,7 +22,7 @@ export default async argv => cli(argv)
 		await queue.obliterate()
 		out.done(`Queue ${args.queue} obliterated`)
 	} else {
-		await queue.clean()
+		await queue.drain()
 		out.done(`Queue ${args.queue} cleaned`)
 	}
 })

@@ -1,7 +1,8 @@
 import {objectMergeDeep} from '@snickbit/utilities'
 import Redis from 'ioredis'
-import {QueueService} from './queue/queue.service'
-import {_out, defaultConfig, getConfig, setApp, setConfig, setConnection, setTaskStore, state, WatcherConfig, WorkerConfig} from './utilities/state'
+import {FeathersQueueService, QueueService} from './queue/queue.service'
+import {_out, defaultConfig, state, WatcherConfig, WorkerConfig} from './utilities/config'
+import {getConfig, setApp, setConfig, setConnection, setTaskStore} from './utilities/helpers'
 
 export function service(app) {
 	setApp(app)
@@ -37,7 +38,7 @@ export function makeQueue(name, options?) {
 			...getConfig(),
 			...(options || {})
 		}))
-		state.queues[name] = state.app.service(`/queue/${name}`)
+		state.queues[name] = state.app.service(`/queue/${name}`) as FeathersQueueService
 
 		if (state.app.out) {
 			state.app.out.v(1).success(`Queue ${name} created`)
