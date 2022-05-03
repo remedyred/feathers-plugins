@@ -1,5 +1,14 @@
 # @snickbit/feathers-model Changelog
 
+## 0.0.43
+
+### Patch Changes
+
+- [e3de828](https://github.com/snickbit/feathers/commit/e3de828) **build**:  migrate to nx
+- [1181ed6](https://github.com/snickbit/feathers/commit/1181ed6) **fix**(feathers-model):  remove useless methods
+- [b336c41](https://github.com/snickbit/feathers/commit/b336c41) **feat**(feathers-model):  re-export ModelSchema type
+
+
 ## 0.0.42
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @snickbit/feathers-tasks Changelog
 
+## 1.0.33
+
+### Patch Changes
+
+- [e3de828](https://github.com/snickbit/feathers/commit/e3de828) **build**:  migrate to nx
+- [44c2c67](https://github.com/snickbit/feathers/commit/44c2c67) **feat**(feathers-tasks):  finish typescript rewrite
+- [9510c7e](https://github.com/snickbit/feathers/commit/9510c7e) **wip**(feathers-tasks):  typescript rewrite
+- [af808c1](https://github.com/snickbit/feathers/commit/af808c1) **docs**:  update chore: update config docs: update chore: update dependencies chore: adjust configurations
+
+
 ## 1.0.32
 
 ### Patch Changes
