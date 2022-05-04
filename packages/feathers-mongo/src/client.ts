@@ -4,6 +4,9 @@ import {MongoClient} from 'mongodb'
 export default function (app) {
 	if (!app.get('mongoClient')) {
 		const conf = app.get('mongodb')
+		if (!conf) {
+			throw new Error('No mongodb configuration found')
+		}
 		const mongoOptions = {
 			authSource: conf.authSource || conf.database,
 			auth: conf.auth
