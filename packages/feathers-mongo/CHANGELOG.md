@@ -1,5 +1,15 @@
 # @snickbit/feathers-mongo Changelog
 
+## 0.0.69
+
+### Patch Changes
+
+- [2781d6c](https://github.com/snickbit/feathers/commit/2781d6c) **fix**(feathers-mongo):  throw error on missing config
+- [ff28133](https://github.com/snickbit/feathers/commit/ff28133) **build**:  update config
+- [e3de828](https://github.com/snickbit/feathers/commit/e3de828) **build**:  migrate to nx
+- [af808c1](https://github.com/snickbit/feathers/commit/af808c1) **docs**:  update chore: update config docs: update chore: update dependencies chore: adjust configurations
+
+
 ## 0.0.68
 
 ### Patch Changes

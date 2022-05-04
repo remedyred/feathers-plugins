@@ -1,5 +1,18 @@
 # @snickbit/feathers-up Changelog
 
+## 0.1.12
+
+### Patch Changes
+
+- [5a8c6af](https://github.com/snickbit/feathers/commit/5a8c6af) **fix**(feathers-up):  use app.log for errors
+- [8861ed5](https://github.com/snickbit/feathers/commit/8861ed5) **refactor**(feathers-up):  minor cleanup
+- [f46dda7](https://github.com/snickbit/feathers/commit/f46dda7) **fix**(feathers-up):  wrap optionals in try/catch
+- [546a3fc](https://github.com/snickbit/feathers/commit/546a3fc) **fix**(feathers-up):  use cwd instead of __dirname
+- [ff28133](https://github.com/snickbit/feathers/commit/ff28133) **build**:  update config
+- [e3de828](https://github.com/snickbit/feathers/commit/e3de828) **build**:  migrate to nx
+- [af808c1](https://github.com/snickbit/feathers/commit/af808c1) **docs**:  update chore: update config docs: update chore: update dependencies chore: adjust configurations
+
+
 ## 0.1.11
 
 ### Patch Changes

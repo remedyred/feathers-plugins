@@ -1,5 +1,13 @@
 # @snickbit/feathers-helpers Changelog
 
+## 0.0.41
+
+### Patch Changes
+
+- [e3de828](https://github.com/snickbit/feathers/commit/e3de828) **build**:  migrate to nx
+- [af808c1](https://github.com/snickbit/feathers/commit/af808c1) **docs**:  update chore: update config docs: update chore: update dependencies chore: adjust configurations
+
+
 ## 0.0.40
 
 ### Patch Changes

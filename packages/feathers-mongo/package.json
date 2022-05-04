@@ -1,7 +1,7 @@
 {
 	"name": "@snickbit/feathers-mongo",
 	"description": "Extended functionality for FeathersJS MongoDB database adapter",
-	"version": "0.0.68",
+	"version": "0.0.69",
 	"license": "MIT",
 	"main": "./dist/index.js",
 	"module": "./dist/index.mjs",
