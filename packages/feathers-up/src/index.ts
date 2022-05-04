@@ -1,5 +1,5 @@
 import configuration from '@feathersjs/configuration'
-import express, {Application as ExpressApplication, errorHandler as expressErrorHandler, json as expressJson, notFound as expressNotFound, rest as expressRest, RestOptions, urlencoded} from '@feathersjs/express'
+import express, {Application as ExpressApplication, errorHandler as expressErrorHandler, json as expressJson, notFound as expressNotFound, rest as expressRest, RestOptions, urlencoded as expressUrlEncoded} from '@feathersjs/express'
 import {feathers} from '@feathersjs/feathers'
 import socketio from '@feathersjs/socketio'
 import * as Sentry from '@sentry/node'
@@ -211,7 +211,7 @@ export function feathersUp(appType = 'server', setup: AppSetup | Model = {}): Ap
 		app.use(cors(setup.get('cors')))
 		app.use(compress(setup.get('compress')))
 		app.use(expressJson(setup.get('express.json')))
-		app.use(urlencoded(setup.get('express.urlencoded') || {extended: true}))
+		app.use(expressUrlEncoded(setup.get('express.urlencoded') || {extended: true}))
 
 		app.out.verbose('Set up Plugins and providers...')
 		app.configure(expressRest(setup.get('express.rest')))
