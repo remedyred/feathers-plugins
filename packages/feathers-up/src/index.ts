@@ -119,7 +119,7 @@ export function feathersUp(appType = 'server', setup: AppSetup | Model = {}): Ap
 	let paths = app.get('paths') || setup.get('paths')
 	if (!paths) {
 		paths = {
-			root: path.dirname(findUp('package.json', {cwd: __dirname}) || __dirname)
+			root: path.dirname(findUp('package.json', {cwd: process.cwd()}) || '.')
 		}
 		paths.storage = path.resolve(path.join(paths.root, '..', 'storage'))
 		paths.uploads = path.join(paths.storage, 'uploads')
