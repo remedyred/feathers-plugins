@@ -152,9 +152,13 @@ export function feathersUp(appType = 'server', setup: AppSetup | Model = {}): Ap
 	}
 
 	if (system.logs === true || system.logs?.driver === 'feathers-logger') {
+		try {
 		app.configure(logs)
 		app.log.context({app_type: appType, app: app.get('name'), version: app.get('version')})
 		app.log.info('Initializing App')
+		} catch {
+			app.out.error('Failed to initialize logger')
+		}
 	}
 
 	app.out.debug(objectCopy(app.settings), {paths})
@@ -215,12 +219,20 @@ export function feathersUp(appType = 'server', setup: AppSetup | Model = {}): Ap
 
 		app.out.verbose('Configure middleware')
 		if (setup.has('middleware')) {
+			try {
 			app.configure(setup.get('middleware'))
+			} catch (e) {
+				app.out.error('Error configuring middleware', e)
+			}
 		}
 
 		app.out.verbose('Configure authentication')
 		if (setup.has('authentication')) {
+			try {
 			app.configure(setup.get('authentication'))
+			} catch (e) {
+				app.out.error('Error configuring authentication', e)
+			}
 		}
 	} else if (app.get('queue')) {
 		// ensure the queue worker/watcher is NOT running in CLI mode
@@ -241,11 +253,19 @@ export function feathersUp(appType = 'server', setup: AppSetup | Model = {}): Ap
 
 	if (setup.has('services')) {
 		app.out.verbose('Set up services')
+		try {
 		app.configure(setup.get('services'))
+		} catch (e) {
+			app.out.error('Error configuring services', e)
+		}
 	}
 	if (setup.has('channels')) {
 		app.out.verbose('Set up event channels')
+		try {
 		app.configure(setup.get('channels'))
+		} catch (e) {
+			app.out.error('Error configuring channels', e)
+		}
 	}
 
 	if (appType !== 'cli') {
@@ -255,11 +275,13 @@ export function feathersUp(appType = 'server', setup: AppSetup | Model = {}): Ap
 		if (setup.has('hooks')) {
 			app.out.verbose('Set up hooks')
 			const hooks = setup.get('hooks')
+			if (hooks) {
 			if (isFunction(hooks)) {
 				app.configure(hooks)
 			} else if (isObject(hooks)) {
 				setHooks(app, hooks)
 			}
+		}
 		}
 
 		if (plugins.sentry) {
