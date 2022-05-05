@@ -12,6 +12,14 @@ export interface TaskOptions extends ModelOptions {
 	synchronous?: boolean
 }
 
+export interface TaskProgress {
+	current?: number
+	lastTick: number
+	rate: number
+	eta: number
+	total: number
+}
+
 export class Task extends Model {
 	private _job?: Job
 	looping = false
@@ -106,6 +114,19 @@ export class Task extends Model {
 		return useTask(this.get('.name'))
 	}
 
+	private getProgress(): TaskProgress {
+		let progress = this.get('.progress')
+		if (progress) return progress
+
+		return {
+			current: 0,
+			lastTick: 0,
+			rate: 0,
+			eta: 0,
+			total: 0
+		}
+	}
+
 	setTaskOut() {
 		this.resetOut()
 	}
@@ -126,7 +147,7 @@ export class Task extends Model {
 		}
 	}
 
-	progress(progress) {
+	progress(progress?: TaskProgress) {
 		if (progress === undefined) {
 			return this.get('.progress')
 		}
@@ -148,7 +169,7 @@ export class Task extends Model {
 	}
 
 	async tick(amount = 1) {
-		let progress = this.get('.progress')
+		let progress = this.getProgress()
 		let current = (progress.current || 0) + amount
 		let timestamp = Date.now()
 
