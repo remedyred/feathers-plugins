@@ -1,5 +1,20 @@
 # @snickbit/feathers-tasks Changelog
 
+## 1.0.34
+
+### Patch Changes
+
+- [9d6187f](https://github.com/snickbit/feathers/commit/9d6187f) **fix**(feathers-tasks):  make connection optional to allow for automatic sharing
+- [c06d80b](https://github.com/snickbit/feathers/commit/c06d80b) **fix**(feathers-tasks):  add getProgress helper method to ensure the return of a "TaskProgress" object
+- [dbc12bd](https://github.com/snickbit/feathers/commit/dbc12bd) **fix**(feathers-tasks):  add more type definitions
+- [97e97e5](https://github.com/snickbit/feathers/commit/97e97e5) **chore**(feathers-tasks):  adjust outputs
+- [568376e](https://github.com/snickbit/feathers/commit/568376e) **feat**(feathers-tasks):  switch to async service and dynamic import for tasks
+- [62e49bd](https://github.com/snickbit/feathers/commit/62e49bd) **feat**(feathers-tasks):  check dist directory for auto task discovery
+- [b83fa87](https://github.com/snickbit/feathers/commit/b83fa87) **fix**(feathers-tasks):  adjust type definitions
+- [f7cffa5](https://github.com/snickbit/feathers/commit/f7cffa5) **fix**(feathers-tasks):  pass connection to worker properly
+- [ff28133](https://github.com/snickbit/feathers/commit/ff28133) **build**:  update config
+
+
 ## 1.0.33
 
 ### Patch Changes

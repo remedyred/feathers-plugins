@@ -1,5 +1,13 @@
 # @snickbit/feathers-auth-api Changelog
 
+## 0.0.22
+
+### Patch Changes
+
+- [14c98e6](https://github.com/snickbit/feathers/commit/14c98e6) **build**:  add dev watcher scripts with source maps
+- [af808c1](https://github.com/snickbit/feathers/commit/af808c1) **docs**:  update chore: update config docs: update chore: update dependencies chore: adjust configurations
+
+
 ## 0.0.21
 
 ### Patch Changes
