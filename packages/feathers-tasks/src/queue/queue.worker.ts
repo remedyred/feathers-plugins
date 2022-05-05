@@ -15,7 +15,7 @@ export interface QueueWorkerConfig extends WorkerOptions {
 
 export interface WorkerOptions extends WorkerConfig {
 	name: string
-	connection: ConnectionOptions
+	connection?: ConnectionOptions
 }
 
 export class QueueWorker {
