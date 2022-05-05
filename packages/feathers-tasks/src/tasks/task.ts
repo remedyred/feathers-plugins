@@ -198,7 +198,7 @@ export class Task extends Model {
 		return this.set('stage', stage).set('.progress.total', total).save()
 	}
 
-	async stop(stage = 'finished', message = null) {
+	async stop(stage = 'finished', message?: any) {
 		const progress = this.get('.progress')
 		if (progress) {
 			progress.current = progress.total
@@ -212,7 +212,7 @@ export class Task extends Model {
 		return this.set('.progress', progress).set('stage', stage).save()
 	}
 
-	async finish(returnValue) {
+	async finish(returnValue?: any) {
 		await this.stop('finished', returnValue)
 		return this
 	}

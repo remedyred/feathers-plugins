@@ -77,10 +77,10 @@ export function getTasksDir(tasks: string): string {
 	}
 }
 
-export function setTaskStore(tasks: ImportRecords);
-export function setTaskStore(tasks: RecordOfImportRecords);
-export function setTaskStore(directory: string);
-export function setTaskStore(tasksOrDirectory: ImportRecords | RecordOfImportRecords | string) {
+export async function setTaskStore(tasks: ImportRecords): Promise<void>;
+export async function setTaskStore(tasks: RecordOfImportRecords): Promise<void>;
+export async function setTaskStore(directory: string): Promise<void>;
+export async function setTaskStore(tasksOrDirectory: ImportRecords | RecordOfImportRecords | string): Promise<void> {
 	let tasks: ImportRecords | RecordOfImportRecords
 
 	if (typeof tasksOrDirectory === 'string') {
