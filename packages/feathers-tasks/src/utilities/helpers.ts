@@ -88,7 +88,7 @@ export async function setTaskStore(tasksOrDirectory: ImportRecords | RecordOfImp
 
 	if (typeof tasksOrDirectory === 'string') {
 		const task_dir = getTasksDir(tasksOrDirectory)
-		_out.verbose(`Importing tasks from:: ${task_dir}`)
+		_out.verbose(`Importing tasks from: ${task_dir}`)
 		try {
 			tasks = await import(task_dir)
 		} catch (e) {
@@ -99,7 +99,7 @@ export async function setTaskStore(tasksOrDirectory: ImportRecords | RecordOfImp
 	}
 
 	if (!tasks) {
-		_out.error('No tasks found')
+		_out.fatal('No tasks found')
 		return
 	}
 
