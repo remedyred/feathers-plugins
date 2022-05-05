@@ -4,7 +4,7 @@ import {FeathersQueueService, QueueService} from './queue/queue.service'
 import {_out, defaultConfig, state, WatcherConfig, WorkerConfig} from './utilities/config'
 import {getConfig, setApp, setConfig, setConnection, setTaskStore} from './utilities/helpers'
 
-export function service(app) {
+export async function service(app) {
 	setApp(app)
 
 	const config = getConfig()
@@ -24,7 +24,7 @@ export function service(app) {
 	makeQueue('default')
 
 	_out.verbose('Populating task store')
-	setTaskStore(config.tasks || 'tasks')
+	await setTaskStore(config.tasks || 'tasks')
 }
 
 export function makeQueue(name, options?) {

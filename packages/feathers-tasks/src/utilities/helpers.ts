@@ -90,8 +90,7 @@ export async function setTaskStore(tasksOrDirectory: ImportRecords | RecordOfImp
 		const task_dir = getTasksDir(tasksOrDirectory)
 		_out.verbose(`Importing tasks from:: ${task_dir}`)
 		try {
-			/* eslint @typescript-eslint/no-var-requires: off */
-			tasks = require(tasksOrDirectory)
+			tasks = await import(task_dir)
 		} catch (e) {
 			_out.error('Error loading task store', e)
 		}
