@@ -23,7 +23,8 @@
 		"build": "tsup",
 		"meta": "npm run prod -- --metafile",
 		"prod": "npm run build -- --minify",
-		"watch": "npm run build -- --watch"
+		"dev": "npm run build -- --sourcemap",
+		"watch": "npm run dev -- --watch"
 	},
 	"dependencies": {
 		"@feathersjs/adapter-commons": "5.0.0-pre.18",
