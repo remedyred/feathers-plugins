@@ -133,14 +133,14 @@ export class Task extends Model {
 		return this.set('.progress', progress)
 	}
 
-	total(total) {
+	total(total?: number) {
 		if (total === undefined) {
 			return this.coalesce('.progress.total', 0)
 		}
 		return this.set('.progress.total', total)
 	}
 
-	current(current) {
+	current(current?: number) {
 		if (current === undefined) {
 			return this.coalesce('.progress.current', 0)
 		}
