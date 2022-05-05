@@ -65,6 +65,9 @@ export function getTasksDir(tasks: string): string {
 	let dir = path.isAbsolute(tasks) ? tasks : path.join(base, tasks)
 	tasks = path.basename(tasks)
 	if (!fileExists(dir)) {
+		dir = path.join(base, 'dist', tasks)
+	}
+	if (!fileExists(dir)) {
 		dir = path.join(base, 'lib', tasks)
 	}
 	if (!fileExists(dir)) {
