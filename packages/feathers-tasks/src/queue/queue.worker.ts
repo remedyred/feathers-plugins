@@ -5,6 +5,7 @@ import {Task} from '../tasks/task'
 import {WorkerConfig} from '../utilities/config'
 import {FeathersQueueService, QueueService} from './queue.service'
 import {getWorkerConfig, useQueue} from '../utilities/helpers'
+import {ConnectionOptions} from 'bullmq/dist/esm/interfaces/redis-options'
 
 export interface QueueWorkerConfig extends WorkerOptions {
 	name: string;
@@ -14,6 +15,7 @@ export interface QueueWorkerConfig extends WorkerOptions {
 
 export interface WorkerOptions extends WorkerConfig {
 	name: string
+	connection: ConnectionOptions
 }
 
 export class QueueWorker {
@@ -32,6 +34,7 @@ export class QueueWorker {
 			enabled,
 			concurrency,
 			limiter,
+			connection: this.queue.connection,
 			...options
 		}
 
@@ -41,7 +44,7 @@ export class QueueWorker {
 	}
 
 	start() {
-		this.out.info('Starting Worker in current process')
+		this.out.extra(this.options).info('Starting Worker in current process')
 		const processor = async (job) => {
 			this.out.info(`Processing job: ${job.name}`)
 			const task = new Task(job, {queue: job.queue.name})
