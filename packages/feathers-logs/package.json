@@ -28,7 +28,7 @@
 	},
 	"dependencies": {
 		"@snickbit/feathers-logger": "^0.1.16",
-		"@snickbit/feathers-mongo": "workspace:^0.0.69"
+		"@snickbit/feathers-mongo": "^0.0.69"
 	},
 	"devDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.18",
