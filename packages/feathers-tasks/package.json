@@ -32,21 +32,21 @@
 		"@feathersjs/errors": "5.0.0-pre.18",
 		"@feathersjs/feathers": "5.0.0-pre.18",
 		"@snickbit/dates": "^1.0.33",
-		"@snickbit/feathers-helpers": "^0.0.40",
-		"@snickbit/feathers-model": "^0.0.43",
+		"@snickbit/feathers-helpers": "workspace:^0.0.41",
+		"@snickbit/feathers-model": "workspace:^0.0.43",
 		"@snickbit/node-cli": "^1.0.42",
-		"@snickbit/node-utilities": "^4.2.33",
+		"@snickbit/node-utilities": "^4.3.1",
 		"@snickbit/out": "^2.0.20",
 		"@snickbit/utilities": "^3.0.16",
-		"bullmq": "^1.80.1",
+		"bullmq": "^1.81.4",
 		"ioredis": "^5.0.4"
 	},
 	"devDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.18",
-		"@remedyred/indexer": "^2.0.77",
+		"@remedyred/indexer": "^2.0.79",
 		"esbuild": "^0.14.36",
 		"jest": "^27.5.1",
-		"tsup": "^5.12.6"
+		"tsup": "^5.12.7"
 	},
 	"jest": {
 		"testEnvironment": "node"

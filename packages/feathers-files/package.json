@@ -28,12 +28,12 @@
 		"depcheck": "depcheck"
 	},
 	"dependencies": {
-		"@aws-sdk/client-s3": "^3.67.0",
+		"@aws-sdk/client-s3": "^3.85.0",
 		"@feathersjs/adapter-commons": "5.0.0-pre.18",
 		"@feathersjs/errors": "5.0.0-pre.18",
 		"@feathersjs/feathers": "5.0.0-pre.18",
-		"@snickbit/feathers-helpers": "^0.0.40",
-		"@snickbit/node-utilities": "^4.2.32",
+		"@snickbit/feathers-helpers": "workspace:^0.0.41",
+		"@snickbit/node-utilities": "^4.3.1",
 		"@snickbit/out": "^2.0.20",
 		"@snickbit/utilities": "^3.0.16",
 		"@types/express": "^4.17.13",
@@ -46,13 +46,13 @@
 	},
 	"devDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.18",
-		"@remedyred/indexer": "^2.0.77",
+		"@remedyred/indexer": "^2.0.79",
 		"@types/jest": "^27.4.1",
 		"@types/multer": "^1.4.7",
 		"jest": "^27.5.1",
 		"shx": "^0.3.4",
 		"ts-jest": "^27.1.4",
-		"tsup": "^5.12.6",
+		"tsup": "^5.12.7",
 		"typescript": "^4.6.3"
 	},
 	"jest": {

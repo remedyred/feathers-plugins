@@ -36,7 +36,7 @@
 		"@snickbit/feathers-logger": "^0.1.15",
 		"@snickbit/feathers-logs": "^0.1.14",
 		"@snickbit/model": "^1.0.35",
-		"@snickbit/node-utilities": "^4.2.32",
+		"@snickbit/node-utilities": "^4.3.1",
 		"@snickbit/out": "^2.0.20",
 		"@snickbit/utilities": "^3.0.16",
 		"body-parser": "^1.20.0",
@@ -51,9 +51,9 @@
 	},
 	"devDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.18",
-		"@remedyred/indexer": "^2.0.77",
+		"@remedyred/indexer": "^2.0.79",
 		"jest": "^27.5.1",
-		"tsup": "^5.12.6"
+		"tsup": "^5.12.7"
 	},
 	"jest": {
 		"testEnvironment": "node"

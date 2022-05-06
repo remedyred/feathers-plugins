@@ -29,15 +29,15 @@
 	"dependencies": {
 		"@feathersjs/adapter-commons": "5.0.0-pre.18",
 		"@feathersjs/errors": "5.0.0-pre.18",
-		"@snickbit/feathers-helpers": "^0.0.40",
+		"@snickbit/feathers-helpers": "workspace:^0.0.41",
 		"@snickbit/model": "^1.0.36",
 		"feathers-memory": "^4.1.0"
 	},
 	"devDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.18",
-		"@remedyred/indexer": "^2.0.77",
+		"@remedyred/indexer": "^2.0.79",
 		"jest": "^27.5.1",
-		"tsup": "^5.12.6"
+		"tsup": "^5.12.7"
 	},
 	"peerDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.18"
