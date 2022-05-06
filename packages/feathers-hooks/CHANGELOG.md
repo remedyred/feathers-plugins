@@ -1,5 +1,13 @@
 # @snickbit/feathers-hooks Changelog
 
+## 0.0.16
+
+### Patch Changes
+
+- [7bcaf82](https://github.com/snickbit/feathers/commit/7bcaf82) **chore**:  update dependencies
+- [14c98e6](https://github.com/snickbit/feathers/commit/14c98e6) **build**:  add dev watcher scripts with source maps
+
+
 ## 0.0.15
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @snickbit/feathers-logs Changelog
 
+## 0.1.15
+
+### Patch Changes
+
+- [7bcaf82](https://github.com/snickbit/feathers/commit/7bcaf82) **chore**:  update dependencies
+- [14c98e6](https://github.com/snickbit/feathers/commit/14c98e6) **build**:  add dev watcher scripts with source maps
+- [e3de828](https://github.com/snickbit/feathers/commit/e3de828) **build**:  migrate to nx
+
+
 ## 0.1.14
 
 ### Patch Changes
