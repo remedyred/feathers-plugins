@@ -1,7 +1,7 @@
 {
 	"name": "@snickbit/feathers-logs",
 	"description": "A Feathers.js service that logs events to MongoDB",
-	"version": "0.1.15",
+	"version": "0.1.16",
 	"license": "MIT",
 	"main": "./dist/index.js",
 	"module": "./dist/index.mjs",
@@ -27,8 +27,8 @@
 		"watch": "npm run dev -- --watch"
 	},
 	"dependencies": {
-		"@snickbit/feathers-logger": "^0.1.16",
-		"@snickbit/feathers-mongo": "^0.0.69"
+		"@snickbit/feathers-logger": "^0.1.17",
+		"@snickbit/feathers-mongo": "^0.0.70"
 	},
 	"devDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.18",

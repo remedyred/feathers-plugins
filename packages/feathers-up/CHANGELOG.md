@@ -1,5 +1,14 @@
 # @snickbit/feathers-up Changelog
 
+## 0.1.13
+
+### Patch Changes
+
+- [a6972cd](https://github.com/snickbit/feathers/commit/a6972cd) **chore**(dep):  update dependencies
+- [072d657](https://github.com/snickbit/feathers/commit/072d657) **style**:  reformat
+- [7bcaf82](https://github.com/snickbit/feathers/commit/7bcaf82) **chore**:  update dependencies
+
+
 ## 0.1.12
 
 ### Patch Changes

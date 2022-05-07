@@ -1,5 +1,13 @@
 # @snickbit/feathers-logs Changelog
 
+## 0.1.16
+
+### Patch Changes
+
+- [072d657](https://github.com/snickbit/feathers/commit/072d657) **style**:  reformat
+- [d129bfe](https://github.com/snickbit/feathers/commit/d129bfe) **fix**:  remove workspace protocol
+
+
 ## 0.1.15
 
 ### Patch Changes
