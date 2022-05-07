@@ -1,5 +1,13 @@
 # @snickbit/feathers-auth-api Changelog
 
+## 0.0.23
+
+### Patch Changes
+
+- [072d657](https://github.com/snickbit/feathers/commit/072d657) **style**:  reformat
+- [7bcaf82](https://github.com/snickbit/feathers/commit/7bcaf82) **chore**:  update dependencies
+
+
 ## 0.0.22
 
 ### Patch Changes

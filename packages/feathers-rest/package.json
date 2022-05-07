@@ -1,7 +1,7 @@
 {
 	"name": "@snickbit/feathers-rest",
 	"description": "Feathers service for interactive with REST APIs",
-	"version": "0.0.36",
+	"version": "0.0.37",
 	"license": "MIT",
 	"main": "./dist/index.js",
 	"module": "./dist/index.mjs",
@@ -29,8 +29,8 @@
 	"dependencies": {
 		"@feathersjs/adapter-commons": "5.0.0-pre.18",
 		"@feathersjs/feathers": "5.0.0-pre.18",
-		"@snickbit/feathers-helpers": "^0.0.42",
-		"@snickbit/out": "^2.0.20",
+		"@snickbit/feathers-helpers": "^0.0.43",
+		"@snickbit/out": "^2.0.23",
 		"axios": "^0.27.2"
 	},
 	"devDependencies": {

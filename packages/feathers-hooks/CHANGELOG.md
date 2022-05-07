@@ -1,5 +1,12 @@
 # @snickbit/feathers-hooks Changelog
 
+## 0.0.17
+
+### Patch Changes
+
+- [072d657](https://github.com/snickbit/feathers/commit/072d657) **style**:  reformat
+
+
 ## 0.0.16
 
 ### Patch Changes

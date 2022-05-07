@@ -1,5 +1,15 @@
 # @snickbit/feathers-files Changelog
 
+## 1.0.26
+
+### Patch Changes
+
+- [a6972cd](https://github.com/snickbit/feathers/commit/a6972cd) **chore**(dep):  update dependencies
+- [072d657](https://github.com/snickbit/feathers/commit/072d657) **style**:  reformat
+- [d129bfe](https://github.com/snickbit/feathers/commit/d129bfe) **fix**:  remove workspace protocol
+- [7bcaf82](https://github.com/snickbit/feathers/commit/7bcaf82) **chore**:  update dependencies
+
+
 ## 1.0.25
 
 ### Patch Changes

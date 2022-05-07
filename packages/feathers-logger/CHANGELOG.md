@@ -1,5 +1,13 @@
 # @snickbit/feathers-logger Changelog
 
+## 0.1.17
+
+### Patch Changes
+
+- [a6972cd](https://github.com/snickbit/feathers/commit/a6972cd) **chore**(dep):  update dependencies
+- [072d657](https://github.com/snickbit/feathers/commit/072d657) **style**:  reformat
+
+
 ## 0.1.16
 
 ### Patch Changes

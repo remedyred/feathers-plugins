@@ -1,5 +1,15 @@
 # @snickbit/feathers-redis Changelog
 
+## 0.0.37
+
+### Patch Changes
+
+- [a6972cd](https://github.com/snickbit/feathers/commit/a6972cd) **chore**(dep):  update dependencies
+- [072d657](https://github.com/snickbit/feathers/commit/072d657) **style**:  reformat
+- [d129bfe](https://github.com/snickbit/feathers/commit/d129bfe) **fix**:  remove workspace protocol
+- [7bcaf82](https://github.com/snickbit/feathers/commit/7bcaf82) **chore**:  update dependencies
+
+
 ## 0.0.36
 
 ### Patch Changes
