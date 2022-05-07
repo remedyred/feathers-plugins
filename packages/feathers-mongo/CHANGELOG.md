@@ -9,7 +9,6 @@
 - [e3de828](https://github.com/snickbit/feathers/commit/e3de828) **build**:  migrate to nx
 - [af808c1](https://github.com/snickbit/feathers/commit/af808c1) **docs**:  update chore: update config docs: update chore: update dependencies chore: adjust configurations
 
-
 ## 0.0.68
 
 ### Patch Changes
@@ -19,13 +18,11 @@
 - [1d0fba5](https://github.com/snickbit/feathers/commit/1d0fba5) **fix**(feathers-mongo):  adjust timestamp getter, fix type definitions
 - [44ca51e](https://github.com/snickbit/feathers/commit/44ca51e) **docs**:  update
 
-
 ## 0.0.67
 
 ### Patch Changes
 
 - [719c4b7](https://github.com/snickbit/feathers/commit/719c4b7) **chore**:  update dependencies
-
 
 ## 0.0.66
 
@@ -33,7 +30,6 @@
 
 - [d96b843](https://github.com/snickbit/feathers/commit/d96b843) **chore**:  update build config
 - [6c355f0](https://github.com/snickbit/feathers/commit/6c355f0) **chore**:  update build config
-
 
 ## 0.0.65
 

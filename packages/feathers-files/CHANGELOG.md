@@ -8,7 +8,6 @@
 - [e3de828](https://github.com/snickbit/feathers/commit/e3de828) **build**:  migrate to nx
 - [af808c1](https://github.com/snickbit/feathers/commit/af808c1) **docs**:  update chore: update config docs: update chore: update dependencies chore: adjust configurations
 
-
 ## 1.0.24
 
 ### Patch Changes
@@ -18,13 +17,11 @@
 - [886e7eb](https://github.com/snickbit/feathers/commit/886e7eb) **chore**:  update build config
 - [44ca51e](https://github.com/snickbit/feathers/commit/44ca51e) **docs**:  update
 
-
 ## 1.0.23
 
 ### Patch Changes
 
 - [719c4b7](https://github.com/snickbit/feathers/commit/719c4b7) **chore**:  update dependencies
-
 
 ## 1.0.22
 
@@ -33,7 +30,6 @@
 - [d96b843](https://github.com/snickbit/feathers/commit/d96b843) **chore**:  update build config
 - [450e52f](https://github.com/snickbit/feathers/commit/450e52f) **refactor**:  reformat code
 - [6c355f0](https://github.com/snickbit/feathers/commit/6c355f0) **chore**:  update build config
-
 
 ## 1.0.21
 

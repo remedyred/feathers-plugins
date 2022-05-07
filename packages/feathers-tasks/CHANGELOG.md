@@ -14,7 +14,6 @@
 - [f7cffa5](https://github.com/snickbit/feathers/commit/f7cffa5) **fix**(feathers-tasks):  pass connection to worker properly
 - [ff28133](https://github.com/snickbit/feathers/commit/ff28133) **build**:  update config
 
-
 ## 1.0.33
 
 ### Patch Changes
@@ -24,7 +23,6 @@
 - [9510c7e](https://github.com/snickbit/feathers/commit/9510c7e) **wip**(feathers-tasks):  typescript rewrite
 - [af808c1](https://github.com/snickbit/feathers/commit/af808c1) **docs**:  update chore: update config docs: update chore: update dependencies chore: adjust configurations
 
-
 ## 1.0.32
 
 ### Patch Changes
@@ -33,7 +31,6 @@
 - [e67f2fc](https://github.com/snickbit/feathers/commit/e67f2fc) **fix**(feathers-tasks):  correct imports
 - [44ca51e](https://github.com/snickbit/feathers/commit/44ca51e) **docs**:  update
 
-
 ## 1.0.31
 
 ### Patch Changes
@@ -41,14 +38,12 @@
 - [b32c781](https://github.com/snickbit/feathers/commit/b32c781) **fix**:  remove sandbox worker for now
 - [719c4b7](https://github.com/snickbit/feathers/commit/719c4b7) **chore**:  update dependencies
 
-
 ## 1.0.30
 
 ### Patch Changes
 
 - [d96b843](https://github.com/snickbit/feathers/commit/d96b843) **chore**:  update build config
 - [6c355f0](https://github.com/snickbit/feathers/commit/6c355f0) **chore**:  update build config
-
 
 ## 1.0.29
 

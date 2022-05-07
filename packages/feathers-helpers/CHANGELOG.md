@@ -7,14 +7,12 @@
 - [7bcaf82](https://github.com/snickbit/feathers/commit/7bcaf82) **chore**:  update dependencies
 - [14c98e6](https://github.com/snickbit/feathers/commit/14c98e6) **build**:  add dev watcher scripts with source maps
 
-
 ## 0.0.41
 
 ### Patch Changes
 
 - [e3de828](https://github.com/snickbit/feathers/commit/e3de828) **build**:  migrate to nx
 - [af808c1](https://github.com/snickbit/feathers/commit/af808c1) **docs**:  update chore: update config docs: update chore: update dependencies chore: adjust configurations
-
 
 ## 0.0.40
 
@@ -24,13 +22,11 @@
 - [886e7eb](https://github.com/snickbit/feathers/commit/886e7eb) **chore**:  update build config
 - [44ca51e](https://github.com/snickbit/feathers/commit/44ca51e) **docs**:  update
 
-
 ## 0.0.39
 
 ### Patch Changes
 
 - [719c4b7](https://github.com/snickbit/feathers/commit/719c4b7) **chore**:  update dependencies
-
 
 ## 0.0.38
 
