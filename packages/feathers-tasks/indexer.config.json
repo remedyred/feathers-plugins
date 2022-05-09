@@ -1,6 +1,6 @@
 [
 	{
-		"index": "src/index.js",
+		"index": "src/index.ts",
 		"files": [
 			{
 				"export": "group",
