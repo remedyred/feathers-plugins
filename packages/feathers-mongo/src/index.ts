@@ -411,7 +411,7 @@ export default class MongoService extends Service implements InternalServiceMeth
 		return this.Model.aggregate(pipeline, params)
 	}
 
-	async aggregate(pipeline, params: AggregateOptions = {}): Promise<any> {
+	async aggregate(pipeline, params: AggregateOptions = {}): Promise<any[]> {
 		const cursor = await this._aggregate(pipeline, params)
 		let records = []
 		for await (const doc of cursor) {
