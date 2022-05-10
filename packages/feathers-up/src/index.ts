@@ -225,15 +225,6 @@ export function feathersUp(appType = 'server', setup: AppSetup | Model = {}): Ap
 				app.out.error('Error configuring middleware', e)
 			}
 		}
-
-		app.out.verbose('Configure authentication')
-		if (setup.has('authentication')) {
-			try {
-				app.configure(setup.get('authentication'))
-			} catch (e) {
-				app.out.error('Error configuring authentication', e)
-			}
-		}
 	} else if (app.get('queue')) {
 		// ensure the queue worker/watcher is NOT running in CLI mode
 		const queue = app.get('queue')
@@ -259,6 +250,16 @@ export function feathersUp(appType = 'server', setup: AppSetup | Model = {}): Ap
 			app.out.error('Error configuring services', e)
 		}
 	}
+
+	if (appType === 'server' && setup.has('authentication')) {
+		app.out.verbose('Configure authentication')
+		try {
+			app.configure(setup.get('authentication'))
+		} catch (e) {
+			app.out.error('Error configuring authentication', e)
+		}
+	}
+
 	if (setup.has('channels')) {
 		app.out.verbose('Set up event channels')
 		try {
