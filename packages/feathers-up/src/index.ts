@@ -122,16 +122,14 @@ export function feathersUp(appType = 'server', setup: AppSetup | Model = {}): Ap
 	app.configure(configuration())
 
 	// Check path configuration
-	let paths = app.get('paths') || setup.get('paths')
-	if (!paths) {
-		paths = {
-			root: path.dirname(findUp('package.json', {cwd: process.cwd()}) || '.')
-		}
-		paths.storage = path.resolve(path.join(paths.root, '..', 'storage'))
-		paths.uploads = path.join(paths.storage, 'uploads')
-		paths.temp = path.join(paths.storage, 'temp')
-		app.set('paths', paths)
-	}
+	let paths = app.get('paths') || setup.get('paths') || {}
+	if (!paths.root) paths.root = path.dirname(findUp('package.json', {cwd: process.cwd()}) || '.')
+	if (!paths.storage) paths.storage = path.resolve(path.join(paths.root, '..', 'storage'))
+	if (!paths.uploads) paths.uploads = path.join(paths.storage, 'uploads')
+	if (!paths.temp) paths.temp = path.join(paths.storage, 'temp')
+	if (!paths.templates) paths.templates = path.join(paths.root, 'templates')
+	if (!paths.public) paths.public = path.join(paths.root, 'public')
+	app.set('paths', paths)
 
 	// Load package.json info
 	/* eslint @typescript-eslint/no-var-requires: off */
