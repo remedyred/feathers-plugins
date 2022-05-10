@@ -101,7 +101,9 @@ export function feathersUp(appType = 'server', setup: AppSetup | Model = {}): Ap
 	app.set('env', process.env.NODE_ENV || 'development')
 
 	app.out = new Out(appType)
-	app.out.block.info(`Initializing {cyan}${appType}{/cyan} in {magenta}${app.get('env')}{/megenta} mode`)
+	// app.out.setVerbosity(5)
+	const appEnv = app.get('env')
+	app.out.block.info(`Initializing {cyan}${appType}{/cyan} in {magenta}${appEnv}{/megenta} mode`)
 
 	process.on('unhandledRejection', (reason, promise) => {
 		ray('unhandledRejection', reason)
@@ -266,12 +268,12 @@ export function feathersUp(appType = 'server', setup: AppSetup | Model = {}): Ap
 				}
 			}
 		} else {
-		try {
-			app.configure(setup.get('services'))
-		} catch (e) {
-			app.out.error('Error configuring services', e)
+			try {
+				app.configure(setup.get('services'))
+			} catch (e) {
+				app.out.error('Error configuring services', e)
+			}
 		}
-	}
 	}
 
 	if (appType === 'server' && setup.has('authentication')) {
@@ -319,6 +321,8 @@ export function feathersUp(appType = 'server', setup: AppSetup | Model = {}): Ap
 			logger: app.log
 		}))
 	}
+
+	app.out.verbose.success('Feathers Up!')
 
 	return app
 }
