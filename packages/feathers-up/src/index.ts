@@ -43,6 +43,10 @@ export interface AppSetupExpress {
 	}
 }
 
+type AnyFunction = ((...args: any[]) => any) | {default: AnyFunction}
+
+type AppServiceResult = AnyFunction | Record<string, AnyFunction>
+
 export interface AppSetup {
 	paths?: AppSetupPaths
 	helmet?: Partial<HelmetOptions>
@@ -52,7 +56,7 @@ export interface AppSetup {
 	socketio?: ServerOptions
 	middleware?: (...args) => any
 	authentication?: (...args) => any
-	services?: (...args) => any
+	services?: AppServiceResult | Record<string, AppServiceResult>
 	channels?: (...args) => any
 	hooks?: (...args) => any
 }
@@ -244,11 +248,30 @@ export function feathersUp(appType = 'server', setup: AppSetup | Model = {}): Ap
 
 	if (setup.has('services')) {
 		app.out.verbose('Set up services')
+		const services = setup.get('services')
+		if (isArray(services)) {
+			for (let service of services) {
+				try {
+					app.configure(service)
+				} catch (e) {
+					app.out.error('Error configuring service', e)
+				}
+			}
+		} else if (isObject(services)) {
+			for (let service in services) {
+				try {
+					app.configure(services[service])
+				} catch (e) {
+					app.out.error('Error configuring service ' + service, e)
+				}
+			}
+		} else {
 		try {
 			app.configure(setup.get('services'))
 		} catch (e) {
 			app.out.error('Error configuring services', e)
 		}
+	}
 	}
 
 	if (appType === 'server' && setup.has('authentication')) {
