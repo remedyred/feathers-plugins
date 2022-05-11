@@ -1,5 +1,16 @@
 # @snickbit/feathers-up Changelog
 
+## 0.1.14
+
+### Patch Changes
+
+- [c22de0a](https://github.com/snickbit/feathers/commit/c22de0a) **feat**:  add more paths, automatically merge
+- [7c8cf79](https://github.com/snickbit/feathers/commit/7c8cf79) **style**:  improve outputs, cleanup code
+- [d60d8e5](https://github.com/snickbit/feathers/commit/d60d8e5) **feat**:  allow for using globbed imports for services
+- [52a5b43](https://github.com/snickbit/feathers/commit/52a5b43) **fix**:  setup authentication after services
+- [31b5b74](https://github.com/snickbit/feathers/commit/31b5b74) **build**:  bump indexer, regenerate indexes
+
+
 ## 0.1.13
 
 ### Patch Changes
