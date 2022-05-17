@@ -8,14 +8,14 @@ import {Readable} from 'stream'
 import {AdapterParams} from '@feathersjs/adapter-commons'
 
 export interface S3ServiceOptions extends FileServiceOptions {
-	bucket?: string
+	Bucket?: string
 	ACL?: string
 	endpoint?: string
 }
 
 export interface S3Options {
 	endpoint: string
-	bucket: string
+	Bucket: string
 	credentials: {
 		accessKeyId: string
 		secretAccessKey: string
@@ -25,7 +25,7 @@ export interface S3Options {
 }
 
 export interface S3RequestParams {
-	bucket?: string
+	Bucket?: string
 	key?: string
 	ACL?: string
 	content?: string
@@ -73,18 +73,17 @@ export class S3Service extends FileService {
 			...options
 		}
 		super(options)
-		delete options.bucket
 		this.client = new S3(options)
 
 		if (!this.options.url) {
-			this.options.url = `${this.options.endpoint}/${this.options.bucket}`
+			this.options.url = `${this.options.endpoint}/${this.options.Bucket}`
 		}
 
-		this.out = new Out(`s3:${this.options.bucket}`)
+		this.out = new Out(`s3:${this.options.Bucket}`)
 	}
 
 	get bucket() {
-		return this.options.bucket
+		return this.options.Bucket
 	}
 
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -107,12 +106,12 @@ export class S3Service extends FileService {
 	}
 
 	_cwd(options: any = {}): any {
-		return options?.bucket || this.options.bucket
+		return options?.bucket || this.options.Bucket
 	}
 
 	bucketParams(payload: S3RequestParams = {}, params) {
 		params = {
-			Bucket: this.options.bucket,
+			Bucket: this.options.Bucket,
 			Key: payload.key,
 			ACL: this.options.ACL,
 			...params
