@@ -62,7 +62,6 @@ export interface S3File {
 	}
 }
 
-
 export class S3Service extends FileService {
 	client: S3
 	options: S3ServiceOptions = {}
@@ -133,10 +132,10 @@ export class S3Service extends FileService {
 		return params
 	}
 
-	async _uploadContent(key, content, params) {
-		const bucketParams = this.bucketParams({key, content}, params)
-		await this.client.send(new PutObjectCommand(bucketParams))
-		return this.makeUrl(key)
+	async _uploadContent(Key: string, Body: Buffer | Readable | string, params) {
+		const buildRequest = this.buildRequest({Key, Body, ...params})
+		await this.client.send(new PutObjectCommand(buildRequest))
+		return this.makeUrl(Key)
 	}
 
 	async _uploadFile(key, file_path, params) {
@@ -144,10 +143,10 @@ export class S3Service extends FileService {
 		return this._uploadContent(key, content, params)
 	}
 
-	async _readContent(key?: FileId, params?: AdapterParams) {
-		key = this.stripUrl(key)
+	async _readContent(Key?: FileId, params?: AdapterParams) {
+		Key = this.stripUrl(Key)
 		const buffer = objectPull(params as object, 'buffer')
-		const response = await this.client.send(new GetObjectCommand(this.bucketParams({key}, params)))
+		const response = await this.client.send(new GetObjectCommand(this.buildRequest({Key}, params)))
 		const buffered_stream = await bufferStream(response.Body as Readable)
 		return buffer ? buffered_stream : buffered_stream.toString('utf8')
 	}
