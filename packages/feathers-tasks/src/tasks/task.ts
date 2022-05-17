@@ -107,7 +107,7 @@ export class Task extends Model {
 	}
 
 	get payload() {
-		return this.get('payload')
+		return this.get('.data.payload')
 	}
 
 	get task(): ParsedImport {
