@@ -21,10 +21,10 @@
 		"clean": "shx rm -rf ./dist",
 		"depcheck": "depcheck",
 		"build": "tsup",
-		"meta": "npm run prod -- --metafile",
-		"prod": "npm run build -- --minify",
-		"dev": "npm run build -- --sourcemap",
-		"watch": "npm run dev -- --watch"
+		"meta": "pnpm run prod --metafile",
+		"prod": "pnpm run build --minify",
+		"dev": "pnpm run build --sourcemap",
+		"watch": "pnpm run dev --watch"
 	},
 	"dependencies": {
 		"@snickbit/feathers-logger": "^0.1.17",

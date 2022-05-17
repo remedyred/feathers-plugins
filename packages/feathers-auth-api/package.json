@@ -20,10 +20,10 @@
 	"scripts": {
 		"clean": "shx rm -rf ./dist",
 		"build": "tsup",
-		"meta": "npm run prod -- --metafile",
-		"prod": "npm run build -- --minify",
-		"dev": "npm run build -- --sourcemap",
-		"watch": "npm run dev -- --watch",
+		"meta": "pnpm run prod --metafile",
+		"prod": "pnpm run build --minify",
+		"dev": "pnpm run build --sourcemap",
+		"watch": "pnpm run dev --watch",
 		"depcheck": "depcheck"
 	},
 	"dependencies": {

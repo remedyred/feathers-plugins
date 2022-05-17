@@ -22,10 +22,10 @@
 		"index": "indexer src",
 		"depcheck": "depcheck",
 		"build": "tsup",
-		"dev": "npm run build -- --sourcemap",
-		"meta": "npm run prod -- --metafile",
-		"prod": "npm run build -- --minify",
-		"watch": "npm run dev -- --watch"
+		"dev": "pnpm run build --sourcemap",
+		"meta": "pnpm run prod --metafile",
+		"prod": "pnpm run build --minify",
+		"watch": "pnpm run dev --watch"
 	},
 	"dependencies": {
 		"@feathersjs/adapter-commons": "5.0.0-pre.18",
