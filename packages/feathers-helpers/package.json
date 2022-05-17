@@ -24,7 +24,6 @@
 		"prod": "pnpm run build --minify",
 		"dev": "pnpm run build --sourcemap",
 		"watch": "pnpm run dev --watch",
-		"index": "indexer src",
 		"depcheck": "depcheck"
 	},
 	"dependencies": {

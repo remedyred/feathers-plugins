@@ -19,7 +19,7 @@
 	},
 	"scripts": {
 		"clean": "shx rm -rf ./dist",
-		"index": "indexer src",
+		"index": "indexer",
 		"depcheck": "depcheck",
 		"build": "tsup",
 		"dev": "pnpm run build --sourcemap",
@@ -43,7 +43,7 @@
 	},
 	"devDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.18",
-		"@remedyred/indexer": "^2.1.1",
+		"@remedyred/indexer": "^2.2.6",
 		"esbuild": "^0.14.36",
 		"jest": "^27.5.1",
 		"tsup": "^5.12.7"

@@ -24,7 +24,7 @@
 		"prod": "pnpm run build --minify",
 		"dev": "pnpm run build --sourcemap",
 		"watch": "pnpm run dev --watch",
-		"index": "indexer src",
+		"index": "indexer",
 		"depcheck": "depcheck"
 	},
 	"dependencies": {
@@ -46,7 +46,7 @@
 	},
 	"devDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.18",
-		"@remedyred/indexer": "^2.1.1",
+		"@remedyred/indexer": "^2.2.6",
 		"@types/jest": "^27.4.1",
 		"@types/multer": "^1.4.7",
 		"jest": "^27.5.1",

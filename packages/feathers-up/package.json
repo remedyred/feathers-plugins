@@ -32,7 +32,7 @@
 		"@feathersjs/feathers": "5.0.0-pre.18",
 		"@feathersjs/socketio": "5.0.0-pre.18",
 		"@sentry/node": "^6.19.6",
-		"@snickbit/feathers-hooks": "^0.0.17",
+		"@snickbit/feathers-hooks": "^0.0.18",
 		"@snickbit/feathers-logger": "^0.1.18",
 		"@snickbit/feathers-logs": "^0.1.17",
 		"@snickbit/model": "^1.0.39",
@@ -51,7 +51,6 @@
 	},
 	"devDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.18",
-		"@remedyred/indexer": "^2.1.1",
 		"jest": "^27.5.1",
 		"tsup": "^5.12.7"
 	},
