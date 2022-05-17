@@ -1,5 +1,11 @@
 # @snickbit/feathers-files Changelog
 
+## 1.0.28
+
+### Patch Changes
+
+- [a9f6985](https://github.com/snickbit/feathers/commit/a9f6985) **fix**:  use s3 request to upload
+
 ## 1.0.27
 
 ### Patch Changes

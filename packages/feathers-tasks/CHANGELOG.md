@@ -1,5 +1,11 @@
 # @snickbit/feathers-tasks Changelog
 
+## 1.0.38
+
+### Patch Changes
+
+- [324a572](https://github.com/snickbit/feathers/commit/324a572) **fix**:  use .data.payload for payload
+
 ## 1.0.37
 
 ### Patch Changes
