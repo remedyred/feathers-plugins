@@ -111,23 +111,23 @@ export default class RestService extends AdapterService {
 		return data
 	}
 
-	async __get(url: string, config: RestServiceRequestConfig): Promise<any> {
+	async __get(url: string, config?: RestServiceRequestConfig): Promise<any> {
 		return this.client.get(url, config)
 	}
 
-	async __post(url: string, data: any, config: RestServiceRequestConfig): Promise<any> {
+	async __post(url: string, data: any, config?: RestServiceRequestConfig): Promise<any> {
 		return this.client.post(url, data, config)
 	}
 
-	async __put(url: string, data: any, config: RestServiceRequestConfig): Promise<any> {
+	async __put(url: string, data: any, config?: RestServiceRequestConfig): Promise<any> {
 		return this.client.put(url, data, config)
 	}
 
-	async __patch(url: string, data: any, config: RestServiceRequestConfig): Promise<any> {
+	async __patch(url: string, data: any, config?: RestServiceRequestConfig): Promise<any> {
 		return this.client.patch(url, data, config)
 	}
 
-	async __delete(url: string, config: RestServiceRequestConfig): Promise<any> {
+	async __delete(url: string, config?: RestServiceRequestConfig): Promise<any> {
 		return this.client.delete(url, config)
 	}
 }
