@@ -64,7 +64,7 @@ export interface S3File {
 
 export class S3Service extends FileService {
 	client: S3
-	options: S3ServiceOptions = {}
+	declare options: S3ServiceOptions
 
 	constructor(options: S3ServiceOptions) {
 		options = {

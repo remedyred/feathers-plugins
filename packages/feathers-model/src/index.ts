@@ -32,7 +32,7 @@ export interface Model extends BaseModel {
 
 export class Model extends BaseModel {
 	service: Service | any
-	options: ModelOptions = {}
+	declare options: ModelOptions
 
 	constructor(data, options) {
 		options = {

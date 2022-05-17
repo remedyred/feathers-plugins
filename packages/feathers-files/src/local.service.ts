@@ -12,7 +12,7 @@ export interface LocalFileServiceOptions extends FileServiceOptions {
 }
 
 export class LocalService extends FileService {
-	options: LocalFileServiceOptions = {}
+	declare options: LocalFileServiceOptions
 
 	constructor(options: LocalFileServiceOptions) {
 		super(options)
