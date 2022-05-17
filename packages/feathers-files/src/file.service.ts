@@ -1,7 +1,7 @@
 import {BadRequest, MethodNotAllowed} from '@feathersjs/errors'
 import sift from 'sift'
 import {_select, callMethod} from '@snickbit/feathers-helpers'
-import {filterQuery} from '@feathersjs/adapter-commons'
+import {AdapterParams, filterQuery} from '@feathersjs/adapter-commons'
 import {isArray, isString} from '@snickbit/utilities'
 import {Out} from '@snickbit/out'
 import path from 'path'
@@ -31,8 +31,6 @@ export interface FileRecord {
 }
 
 export type FileData = FileRecord | File | Buffer
-
-export type FileParams = string | Partial<Params>
 
 export interface ParsedParams extends Params {
 	path?: string
@@ -70,8 +68,8 @@ export class FileService {
 	 * Parse the params
 	 */
 	protected parseParams(filePath?: string, data?: FileData): ParsedParams;
-	protected parseParams(params?: FileParams, data?: FileData): ParsedParams;
-	protected parseParams(pathOrParams?: FileParams, data?: FileData): ParsedParams {
+	protected parseParams(params?: AdapterParams, data?: FileData): ParsedParams;
+	protected parseParams(pathOrParams?: AdapterParams | string, data?: FileData): ParsedParams {
 		if (!pathOrParams) pathOrParams = {}
 
 		let params
@@ -81,9 +79,9 @@ export class FileService {
 				query: {
 					id: pathOrParams as string
 				}
-			} as FileParams
+			} as AdapterParams
 		} else {
-			params = pathOrParams as FileParams
+			params = pathOrParams as AdapterParams
 		}
 
 
@@ -193,7 +191,7 @@ export class FileService {
 		return data?.content || data?.buffer || data?.stream || data?.file || data?.url || data?.path || data?.uri || data?.filename || data
 	}
 
-	async find(params: FileParams): Promise<any> {
+	async find(params: AdapterParams): Promise<any> {
 		return callMethod(this, '_find', params)
 	}
 
@@ -245,13 +243,5 @@ export class FileService {
 
 	cwd(params?: Params): string {
 		return callMethod(this, '_cwd', params)
-	}
-
-	_bucket(params) {
-		return this.cwd(params)
-	}
-
-	bucket(params) {
-		return callMethod(this, '_bucket', params)
 	}
 }

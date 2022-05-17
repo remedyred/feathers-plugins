@@ -1,15 +1,27 @@
 import {DeleteObjectCommand, GetObjectCommand, HeadObjectCommand, ListObjectsCommand, PutObjectCommand, S3} from '@aws-sdk/client-s3'
 import {Out} from '@snickbit/out'
 import {bufferStream, getFile, makeBuffer, saveFile} from '@snickbit/node-utilities'
-import {FileData, FileId, FileParams, FileService, FileServiceOptions, ParsedParams} from './file.service'
+import {FileData, FileId, FileService, FileServiceOptions, ParsedParams} from './file.service'
 import {objectPull} from '@snickbit/utilities'
 import mime from 'mime/lite'
 import {Readable} from 'stream'
+import {AdapterParams} from '@feathersjs/adapter-commons'
 
 export interface S3ServiceOptions extends FileServiceOptions {
 	bucket?: string
 	ACL?: string
 	endpoint?: string
+}
+
+export interface S3Options {
+	endpoint: string
+	bucket: string
+	credentials: {
+		accessKeyId: string
+		secretAccessKey: string
+	},
+	region?: string
+	ACL?: string
 }
 
 export interface S3RequestParams {
@@ -18,6 +30,38 @@ export interface S3RequestParams {
 	ACL?: string
 	content?: string
 }
+
+export interface S3Payload {
+	Key: string
+	ACL?: string
+	ContentType?: string
+	Body?: Buffer | Readable | string
+}
+
+export interface S3Request {
+	Bucket: string
+	Key: string
+	ACL?: 'private' | 'public-read'
+	Prefix?: string
+	ContentType?: string
+	Body?: Buffer | Readable
+	Marker?: string
+	MaxKeys?: number
+}
+
+export interface S3File {
+	Key: string
+	LastModified: string | Date
+	ETag: string
+	ChecksumAlgorithm?: string
+	Size: number
+	StorageClass: string
+	Owner: {
+		DisplayName: string
+		ID: string
+	}
+}
+
 
 export class S3Service extends FileService {
 	client: S3
@@ -38,6 +82,29 @@ export class S3Service extends FileService {
 		}
 
 		this.out = new Out(`s3:${this.options.bucket}`)
+	}
+
+	get bucket() {
+		return this.options.bucket
+	}
+
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	private buildRequest(payload: S3Payload, _params?: AdapterParams): S3Request {
+		if (payload.Body) {
+			if (!payload.ContentType) {
+				payload.ContentType = mime.getType(payload.Key) || undefined
+			}
+			try {
+				payload.Body = makeBuffer(payload.Body as string) as Buffer
+			} catch (e) {
+				throw new Error(`Invalid content!`)
+			}
+		}
+
+		return {
+			Bucket: this.bucket,
+			...payload
+		} as S3Request
 	}
 
 	_cwd(options: any = {}): any {
@@ -77,7 +144,7 @@ export class S3Service extends FileService {
 		return this._uploadContent(key, content, params)
 	}
 
-	async _readContent(key?: FileId, params?: FileParams) {
+	async _readContent(key?: FileId, params?: AdapterParams) {
 		key = this.stripUrl(key)
 		const buffer = objectPull(params as object, 'buffer')
 		const response = await this.client.send(new GetObjectCommand(this.bucketParams({key}, params)))
@@ -85,18 +152,18 @@ export class S3Service extends FileService {
 		return buffer ? buffered_stream : buffered_stream.toString('utf8')
 	}
 
-	async _download(key?: FileId, file_path?: string, params?: FileParams) {
+	async _download(key?: FileId, file_path?: string, params?: AdapterParams) {
 		const content = await this._readContent(key, params)
 		return saveFile(file_path, content)
 	}
 
-	async _get(id: FileId, params?: FileParams) {
+	async _get(id: FileId, params?: AdapterParams) {
 		return typeof params === 'string' ? this._download(id, params as string) : this._readContent(id, params)
 	}
 
-	async _exists(id: FileId, params?: FileParams) {
+	async _exists(id: FileId, params?: AdapterParams) {
 		try {
-			await this.client.send(new HeadObjectCommand(this.bucketParams({key: id}, params)))
+			await this.client.send(new HeadObjectCommand(this.buildRequest({Key: id}, params)))
 			return this.makeUrl(id)
 		} catch (e) {
 			// Head command does not throw any kind of detailed error, use _get to get the error
@@ -104,7 +171,7 @@ export class S3Service extends FileService {
 		}
 	}
 
-	async* _list(params, options = {}) {
+	async* _list(params: AdapterParams, options = {}) {
 		const {filters} = this.filterQuery(params, options)
 		let query_limit = filters.$limit || this.options?.paginate?.default || 1000
 		const commandParams = this.bucketParams({}, params)
@@ -136,7 +203,7 @@ export class S3Service extends FileService {
 		}
 	}
 
-	async _find(params, options = {}) {
+	async _find(params: AdapterParams, options = {}) {
 		const files = []
 		for await (const result of this._list(params, options)) {
 			files.push(result.file)
@@ -144,27 +211,27 @@ export class S3Service extends FileService {
 		return this.filterFiles(files, params)
 	}
 
-	async _create(data, params) {
+	async _create(data: FileData, params?: AdapterParams) {
 		params = this.parseParams(params, data)
 		return this._uploadContent(params.path, this._getContent(data), params)
 	}
 
-	async _update(id, data, params) {
+	async _update(id: FileId, data: FileData, params?: AdapterParams) {
 		params = this.parseParams(params, data)
 		return this._uploadContent(params.path, this._getContent(data), params)
 	}
 
-	async _patch(id, data, params) {
+	async _patch(id: FileId, data: FileData, params?: AdapterParams) {
 		params = this.parseParams(params, data)
 		return this._uploadContent(params.path, this._getContent(data), params)
 	}
 
-	async _remove(id, params) {
-		return this.client.send(new DeleteObjectCommand(this.bucketParams({key: id}, params)))
+	async _remove(id: FileId, params?: AdapterParams) {
+		return this.client.send(new DeleteObjectCommand(this.buildRequest({Key: id}, params)))
 	}
 
-	protected parseParams(params: FileParams, data?: FileData): ParsedParams {
-		params = super.parseParams(params, data)
+	protected parseParams(params: AdapterParams | string, data?: FileData): ParsedParams {
+		params = super.parseParams(params as unknown, data)
 		params.path = this.stripUrl(params.path)
 		return params
 	}
