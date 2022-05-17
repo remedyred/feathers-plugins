@@ -1,7 +1,7 @@
 {
 	"name": "@snickbit/feathers-mongo",
 	"description": "Extended functionality for FeathersJS MongoDB database adapter",
-	"version": "0.0.70",
+	"version": "0.0.71",
 	"license": "MIT",
 	"main": "./dist/index.js",
 	"module": "./dist/index.mjs",
@@ -30,8 +30,8 @@
 		"@feathersjs/adapter-commons": "5.0.0-pre.18",
 		"@feathersjs/errors": "5.0.0-pre.18",
 		"@feathersjs/feathers": "5.0.0-pre.18",
-		"@snickbit/feathers-model": "^0.0.45",
-		"@snickbit/out": "^2.0.23",
+		"@snickbit/feathers-model": "^0.0.46",
+		"@snickbit/out": "^2.0.25",
 		"@snickbit/utilities": "^3.0.17",
 		"feathers-mongodb": "^6.4.1",
 		"mongodb": "^4.5.0"

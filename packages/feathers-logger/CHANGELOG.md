@@ -1,12 +1,18 @@
 # @snickbit/feathers-logger Changelog
 
+## 0.1.18
+
+### Patch Changes
+
+- [9542176](https://github.com/snickbit/feathers/commit/9542176) **build**:  switch to pnpm for running
+- [31b5b74](https://github.com/snickbit/feathers/commit/31b5b74) **build**:  bump indexer, regenerate indexes
+
 ## 0.1.17
 
 ### Patch Changes
 
 - [a6972cd](https://github.com/snickbit/feathers/commit/a6972cd) **chore**(dep):  update dependencies
 - [072d657](https://github.com/snickbit/feathers/commit/072d657) **style**:  reformat
-
 
 ## 0.1.16
 

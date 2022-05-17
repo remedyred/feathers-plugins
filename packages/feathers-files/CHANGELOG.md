@@ -1,5 +1,14 @@
 # @snickbit/feathers-files Changelog
 
+## 1.0.27
+
+### Patch Changes
+
+- [9542176](https://github.com/snickbit/feathers/commit/9542176) **build**:  switch to pnpm for running
+- [61a67b2](https://github.com/snickbit/feathers/commit/61a67b2) **fix**:  add type options to all methods
+- [8d89010](https://github.com/snickbit/feathers/commit/8d89010) **chore**(deps):  bump dependencies
+- [31b5b74](https://github.com/snickbit/feathers/commit/31b5b74) **build**:  bump indexer, regenerate indexes
+
 ## 1.0.26
 
 ### Patch Changes
@@ -8,7 +17,6 @@
 - [072d657](https://github.com/snickbit/feathers/commit/072d657) **style**:  reformat
 - [d129bfe](https://github.com/snickbit/feathers/commit/d129bfe) **fix**:  remove workspace protocol
 - [7bcaf82](https://github.com/snickbit/feathers/commit/7bcaf82) **chore**:  update dependencies
-
 
 ## 1.0.25
 

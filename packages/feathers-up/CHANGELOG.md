@@ -1,5 +1,11 @@
 # @snickbit/feathers-up Changelog
 
+## 0.1.15
+
+### Patch Changes
+
+- [9542176](https://github.com/snickbit/feathers/commit/9542176) **build**:  switch to pnpm for running
+
 ## 0.1.14
 
 ### Patch Changes
@@ -10,7 +16,6 @@
 - [52a5b43](https://github.com/snickbit/feathers/commit/52a5b43) **fix**:  setup authentication after services
 - [31b5b74](https://github.com/snickbit/feathers/commit/31b5b74) **build**:  bump indexer, regenerate indexes
 
-
 ## 0.1.13
 
 ### Patch Changes
@@ -18,7 +23,6 @@
 - [a6972cd](https://github.com/snickbit/feathers/commit/a6972cd) **chore**(dep):  update dependencies
 - [072d657](https://github.com/snickbit/feathers/commit/072d657) **style**:  reformat
 - [7bcaf82](https://github.com/snickbit/feathers/commit/7bcaf82) **chore**:  update dependencies
-
 
 ## 0.1.12
 

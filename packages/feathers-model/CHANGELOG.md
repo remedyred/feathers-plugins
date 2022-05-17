@@ -1,11 +1,17 @@
 # @snickbit/feathers-model Changelog
 
+## 0.0.46
+
+### Patch Changes
+
+- [9542176](https://github.com/snickbit/feathers/commit/9542176) **build**:  switch to pnpm for running
+- [31b5b74](https://github.com/snickbit/feathers/commit/31b5b74) **build**:  bump indexer, regenerate indexes
+
 ## 0.0.45
 
 ### Patch Changes
 
 - [072d657](https://github.com/snickbit/feathers/commit/072d657) **style**:  reformat
-
 
 ## 0.0.44
 

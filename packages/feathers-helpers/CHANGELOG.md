@@ -1,12 +1,17 @@
 # @snickbit/feathers-helpers Changelog
 
+## 0.0.44
+
+### Patch Changes
+
+- [9542176](https://github.com/snickbit/feathers/commit/9542176) **build**:  switch to pnpm for running
+
 ## 0.0.43
 
 ### Patch Changes
 
 - [a6972cd](https://github.com/snickbit/feathers/commit/a6972cd) **chore**(dep):  update dependencies
 - [072d657](https://github.com/snickbit/feathers/commit/072d657) **style**:  reformat
-
 
 ## 0.0.42
 

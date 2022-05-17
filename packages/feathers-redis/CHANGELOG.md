@@ -1,5 +1,12 @@
 # @snickbit/feathers-redis Changelog
 
+## 0.0.38
+
+### Patch Changes
+
+- [9542176](https://github.com/snickbit/feathers/commit/9542176) **build**:  switch to pnpm for running
+- [31b5b74](https://github.com/snickbit/feathers/commit/31b5b74) **build**:  bump indexer, regenerate indexes
+
 ## 0.0.37
 
 ### Patch Changes
@@ -8,7 +15,6 @@
 - [072d657](https://github.com/snickbit/feathers/commit/072d657) **style**:  reformat
 - [d129bfe](https://github.com/snickbit/feathers/commit/d129bfe) **fix**:  remove workspace protocol
 - [7bcaf82](https://github.com/snickbit/feathers/commit/7bcaf82) **chore**:  update dependencies
-
 
 ## 0.0.36
 
