@@ -1,7 +1,7 @@
 {
 	"name": "@snickbit/feathers-up",
 	"description": "Boot manager for FeathersJS with sane defaults",
-	"version": "0.1.15",
+	"version": "0.1.16",
 	"license": "MIT",
 	"main": "./dist/index.js",
 	"module": "./dist/index.mjs",
@@ -34,7 +34,7 @@
 		"@sentry/node": "^6.19.6",
 		"@snickbit/feathers-hooks": "^0.0.18",
 		"@snickbit/feathers-logger": "^0.1.18",
-		"@snickbit/feathers-logs": "^0.1.17",
+		"@snickbit/feathers-logs": "^0.1.18",
 		"@snickbit/model": "^1.0.39",
 		"@snickbit/node-utilities": "^4.3.4",
 		"@snickbit/out": "^2.0.25",

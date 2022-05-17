@@ -1,5 +1,13 @@
 # @snickbit/feathers-files Changelog
 
+## 1.0.29
+
+### Patch Changes
+
+- [c4eb65e](https://github.com/snickbit/feathers/commit/c4eb65e) **chore**:  update indexer and indexer config
+- [07f58c7](https://github.com/snickbit/feathers/commit/07f58c7) **fix**:  declare options instead of initializing
+- [6ca7dc0](https://github.com/snickbit/feathers/commit/6ca7dc0) **fix**:  use options close to S3
+
 ## 1.0.28
 
 ### Patch Changes

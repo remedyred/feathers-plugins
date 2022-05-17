@@ -1,5 +1,12 @@
 # @snickbit/feathers-model Changelog
 
+## 0.0.47
+
+### Patch Changes
+
+- [c4eb65e](https://github.com/snickbit/feathers/commit/c4eb65e) **chore**:  update indexer and indexer config
+- [07f58c7](https://github.com/snickbit/feathers/commit/07f58c7) **fix**:  declare options instead of initializing
+
 ## 0.0.46
 
 ### Patch Changes
