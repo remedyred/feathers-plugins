@@ -40,22 +40,6 @@ export class TaskItem extends Model {
 		}
 	}
 
-	async afterSave() {
-		await this.parent._save()
-	}
-
-	async _save() {
-		return this.parent._save()
-	}
-
-	async _destroy() {
-		const items = this.siblings()
-		const index = items.findIndex(item => item.id === this.id)
-		items.splice(index, 1)
-		this.parent.set('items', items)
-		return this
-	}
-
 	toString() {
 		return this.get()
 	}
@@ -77,6 +61,10 @@ export class TaskItem extends Model {
 		items[index] = this.get()
 		this.parent.set('items', items)
 		return this
+	}
+
+	async afterSave() {
+		await this.parent._save()
 	}
 
 	async success() {
@@ -103,5 +91,17 @@ export class TaskItem extends Model {
 		} else {
 			return this._save()
 		}
+	}
+
+	async _save() {
+		return this.parent._save()
+	}
+
+	async _destroy() {
+		const items = this.siblings()
+		const index = items.findIndex(item => item.id === this.id)
+		items.splice(index, 1)
+		this.parent.set('items', items)
+		return this
 	}
 }

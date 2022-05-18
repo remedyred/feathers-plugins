@@ -187,8 +187,8 @@ export class FileService {
 		return this.options.url ? `${this.options.url}/${this.stripUrl(id)}` : id
 	}
 
-	_getContent(data) {
-		return data?.content || data?.buffer || data?.stream || data?.file || data?.url || data?.path || data?.uri || data?.filename || data
+	cwd(params?: Params): string {
+		return callMethod(this, '_cwd', params)
 	}
 
 	async find(params: AdapterParams): Promise<any> {
@@ -241,7 +241,7 @@ export class FileService {
 		return callMethod(this, '_exists', id, params)
 	}
 
-	cwd(params?: Params): string {
-		return callMethod(this, '_cwd', params)
+	_getContent(data) {
+		return data?.content || data?.buffer || data?.stream || data?.file || data?.url || data?.path || data?.uri || data?.filename || data
 	}
 }

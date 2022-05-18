@@ -154,6 +154,41 @@ export class QueueService extends AdapterService {
 		return new this.Model(job, options)
 	}
 
+	prepParams(request: TaskRequest | TaskRequestModel, context, id?) {
+		let payload: Partial<TaskPayload> = {}
+		let options = {}
+
+		if ('toJSON' in request) request = request.toJSON() as TaskRequest
+
+		if (request.payload) {
+			request.data = {
+				payload: request.payload
+			}
+			delete request.payload
+		}
+
+		payload.data = request.data || {}
+
+		if (!id) {
+			let job_name = request?.job || request?.name || payload.data?.name
+			if (!job_name) throw new Unprocessable('Missing required job name', request)
+
+			payload.name = job_name
+		}
+
+		if (request.progress) payload.progress = request.progress
+		if (request.options) options = request.options
+
+		if (context?.user?._id) {
+			payload.data._user = context.user._id
+		}
+
+		return {
+			payload,
+			options
+		}
+	}
+
 	async startWorker() {
 		if (!this.worker && this.options.worker) {
 			this.worker = new QueueWorker({
@@ -315,40 +350,5 @@ export class QueueService extends AdapterService {
 			return Promise.all(entries.map(current => this.queue.remove(current[this.id])))
 		}
 		return this.queue.remove(id)
-	}
-
-	prepParams(request: TaskRequest | TaskRequestModel, context, id?) {
-		let payload: Partial<TaskPayload> = {}
-		let options = {}
-
-		if ('toJSON' in request) request = request.toJSON() as TaskRequest
-
-		if (request.payload) {
-			request.data = {
-				payload: request.payload
-			}
-			delete request.payload
-		}
-
-		payload.data = request.data || {}
-
-		if (!id) {
-			let job_name = request?.job || request?.name || payload.data?.name
-			if (!job_name) throw new Unprocessable('Missing required job name', request)
-
-			payload.name = job_name
-		}
-
-		if (request.progress) payload.progress = request.progress
-		if (request.options) options = request.options
-
-		if (context?.user?._id) {
-			payload.data._user = context.user._id
-		}
-
-		return {
-			payload,
-			options
-		}
 	}
 }

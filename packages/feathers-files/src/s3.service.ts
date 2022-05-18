@@ -105,10 +105,6 @@ export class S3Service extends FileService {
 		} as S3Request
 	}
 
-	_cwd(options: any = {}): any {
-		return options?.bucket || this.options.Bucket
-	}
-
 	bucketParams(payload: S3RequestParams = {}, params) {
 		params = {
 			Bucket: this.options.Bucket,
@@ -130,6 +126,17 @@ export class S3Service extends FileService {
 		}
 		return params
 	}
+
+	protected parseParams(params: AdapterParams | string, data?: FileData): ParsedParams {
+		params = super.parseParams(params as unknown, data)
+		params.path = this.stripUrl(params.path)
+		return params
+	}
+
+	_cwd(options: any = {}): any {
+		return options?.bucket || this.options.Bucket
+	}
+
 
 	async _uploadContent(Key: string, Body: Buffer | Readable | string, params) {
 		const buildRequest = this.buildRequest({Key, Body, ...params})
@@ -226,11 +233,5 @@ export class S3Service extends FileService {
 
 	async _remove(id: FileId, params?: AdapterParams) {
 		return this.client.send(new DeleteObjectCommand(this.buildRequest({Key: id}, params)))
-	}
-
-	protected parseParams(params: AdapterParams | string, data?: FileData): ParsedParams {
-		params = super.parseParams(params as unknown, data)
-		params.path = this.stripUrl(params.path)
-		return params
 	}
 }

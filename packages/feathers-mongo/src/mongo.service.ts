@@ -49,80 +49,6 @@ export interface Timestamps {
 export default class MongoService extends Service implements InternalServiceMethods {
 	declare options: MongoServiceOptions
 
-	async _find(params: Params = {}): Promise<any> {
-		await this.connected()
-		const parsed = this.parseParams(params)
-
-		if (parsed.cache !== false) {
-			const cache = await this.getCached(params, true)
-			if (cache) return cache.result
-		}
-
-		this.out.silly('MongoService: _find', parsed)
-		const results = await super._find(parsed)
-		if (params.cache !== false) {
-			await this.setCached(params, results, true)
-		}
-		if (this.asModel) {
-			if (isArray(results)) {
-				return results.map(result => new this.asModel(result, {service: this}))
-			} else if (isObject(results) && isArray(results?.data)) {
-				results.data = results.data.map(result => new this.asModel(result, {service: this}))
-			}
-		}
-		return results
-	}
-
-	async _get(id: NullableId, params: Params = {}) {
-		await this.connected()
-		const parsed = this.parseParams(params)
-		let result
-		if (id === null || isObject(id)) {
-			let items = await this._find((id || params) as Params)
-			if (isArray(items)) {
-				result = items.shift()
-			} else if (isObject(items) && isArray(items?.data)) {
-				result = items.data.shift()
-			}
-		} else {
-			result = await super._get(id, parsed)
-		}
-		if (this.asModel) result = new this.asModel(result, {service: this})
-		return result
-	}
-
-	async _create(data, params: Params = {}) {
-		if (!data) throw new Unprocessable('No data provided')
-		data = await this.prepareData(data, params)
-		params = this.parseParams(params)
-		return this.__save('_create', data, params)
-	}
-
-	async _update(id: NullableId, data, params: Params = {}) {
-		data = await this.prepareData(data, params)
-		params = this.parseParams(params)
-		return this.__save('_update', id, data, params)
-	}
-
-	async _patch(id: NullableId, data, params: Params = {}) {
-		data = await this.prepareData(data, params)
-		params = this.parseParams(params)
-		return this.__save('_patch', id, data, params)
-	}
-
-	async _remove(id: NullableId, params: Params = {}) {
-		await this.connected()
-		params = this.parseParams(params)
-		if (this.options.softDelete && !params.query?.force && this.timestamps) {
-			return await this._patch(id, {[this.timestamps.deleted as string]: new Date()}, params)
-		} else {
-			if (params.query?.force) {
-				delete params.query.force
-			}
-			return await super._remove(id, params)
-		}
-	}
-
 	client: any
 	asModel: any
 	Cache: any
@@ -228,33 +154,6 @@ export default class MongoService extends Service implements InternalServiceMeth
 		this.options.timestamps = timestamps
 	}
 
-	async connected(): Promise<any> {
-		const connected = this.Model || await this.client
-		if (!connected) throw new Unavailable('MongoService: failed to connect to MongoDB failed')
-	}
-
-	async __save(method: any, ...args: any[]): Promise<any> {
-		await this.connected()
-		if (!this.asModel) return super[method](...args)
-
-		let model
-		for (let [i, arg] of args.entries()) {
-			if (objectHasMethod(arg, 'toJSON') && !(arg instanceof ObjectId)) {
-				model = arg
-				args[i] = arg.toJSON()
-				break
-			}
-		}
-
-		const results = await super[method](...args)
-		if (model) {
-			model.set(results)
-		} else {
-			model = new this.asModel(results, {service: this})
-		}
-		return model
-	}
-
 	prepareData(data: any, params: Params = {}): any {
 		data = objectHasMethod(data, 'toJSON') ? data.toJSON() : data
 
@@ -310,6 +209,11 @@ export default class MongoService extends Service implements InternalServiceMeth
 		return params
 	}
 
+	async connected(): Promise<any> {
+		const connected = this.Model || await this.client
+		if (!connected) throw new Unavailable('MongoService: failed to connect to MongoDB failed')
+	}
+
 	async getCached(params: Params, skipParamParse = false): Promise<any> {
 		const parsed = skipParamParse ? params : this.parseParams(params)
 		if (this.options.cache && parsed.cache !== false) {
@@ -338,6 +242,137 @@ export default class MongoService extends Service implements InternalServiceMeth
 			await this.Cache.insertOne({query: parsed, result: results, _created: new Date()})
 		}
 	}
+
+	async destroy(id: NullableId, params: Params = {}): Promise<any> {
+		if (id === null && !this.allowsMulti('destroy')) return Promise.reject(new MethodNotAllowed(`Can not destroy multiple entries`))
+		return this._destroy(id, params)
+	}
+
+	async restore(id: NullableId, params: Params = {}): Promise<any> {
+		if (id === null && !this.allowsMulti('restore')) return Promise.reject(new MethodNotAllowed(`Can not restore multiple entries`))
+		return this._restore(id, params)
+	}
+
+	async getOrCreate(id: NullableId, data, params: Params = {}): Promise<any> {
+		if (id === null && !this.allowsMulti('patch')) return Promise.reject(new MethodNotAllowed(`Can not getOrCreate multiple entries`))
+		return this._getOrCreate(id, data, params)
+	}
+
+	async aggregate(pipeline, params: AggregateOptions = {}): Promise<any[]> {
+		const cursor = await this._aggregate(pipeline, params)
+		let records = []
+		for await (const doc of cursor) {
+			if (this.asModel) {
+				records.push(new this.asModel(doc, {service: this}))
+			} else {
+				records.push(doc)
+			}
+		}
+		return records
+	}
+
+	async touch(id: NullableId, params: Params = {}): Promise<any> {
+		if (id === null && !this.allowsMulti('touch')) return Promise.reject(new MethodNotAllowed(`Can not touch multiple entries`))
+		return this._touch(id, params)
+	}
+
+	async _find(params: Params = {}): Promise<any> {
+		await this.connected()
+		const parsed = this.parseParams(params)
+
+		if (parsed.cache !== false) {
+			const cache = await this.getCached(params, true)
+			if (cache) return cache.result
+		}
+
+		this.out.silly('MongoService: _find', parsed)
+		const results = await super._find(parsed)
+		if (params.cache !== false) {
+			await this.setCached(params, results, true)
+		}
+		if (this.asModel) {
+			if (isArray(results)) {
+				return results.map(result => new this.asModel(result, {service: this}))
+			} else if (isObject(results) && isArray(results?.data)) {
+				results.data = results.data.map(result => new this.asModel(result, {service: this}))
+			}
+		}
+		return results
+	}
+
+	async _get(id: NullableId, params: Params = {}) {
+		await this.connected()
+		const parsed = this.parseParams(params)
+		let result
+		if (id === null || isObject(id)) {
+			let items = await this._find((id || params) as Params)
+			if (isArray(items)) {
+				result = items.shift()
+			} else if (isObject(items) && isArray(items?.data)) {
+				result = items.data.shift()
+			}
+		} else {
+			result = await super._get(id, parsed)
+		}
+		if (this.asModel) result = new this.asModel(result, {service: this})
+		return result
+	}
+
+	async _create(data, params: Params = {}) {
+		if (!data) throw new Unprocessable('No data provided')
+		data = await this.prepareData(data, params)
+		params = this.parseParams(params)
+		return this.__save('_create', data, params)
+	}
+
+	async _update(id: NullableId, data, params: Params = {}) {
+		data = await this.prepareData(data, params)
+		params = this.parseParams(params)
+		return this.__save('_update', id, data, params)
+	}
+
+	async _patch(id: NullableId, data, params: Params = {}) {
+		data = await this.prepareData(data, params)
+		params = this.parseParams(params)
+		return this.__save('_patch', id, data, params)
+	}
+
+	async _remove(id: NullableId, params: Params = {}) {
+		await this.connected()
+		params = this.parseParams(params)
+		if (this.options.softDelete && !params.query?.force && this.timestamps) {
+			return await this._patch(id, {[this.timestamps.deleted as string]: new Date()}, params)
+		} else {
+			if (params.query?.force) {
+				delete params.query.force
+			}
+			return await super._remove(id, params)
+		}
+	}
+
+
+	async __save(method: any, ...args: any[]): Promise<any> {
+		await this.connected()
+		if (!this.asModel) return super[method](...args)
+
+		let model
+		for (let [i, arg] of args.entries()) {
+			if (objectHasMethod(arg, 'toJSON') && !(arg instanceof ObjectId)) {
+				model = arg
+				args[i] = arg.toJSON()
+				break
+			}
+		}
+
+		const results = await super[method](...args)
+		if (model) {
+			model.set(results)
+		} else {
+			model = new this.asModel(results, {service: this})
+		}
+		return model
+	}
+
 
 	async _upsert(data, params: Params = {}): Promise<any> {
 		if (isArray(data)) {
@@ -368,10 +403,6 @@ export default class MongoService extends Service implements InternalServiceMeth
 		return this._remove(id, params)
 	}
 
-	async destroy(id: NullableId, params: Params = {}): Promise<any> {
-		if (id === null && !this.allowsMulti('destroy')) return Promise.reject(new MethodNotAllowed(`Can not destroy multiple entries`))
-		return this._destroy(id, params)
-	}
 
 	async _restore(id: NullableId, params: Params = {}): Promise<any> {
 		params.query = {...(params.query || {}), $withDeleted: true}
@@ -383,10 +414,6 @@ export default class MongoService extends Service implements InternalServiceMeth
 		}
 	}
 
-	async restore(id: NullableId, params: Params = {}): Promise<any> {
-		if (id === null && !this.allowsMulti('restore')) return Promise.reject(new MethodNotAllowed(`Can not restore multiple entries`))
-		return this._restore(id, params)
-	}
 
 	async _getOrCreate(id: NullableId, data, params: Params = {}): Promise<any> {
 		try {
@@ -401,35 +428,13 @@ export default class MongoService extends Service implements InternalServiceMeth
 		}
 	}
 
-	async getOrCreate(id: NullableId, data, params: Params = {}): Promise<any> {
-		if (id === null && !this.allowsMulti('patch')) return Promise.reject(new MethodNotAllowed(`Can not getOrCreate multiple entries`))
-		return this._getOrCreate(id, data, params)
-	}
-
 	async _aggregate(pipeline, params: AggregateOptions = {}): Promise<any> {
 		await this.connected()
 		return this.Model.aggregate(pipeline, params)
 	}
 
-	async aggregate(pipeline, params: AggregateOptions = {}): Promise<any[]> {
-		const cursor = await this._aggregate(pipeline, params)
-		let records = []
-		for await (const doc of cursor) {
-			if (this.asModel) {
-				records.push(new this.asModel(doc, {service: this}))
-			} else {
-				records.push(doc)
-			}
-		}
-		return records
-	}
 
 	async _touch(id: NullableId, params: Params = {}): Promise<any> {
 		return this._patch(id, params)
-	}
-
-	async touch(id: NullableId, params: Params = {}): Promise<any> {
-		if (id === null && !this.allowsMulti('touch')) return Promise.reject(new MethodNotAllowed(`Can not touch multiple entries`))
-		return this._touch(id, params)
 	}
 }

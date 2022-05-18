@@ -65,6 +65,35 @@ export class QueueWatcher {
 		return this.options.name
 	}
 
+	start() {
+		const connection = this.queue.connection || useConnection()
+
+		this.out.info('Setting up queue scheduler')
+		this.scheduler = new QueueScheduler(this.name, {connection})
+
+		this.out.info('Setting up queue listener')
+		this.listener = new QueueEvents(this.name, {connection})
+
+		let events = Array.isArray(this.options.events) ? this.options.events.slice() : []
+		events = events.filter(event => !this.options.suppress.includes(event))
+
+		this.out.debug('Listening for queue events: ' + events.join(', '))
+
+		if (events.includes('all')) {
+			events = events.filter(event => event !== 'all')
+		}
+
+		for (let event of events as BullQueueEvent[]) {
+			this.listener.on(event, this.handleEvent.bind(this, event))
+		}
+
+		this.out.verbose('Watcher Started')
+
+		beforeExit(() => this.stop())
+
+		return this.scheduler
+	}
+
 	private async handleEvent(event: 'active', args: { jobId: string; prev?: string; }, id: string): Promise<void>;
 	private async handleEvent(event: 'added', args: { jobId: string; name: string; data: string; opts: string; }, id: string): Promise<void>;
 	private async handleEvent(event: 'cleaned', args: { count: string; }, id: string): Promise<void>;
@@ -102,35 +131,6 @@ export class QueueWatcher {
 		this.out.label(event).verbose(data)
 		this.queue.emit(event, data)
 		this.queue.emit('all', {event, ...data})
-	}
-
-	start() {
-		const connection = this.queue.connection || useConnection()
-
-		this.out.info('Setting up queue scheduler')
-		this.scheduler = new QueueScheduler(this.name, {connection})
-
-		this.out.info('Setting up queue listener')
-		this.listener = new QueueEvents(this.name, {connection})
-
-		let events = Array.isArray(this.options.events) ? this.options.events.slice() : []
-		events = events.filter(event => !this.options.suppress.includes(event))
-
-		this.out.debug('Listening for queue events: ' + events.join(', '))
-
-		if (events.includes('all')) {
-			events = events.filter(event => event !== 'all')
-		}
-
-		for (let event of events as BullQueueEvent[]) {
-			this.listener.on(event, this.handleEvent.bind(this, event))
-		}
-
-		this.out.verbose('Watcher Started')
-
-		beforeExit(() => this.stop())
-
-		return this.scheduler
 	}
 
 	async stop() {

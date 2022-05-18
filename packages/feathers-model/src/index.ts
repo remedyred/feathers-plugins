@@ -57,6 +57,27 @@ export class Model extends BaseModel {
 	/**
 	 * @return {Promise<*[]|*>}
 	 */
+	async save() {
+		await safeCallMethod(this, 'beforeSave')
+		const results = await callMethod(this, '_save')
+		await safeCallMethod(this, 'afterSave')
+		return results
+	}
+
+	/**
+	 * @return {Promise<*>}
+	 */
+	async destroy() {
+		return callMethod(this, '_destroy')
+	}
+
+	async fresh() {
+		return callMethod(this, '_fresh')
+	}
+
+	/**
+	 * @return {Promise<*[]|*>}
+	 */
 	async _save(attempts = 0) {
 		const payload = await this.prepareData()
 		let data
@@ -91,16 +112,6 @@ export class Model extends BaseModel {
 	}
 
 	/**
-	 * @return {Promise<*[]|*>}
-	 */
-	async save() {
-		await safeCallMethod(this, 'beforeSave')
-		const results = await callMethod(this, '_save')
-		await safeCallMethod(this, 'afterSave')
-		return results
-	}
-
-	/**
 	 * @return {Promise<*>}
 	 */
 	async _destroy() {
@@ -115,12 +126,6 @@ export class Model extends BaseModel {
 		}
 	}
 
-	/**
-	 * @return {Promise<*>}
-	 */
-	async destroy() {
-		return callMethod(this, '_destroy')
-	}
 
 	async _fresh() {
 		if (!this.id) {
@@ -128,9 +133,5 @@ export class Model extends BaseModel {
 		}
 		const data = await this.service._get(this.id)
 		return this.set(data)
-	}
-
-	async fresh() {
-		return callMethod(this, '_fresh')
 	}
 }

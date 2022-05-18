@@ -21,10 +21,10 @@ export interface TaskProgress {
 }
 
 export class Task extends Model {
-	private _job?: Job
 	looping = false
 	queue: string
 	declare options: TaskOptions
+	private _job?: Job
 
 	constructor(job, options: TaskOptions = {}) {
 		const task = useTask(job?.name)
@@ -131,13 +131,6 @@ export class Task extends Model {
 		this.resetOut()
 	}
 
-	async job() {
-		if (!this._job) {
-			this._job = await this.service._get(this.id, {asTask: false})
-		}
-		return this._job
-	}
-
 	log(...args: any[]) {
 		this.out.log(...args)
 		if (this.options.logs) {
@@ -168,6 +161,33 @@ export class Task extends Model {
 		this.set('.progress.current', current)
 	}
 
+	item(id, options = {}) {
+		return makeTaskItem(this.get('items').find(item => item.id === id), this, options)
+	}
+
+	items(items?, options = {}) {
+		if (items === undefined) {
+			return this.get('items').map(item => makeTaskItem(item, this, options))
+		}
+		this.push('items', ...items)
+		return this
+	}
+
+	loop() {
+		this.looping = true
+		const items = this.items()
+		this.total(items.length)
+		return items
+	}
+
+	async job() {
+		if (!this._job) {
+			this._job = await this.service._get(this.id, {asTask: false})
+		}
+		return this._job
+	}
+
+
 	async tick(amount = 1) {
 		let progress = this.getProgress()
 		let current = (progress.current || 0) + amount
@@ -194,25 +214,6 @@ export class Task extends Model {
 		this.set('.progress', progress)
 
 		return this._save()
-	}
-
-	item(id, options = {}) {
-		return makeTaskItem(this.get('items').find(item => item.id === id), this, options)
-	}
-
-	items(items?, options = {}) {
-		if (items === undefined) {
-			return this.get('items').map(item => makeTaskItem(item, this, options))
-		}
-		this.push('items', ...items)
-		return this
-	}
-
-	loop() {
-		this.looping = true
-		const items = this.items()
-		this.total(items.length)
-		return items
 	}
 
 	async start(stage, total = null) {
