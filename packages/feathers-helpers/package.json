@@ -27,18 +27,18 @@
 		"depcheck": "depcheck"
 	},
 	"dependencies": {
-		"@feathersjs/adapter-commons": "5.0.0-pre.18",
-		"@feathersjs/commons": "5.0.0-pre.18",
-		"@feathersjs/errors": "5.0.0-pre.18",
+		"@feathersjs/adapter-commons": "5.0.0-pre.20",
+		"@feathersjs/commons": "5.0.0-pre.20",
+		"@feathersjs/errors": "5.0.0-pre.20",
 		"@snickbit/out": "^2.0.25",
 		"@snickbit/utilities": "^3.0.17",
 		"sift": "^16.0.0"
 	},
 	"peerDependencies": {
-		"@feathersjs/feathers": "5.0.0-pre.18"
+		"@feathersjs/feathers": "5.0.0-pre.20"
 	},
 	"devDependencies": {
-		"@feathersjs/feathers": "5.0.0-pre.18",
+		"@feathersjs/feathers": "5.0.0-pre.20",
 		"@types/jest": "^27.4.1",
 		"jest": "^27.5.1",
 		"shx": "^0.3.4",

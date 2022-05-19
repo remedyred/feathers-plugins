@@ -1,13 +1,12 @@
-import {filterQuery, select, sorter} from '@feathersjs/adapter-commons'
+import {AdapterParams, AdapterServiceOptions, filterQuery, select, sorter} from '@feathersjs/adapter-commons'
 import {_} from '@feathersjs/commons'
 import {NotImplemented} from '@feathersjs/errors'
 import {out} from '@snickbit/out'
 import {isJSONString, JSONParse, objectCopy} from '@snickbit/utilities'
 import sift from 'sift'
 import {Params} from '@feathersjs/feathers'
-import {ServiceOptions} from '@feathersjs/adapter-commons/lib/service'
 
-export interface QueryOptions extends Partial<ServiceOptions> {
+export interface QueryOptions extends Partial<AdapterServiceOptions> {
 	operators?: string[]
 	sorter?: (a: any, b: any) => number
 	matcher?: (value: any) => boolean
@@ -76,7 +75,7 @@ export function safeCallMethod(self, name, ...args) {
 	return self[name](...args)
 }
 
-export function filterParams(params: Params = {}, options: QueryOptions = {}) {
+export function filterParams(params: AdapterParams = {}, options: QueryOptions = {}) {
 	const paginate = typeof params.paginate !== 'undefined' ? params.paginate : options.paginate
 	const {query = {}} = params
 	options = {
