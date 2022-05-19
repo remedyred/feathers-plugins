@@ -296,19 +296,19 @@ export default class MongoAdapter extends MongoDBService {
 		if (!data) throw new Unprocessable('No data provided')
 		data = await this.prepareData(data, params)
 		params = this.parseParams(params)
-		return this.__save('_create', data, params)
+		return this.__save('$create', data, params)
 	}
 
 	async $update(id: NullableId, data, params: AdapterParams = {}) {
 		data = await this.prepareData(data, params)
 		params = this.parseParams(params)
-		return this.__save('_update', id, data, params)
+		return this.__save('$update', id, data, params)
 	}
 
 	async $patch(id: NullableId, data, params: AdapterParams = {}) {
 		data = await this.prepareData(data, params)
 		params = this.parseParams(params)
-		return this.__save('_patch', id, data, params)
+		return this.__save('$patch', id, data, params)
 	}
 
 	async $remove(id: NullableId, params: AdapterParams = {}) {
