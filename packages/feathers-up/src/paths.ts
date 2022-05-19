@@ -1,7 +1,7 @@
 import {useConfig} from './config'
 import path from 'path'
-import {Application} from './index'
 import {findUp} from '@snickbit/node-utilities'
+import {Application} from './definitions'
 
 export default function (app: Application) {
 	// Check path configuration

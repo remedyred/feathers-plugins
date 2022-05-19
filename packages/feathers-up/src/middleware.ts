@@ -1,5 +1,5 @@
-import {Application} from './index'
 import {useSetup} from './config'
+import {Application} from './definitions'
 
 export default function (app: Application) {
 	const middleware = useSetup('middleware')

@@ -1,6 +1,8 @@
 import Redis from 'ioredis'
+import {Application} from '../definitions'
+import {RedisOptions} from 'ioredis/built/redis/RedisOptions'
 
-export default async function (app, config) {
+export default async function (app: Application, config: RedisOptions | RedisOptions[]) {
 	if (!app.get('redisClient')) {
 		app.out.verbose('Connect to redis databases...')
 		if (Array.isArray(config)) {

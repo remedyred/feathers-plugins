@@ -1,6 +1,17 @@
 import {MongoClient} from 'mongodb'
+import {Application} from '../definitions'
 
-export default async function (app, config) {
+export interface MongoClientOptions {
+	uri?: string
+	database?: string
+	authSource?: string,
+	auth?: {
+		username?: string
+		password?: string
+	}
+}
+
+export default async function (app: Application, config: MongoClientOptions | MongoClientOptions[]) {
 	if (!app.get('mongoClient')) {
 		app.out.verbose('Connect to MongoDB database...')
 		if (Array.isArray(config)) {
@@ -21,7 +32,7 @@ export default async function (app, config) {
 	return app.get('mongoClient')
 }
 
-export function connectToMongoDB(app, config): Promise<MongoClient> {
+export function connectToMongoDB(app: Application, config: MongoClientOptions): Promise<MongoClient> {
 	const mongoOptions = {
 		authSource: config.authSource || config.database,
 		auth: config.auth

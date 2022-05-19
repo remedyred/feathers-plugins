@@ -1,7 +1,8 @@
 import {isObject} from '@snickbit/utilities'
 import {useSetup} from './config'
+import {Application} from './definitions'
 
-export default function (app){
+export default function (app: Application){
 	const services = useSetup('services')
 	if (services) {
 		app.out.verbose('Set up services')

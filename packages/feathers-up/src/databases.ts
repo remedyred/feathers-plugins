@@ -1,6 +1,7 @@
 import {useConfig} from './config'
+import {Application} from './definitions'
 
-export default async function (app) {
+export default async function (app: Application) {
 	const databases = useConfig('databases')
 	if (databases) {
 		app.out.verbose('Set up databases')

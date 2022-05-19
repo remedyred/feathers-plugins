@@ -1,8 +1,8 @@
 import *  as  winston from 'winston'
 import DailyRotateFile from 'winston-daily-rotate-file'
-import {Application} from './index'
 import {useConfig} from './config'
 import logs, {useLogger} from '@snickbit/feathers-logs'
+import {Application} from './definitions'
 
 export async function initLogger(app: Application) {
 	const config = useConfig('logs')

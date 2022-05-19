@@ -1,6 +1,7 @@
 import {useConfig} from './config'
+import {Application} from './definitions'
 
-export default function (app) {
+export default function (app: Application) {
 	const status = useConfig('status', true)
 
 	if (app.get('appType') === 'server' && status) {

@@ -1,6 +1,6 @@
-import {Application, AppSetup} from './index'
 import {Model} from '@snickbit/model'
 import configuration from '@feathersjs/configuration'
+import {Application, AppSetup} from './definitions'
 
 let $setup: Model
 let $app: Application

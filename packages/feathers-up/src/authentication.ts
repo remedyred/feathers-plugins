@@ -1,6 +1,7 @@
 import {useSetup} from './config'
+import {Application} from './definitions'
 
-export default function (app){
+export default function (app: Application){
 	const authentication = useSetup('authentication')
 	if (app.get('appType') === 'server' && authentication) {
 		app.out.verbose('Configure authentication')

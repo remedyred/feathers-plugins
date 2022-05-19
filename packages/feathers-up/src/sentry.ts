@@ -1,7 +1,8 @@
 import {useSetup} from './config'
 import * as Sentry from '@sentry/node'
+import {Application} from './definitions'
 
-export function sentryInit(app) {
+export function sentryInit(app: Application) {
 	const sentry = useSetup('sentry')
 	if (sentry) {
 		Sentry.init({
@@ -16,7 +17,7 @@ export function sentryInit(app) {
 	}
 }
 
-export function sentryHandleErrors(app) {
+export function sentryHandleErrors(app: Application) {
 	const sentry = useSetup('sentry')
 	if (app.get('appType') === 'server' && sentry) {
 		app.out.verbose('Configure sentry error handler')

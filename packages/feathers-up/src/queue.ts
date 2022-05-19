@@ -1,7 +1,8 @@
 import {isObject} from '@snickbit/utilities'
 import {useConfig} from './config'
+import {Application} from './definitions'
 
-export default function (app) {
+export default function (app: Application) {
 	// ensure the queue worker/watcher is NOT running in CLI mode
 	const queue = useConfig('queue')
 	if (app.get('appType') === 'server' && queue) {
