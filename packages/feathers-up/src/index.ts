@@ -16,6 +16,7 @@ import middleware from './middleware'
 import status from './status'
 import {initLogger} from './logger'
 import {Application, AppSetup, FeathersUpOptions} from './definitions'
+import errors from './errors'
 
 let app: Application
 
@@ -42,23 +43,11 @@ export function feathersUp(appType = 'server', setup: AppSetup | Model = {}, opt
 	const appEnv = app.get('env')
 	app.out.block.info(`Initializing {cyan}${appType}{/cyan} in {magenta}${appEnv}{/megenta} mode`)
 
-	// Catch unhandled promise rejections
-	process.on('unhandledRejection', (reason, promise) => {
-		if (app.log) app.log.error('Unhandled Rejection: ', reason)
-
-		promise.then(response => {
-			app.log.error(response)
-		}).catch(err => {
-			app.log.error(err)
-		})
-	})
-
-	process.on('uncaughtException', function(error) {
-		if (app.log) app.log.error('Unhandled Exception: ', error)
-	});
-
 	// configure paths
 	app.configure(paths)
+
+	// configure error handlers
+	app.configure(errors)
 
 	// configure logger
 	app.configure(initLogger)
