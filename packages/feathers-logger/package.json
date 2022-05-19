@@ -39,7 +39,7 @@
 		"typescript": "^4.6.4"
 	},
 	"peerDependencies": {
-		"@feathersjs/feathers-client": "5.0.0-pre.20"
+		"@feathersjs/feathers": "5.0.0-pre.20"
 	},
 	"engines": {
 		"node": ">= 12"
