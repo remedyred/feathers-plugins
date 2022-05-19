@@ -1,6 +1,5 @@
-import {InternalServiceMethods} from '@feathersjs/adapter-commons'
 import {MethodNotAllowed, NotFound, Unavailable, Unprocessable} from '@feathersjs/errors'
-import {Application, NullableId, Params} from '@feathersjs/feathers'
+import {Application, NullableId} from '@feathersjs/feathers'
 import {Model} from '@snickbit/feathers-model'
 import {Out} from '@snickbit/out'
 import {isArray, isObject, objectHasMethod, objectOnly} from '@snickbit/utilities'
@@ -8,6 +7,7 @@ import {MongoDBServiceOptions, Service} from 'feathers-mongodb'
 import {AggregateOptions, IndexSpecification, ObjectId} from 'mongodb'
 import client from './client'
 import {transformSearchFieldsInQuery} from './fuzzy'
+import {AdapterParams as Params} from '@feathersjs/adapter-commons'
 
 export interface IndexDefinition {
 	keys: IndexSpecification;
@@ -26,6 +26,11 @@ export interface MongoServiceOptions extends MongoDBServiceOptions {
 }
 
 export type ServiceOptions = Partial<MongoServiceOptions>
+
+export interface AdapterParams extends Params {
+	timestamps?: boolean | TimestampsOptions
+	cache?: boolean
+}
 
 export interface TimestampsOptions {
 	created?: boolean | string
@@ -46,7 +51,7 @@ export interface Timestamps {
 	deleted?: string | boolean;
 }
 
-export default class MongoService extends Service implements InternalServiceMethods {
+export default class MongoService extends Service {
 	declare options: MongoServiceOptions
 
 	client: any
@@ -83,8 +88,6 @@ export default class MongoService extends Service implements InternalServiceMeth
 		this.options = options as MongoServiceOptions
 
 		this.out = new Out('mongo')
-
-		this.#timestamps()
 
 		if (isArray(this.options.search.fields)) {
 			this.options.search.excludedFields = []
@@ -137,7 +140,7 @@ export default class MongoService extends Service implements InternalServiceMeth
 		}
 	}
 
-	prepareData(data: any, params: Params = {}): any {
+	prepareData(data: any, params: AdapterParams = {}): any {
 		data = objectHasMethod(data, 'toJSON') ? data.toJSON() : data
 
 		if (data && !data._id && data.id) {
@@ -157,7 +160,7 @@ export default class MongoService extends Service implements InternalServiceMeth
 		return data
 	}
 
-	parseParams(params: Params = {}) {
+	parseParams(params: AdapterParams = {}) {
 		params.query = params.query || {}
 
 		// don't cache global searches
@@ -199,7 +202,7 @@ export default class MongoService extends Service implements InternalServiceMeth
 		if (!connected) throw new Unavailable('MongoService: failed to connect to MongoDB failed')
 	}
 
-	async getCached(params: Params, skipParamParse = false): Promise<any> {
+	async getCached(params: AdapterParams, skipParamParse = false): Promise<any> {
 		const parsed = skipParamParse ? params : this.parseParams(params)
 		if (this.options.cache && parsed.cache !== false) {
 			try {
@@ -216,29 +219,29 @@ export default class MongoService extends Service implements InternalServiceMeth
 		return false
 	}
 
-	async clearCached(params: Params, skipParamParse = false): Promise<any> {
+	async clearCached(params: AdapterParams, skipParamParse = false): Promise<any> {
 		const parsed = skipParamParse ? params : this.parseParams(params)
 		return this.Cache.deleteMany({query: parsed})
 	}
 
-	async setCached(params: Params, results, skipParamParse = false): Promise<any> {
+	async setCached(params: AdapterParams, results, skipParamParse = false): Promise<any> {
 		const parsed = skipParamParse ? params : this.parseParams(params)
 		if (this.options.cache) {
 			await this.Cache.insertOne({query: parsed, result: results, _created: new Date()})
 		}
 	}
 
-	async destroy(id: NullableId, params: Params = {}): Promise<any> {
+	async destroy(id: NullableId, params: AdapterParams = {}): Promise<any> {
 		if (id === null && !this.allowsMulti('destroy')) return Promise.reject(new MethodNotAllowed(`Can not destroy multiple entries`))
 		return this._destroy(id, params)
 	}
 
-	async restore(id: NullableId, params: Params = {}): Promise<any> {
+	async restore(id: NullableId, params: AdapterParams = {}): Promise<any> {
 		if (id === null && !this.allowsMulti('restore')) return Promise.reject(new MethodNotAllowed(`Can not restore multiple entries`))
 		return this._restore(id, params)
 	}
 
-	async getOrCreate(id: NullableId, data, params: Params = {}): Promise<any> {
+	async getOrCreate(id: NullableId, data, params: AdapterParams = {}): Promise<any> {
 		if (id === null && !this.allowsMulti('patch')) return Promise.reject(new MethodNotAllowed(`Can not getOrCreate multiple entries`))
 		return this._getOrCreate(id, data, params)
 	}
@@ -256,12 +259,12 @@ export default class MongoService extends Service implements InternalServiceMeth
 		return records
 	}
 
-	async touch(id: NullableId, params: Params = {}): Promise<any> {
+	async touch(id: NullableId, params: AdapterParams = {}): Promise<any> {
 		if (id === null && !this.allowsMulti('touch')) return Promise.reject(new MethodNotAllowed(`Can not touch multiple entries`))
 		return this._touch(id, params)
 	}
 
-	async _find(params: Params = {}): Promise<any> {
+	async _find(params: AdapterParams = {}): Promise<any> {
 		await this.connected()
 		const parsed = this.parseParams(params)
 
@@ -285,12 +288,12 @@ export default class MongoService extends Service implements InternalServiceMeth
 		return results
 	}
 
-	async _get(id: NullableId, params: Params = {}) {
+	async _get(id: NullableId, params: AdapterParams = {}) {
 		await this.connected()
 		const parsed = this.parseParams(params)
 		let result
 		if (id === null || isObject(id)) {
-			let items = await this._find((id || params) as Params)
+			let items = await this._find((id || params) as AdapterParams)
 			if (isArray(items)) {
 				result = items.shift()
 			} else if (isObject(items) && isArray(items?.data)) {
@@ -303,26 +306,26 @@ export default class MongoService extends Service implements InternalServiceMeth
 		return result
 	}
 
-	async _create(data, params: Params = {}) {
+	async _create(data, params: AdapterParams = {}) {
 		if (!data) throw new Unprocessable('No data provided')
 		data = await this.prepareData(data, params)
 		params = this.parseParams(params)
 		return this.__save('_create', data, params)
 	}
 
-	async _update(id: NullableId, data, params: Params = {}) {
+	async _update(id: NullableId, data, params: AdapterParams = {}) {
 		data = await this.prepareData(data, params)
 		params = this.parseParams(params)
 		return this.__save('_update', id, data, params)
 	}
 
-	async _patch(id: NullableId, data, params: Params = {}) {
+	async _patch(id: NullableId, data, params: AdapterParams = {}) {
 		data = await this.prepareData(data, params)
 		params = this.parseParams(params)
 		return this.__save('_patch', id, data, params)
 	}
 
-	async _remove(id: NullableId, params: Params = {}) {
+	async _remove(id: NullableId, params: AdapterParams = {}) {
 		await this.connected()
 		params = this.parseParams(params)
 		if (this.options.softDelete && !params.query?.force && this.timestamps) {
@@ -359,7 +362,7 @@ export default class MongoService extends Service implements InternalServiceMeth
 	}
 
 
-	async _upsert(data, params: Params = {}): Promise<any> {
+	async _upsert(data, params: AdapterParams = {}): Promise<any> {
 		if (isArray(data)) {
 			if (!this.allowsMulti('patch')) return Promise.reject(new MethodNotAllowed(`Can not patch multiple entries`))
 			return Promise.all(data.map(async item => await this._upsert(item, params)))
@@ -383,13 +386,12 @@ export default class MongoService extends Service implements InternalServiceMeth
 		})
 	}
 
-	async _destroy(id: NullableId, params: Params = {}): Promise<any> {
+	async _destroy(id: NullableId, params: AdapterParams = {}): Promise<any> {
 		params.query = {...(params.query || {}), force: true, $withDeleted: true}
 		return this._remove(id, params)
 	}
 
-
-	async _restore(id: NullableId, params: Params = {}): Promise<any> {
+	async _restore(id: NullableId, params: AdapterParams = {}): Promise<any> {
 		params.query = {...(params.query || {}), $withDeleted: true}
 		if (this.timestamps) {
 			const data = {$unset: {[this.timestamps.deleted as string]: 1}}
@@ -399,8 +401,7 @@ export default class MongoService extends Service implements InternalServiceMeth
 		}
 	}
 
-
-	async _getOrCreate(id: NullableId, data, params: Params = {}): Promise<any> {
+	async _getOrCreate(id: NullableId, data, params: AdapterParams = {}): Promise<any> {
 		try {
 			return await this._get(id)
 		} catch (e) {
@@ -418,8 +419,7 @@ export default class MongoService extends Service implements InternalServiceMeth
 		return this.Model.aggregate(pipeline, params)
 	}
 
-
-	async _touch(id: NullableId, params: Params = {}): Promise<any> {
+	async _touch(id: NullableId, params: AdapterParams = {}): Promise<any> {
 		return this._patch(id, params)
 	}
 }
