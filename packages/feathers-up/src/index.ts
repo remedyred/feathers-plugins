@@ -15,7 +15,7 @@ import {sentryHandleErrors, sentryInit} from './sentry'
 import middleware from './middleware'
 import status from './status'
 import {initLogger} from './logger'
-import {Application, AppSetup} from './definitions'
+import {Application, AppSetup, FeathersUpOptions} from './definitions'
 
 let app: Application
 
@@ -24,7 +24,7 @@ export function useApp(appType = 'server', setup: AppSetup = {}): Application {
 	else return feathersUp(appType, setup)
 }
 
-export function feathersUp(appType = 'server', setup: AppSetup | Model = {}): Application {
+export function feathersUp(appType = 'server', setup: AppSetup | Model = {}, options: FeathersUpOptions = {}): Application {
 	if (app) return app
 
 	let instance = feathers()
@@ -38,7 +38,7 @@ export function feathersUp(appType = 'server', setup: AppSetup | Model = {}): Ap
 	app.set('env', process.env.NODE_ENV || 'development')
 
 	app.out = new Out(appType)
-	app.out.setVerbosity(5)
+	app.out.setVerbosity(options.verbosity)
 	const appEnv = app.get('env')
 	app.out.block.info(`Initializing {cyan}${appType}{/cyan} in {magenta}${appEnv}{/megenta} mode`)
 

@@ -72,3 +72,7 @@ export interface Application extends ExpressApplication {
 	log: typeof Logger | ProxyLogger;
 	error: typeof Logger;
 }
+
+export interface FeathersUpOptions {
+	verbosity?: number;
+}
