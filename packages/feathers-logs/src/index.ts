@@ -1,13 +1,13 @@
-import logger from '@snickbit/feathers-logger'
+import logger, {Logger} from '@snickbit/feathers-logger'
 import {LogService} from './log.service'
 import {Application as FeathersApp} from '@feathersjs/feathers'
 import {ServiceInterface} from '@feathersjs/feathers/src/declarations'
 
 export interface Application extends FeathersApp {
-	log: typeof logger
-	error: typeof logger
 	out?: any
 }
+
+let $logger: Logger
 
 export default function service(app: Application) {
 	app.use('/logs',
@@ -15,6 +15,9 @@ export default function service(app: Application) {
 		{
 			methods: ['find', 'get', 'create', 'update', 'remove', 'contexts', 'channels']
 		})
-	app.log = logger.config({service: app.service('logs'), out: app?.out})
-	app.error = app.log.clone('error', {defaultLevel: 'error'})
+	$logger = logger.config({service: app.service('logs'), out: app?.out})
+}
+
+export function useLogger(): Logger {
+	return $logger
 }
