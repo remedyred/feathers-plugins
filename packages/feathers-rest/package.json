@@ -30,7 +30,7 @@
 	"dependencies": {
 		"@feathersjs/adapter-commons": "5.0.0-pre.20",
 		"@feathersjs/feathers": "5.0.0-pre.20",
-		"@snickbit/feathers-helpers": "^1.0.0-0",
+		"@snickbit/feathers-helpers": "^1.0.0",
 		"@snickbit/out": "^2.0.25",
 		"axios": "^0.27.2"
 	},

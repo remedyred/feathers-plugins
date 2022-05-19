@@ -27,7 +27,7 @@
 		"testEnvironment": "node"
 	},
 	"dependencies": {
-		"@snickbit/feathers-logger": "^1.0.0-1",
+		"@snickbit/feathers-logger": "^1.0.0",
 		"@snickbit/feathers-mongo": "^1.0.0"
 	},
 	"devDependencies": {
