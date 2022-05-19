@@ -416,7 +416,6 @@ export default class MongoAdapter extends MongoDBService {
 		})
 	}
 
-
 	async _restore(id: NullableId, params?: AdapterParams): Promise<any> {
 		if (id === null) {
 			throw new BadRequest('You can not restore multiple instances.')
