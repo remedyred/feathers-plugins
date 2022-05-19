@@ -1,10 +1,10 @@
-import {AdapterService, ServiceOptions} from '@feathersjs/adapter-commons'
+import {AdapterBase, AdapterParams, AdapterServiceOptions, filterQuery, PaginationOptions} from '@feathersjs/adapter-commons'
 import {parseResponse, parseResponseError} from '@snickbit/feathers-helpers'
 import {out} from '@snickbit/out'
 import axios, {AxiosInstance, AxiosRequestConfig, AxiosRequestHeaders, Method} from 'axios'
-import {Application, Id, NullableId, Params} from '@feathersjs/feathers'
+import {Application, Id, NullableId, Paginated} from '@feathersjs/feathers'
 
-export interface RestServiceOptions extends ServiceOptions, AxiosRequestConfig {
+export interface RestServiceOptions extends AdapterServiceOptions, AxiosRequestConfig {
 	baseURL?: string
 	headers?: AxiosRequestHeaders
 	method?: Method
@@ -15,13 +15,13 @@ export interface RestServiceRequestConfig extends AxiosRequestConfig {
 	headers?: AxiosRequestHeaders
 }
 
-export default class RestService extends AdapterService {
+export default class RestService<T = any, D = Partial<T>, O extends RestServiceOptions = RestServiceOptions> extends AdapterBase {
 	url_path: string
 	client: AxiosInstance
-	declare options: RestServiceOptions
+	declare options: O
 
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	constructor(options: RestServiceOptions, app: Application) {
+	constructor(options: O, app: Application) {
 		options = {
 			headers: {
 				'Accept': 'application/json',
@@ -64,7 +64,7 @@ export default class RestService extends AdapterService {
 		return this
 	}
 
-	async request(method: Method, data: any): Promise<any> {
+	async request(method: Method, data: T): Promise<T> {
 		const response = await this.client({
 			...this.options,
 			method,
@@ -74,60 +74,70 @@ export default class RestService extends AdapterService {
 		return response.data
 	}
 
-	async _find(params: Params): Promise<any> {
-		const {query} = this.filterQuery(params)
-		const {data} = await this.client.get(this.pullPath(), {params: query})
-		return data
-	}
-
-	async _get(id: Id, params?: Params): Promise<any> {
-		const {query} = this.filterQuery(params)
-		const {data} = await this.client.get(`${this.pullPath()}/${id}`, {params: query})
-		return data
-	}
-
-	async _create(data: any, params?: Params): Promise<any> {
-		const {query} = this.filterQuery(params)
+	async $create(data: D, params?: AdapterParams): Promise<T>
+	async $create(data: D[], params?: AdapterParams): Promise<T[]>
+	async $create(data: D | D[], params?: AdapterParams): Promise<T>
+	async $create(data: D | D[], params?: AdapterParams): Promise<T | T[]> {
+		const {query} = filterQuery(params)
 		const {data: response} = await this.client.post(this.pullPath(), data, {params: query})
 		return response
 	}
 
-
-	async _update(id: Id, data: any, params?: Params): Promise<any> {
-		const {query} = this.filterQuery(params)
-		const {data: response} = await this.client.put(`${this.pullPath()}/${id}`, data, {params: query})
-		return response
+	async $find(params?: AdapterParams & { paginate?: PaginationOptions }): Promise<Paginated<T>>
+	async $find(params?: AdapterParams & { paginate: false }): Promise<T[]>
+	async $find(params: AdapterParams = {} as AdapterParams): Promise<Paginated<T> | T[]> {
+		const {query} = filterQuery(params)
+		const {data} = await this.client.get(this.pullPath(), {params: query})
+		return data
 	}
 
-	async _patch(id: NullableId, data: any, params?: Params): Promise<any> {
-		const {query} = this.filterQuery(params)
+	async $get(id: Id, params?: AdapterParams): Promise<T> {
+		const {query} = filterQuery(params)
+		const {data} = await this.client.get(`${this.pullPath()}/${id}`, {params: query})
+		return data
+	}
+
+	async $patch(id: null, data: D, params?: AdapterParams): Promise<T[]>;
+	async $patch(id: Id, data: D, params?: AdapterParams): Promise<T>;
+	async $patch(id: NullableId, data: D, params?: AdapterParams): Promise<T>;
+	async $patch(id: NullableId, data: D, params?: AdapterParams): Promise<T[] | T> {
+		const {query} = filterQuery(params)
 		const {data: response} = await this.client.patch(`${this.pullPath()}/${id}`, data, {params: query})
 		return response
 	}
 
-	async _remove(id: NullableId, params?: Params): Promise<any> {
-		const {query} = this.filterQuery(params)
+	async $remove(id: null, params?: AdapterParams): Promise<T[]>;
+	async $remove(id: Id, params?: AdapterParams): Promise<T>;
+	async $remove(id: NullableId, params?: AdapterParams): Promise<T>;
+	async $remove(id: NullableId, params?: AdapterParams): Promise<T[] | T> {
+		const {query} = filterQuery(params)
 		const {data} = await this.client.delete(`${this.pullPath()}/${id}`, {params: query})
 		return data
 	}
 
-	async __get(url: string, config?: RestServiceRequestConfig): Promise<any> {
+	async $update(id: Id, data: D, params?: AdapterParams): Promise<T> {
+		const {query} = filterQuery(params)
+		const {data: response} = await this.client.put(`${this.pullPath()}/${id}`, data, {params: query})
+		return response
+	}
+
+	async __get(url: string, config?: RestServiceRequestConfig): Promise<T> {
 		return this.client.get(url, config)
 	}
 
-	async __post(url: string, data: any, config?: RestServiceRequestConfig): Promise<any> {
+	async __post(url: string, data: T, config?: RestServiceRequestConfig): Promise<T> {
 		return this.client.post(url, data, config)
 	}
 
-	async __put(url: string, data: any, config?: RestServiceRequestConfig): Promise<any> {
+	async __put(url: string, data: T, config?: RestServiceRequestConfig): Promise<T> {
 		return this.client.put(url, data, config)
 	}
 
-	async __patch(url: string, data: any, config?: RestServiceRequestConfig): Promise<any> {
+	async __patch(url: string, data: T, config?: RestServiceRequestConfig): Promise<T> {
 		return this.client.patch(url, data, config)
 	}
 
-	async __delete(url: string, config?: RestServiceRequestConfig): Promise<any> {
+	async __delete(url: string, config?: RestServiceRequestConfig): Promise<T> {
 		return this.client.delete(url, config)
 	}
 }
