@@ -1,12 +1,11 @@
 import {BadRequest, MethodNotAllowed} from '@feathersjs/errors'
 import sift from 'sift'
 import {_select, callMethod} from '@snickbit/feathers-helpers'
-import {AdapterParams, filterQuery} from '@feathersjs/adapter-commons'
+import {AdapterParams, AdapterServiceOptions, filterQuery} from '@feathersjs/adapter-commons'
 import {isArray, isString} from '@snickbit/utilities'
 import {Out} from '@snickbit/out'
 import path from 'path'
 import {Params} from '@feathersjs/feathers'
-import {ServiceOptions} from '@feathersjs/adapter-commons/lib/service'
 
 const alwaysMulti = {
 	find: true,
@@ -36,7 +35,7 @@ export interface ParsedParams extends Params {
 	path?: string
 }
 
-export interface FileServiceOptions extends Partial<ServiceOptions> {
+export interface FileServiceOptions extends Partial<AdapterServiceOptions> {
 	root?: string
 	url?: string
 	matcher?: (value: any) => boolean
