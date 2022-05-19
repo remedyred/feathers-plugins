@@ -1,8 +1,6 @@
 import MongoService from '@snickbit/feathers-mongo'
 
 export class LogService extends MongoService {
-	public Model: any
-
 	constructor(app) {
 		super({
 			paginate: app.get('paginate'),
