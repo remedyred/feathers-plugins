@@ -27,19 +27,19 @@
 		"watch": "pnpm run dev --watch"
 	},
 	"dependencies": {
-		"@feathersjs/adapter-commons": "5.0.0-pre.18",
-		"@feathersjs/errors": "5.0.0-pre.18",
+		"@feathersjs/adapter-commons": "5.0.0-pre.20",
+		"@feathersjs/errors": "5.0.0-pre.20",
 		"@snickbit/feathers-helpers": "^0.0.44",
 		"@snickbit/model": "^1.0.39",
 		"feathers-memory": "^4.1.0"
 	},
 	"devDependencies": {
-		"@feathersjs/feathers": "5.0.0-pre.18",
+		"@feathersjs/feathers": "5.0.0-pre.20",
 		"jest": "^27.5.1",
 		"tsup": "^5.12.7"
 	},
 	"peerDependencies": {
-		"@feathersjs/feathers": "5.0.0-pre.18"
+		"@feathersjs/feathers": "5.0.0-pre.20"
 	},
 	"jest": {
 		"testEnvironment": "node"
