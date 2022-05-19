@@ -1,6 +1,6 @@
 {
 	"name": "@snickbit/feathers-logger",
-	"version": "0.1.18",
+	"version": "1.0.0-0",
 	"license": "MIT",
 	"exports": {
 		"require": "./dist/index.js",

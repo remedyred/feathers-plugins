@@ -1,5 +1,13 @@
 # @snickbit/feathers-hooks Changelog
 
+## 1.0.0-0
+
+### Premajor Changes
+
+- [ec4c91e](https://github.com/snickbit/feathers/commit/ec4c91e) **style**:  sort package.json
+- [8b88eab](https://github.com/snickbit/feathers/commit/8b88eab) **chore**:  bump feathers versions
+- [c4eb65e](https://github.com/snickbit/feathers/commit/c4eb65e) **chore**:  update indexer and indexer config
+
 ## 0.0.18
 
 ### Patch Changes

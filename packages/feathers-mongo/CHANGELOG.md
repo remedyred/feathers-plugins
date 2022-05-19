@@ -1,5 +1,15 @@
 # @snickbit/feathers-mongo Changelog
 
+## 1.0.0-0
+
+### Premajor Changes
+
+- [ec4c91e](https://github.com/snickbit/feathers/commit/ec4c91e) **style**:  sort package.json
+- [78beca9](https://github.com/snickbit/feathers/commit/78beca9) **fix**:  make adjustments to service adapter
+- [4a2de71](https://github.com/snickbit/feathers/commit/4a2de71) **chore**:  bump feathers versions
+- [7c4ee10](https://github.com/snickbit/feathers/commit/7c4ee10) **fix**:  simplify timestamp option parsing
+- [e23a105](https://github.com/snickbit/feathers/commit/e23a105) **style**:  relint
+
 ## 0.0.71
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @snickbit/feathers-up Changelog
 
+## 1.0.0-0
+
+### Premajor Changes
+
+- [ec4c91e](https://github.com/snickbit/feathers/commit/ec4c91e) **style**:  sort package.json
+- [19ff90f](https://github.com/snickbit/feathers/commit/19ff90f) **chore**:  bump feathers versions
+
 ## 0.1.15
 
 ### Patch Changes

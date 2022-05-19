@@ -1,5 +1,12 @@
 # @snickbit/feathers-auth-api Changelog
 
+## 1.0.0-0
+
+### Premajor Changes
+
+- [ec4c91e](https://github.com/snickbit/feathers/commit/ec4c91e) **style**:  sort package.json
+- [f369273](https://github.com/snickbit/feathers/commit/f369273) **chore**:  bump feathers versions
+
 ## 0.0.24
 
 ### Patch Changes

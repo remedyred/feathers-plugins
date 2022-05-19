@@ -1,5 +1,15 @@
 # @snickbit/feathers-tasks Changelog
 
+## 2.0.0-0
+
+### Premajor Changes
+
+- [ec4c91e](https://github.com/snickbit/feathers/commit/ec4c91e) **style**:  sort package.json
+- [ec168ab](https://github.com/snickbit/feathers/commit/ec168ab) **revert**:  adjustments
+- [78beca9](https://github.com/snickbit/feathers/commit/78beca9) **fix**:  make adjustments to service adapter
+- [a1a88f1](https://github.com/snickbit/feathers/commit/a1a88f1) **chore**:  bump feathers versions
+- [e23a105](https://github.com/snickbit/feathers/commit/e23a105) **style**:  relint
+
 ## 1.0.38
 
 ### Patch Changes

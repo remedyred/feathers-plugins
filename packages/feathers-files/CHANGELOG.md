@@ -1,5 +1,15 @@
 # @snickbit/feathers-files Changelog
 
+## 2.0.0-0
+
+### Premajor Changes
+
+- [ec4c91e](https://github.com/snickbit/feathers/commit/ec4c91e) **style**:  sort package.json
+- [787cbab](https://github.com/snickbit/feathers/commit/787cbab) **fix**:  pagination parsing
+- [575c738](https://github.com/snickbit/feathers/commit/575c738) **fix**:  option parsing
+- [02e9e43](https://github.com/snickbit/feathers/commit/02e9e43) **chore**:  bump feathers versions
+- [e23a105](https://github.com/snickbit/feathers/commit/e23a105) **style**:  relint
+
 ## 1.0.29
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @snickbit/feathers-model Changelog
 
+## 1.0.0-0
+
+### Premajor Changes
+
+- [ec4c91e](https://github.com/snickbit/feathers/commit/ec4c91e) **style**:  sort package.json
+- [1fd1de7](https://github.com/snickbit/feathers/commit/1fd1de7) **chore**:  bump feathers versions
+- [e23a105](https://github.com/snickbit/feathers/commit/e23a105) **style**:  relint
+
 ## 0.0.47
 
 ### Patch Changes
