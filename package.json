@@ -1,10 +1,10 @@
 {
 	"name": "@snickbit/feathers",
 	"private": true,
-	"engines": {
-		"node": ">= 12"
-	},
 	"scripts": {
 		"release": "lerna publish -y"
+	},
+	"engines": {
+		"node": ">= 12"
 	}
 }

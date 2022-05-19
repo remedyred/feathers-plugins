@@ -1,30 +1,30 @@
 {
 	"name": "@snickbit/feathers-mongo",
-	"description": "Extended functionality for FeathersJS MongoDB database adapter",
 	"version": "0.0.72",
+	"description": "Extended functionality for FeathersJS MongoDB database adapter",
 	"license": "MIT",
+	"exports": {
+		"require": "./dist/index.js",
+		"import": "./dist/index.mjs",
+		"types": "./dist/index.d.ts"
+	},
 	"main": "./dist/index.js",
 	"module": "./dist/index.mjs",
 	"types": "./dist/index.d.ts",
 	"files": [
 		"dist"
 	],
-	"exports": {
-		"require": "./dist/index.js",
-		"import": "./dist/index.mjs",
-		"types": "./dist/index.d.ts"
-	},
-	"engines": {
-		"node": ">= 12"
-	},
 	"scripts": {
+		"build": "tsup",
 		"clean": "shx rm -rf ./dist",
 		"depcheck": "depcheck",
-		"build": "tsup",
 		"dev": "pnpm run build --sourcemap",
 		"meta": "pnpm run prod --metafile",
 		"prod": "pnpm run build --minify",
 		"watch": "pnpm run dev --watch"
+	},
+	"jest": {
+		"testEnvironment": "node"
 	},
 	"dependencies": {
 		"@feathersjs/adapter-commons": "5.0.0-pre.20",
@@ -42,8 +42,18 @@
 		"jest": "^27.5.1",
 		"tsup": "^5.12.7"
 	},
-	"jest": {
-		"testEnvironment": "node"
+	"peerDependencies": {
+		"@feathersjs/feathers": "5.0.0-pre.20"
+	},
+	"engines": {
+		"node": ">= 12"
+	},
+	"nx": {
+		"implicitDependencies": [
+			"@snickbit/feathers-model",
+			"@snickbit/out",
+			"@snickbit/utilities"
+		]
 	},
 	"tsup": {
 		"entry": [
@@ -54,13 +64,6 @@
 		"format": [
 			"esm",
 			"cjs"
-		]
-	},
-	"nx": {
-		"implicitDependencies": [
-			"@snickbit/feathers-model",
-			"@snickbit/out",
-			"@snickbit/utilities"
 		]
 	}
 }

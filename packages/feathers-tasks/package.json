@@ -1,31 +1,31 @@
 {
 	"name": "@snickbit/feathers-tasks",
-	"description": "Task management for FeathersJS",
 	"version": "1.0.39",
+	"description": "Task management for FeathersJS",
 	"license": "MIT",
+	"exports": {
+		"require": "./dist/index.js",
+		"import": "./dist/index.mjs",
+		"types": "./dist/index.d.ts"
+	},
 	"main": "./dist/index.js",
 	"module": "./dist/index.mjs",
 	"types": "./dist/index.d.ts",
 	"files": [
 		"dist"
 	],
-	"exports": {
-		"require": "./dist/index.js",
-		"import": "./dist/index.mjs",
-		"types": "./dist/index.d.ts"
-	},
-	"engines": {
-		"node": ">= 12"
-	},
 	"scripts": {
-		"clean": "shx rm -rf ./dist",
-		"index": "indexer",
-		"depcheck": "depcheck",
 		"build": "tsup",
+		"clean": "shx rm -rf ./dist",
+		"depcheck": "depcheck",
 		"dev": "pnpm run build --sourcemap",
+		"index": "indexer",
 		"meta": "pnpm run prod --metafile",
 		"prod": "pnpm run build --minify",
 		"watch": "pnpm run dev --watch"
+	},
+	"jest": {
+		"testEnvironment": "node"
 	},
 	"dependencies": {
 		"@feathersjs/adapter-commons": "5.0.0-pre.20",
@@ -48,19 +48,11 @@
 		"jest": "^27.5.1",
 		"tsup": "^5.12.7"
 	},
-	"jest": {
-		"testEnvironment": "node"
+	"peerDependencies": {
+		"@feathersjs/feathers": "5.0.0-pre.20"
 	},
-	"tsup": {
-		"entry": [
-			"src/index.ts"
-		],
-		"clean": true,
-		"dts": true,
-		"format": [
-			"esm",
-			"cjs"
-		]
+	"engines": {
+		"node": ">= 12"
 	},
 	"nx": {
 		"implicitDependencies": [
@@ -71,6 +63,17 @@
 			"@snickbit/node-utilities",
 			"@snickbit/out",
 			"@snickbit/utilities"
+		]
+	},
+	"tsup": {
+		"entry": [
+			"src/index.ts"
+		],
+		"clean": true,
+		"dts": true,
+		"format": [
+			"esm",
+			"cjs"
 		]
 	}
 }

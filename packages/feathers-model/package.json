@@ -1,30 +1,30 @@
 {
 	"name": "@snickbit/feathers-model",
-	"description": "Data models for FeathersJS using @snickbit/model",
 	"version": "0.0.47",
+	"description": "Data models for FeathersJS using @snickbit/model",
 	"license": "MIT",
+	"exports": {
+		"require": "./dist/index.js",
+		"import": "./dist/index.mjs",
+		"types": "./dist/index.d.ts"
+	},
 	"main": "./dist/index.js",
 	"module": "./dist/index.mjs",
 	"types": "./dist/index.d.ts",
 	"files": [
 		"dist"
 	],
-	"exports": {
-		"require": "./dist/index.js",
-		"import": "./dist/index.mjs",
-		"types": "./dist/index.d.ts"
-	},
-	"engines": {
-		"node": ">= 12"
-	},
 	"scripts": {
+		"build": "tsup",
 		"clean": "shx rm -rf ./dist",
 		"depcheck": "depcheck",
-		"build": "tsup",
+		"dev": "pnpm run build --sourcemap",
 		"meta": "pnpm run prod --metafile",
 		"prod": "pnpm run build --minify",
-		"dev": "pnpm run build --sourcemap",
 		"watch": "pnpm run dev --watch"
+	},
+	"jest": {
+		"testEnvironment": "node"
 	},
 	"dependencies": {
 		"@feathersjs/adapter-commons": "5.0.0-pre.20",
@@ -41,8 +41,14 @@
 	"peerDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.20"
 	},
-	"jest": {
-		"testEnvironment": "node"
+	"engines": {
+		"node": ">= 12"
+	},
+	"nx": {
+		"implicitDependencies": [
+			"@snickbit/feathers-helpers",
+			"@snickbit/model"
+		]
 	},
 	"tsup": {
 		"entry": [
@@ -53,12 +59,6 @@
 		"format": [
 			"esm",
 			"cjs"
-		]
-	},
-	"nx": {
-		"implicitDependencies": [
-			"@snickbit/feathers-helpers",
-			"@snickbit/model"
 		]
 	}
 }

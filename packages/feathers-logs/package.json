@@ -1,30 +1,30 @@
 {
 	"name": "@snickbit/feathers-logs",
-	"description": "A Feathers.js service that logs events to MongoDB",
 	"version": "0.1.18",
+	"description": "A Feathers.js service that logs events to MongoDB",
 	"license": "MIT",
+	"exports": {
+		"require": "./dist/index.js",
+		"import": "./dist/index.mjs",
+		"types": "./dist/index.d.ts"
+	},
 	"main": "./dist/index.js",
 	"module": "./dist/index.mjs",
 	"types": "./dist/index.d.ts",
 	"files": [
 		"dist"
 	],
-	"exports": {
-		"require": "./dist/index.js",
-		"import": "./dist/index.mjs",
-		"types": "./dist/index.d.ts"
-	},
-	"engines": {
-		"node": ">= 12"
-	},
 	"scripts": {
+		"build": "tsup",
 		"clean": "shx rm -rf ./dist",
 		"depcheck": "depcheck",
-		"build": "tsup",
+		"dev": "pnpm run build --sourcemap",
 		"meta": "pnpm run prod --metafile",
 		"prod": "pnpm run build --minify",
-		"dev": "pnpm run build --sourcemap",
 		"watch": "pnpm run dev --watch"
+	},
+	"jest": {
+		"testEnvironment": "node"
 	},
 	"dependencies": {
 		"@snickbit/feathers-logger": "^0.1.18",
@@ -35,8 +35,17 @@
 		"jest": "^27.5.1",
 		"tsup": "^5.12.7"
 	},
-	"jest": {
-		"testEnvironment": "node"
+	"peerDependencies": {
+		"@feathersjs/feathers": "5.0.0-pre.20"
+	},
+	"engines": {
+		"node": ">= 12"
+	},
+	"nx": {
+		"implicitDependencies": [
+			"@snickbit/feathers-logger",
+			"@snickbit/feathers-mongo"
+		]
 	},
 	"tsup": {
 		"entry": [
@@ -47,12 +56,6 @@
 		"format": [
 			"esm",
 			"cjs"
-		]
-	},
-	"nx": {
-		"implicitDependencies": [
-			"@snickbit/feathers-logger",
-			"@snickbit/feathers-mongo"
 		]
 	}
 }
