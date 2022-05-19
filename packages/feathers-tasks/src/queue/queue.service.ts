@@ -1,4 +1,4 @@
-import {AdapterParams as Params, AdapterServiceOptions, filterQuery, PaginationOptions} from '@feathersjs/adapter-commons'
+import {AdapterBase, AdapterParams as Params, AdapterServiceOptions, filterQuery, PaginationOptions} from '@feathersjs/adapter-commons'
 import {Unprocessable} from '@feathersjs/errors'
 import {filterResults} from '@snickbit/feathers-helpers'
 import {Out} from '@snickbit/out'
@@ -90,7 +90,7 @@ export type TaskRequest = RequireAtLeastOne<TaskRequestBase, 'name' | 'job'>
 
 export type FeathersQueueService = QueueService & FeathersService
 
-export class QueueService {
+export class QueueService extends AdapterBase {
 	declare options: QueueServiceConfig
 	queueOptions: any
 	out: Out
@@ -103,6 +103,7 @@ export class QueueService {
 		if (typeof options === 'string') options = {name: options}
 		if (!options.name) options.name = 'default'
 
+		super(options)
 		this.out = new Out(`queue:${options.name}`)
 
 		const {defaultJobOptions, watcher, worker} = getConfig()
@@ -258,28 +259,28 @@ export class QueueService {
 
 	async getEntries(params: Partial<AdapterParams>): Promise<BullJob[]> {
 		const {query} = filterQuery(params)
-		return await this._find({
+		return await this.$find({
 			...params,
 			query,
 			paginate: false
 		}) as unknown as any[]
 	}
 
-	async _create(data: Partial<BullJob>, params?: AdapterParams): Promise<any>
-	async _create(data: Partial<BullJob>[], params?: AdapterParams): Promise<any[]>
-	async _create(data: Partial<BullJob> | Partial<BullJob>[], params?: AdapterParams): Promise<any>
-	async _create(data: Partial<BullJob> | Partial<BullJob>[], params?: AdapterParams): Promise<any | any[]> {
+	async $create(data: Partial<BullJob>, params?: AdapterParams): Promise<any>
+	async $create(data: Partial<BullJob>[], params?: AdapterParams): Promise<any[]>
+	async $create(data: Partial<BullJob> | Partial<BullJob>[], params?: AdapterParams): Promise<any>
+	async $create(data: Partial<BullJob> | Partial<BullJob>[], params?: AdapterParams): Promise<any | any[]> {
 		if (Array.isArray(data)) {
-			return Promise.all(data.map(current => this._create(current, params)))
+			return Promise.all(data.map(current => this.$create(current, params)))
 		}
 		const {payload, options} = this.prepParams(data, params)
 		const job = await this.queue.add(payload.name, payload.data, options)
 		return this.asModel(job)
 	}
 
-	async _find(params?: AdapterParams & { paginate?: PaginationOptions }): Promise<Paginated<any>>
-	async _find(params?: AdapterParams & { paginate: false }): Promise<any[]>
-	async _find(params: AdapterParams = {} as AdapterParams): Promise<Paginated<any> | any[]> {
+	async $find(params?: AdapterParams & { paginate?: PaginationOptions }): Promise<Paginated<any>>
+	async $find(params?: AdapterParams & { paginate: false }): Promise<any[]>
+	async $find(params: AdapterParams = {} as AdapterParams): Promise<Paginated<any> | any[]> {
 		let types = []
 		if (params?.query?.status) {
 			types = arrayWrap(params.query.status)
@@ -305,7 +306,7 @@ export class QueueService {
 
 			// add filtered job_ids to list of fetched job_ids
 			job_ids = job_ids.concat(fetched_job_ids)
-			const fetched_jobs = await Promise.all(fetched_job_ids.map(job_id => this._get(job_id, params)))
+			const fetched_jobs = await Promise.all(fetched_job_ids.map(job_id => this.$get(job_id, params)))
 
 			// filter jobs
 			const filtered_jobs = filterResults(fetched_jobs, {...params}, this.options)
@@ -323,7 +324,7 @@ export class QueueService {
 		return filterResults(jobs, params, this.options)
 	}
 
-	async _get(id: JobId, params?: AdapterParams): Promise<any | BullJob> {
+	async $get(id: JobId, params?: AdapterParams): Promise<any | BullJob> {
 		const job: BullJob = await this.queue.getJob(id as string)
 		if (job) {
 			job.status = await job.getState()
@@ -340,7 +341,7 @@ export class QueueService {
 		}
 	}
 
-	async _update(id: JobId, data: Partial<BullJob>, params: AdapterParams = {} as AdapterParams): Promise<any> {
+	async $update(id: JobId, data: Partial<BullJob>, params: AdapterParams = {} as AdapterParams): Promise<any> {
 		const {payload, options} = this.prepParams(data, params, id)
 		const job = await this.queue.getJob(id)
 		if (!job) throw new Unprocessable(`Job not found`, {id})
@@ -355,11 +356,11 @@ export class QueueService {
 		return this.asModel(job, options)
 	}
 
-	async _patch(id: null, data: Partial<BullJob>, params?: AdapterParams): Promise<any[]>;
-	async _patch(id: JobId, data: Partial<BullJob>, params?: AdapterParams): Promise<any>;
-	async _patch(id: NullableJobId, data: Partial<BullJob>, params?: AdapterParams): Promise<any>;
-	async _patch(id: NullableJobId, data: Partial<BullJob>, params?: AdapterParams): Promise<any[] | any> {
-		const patchEntry = async entry => this._update(entry[this.id], entry, params)
+	async $patch(id: null, data: Partial<BullJob>, params?: AdapterParams): Promise<any[]>;
+	async $patch(id: JobId, data: Partial<BullJob>, params?: AdapterParams): Promise<any>;
+	async $patch(id: NullableJobId, data: Partial<BullJob>, params?: AdapterParams): Promise<any>;
+	async $patch(id: NullableJobId, data: Partial<BullJob>, params?: AdapterParams): Promise<any[] | any> {
+		const patchEntry = async entry => this.$update(entry[this.id], entry, params)
 
 		if (id === null) {
 			const entries = await this.getEntries(params)
@@ -368,16 +369,16 @@ export class QueueService {
 		return patchEntry(data)
 	}
 
-	async _remove(id: null, params?: AdapterParams): Promise<BullJob[]>;
-	async _remove(id: JobId, params?: AdapterParams): Promise<BullJob>;
-	async _remove(id: NullableJobId, params?: AdapterParams): Promise<BullJob>;
-	async _remove(id: NullableJobId, params?: AdapterParams): Promise<BullJob | BullJob[]> {
+	async $remove(id: null, params?: AdapterParams): Promise<BullJob[]>;
+	async $remove(id: JobId, params?: AdapterParams): Promise<BullJob>;
+	async $remove(id: NullableJobId, params?: AdapterParams): Promise<BullJob>;
+	async $remove(id: NullableJobId, params?: AdapterParams): Promise<BullJob | BullJob[]> {
 		if (id === null) {
 			const entries = await this.getEntries(params)
-			return Promise.all(entries.map(current => this._remove(current[this.id] as JobId)))
+			return Promise.all(entries.map(current => this.$remove(current[this.id] as JobId)))
 		}
 
-		const entry = this._get(id, params)
+		const entry = this.$get(id, params)
 		await this.queue.remove(id as string)
 		return entry
 	}
