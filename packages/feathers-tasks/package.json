@@ -28,9 +28,9 @@
 		"watch": "pnpm run dev --watch"
 	},
 	"dependencies": {
-		"@feathersjs/adapter-commons": "5.0.0-pre.18",
-		"@feathersjs/errors": "5.0.0-pre.18",
-		"@feathersjs/feathers": "5.0.0-pre.18",
+		"@feathersjs/adapter-commons": "5.0.0-pre.20",
+		"@feathersjs/errors": "5.0.0-pre.20",
+		"@feathersjs/feathers": "5.0.0-pre.20",
 		"@snickbit/dates": "^1.0.37",
 		"@snickbit/feathers-helpers": "^0.0.44",
 		"@snickbit/feathers-model": "^0.0.47",
@@ -42,7 +42,7 @@
 		"ioredis": "^5.0.4"
 	},
 	"devDependencies": {
-		"@feathersjs/feathers": "5.0.0-pre.18",
+		"@feathersjs/feathers": "5.0.0-pre.20",
 		"@remedyred/indexer": "^2.2.6",
 		"esbuild": "^0.14.36",
 		"jest": "^27.5.1",

@@ -1,6 +1,6 @@
-import {AdapterService, ServiceOptions} from '@feathersjs/adapter-commons'
+import {AdapterBase, AdapterParams as Params, AdapterServiceOptions, filterQuery, PaginationOptions} from '@feathersjs/adapter-commons'
 import {Unprocessable} from '@feathersjs/errors'
-import {filterResults, Results} from '@snickbit/feathers-helpers'
+import {filterResults} from '@snickbit/feathers-helpers'
 import {Out} from '@snickbit/out'
 import {arrayWrap, objectOnly} from '@snickbit/utilities'
 import {Job as JobBase, Queue} from 'bullmq'
@@ -9,13 +9,17 @@ import {defaultWatcherConfig, defaultWorkerConfig, WatcherConfig, WorkerConfig} 
 import {jobToPayload} from './helpers'
 import {QueueWatcher, WatcherOptions} from './queue.watcher'
 import {QueueWorker, WorkerOptions} from './queue.worker'
-import {FeathersService, Id, Params} from '@feathersjs/feathers'
+import {FeathersService, Paginated} from '@feathersjs/feathers'
 import {booleanConfig, getConfig, useConnection} from '../utilities/helpers'
 import {ObliterateOpts} from 'bullmq/dist/esm/classes/queue'
 import {FinishedStatus} from 'bullmq/dist/esm/types'
 import {ConnectionOptions} from 'bullmq/dist/esm/interfaces/redis-options'
 
-export interface QueueServiceOptions extends ServiceOptions {
+export interface AdapterParams extends Params {
+	asTask?: boolean
+}
+
+export interface QueueServiceOptions extends AdapterServiceOptions {
 	name: string
 	defaultJobOptions?: JobOptions
 	watcher?: WatcherOptions | boolean
@@ -24,7 +28,7 @@ export interface QueueServiceOptions extends ServiceOptions {
 	connection?: any
 }
 
-export interface QueueServiceConfig extends ServiceOptions {
+export interface QueueServiceConfig extends AdapterServiceOptions {
 	name: string
 	defaultJobOptions?: JobOptions
 	watcher?: WatcherConfig
@@ -32,6 +36,9 @@ export interface QueueServiceConfig extends ServiceOptions {
 	Model?: any
 	connection?: any
 }
+
+export type JobId = string
+export type NullableJobId = string
 
 export interface JobOptions {
 	attempts?: number
@@ -83,7 +90,7 @@ export type TaskRequest = RequireAtLeastOne<TaskRequestBase, 'name' | 'job'>
 
 export type FeathersQueueService = QueueService & FeathersService
 
-export class QueueService extends AdapterService {
+export class QueueService extends AdapterBase {
 	declare options: QueueServiceConfig
 	queueOptions: any
 	out: Out
@@ -126,7 +133,6 @@ export class QueueService extends AdapterService {
 		this.out.extra(objectOnly(_options, ['defaultJobOptions', 'name'])).ev(5).verbose('Setting up BullMQ Redis connection')
 		this.queue = new Queue(this.name, this.queueOptions)
 
-
 		this.options = _options as QueueServiceConfig
 
 		this.queue.waitUntilReady().then(() => {
@@ -154,11 +160,12 @@ export class QueueService extends AdapterService {
 		return new this.Model(job, options)
 	}
 
-	prepParams(request: TaskRequest | TaskRequestModel, context, id?) {
+	prepParams(data: Partial<BullJob> | TaskRequestModel | TaskRequest, context, id?) {
 		let payload: Partial<TaskPayload> = {}
 		let options = {}
 
-		if ('toJSON' in request) request = request.toJSON() as TaskRequest
+		let request: TaskRequest
+		if ('toJSON' in data) request = data.toJSON()
 
 		if (request.payload) {
 			request.data = {
@@ -246,12 +253,30 @@ export class QueueService extends AdapterService {
 		return this.queue.trimEvents(maxLength)
 	}
 
-	async getEntries(params: Params = {}): Promise<any[]> {
-		const {query} = this.filterQuery(params)
-		return await this._find(Object.assign({}, params, {paginate: false, query})) as any[]
+	async getEntries(params: Partial<AdapterParams>): Promise<BullJob[]> {
+		const {query} = filterQuery(params)
+		return await this.$find({
+			...params,
+			query,
+			paginate: false
+		}) as unknown as any[]
 	}
 
-	async _find(params: Params): Promise<any[] | Results> {
+	async $create(data: Partial<BullJob>, params?: AdapterParams): Promise<any>
+	async $create(data: Partial<BullJob>[], params?: AdapterParams): Promise<any[]>
+	async $create(data: Partial<BullJob> | Partial<BullJob>[], params?: AdapterParams): Promise<any>
+	async $create(data: Partial<BullJob> | Partial<BullJob>[], params?: AdapterParams): Promise<any | any[]> {
+		if (Array.isArray(data)) {
+			return Promise.all(data.map(current => this.$create(current, params)))
+		}
+		const {payload, options} = this.prepParams(data, params)
+		const job = await this.queue.add(payload.name, payload.data, options)
+		return this.asModel(job)
+	}
+
+	async $find(params?: AdapterParams & { paginate?: PaginationOptions }): Promise<Paginated<any>>
+	async $find(params?: AdapterParams & { paginate: false }): Promise<any[]>
+	async $find(params: AdapterParams = {} as AdapterParams): Promise<Paginated<any> | any[]> {
 		let types = []
 		if (params?.query?.status) {
 			types = arrayWrap(params.query.status)
@@ -277,10 +302,10 @@ export class QueueService extends AdapterService {
 
 			// add filtered job_ids to list of fetched job_ids
 			job_ids = job_ids.concat(fetched_job_ids)
-			const fetched_jobs = await Promise.all(fetched_job_ids.map(job_id => this._get(job_id, params)))
+			const fetched_jobs = await Promise.all(fetched_job_ids.map(job_id => this.$get(job_id, params)))
 
 			// filter jobs
-			const filtered_jobs = filterResults(fetched_jobs, {...params, paginate: false}, this.options)
+			const filtered_jobs = filterResults(fetched_jobs, {...params}, this.options)
 
 			// add filtered jobs to jobs array
 			jobs = jobs.concat(filtered_jobs)
@@ -295,8 +320,7 @@ export class QueueService extends AdapterService {
 		return filterResults(jobs, params, this.options)
 	}
 
-	async _get(id: Id, params: Params = {}) {
-		if (!this.queue) await this.setup()
+	async $get(id: JobId, params?: AdapterParams): Promise<any | BullJob> {
 		const job: BullJob = await this.queue.getJob(id as string)
 		if (job) {
 			job.status = await job.getState()
@@ -313,13 +337,7 @@ export class QueueService extends AdapterService {
 		}
 	}
 
-	async _create(data: any, params?: Params) {
-		const {payload, options} = this.prepParams(data, params)
-		const job = await this.queue.add(payload.name, payload.data, options)
-		return this.asModel(job)
-	}
-
-	async _update(id, data, params) {
+	async $update(id: JobId, data: Partial<BullJob>, params: AdapterParams = {} as AdapterParams): Promise<any> {
 		const {payload, options} = this.prepParams(data, params, id)
 		const job = await this.queue.getJob(id)
 		if (!job) throw new Unprocessable(`Job not found`, {id})
@@ -334,21 +352,30 @@ export class QueueService extends AdapterService {
 		return this.asModel(job, options)
 	}
 
-	async _patch(id, data, params) {
-		const patchEntry = async entry => this._update(entry[this.id], entry, params)
+	async $patch(id: null, data: Partial<BullJob>, params?: AdapterParams): Promise<any[]>;
+	async $patch(id: JobId, data: Partial<BullJob>, params?: AdapterParams): Promise<any>;
+	async $patch(id: NullableJobId, data: Partial<BullJob>, params?: AdapterParams): Promise<any>;
+	async $patch(id: NullableJobId, data: Partial<BullJob>, params?: AdapterParams): Promise<any[] | any> {
+		const patchEntry = async entry => this.$update(entry[this.id], entry, params)
 
 		if (id === null) {
-			const entries = await this.getEntries(data)
-			return entries.map(patchEntry)
+			const entries = await this.getEntries(params)
+			return Promise.all(entries.map(patchEntry))
 		}
 		return patchEntry(data)
 	}
 
-	async _remove(id, params) {
+	async $remove(id: null, params?: AdapterParams): Promise<BullJob[]>;
+	async $remove(id: JobId, params?: AdapterParams): Promise<BullJob>;
+	async $remove(id: NullableJobId, params?: AdapterParams): Promise<BullJob>;
+	async $remove(id: NullableJobId, params?: AdapterParams): Promise<BullJob | BullJob[]> {
 		if (id === null) {
 			const entries = await this.getEntries(params)
-			return Promise.all(entries.map(current => this.queue.remove(current[this.id])))
+			return Promise.all(entries.map(current => this.$remove(current[this.id] as JobId)))
 		}
-		return this.queue.remove(id)
+
+		const entry = this.$get(id, params)
+		await this.queue.remove(id as string)
+		return entry
 	}
 }

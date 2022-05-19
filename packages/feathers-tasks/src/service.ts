@@ -1,8 +1,9 @@
 import {objectMergeDeep} from '@snickbit/utilities'
 import Redis from 'ioredis'
-import {FeathersQueueService, QueueService} from './queue/queue.service'
+import {FeathersQueueService, QueueService, QueueServiceOptions} from './queue/queue.service'
 import {_out, defaultConfig, state, WatcherConfig, WorkerConfig} from './utilities/config'
 import {getConfig, setApp, setConfig, setConnection, setTaskStore} from './utilities/helpers'
+import {ServiceInterface} from '@feathersjs/feathers/src/declarations'
 
 export async function service(app) {
 	setApp(app)
@@ -33,11 +34,13 @@ export function makeQueue(name, options?) {
 	}
 
 	if (!state.queues[name]) {
-		state.app.use(`/queue/${name}`, new QueueService({
+		const queueOptions: QueueServiceOptions = {
 			name,
 			...getConfig(),
 			...(options || {})
-		}))
+		}
+
+		state.app.use(`/queue/${name}`, new QueueService(queueOptions) as ServiceInterface)
 		state.queues[name] = state.app.service(`/queue/${name}`) as FeathersQueueService
 
 		if (state.app.out) {
