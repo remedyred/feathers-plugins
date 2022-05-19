@@ -124,7 +124,7 @@ export class QueueWatcher {
 		}
 
 		if (id) {
-			const job = await this.queue.$get(id, {asTask: false})
+			const job = await this.queue._get(id, {asTask: false})
 			data = jobToPayload(job)
 		}
 
