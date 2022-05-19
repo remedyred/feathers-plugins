@@ -12,18 +12,7 @@ export function initialize(app: Application, setup: AppSetup | Model = {}) {
 	// Load app configuration
 	app.configure(configuration())
 
-	const databases = {
-		mysql: $app.get('mysql'),
-		redis: $app.get('redis'),
-		mongodb: $app.get('mongodb')
-	}
-
-	// merge databases with config
-	if ($setup.get('databases')) {
-		Object.assign(databases, $setup.get('databases'))
-	}
-
-	$setup.set('databases', databases)
+	initDatabases()
 }
 
 export function useConfig(key: string, fallback = undefined) {
@@ -34,4 +23,23 @@ export function useConfig(key: string, fallback = undefined) {
 
 export function useSetup(key: string, fallback = undefined) {
 	return $setup.has(key) ? $setup.get(key) : fallback
+}
+
+function initDatabases() {
+	const databaseOptions = ['mysql', 'redis', 'mongodb']
+
+	const databases: Record<string, any> = {}
+	for (let database of databaseOptions) {
+		const config = $app.get(database)
+		if (config) {
+			databases[database] = config
+		}
+	}
+
+	// merge databases with config
+	if ($setup.get('databases')) {
+		Object.assign(databases, $setup.get('databases'))
+	}
+
+	$setup.set('databases', databases)
 }
