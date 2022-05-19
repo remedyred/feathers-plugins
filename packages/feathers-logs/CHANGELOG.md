@@ -1,5 +1,11 @@
 # @snickbit/feathers-logs Changelog
 
+## 1.0.1
+
+### Patch Changes
+
+- [5ad9c51](https://github.com/snickbit/feathers/commit/5ad9c51) **fix**:  minor adjustments
+
 ## 1.0.0
 
 ### Patch Changes

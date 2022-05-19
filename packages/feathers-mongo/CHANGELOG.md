@@ -1,5 +1,11 @@
 # @snickbit/feathers-mongo Changelog
 
+## 1.0.0
+
+### Patch Changes
+
+- [cfdafce](https://github.com/snickbit/feathers/commit/cfdafce) **fix**:  split adapters and services
+
 ## 1.0.0-1
 
 ### Prerelease Changes

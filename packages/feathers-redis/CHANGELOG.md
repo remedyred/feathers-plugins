@@ -1,5 +1,12 @@
 # @snickbit/feathers-redis Changelog
 
+## 1.0.0
+
+### Patch Changes
+
+- [6ce0d13](https://github.com/snickbit/feathers/commit/6ce0d13) **style**:  lint
+- [cfdafce](https://github.com/snickbit/feathers/commit/cfdafce) **fix**:  split adapters and services
+
 ## 1.0.0-0
 
 ### Premajor Changes

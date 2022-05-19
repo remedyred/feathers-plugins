@@ -1,5 +1,11 @@
 # @snickbit/feathers-tasks Changelog
 
+## 2.0.0
+
+### Patch Changes
+
+- [cfdafce](https://github.com/snickbit/feathers/commit/cfdafce) **fix**:  split adapters and services
+
 ## 2.0.0-0
 
 ### Premajor Changes
