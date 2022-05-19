@@ -110,18 +110,24 @@ export default class MongoService extends Service implements InternalServiceMeth
 	}
 
 	get timestamps(): TimestampsOptions {
-		if (this.options.timestamps === true) {
+		return this.parseTimestamp(this.options.timestamps)
+	}
+
+	private parseTimestamp(timestampOptions: boolean | TimestampsOptions): TimestampsOptions {
+		if (timestampOptions === true) {
 			const timestamps: TimestampsOptions = {
 				created: '_created',
 				updated: '_updated',
 				deleted: null
 			}
+
 			if (this.options.softDelete) {
 				timestamps.deleted = '_deleted'
 			}
+
 			return timestamps
-		} else if (this.options.timestamps) {
-			return this.options.timestamps
+		} else if (timestampOptions) {
+			return this.options.timestamps as TimestampsOptions
 		} else {
 			return {
 				created: null,
@@ -129,29 +135,6 @@ export default class MongoService extends Service implements InternalServiceMeth
 				deleted: null
 			}
 		}
-	}
-
-	#timestamps() {
-		let timestamps
-
-		if (this.options.timestamps === true) {
-			timestamps = {
-				created: '_created',
-				updated: '_updated'
-			} as Timestamps
-			if (this.options.softDelete === true) {
-				timestamps.deleted = '_deleted'
-			}
-		} else if (isObject(this.options.timestamps)) {
-			const optionsTimestamps = this.options.timestamps as Timestamps
-			timestamps = {
-				created: optionsTimestamps.created === true ? '_created' : optionsTimestamps.created,
-				updated: optionsTimestamps.updated === true ? '_updated' : optionsTimestamps.updated,
-				deleted: optionsTimestamps.deleted === true ? '_deleted' : optionsTimestamps.deleted
-			} as Timestamps
-		}
-
-		this.options.timestamps = timestamps
 	}
 
 	prepareData(data: any, params: Params = {}): any {
@@ -162,10 +145,12 @@ export default class MongoService extends Service implements InternalServiceMeth
 		}
 
 		if (params.timestamps !== false && this.timestamps) {
-			if (this.timestamps.created && params.timestamps?.created !== false) {
+			const timestamps = this.parseTimestamp(params.timestamps || true)
+
+			if (this.timestamps.created && timestamps.created) {
 				data[this.timestamps.created as string] = data[this.timestamps.created as string] || new Date()
 			}
-			if (this.timestamps.updated && params.timestamps?.updated !== false) {
+			if (this.timestamps.updated && timestamps.updated) {
 				data[this.timestamps.updated as string] = new Date()
 			}
 		}
