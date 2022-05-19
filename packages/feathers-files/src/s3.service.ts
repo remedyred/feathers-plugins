@@ -178,7 +178,13 @@ export class S3Service extends FileService {
 
 	async* _list(params: AdapterParams, options = {}) {
 		const {filters} = this.filterQuery(params, options)
-		let query_limit = filters.$limit || this.options?.paginate?.default || 1000
+		let query_limit = 1000
+		if (filters.$limit) {
+			query_limit = filters.$limit
+		} else if (this.options?.paginate) {
+			query_limit = this.options.paginate.default
+		}
+
 		const commandParams = this.bucketParams({}, params)
 
 		if (params?.query?.Prefix) {
