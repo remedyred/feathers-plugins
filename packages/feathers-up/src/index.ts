@@ -22,9 +22,6 @@ import {sentryHandleErrors, sentryInit} from './sentry'
 import middleware from './middleware'
 import status from './status'
 import {initLogger, ProxyLogger} from './logger'
-import knex from 'knex'
-import KnexMysql from 'knex/lib/dialects/mysql'
-import Redis from 'ioredis'
 
 export interface CompressOptions extends ZlibOptions {
 	filter?: () => boolean
@@ -136,40 +133,7 @@ export function feathersUp(appType = 'server', setup: AppSetup | Model = {}): Ap
 	app.configure(sentryInit)
 
 	// configure database connections
-	// check for databases
-	const databases = {
-		mysql: app.get('mysql'),
-		redis: app.get('redis'),
-		mongodb: app.get('mongodb')
-	}
-
-	if (databases.mysql) {
-		app.out.verbose('Connect to mysql databases...')
-		if (isArray(databases.mysql)) {
-			for (let mysqlDb of databases.mysql) {
-				app.set(`mysqlClient.${mysqlDb.database}`, knex({
-					client: KnexMysql,
-					connection: mysqlDb
-				}))
-			}
-		} else {
-			app.set('mysqlClient', knex({
-				client: 'mysql',
-				connection: databases.mysql
-			}))
-		}
-	}
-
-	if (databases.redis) {
-		app.out.verbose('Connect to redis databases...')
-		if (isArray(databases.redis)) {
-			for (let redisDb of databases.redis) {
-				app.set(`redisClient.${redisDb.keyPrefix}`, new Redis(redisDb))
-			}
-		} else {
-			app.set('redisClient', new Redis(databases.redis))
-		}
-	}
+	app.configure(databases)
 
 	// configure server
 	app.configure(serverInit)
