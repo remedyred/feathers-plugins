@@ -3,8 +3,8 @@ import {objectExcept} from '@snickbit/utilities'
 import path from 'path'
 import {fileExists, ImportRecords, parseImports, RecordOfImportRecords} from '@snickbit/node-utilities'
 import {_out, Application, defaultWatcherConfig, defaultWorkerConfig, state, TasksConfig, WatcherConfig, WorkerConfig} from './config'
-import {FeathersQueueService} from '../queue/queue.service'
 import {ConnectionOptions} from 'bullmq/dist/esm/interfaces/redis-options'
+import {FeathersQueueService} from '../queue/queue.adapter'
 
 export function makeTaskItem(value, self, options = {}) {
 	return value instanceof TaskItem ? value : new TaskItem(value, self, options)

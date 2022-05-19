@@ -3,9 +3,10 @@ import {Out} from '@snickbit/out'
 import {Worker} from 'bullmq'
 import {Task} from '../tasks/task'
 import {WorkerConfig} from '../utilities/config'
-import {FeathersQueueService, QueueService} from './queue.service'
 import {getWorkerConfig, useQueue} from '../utilities/helpers'
 import {ConnectionOptions} from 'bullmq/dist/esm/interfaces/redis-options'
+import QueueService from './queue.service'
+import {FeathersQueueService} from './queue.adapter'
 
 export interface QueueWorkerConfig extends WorkerOptions {
 	name: string;

@@ -18,6 +18,7 @@
 		"build": "tsup",
 		"clean": "shx rm -rf ./dist",
 		"depcheck": "depcheck",
+		"index": "indexer",
 		"dev": "pnpm run build --sourcemap",
 		"meta": "pnpm run prod --metafile",
 		"prod": "pnpm run build --minify",
@@ -35,6 +36,7 @@
 	},
 	"devDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.20",
+		"@remedyred/indexer": "^2.2.6",
 		"jest": "^27.5.1",
 		"tsup": "^5.12.7"
 	},

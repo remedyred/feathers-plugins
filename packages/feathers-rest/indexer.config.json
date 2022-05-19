@@ -1,0 +1,5 @@
+{
+	"source": "src/*.ts",
+	"output": "src/index.ts",
+	"type": "default"
+}

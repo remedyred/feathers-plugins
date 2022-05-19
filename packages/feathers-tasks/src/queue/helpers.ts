@@ -1,6 +1,6 @@
 import {dates} from '@snickbit/dates'
-import {QueueService} from './queue.service'
 import {useQueue} from '../utilities/helpers'
+import QueueService from './queue.service'
 
 export interface QueueChildOptions {
 	queue?: QueueService

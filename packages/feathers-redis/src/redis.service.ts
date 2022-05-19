@@ -1,8 +1,8 @@
 import {PaginationOptions} from '@feathersjs/adapter-commons'
 import {Id, NullableId, Paginated, ServiceMethods} from '@feathersjs/feathers'
-import MongoAdapter, {MongoServiceOptions} from './mongo.adapter'
+import RedisAdapter, {RedisServiceOptions} from './redis.adapter'
 
-export default class MongoService<T = any, D = Partial<T>, P extends MongoServiceOptions = MongoServiceOptions> extends MongoAdapter implements ServiceMethods<T | Paginated<T>, D, P> {
+export default class RedisService<T = any, D = Partial<T>, P extends RedisServiceOptions = RedisServiceOptions> extends RedisAdapter implements ServiceMethods<T | Paginated<T>, D, P> {
 	async find(params?: P & { paginate?: PaginationOptions }): Promise<Paginated<T>>;
 	async find(params?: P & { paginate: false }): Promise<T[]>;
 	async find(params?: P): Promise<Paginated<T> | T[]>;

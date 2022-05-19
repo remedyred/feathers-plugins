@@ -3,8 +3,8 @@ import {Out} from '@snickbit/out'
 import {Application as FeathersApplication} from '@feathersjs/feathers'
 import {QueueEvent} from '../queue/queue.watcher'
 import {FeathersService} from '@feathersjs/feathers/src/declarations'
-import {FeathersQueueService} from '../queue/queue.service'
 import {ConnectionOptions} from 'bullmq/dist/esm/interfaces/redis-options'
+import {FeathersQueueService} from '../queue/queue.adapter'
 
 export const _out = new Out('feathers-tasks')
 

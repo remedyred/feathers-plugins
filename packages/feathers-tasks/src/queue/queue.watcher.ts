@@ -3,8 +3,8 @@ import {Out} from '@snickbit/out'
 import {QueueEvents, QueueEventsListener, QueueScheduler} from 'bullmq'
 import {all_events, WatcherConfig} from '../utilities/config'
 import {jobToPayload} from './helpers'
-import {FeathersQueueService} from './queue.service'
 import {getWatcherConfig, useConnection, useQueue} from '../utilities/helpers'
+import {FeathersQueueService} from './queue.adapter'
 
 export type BullQueueEvent = keyof QueueEventsListener
 

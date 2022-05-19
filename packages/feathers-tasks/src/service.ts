@@ -1,9 +1,10 @@
 import {objectMergeDeep} from '@snickbit/utilities'
 import Redis from 'ioredis'
-import {FeathersQueueService, QueueService, QueueServiceOptions} from './queue/queue.service'
 import {_out, defaultConfig, state, WatcherConfig, WorkerConfig} from './utilities/config'
 import {getConfig, setApp, setConfig, setConnection, setTaskStore} from './utilities/helpers'
 import {ServiceInterface} from '@feathersjs/feathers/src/declarations'
+import QueueService from './queue/queue.service'
+import {FeathersQueueService, QueueServiceOptions} from './queue/queue.adapter'
 
 export async function service(app) {
 	setApp(app)

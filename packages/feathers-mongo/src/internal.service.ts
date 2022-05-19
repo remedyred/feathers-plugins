@@ -1,8 +1,9 @@
-import {NotFound} from '@feathersjs/errors'
-import {NullableId, Params} from '@feathersjs/feathers'
-import MongoService from './mongo.service'
+import {NotImplemented} from '@feathersjs/errors'
+import {Id, NullableId, Paginated, ServiceMethods} from '@feathersjs/feathers'
+import MongoAdapter, {MongoServiceOptions} from './mongo.adapter'
+import {PaginationOptions} from '@feathersjs/adapter-commons'
 
-export class InternalService extends MongoService {
+export class InternalService<T = any, D = Partial<T>, P extends MongoServiceOptions = MongoServiceOptions> extends MongoAdapter implements ServiceMethods<T | Paginated<T>, D, P> {
 	protected allowedMethods: string[] = []
 
 	constructor(options, app) {
@@ -18,33 +19,42 @@ export class InternalService extends MongoService {
 		this.allowedMethods = allowedMethods
 	}
 
-	find(params?: Params): Promise<any> {
-		if(!this.allowedMethods.includes('find')) return Promise.reject(new NotFound())
+	async find(params?: P & { paginate?: PaginationOptions }): Promise<Paginated<T>>;
+	async find(params?: P & { paginate: false }): Promise<T[]>;
+	async find(params?: P): Promise<Paginated<T> | T[]>;
+	async find(params?: P): Promise<Paginated<T> | T[]> {
+		if (!this.allowedMethods.includes('find')) throw new NotImplemented('Method `find` not implemented')
 		return super.find(params)
 	}
 
-	get(id?: NullableId, params?: Params): Promise<any> {
-		if(!this.allowedMethods.includes('get')) return Promise.reject(new NotFound())
+	async get(id: Id, params?: P): Promise<T> {
+		if (!this.allowedMethods.includes('get')) throw new NotImplemented('Method `get` not implemented')
 		return super.get(id, params)
 	}
 
-	create(data?: any, params?: Params): Promise<any> {
-		if(!this.allowedMethods.includes('create')) return Promise.reject(new NotFound())
+	async create(data: Partial<D>, params?: P): Promise<T>;
+	async create(data: Partial<D>[], params?: P): Promise<T[]>;
+	async create(data: Partial<D> | Partial<D>[], params?: P): Promise<T | T[]> {
+		if (!this.allowedMethods.includes('create')) throw new NotImplemented('Method `create` not implemented')
 		return super.create(data, params)
 	}
 
-	update(id?: NullableId, data?: any, params?: Params): Promise<any> {
-		if(!this.allowedMethods.includes('update')) return Promise.reject(new NotFound())
+	async update(id: Id, data: D, params?: P): Promise<T> {
+		if (!this.allowedMethods.includes('update')) throw new NotImplemented('Method `update` not implemented')
 		return super.update(id, data, params)
 	}
 
-	patch(id?: NullableId, data?: any, params?: Params): Promise<any> {
-		if(!this.allowedMethods.includes('patch')) return Promise.reject(new NotFound())
+	async patch(id: Id, data: Partial<D>, params?: P): Promise<T>;
+	async patch(id: null, data: Partial<D>, params?: P): Promise<T[]>;
+	async patch(id: NullableId, data: Partial<D>, params?: P): Promise<T | T[]> {
+		if (!this.allowedMethods.includes('patch')) throw new NotImplemented('Method `patch` not implemented')
 		return super.patch(id, data, params)
 	}
 
-	remove(id?: NullableId, params?: Params): Promise<any> {
-		if(!this.allowedMethods.includes('remove')) return Promise.reject(new NotFound())
+	async remove(id: Id, params?: P): Promise<T>;
+	async remove(id: null, params?: P): Promise<T[]>;
+	async remove(id: NullableId, params?: P): Promise<T | T[]> {
+		if (!this.allowedMethods.includes('remove')) throw new NotImplemented('Method `remove` not implemented')
 		return super.remove(id, params)
 	}
 }

@@ -1,7 +1,7 @@
 import {BadRequest} from '@feathersjs/errors'
 import {out} from '@snickbit/out'
 import {escapeRegExp, isEmpty, isObject, isString, objectExcept, objectPull} from '@snickbit/utilities'
-import {SearchOptions} from './index'
+import {SearchOptions} from './mongo.adapter'
 
 /**
  * Adds " around `str` and removes any " in `str`.
@@ -13,7 +13,7 @@ export function transformSearchFieldsInQuery(query: any, options: SearchOptions,
 	const makeRegex = value => {
 		try {
 			value = escapeRegExp(value)
-			value = value.split(/[^\w]/).map(v => v.trim()).filter(v => v).join('.*')
+			value = value.split(/\W/).map(v => v.trim()).filter(v => v).join('.*')
 			return query.$caseSensitive ? new RegExp(value) : new RegExp(value, 'i')
 		} catch (e) {
 			out.throw('Error making regex', e)
