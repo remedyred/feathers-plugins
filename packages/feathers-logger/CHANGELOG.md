@@ -1,5 +1,11 @@
 # @snickbit/feathers-logger Changelog
 
+## 1.0.1
+
+### Patch Changes
+
+- [df3f0e5](https://github.com/snickbit/feathers/commit/df3f0e5) **chore**:  release version
+
 ## 1.0.0-1
 
 ### Prerelease Changes
