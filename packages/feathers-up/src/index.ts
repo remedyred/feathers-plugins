@@ -53,6 +53,10 @@ export function feathersUp(appType = 'server', setup: AppSetup | Model = {}, opt
 		})
 	})
 
+	process.on('uncaughtException', function(error) {
+		if (app.log) app.log.error('Unhandled Exception: ', error)
+	});
+
 	// configure paths
 	app.configure(paths)
 
