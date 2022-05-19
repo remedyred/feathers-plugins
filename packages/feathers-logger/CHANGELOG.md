@@ -1,5 +1,11 @@
 # @snickbit/feathers-logger Changelog
 
+## 1.0.0-1
+
+### Prerelease Changes
+
+- [1ce6542](https://github.com/snickbit/feathers/commit/1ce6542) **fix**:  correct peer dependency
+
 ## 1.0.0-0
 
 ### Premajor Changes

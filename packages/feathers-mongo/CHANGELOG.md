@@ -1,5 +1,11 @@
 # @snickbit/feathers-mongo Changelog
 
+## 1.0.0-1
+
+### Prerelease Changes
+
+- [c1153ef](https://github.com/snickbit/feathers/commit/c1153ef) **fix**:  remove feathers-mongodb
+
 ## 1.0.0-0
 
 ### Premajor Changes
