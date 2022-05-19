@@ -128,9 +128,9 @@ export class S3Service extends FileService {
 	}
 
 	protected parseParams(params: AdapterParams | string, data?: FileData): ParsedParams {
-		params = super.parseParams(params as unknown, data)
-		params.path = this.stripUrl(params.path)
-		return params
+		const parsed = super.parseParams(params as unknown, data)
+		parsed.path = this.stripUrl(parsed.path)
+		return parsed
 	}
 
 	_cwd(options: any = {}): any {
@@ -217,18 +217,18 @@ export class S3Service extends FileService {
 	}
 
 	async _create(data: FileData, params?: AdapterParams) {
-		params = this.parseParams(params, data)
-		return this._uploadContent(params.path, this._getContent(data), params)
+		const parsed = this.parseParams(params, data)
+		return this._uploadContent(parsed.path, this._getContent(data), parsed)
 	}
 
 	async _update(id: FileId, data: FileData, params?: AdapterParams) {
-		params = this.parseParams(params, data)
-		return this._uploadContent(params.path, this._getContent(data), params)
+		const parsed = this.parseParams(params, data)
+		return this._uploadContent(parsed.path, this._getContent(data), params)
 	}
 
 	async _patch(id: FileId, data: FileData, params?: AdapterParams) {
-		params = this.parseParams(params, data)
-		return this._uploadContent(params.path, this._getContent(data), params)
+		const parsed = this.parseParams(params, data)
+		return this._uploadContent(parsed.path, this._getContent(data), params)
 	}
 
 	async _remove(id: FileId, params?: AdapterParams) {

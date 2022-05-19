@@ -67,33 +67,33 @@ export class LocalService extends FileService {
 	}
 
 	async _find(params: AdapterParams | ParsedParams): Promise<any> {
-		params = this.parseParams(params)
+		const parsed = this.parseParams(params)
 		const {query} = this.filterQuery(params)
-		if (!fileExists(params.path)) {
+		if (!fileExists(parsed.path)) {
 			return []
 		}
-		if (!params.path.includes('*')) {
-			if (!params.path.endsWith('/')) {
-				params.path += '/'
+		if (!parsed.path.includes('*')) {
+			if (!parsed.path.endsWith('/')) {
+				parsed.path += '/'
 			}
-			params.path += query.recursive ? '**' : '*'
+			parsed.path += query.recursive ? '**' : '*'
 		}
 
-		const files = await fg(params.path, this.parseGlobOptions(params))
+		const files = await fg(parsed.path, this.parseGlobOptions(parsed))
 
 		return this.filterFiles(files, params)
 	}
 
 	async _create(data: FileData, params?: Params): Promise<string> {
-		params = this.parseParams(params, data)
-		this.out.info('Creating file', {data, params})
-		if (await this.exists(params.path)) {
-			throw new Conflict(`File already exists: ${params.path}`)
+		const parsed = this.parseParams(params)
+		this.out.info('Creating file', {data, parsed})
+		if (await this.exists(parsed.path)) {
+			throw new Conflict(`File already exists: ${parsed.path}`)
 		}
 
-		this.out.info('Actually Creating file!!', params.path)
-		await fse.outputFile(params.path, this._getContent(data))
-		return this.makeUrl(params.path)
+		this.out.info('Actually Creating file!!', parsed.path)
+		await fse.outputFile(parsed.path, this._getContent(data))
+		return this.makeUrl(parsed.path)
 	}
 
 	async _update(id: FileId, data?: FileData): Promise<string> {
