@@ -1,5 +1,21 @@
 # @snickbit/feathers-up Changelog
 
+## 1.0.4
+
+### Patch Changes
+
+- [487a003](https://github.com/snickbit/feathers/commit/487a003) **chore**:  update dependencies
+- [16f2465](https://github.com/snickbit/feathers/commit/16f2465) **build**:  remove nx
+- [509b748](https://github.com/snickbit/feathers/commit/509b748) **refactor**:  move errors to own file
+- [7934611](https://github.com/snickbit/feathers/commit/7934611) **fix**:  infinite loop caused by incorrect method name
+- [ccdf5fc](https://github.com/snickbit/feathers/commit/ccdf5fc) **feat**:  add basic uncaught exception handler
+- [d4f194b](https://github.com/snickbit/feathers/commit/d4f194b) **fix**:  database config initialization
+- [6d058ce](https://github.com/snickbit/feathers/commit/6d058ce) **fix**:  type definitions
+- [c088a62](https://github.com/snickbit/feathers/commit/c088a62) **feat**:  add optional options param
+- [18b9836](https://github.com/snickbit/feathers/commit/18b9836) **refactor**:  split definitions
+- [1a15076](https://github.com/snickbit/feathers/commit/1a15076) **feat**:  split database loaders into dynamic imports
+- [7ab29a6](https://github.com/snickbit/feathers/commit/7ab29a6) **refactor**:  divide into multiple files
+
 ## 1.0.3
 
 ### Patch Changes

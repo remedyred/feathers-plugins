@@ -1,5 +1,13 @@
 # @snickbit/feathers-mongo Changelog
 
+## 1.0.2
+
+### Patch Changes
+
+- [16f2465](https://github.com/snickbit/feathers/commit/16f2465) **build**:  remove nx
+- [03b2438](https://github.com/snickbit/feathers/commit/03b2438) **style**:  remove extra line break
+- [7934611](https://github.com/snickbit/feathers/commit/7934611) **fix**:  infinite loop caused by incorrect method name
+
 ## 1.0.1
 
 ### Patch Changes

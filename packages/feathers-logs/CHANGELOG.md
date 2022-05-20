@@ -1,5 +1,12 @@
 # @snickbit/feathers-logs Changelog
 
+## 1.0.3
+
+### Patch Changes
+
+- [16f2465](https://github.com/snickbit/feathers/commit/16f2465) **build**:  remove nx
+- [78ff10c](https://github.com/snickbit/feathers/commit/78ff10c) **fix**:  don't automatically set app.log
+
 ## 1.0.2
 
 ### Patch Changes
