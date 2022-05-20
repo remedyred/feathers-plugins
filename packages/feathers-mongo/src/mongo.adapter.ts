@@ -109,6 +109,8 @@ export default class MongoAdapter extends MongoDBService {
 					this.Model.createIndex(index.keys, index.options)
 				}
 			}
+		}).catch((err: Error) => {
+			this.out.error(err)
 		})
 	}
 
