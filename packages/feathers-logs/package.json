@@ -41,12 +41,6 @@
 	"engines": {
 		"node": ">= 12"
 	},
-	"nx": {
-		"implicitDependencies": [
-			"@snickbit/feathers-logger",
-			"@snickbit/feathers-mongo"
-		]
-	},
 	"tsup": {
 		"entry": [
 			"src/index.ts"

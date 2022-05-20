@@ -50,12 +50,6 @@
 	"engines": {
 		"node": ">= 12"
 	},
-	"nx": {
-		"implicitDependencies": [
-			"@snickbit/out",
-			"@snickbit/utilities"
-		]
-	},
 	"tsup": {
 		"entry": [
 			"src/index.ts"

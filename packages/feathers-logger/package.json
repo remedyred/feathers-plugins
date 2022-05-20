@@ -45,12 +45,6 @@
 		"node": ">= 12"
 	},
 	"desciption": "Client for @snickbit/feathers-logs",
-	"nx": {
-		"implicitDependencies": [
-			"@snickbit/out",
-			"@snickbit/utilities"
-		]
-	},
 	"tsup": {
 		"entry": [
 			"src/index.ts"

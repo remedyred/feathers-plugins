@@ -47,13 +47,6 @@
 	"engines": {
 		"node": ">= 12"
 	},
-	"nx": {
-		"implicitDependencies": [
-			"@snickbit/feathers-model",
-			"@snickbit/out",
-			"@snickbit/utilities"
-		]
-	},
 	"tsup": {
 		"entry": [
 			"src/index.ts"
