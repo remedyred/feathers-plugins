@@ -11,18 +11,18 @@
 
 ## Table of Contents
 
-- [@snickbit/feathers-auth-api](#snickbit-feathers-auth-api)
-- [@snickbit/feathers-files](#snickbit-feathers-files)
-- [@snickbit/feathers-helpers](#snickbit-feathers-helpers)
-- [@snickbit/feathers-hooks](#snickbit-feathers-hooks)
-- [@snickbit/feathers-logger](#snickbit-feathers-logger)
-- [@snickbit/feathers-logs](#snickbit-feathers-logs)
-- [@snickbit/feathers-model](#snickbit-feathers-model)
-- [@snickbit/feathers-mongo](#snickbit-feathers-mongo)
-- [@snickbit/feathers-redis](#snickbit-feathers-redis)
-- [@snickbit/feathers-rest](#snickbit-feathers-rest)
-- [@snickbit/feathers-tasks](#snickbit-feathers-tasks)
-- [@snickbit/feathers-up](#snickbit-feathers-up)
+  - [@snickbit/feathers-auth-api](#snickbit-feathers-auth-api)
+  - [@snickbit/feathers-files](#snickbit-feathers-files)
+  - [@snickbit/feathers-helpers](#snickbit-feathers-helpers)
+  - [@snickbit/feathers-hooks](#snickbit-feathers-hooks)
+  - [@snickbit/feathers-logger](#snickbit-feathers-logger)
+  - [@snickbit/feathers-logs](#snickbit-feathers-logs)
+  - [@snickbit/feathers-model](#snickbit-feathers-model)
+  - [@snickbit/feathers-mongo](#snickbit-feathers-mongo)
+  - [@snickbit/feathers-redis](#snickbit-feathers-redis)
+  - [@snickbit/feathers-rest](#snickbit-feathers-rest)
+  - [@snickbit/feathers-tasks](#snickbit-feathers-tasks)
+  - [@snickbit/feathers-up](#snickbit-feathers-up)
 
 <!--END_SECTION:readmes-toc-->
 
