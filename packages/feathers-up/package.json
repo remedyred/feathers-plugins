@@ -47,7 +47,6 @@
 		"ioredis": "^5.0.4",
 		"knex": "^2.0.0",
 		"mongodb": "^4.5.0",
-		"node-ray": "^1.18.0",
 		"socket.io": "^4.5.0",
 		"winston": "^3.7.2",
 		"winston-daily-rotate-file": "^4.6.1"
