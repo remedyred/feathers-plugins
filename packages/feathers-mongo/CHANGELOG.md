@@ -1,5 +1,11 @@
 # @snickbit/feathers-mongo Changelog
 
+## 1.0.3
+
+### Patch Changes
+
+- [c20cc1e](https://github.com/snickbit/feathers/commit/c20cc1e) **fix**:  add catch block
+
 ## 1.0.2
 
 ### Patch Changes

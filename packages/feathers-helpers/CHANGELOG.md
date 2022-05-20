@@ -1,5 +1,11 @@
 # @snickbit/feathers-helpers Changelog
 
+## 1.0.2
+
+### Patch Changes
+
+- [16f2465](https://github.com/snickbit/feathers/commit/16f2465) **build**:  remove nx
+
 ## 1.0.1
 
 ### Patch Changes

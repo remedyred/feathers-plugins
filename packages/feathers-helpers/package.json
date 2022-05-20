@@ -1,6 +1,6 @@
 {
 	"name": "@snickbit/feathers-helpers",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Helper functions for FeathersJS",
 	"license": "MIT",
 	"exports": {
@@ -31,7 +31,7 @@
 		"@feathersjs/adapter-commons": "5.0.0-pre.20",
 		"@feathersjs/commons": "5.0.0-pre.20",
 		"@feathersjs/errors": "5.0.0-pre.20",
-		"@snickbit/out": "^2.0.25",
+		"@snickbit/out": "^2.0.26",
 		"@snickbit/utilities": "^3.0.17",
 		"sift": "^16.0.0"
 	},
