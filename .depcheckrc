@@ -1,0 +1,16 @@
+{
+	"specials": [
+	],
+	"ignores": [
+		"@feathersjs/feathers",
+		"@types/jest",
+		"@types/node",
+		"bson-ext",
+		"kerberos",
+		"snappy",
+		"mongodb-client-encryption",
+		"mysql"
+	],
+	"oneline": true,
+	"ignore-bin-package": true
+}
