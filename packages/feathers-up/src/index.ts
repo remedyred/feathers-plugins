@@ -18,6 +18,8 @@ import {initLogger} from './logger'
 import {Application, AppSetup, FeathersUpOptions} from './definitions'
 import errors from './errors'
 
+export {Application}
+
 let app: Application
 
 export function useApp(appType = 'server', setup: AppSetup = {}): Application {
