@@ -1,5 +1,15 @@
 # @snickbit/feathers-up Changelog
 
+## 1.0.7
+
+### Patch Changes
+
+- [d3d96e1](https://github.com/snickbit/feathers/commit/d3d96e1) **fix**:  remove database key from loader
+- [e705aec](https://github.com/snickbit/feathers/commit/e705aec) **fix**:  remove output called prior to out being initialized
+- [bcf55db](https://github.com/snickbit/feathers/commit/bcf55db) **fix**:  update type definitions
+- [c3a24cc](https://github.com/snickbit/feathers/commit/c3a24cc) **fix**:  export application interface
+- [d5f1002](https://github.com/snickbit/feathers/commit/d5f1002) **fix**:  remove database loaders
+
 ## 1.0.6
 
 ### Patch Changes
