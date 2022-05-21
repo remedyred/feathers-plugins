@@ -1,4 +1,3 @@
-import {MongoClient} from 'mongodb'
 import {Application} from '../definitions'
 
 export interface MongoClientOptions {
@@ -32,12 +31,22 @@ export default async function (app: Application, config: MongoClientOptions | Mo
 	return app.get('mongoClient')
 }
 
-export function connectToMongoDB(app: Application, config: MongoClientOptions): Promise<MongoClient> {
+export async function connectToMongoDB(app: Application, config: MongoClientOptions): Promise<any> {
 	const mongoOptions = {
 		authSource: config.authSource || config.database,
 		auth: config.auth
 	}
+	const MongoClient = await loadMongodb()
 	const mongoClientPromise = MongoClient.connect(config.uri, mongoOptions)
 	mongoClientPromise.catch(err => app.out.error(err))
 	return mongoClientPromise
+}
+
+let _mongodb: any
+async function loadMongodb(): Promise<any> {
+	if (!_mongodb) {
+		const mongodb = await import('mongodb')
+		_mongodb = mongodb.MongoClient
+	}
+	return _mongodb
 }

@@ -1,5 +1,6 @@
 import {useConfig} from './config'
 import {Application} from './definitions'
+import * as loaders from './loaders'
 
 export default async function (app: Application) {
 	const databases = useConfig('databases')
@@ -7,8 +8,7 @@ export default async function (app: Application) {
 		app.out.verbose('Set up databases')
 		for (let database in databases) {
 			app.out.verbose(`Set up ${database}`)
-			const {default: configureDatabase} = await import('./loaders/' + database)
-			await configureDatabase(app, databases[database])
+			await loaders[database](app, databases[database])
 		}
 	}
 }
