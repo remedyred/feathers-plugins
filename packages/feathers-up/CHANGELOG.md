@@ -1,5 +1,14 @@
 # @snickbit/feathers-up Changelog
 
+## 1.0.6
+
+### Patch Changes
+
+- [b05740c](https://github.com/snickbit/feathers/commit/b05740c) **style**:  lint
+- [109a753](https://github.com/snickbit/feathers/commit/109a753) **chore**:  update dependencies
+- [6bfc94c](https://github.com/snickbit/feathers/commit/6bfc94c) **fix**:  mark mysql as external
+- [6542169](https://github.com/snickbit/feathers/commit/6542169) **fix**:  dynamically load database dependencies so they work with esbuild
+
 ## 1.0.4
 
 ### Patch Changes

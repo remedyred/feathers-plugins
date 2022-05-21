@@ -1,6 +1,6 @@
 {
 	"name": "@snickbit/feathers-files",
-	"version": "2.0.3",
+	"version": "2.0.4",
 	"description": "Files adapter for FeathersJS",
 	"license": "MIT",
 	"exports": {

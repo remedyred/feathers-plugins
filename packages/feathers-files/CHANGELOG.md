@@ -1,5 +1,11 @@
 # @snickbit/feathers-files Changelog
 
+## 2.0.4
+
+### Patch Changes
+
+- [109a753](https://github.com/snickbit/feathers/commit/109a753) **chore**:  update dependencies
+
 ## 2.0.3
 
 ### Patch Changes
