@@ -73,6 +73,9 @@
 		"format": [
 			"esm",
 			"cjs"
+		],
+		"external": [
+			"mysql"
 		]
 	}
 }
