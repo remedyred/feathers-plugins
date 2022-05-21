@@ -76,3 +76,10 @@ export interface Application extends ExpressApplication {
 export interface FeathersUpOptions {
 	verbosity?: number;
 }
+
+export interface DatabaseDefinition {
+	config?: any
+	loader: (config: any) => any | Promise<any>
+}
+
+export type DatabaseDefinitions = Record<string, DatabaseDefinition>

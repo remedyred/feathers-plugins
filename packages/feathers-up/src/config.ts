@@ -1,6 +1,6 @@
 import {Model} from '@snickbit/model'
 import configuration from '@feathersjs/configuration'
-import {Application, AppSetup} from './definitions'
+import {Application, AppSetup, DatabaseDefinitions} from './definitions'
 
 let $setup: Model
 let $app: Application
@@ -28,17 +28,18 @@ export function useSetup(key: string, fallback = undefined) {
 function initDatabases() {
 	const databaseOptions = ['mysql', 'redis', 'mongodb']
 
-	const databases: Record<string, any> = {}
+	const databases: DatabaseDefinitions = {}
 	for (let database of databaseOptions) {
 		const config = $app.get(database)
-		if (config) {
-			databases[database] = config
-		}
-	}
+		const loader = $setup.get(database)
 
-	// merge databases with config
-	if ($setup.get('databases')) {
-		Object.assign(databases, $setup.get('databases'))
+		if (loader) {
+			$app.out.verbose(`Load ${database}`)
+			databases[database] = {
+				config,
+				loader
+			}
+		}
 	}
 
 	$setup.set('databases', databases)

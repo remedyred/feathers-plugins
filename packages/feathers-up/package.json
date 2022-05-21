@@ -51,16 +51,16 @@
 	},
 	"devDependencies": {
 		"@remedyred/indexer": "^2.2.6",
-		"ioredis": "^5.0.4",
 		"jest": "^27.5.1",
-		"knex": "^2.0.0",
-		"mongodb": "^4.5.0",
 		"tsup": "^5.12.7"
 	},
 	"peerDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.20"
 	},
 	"optionalDependencies": {
+		"@snickbit/feathers-up-mongodb": "^0.0.0",
+		"@snickbit/feathers-up-mysql": "^0.0.0",
+		"@snickbit/feathers-up-redis": "^0.0.0",
 		"ioredis": "^5.0.4",
 		"knex": "^2.0.0",
 		"mongodb": "^4.5.0",
