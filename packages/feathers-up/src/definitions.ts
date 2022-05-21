@@ -33,12 +33,6 @@ type AnyFunction = ((...args: any[]) => Promise<any> | any) | { default: AnyFunc
 
 type AppServiceResult = AnyFunction | Record<string, AnyFunction>
 
-interface AppDatabaseConfig {
-	adapter: AnyFunction | any
-
-	[key: string]: any
-}
-
 export interface AppSetup {
 	paths?: AppSetupPaths
 	helmet?: Partial<HelmetOptions>
@@ -51,7 +45,9 @@ export interface AppSetup {
 	services?: AppServiceResult | Record<string, AppServiceResult>
 	channels?: (...args) => any
 	hooks?: (...args) => any
-	databases?: Record<string, AppDatabaseConfig>
+	mongodb?: DatabaseLoader
+	redis?: DatabaseLoader
+	mysql?: DatabaseLoader
 }
 
 export type AppSetupPaths = {
@@ -77,9 +73,11 @@ export interface FeathersUpOptions {
 	verbosity?: number;
 }
 
+export type DatabaseLoader = (app: Application, config: any | any[]) => Promise<any>
+
 export interface DatabaseDefinition {
 	config?: any
-	loader: (config: any) => any | Promise<any>
+	loader: DatabaseLoader
 }
 
 export type DatabaseDefinitions = Record<string, DatabaseDefinition>
