@@ -22,6 +22,9 @@
   - [@snickbit/feathers-redis](#snickbit-feathers-redis)
   - [@snickbit/feathers-rest](#snickbit-feathers-rest)
   - [@snickbit/feathers-tasks](#snickbit-feathers-tasks)
+  - [@snickbit/feathers-up-mongodb](#snickbit-feathers-up-mongodb)
+  - [@snickbit/feathers-up-mysql](#snickbit-feathers-up-mysql)
+  - [@snickbit/feathers-up-redis](#snickbit-feathers-up-redis)
   - [@snickbit/feathers-up](#snickbit-feathers-up)
 
 <!--END_SECTION:readmes-toc-->
@@ -161,6 +164,42 @@ Feathers service for interactive with REST APIs
 </div>
 
 Task management for FeathersJS using [BullMQ](https://github.com/taskforcesh/bullmq)
+
+
+
+<div id="@snickbit/feathers-up-mongodb">
+	<h3>
+		<a href="https://github.com/snickbit/feathers/tree/main/packages/feathers-up-mongodb">
+			@snickbit/feathers-up-mongodb
+		</a>
+	</h3>
+</div>
+
+MongoDB plugin for @snickbit/feathers-up
+
+
+
+<div id="@snickbit/feathers-up-mysql">
+	<h3>
+		<a href="https://github.com/snickbit/feathers/tree/main/packages/feathers-up-mysql">
+			@snickbit/feathers-up-mysql
+		</a>
+	</h3>
+</div>
+
+MySQL/Knex plugin for @snickbit/feathers-up
+
+
+
+<div id="@snickbit/feathers-up-redis">
+	<h3>
+		<a href="https://github.com/snickbit/feathers/tree/main/packages/feathers-up-redis">
+			@snickbit/feathers-up-redis
+		</a>
+	</h3>
+</div>
+
+Redis plugin for @snickbit/feathers-up
 
 
 
