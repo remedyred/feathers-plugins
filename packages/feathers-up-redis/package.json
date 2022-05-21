@@ -1,0 +1,58 @@
+{
+	"name": "@snickbit/feathers-up-redis",
+	"version": "0.0.0",
+	"description": "Redis plugin for @snickbit/feathers-up",
+	"license": "MIT",
+	"exports": {
+		"require": "./dist/index.js",
+		"import": "./dist/index.mjs",
+		"types": "./dist/index.d.ts"
+	},
+	"main": "./dist/index.js",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "tsup",
+		"clean": "shx rm -rf ./dist",
+		"depcheck": "depcheck",
+		"dev": "pnpm run build --sourcemap",
+		"index": "indexer",
+		"meta": "pnpm run prod --metafile",
+		"prod": "pnpm run build --minify",
+		"watch": "pnpm run dev --watch"
+	},
+	"jest": {
+		"testEnvironment": "node"
+	},
+	"dependencies": {
+		"@snickbit/feathers-up": "^1.0.6",
+		"ioredis": "^5.0.4"
+	},
+	"devDependencies": {
+		"jest": "^27.5.1",
+		"tsup": "^5.12.7"
+	},
+	"peerDependencies": {
+		"@feathersjs/feathers": "5.0.0-pre.20"
+	},
+	"engines": {
+		"node": ">= 12"
+	},
+	"tsup": {
+		"entry": [
+			"src/index.ts"
+		],
+		"clean": true,
+		"dts": true,
+		"format": [
+			"esm",
+			"cjs"
+		],
+		"external": [
+			"redis"
+		]
+	}
+}
