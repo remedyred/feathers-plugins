@@ -10,7 +10,7 @@ export default async function (app: Application) {
 			app.out.verbose(`Set up ${database}`)
 			const {config, loader} = databases[database]
 			try {
-				await Promise.resolve(loader[database](app, config))
+				await loader(app, config)
 			} catch (e) {
 				app.out.error(`Failed to load ${database}`, e)
 			}
