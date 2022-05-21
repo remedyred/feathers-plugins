@@ -34,7 +34,6 @@ function initDatabases() {
 		const loader = $setup.get(database)
 
 		if (loader) {
-			$app.out.verbose(`Load ${database}`)
 			databases[database] = {
 				config,
 				loader
