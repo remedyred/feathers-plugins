@@ -42,7 +42,6 @@
 		"ioredis": "^5.0.4"
 	},
 	"devDependencies": {
-		"@feathersjs/feathers": "5.0.0-pre.20",
 		"@remedyred/indexer": "^2.2.6",
 		"esbuild": "^0.14.36",
 		"jest": "^27.5.1",

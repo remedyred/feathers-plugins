@@ -46,7 +46,6 @@
 		"sift": "^16.0.0"
 	},
 	"devDependencies": {
-		"@feathersjs/feathers": "5.0.0-pre.20",
 		"@remedyred/indexer": "^2.2.6",
 		"@types/jest": "^27.4.1",
 		"@types/multer": "^1.4.7",

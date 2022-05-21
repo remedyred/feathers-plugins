@@ -50,16 +50,21 @@
 		"winston-daily-rotate-file": "^4.6.1"
 	},
 	"devDependencies": {
-		"@feathersjs/feathers": "5.0.0-pre.20",
 		"@remedyred/indexer": "^2.2.6",
-		"jest": "^27.5.1",
-		"tsup": "^5.12.7",
 		"ioredis": "^5.0.4",
+		"jest": "^27.5.1",
 		"knex": "^2.0.0",
-		"mongodb": "^4.5.0"
+		"mongodb": "^4.5.0",
+		"tsup": "^5.12.7"
 	},
 	"peerDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.20"
+	},
+	"optionalDependencies": {
+		"ioredis": "^5.0.4",
+		"knex": "^2.0.0",
+		"mongodb": "^4.5.0",
+		"mysql": "^2.18.0"
 	},
 	"engines": {
 		"node": ">= 12"
