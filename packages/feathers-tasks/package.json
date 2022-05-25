@@ -1,6 +1,6 @@
 {
 	"name": "@snickbit/feathers-tasks",
-	"version": "2.0.5",
+	"version": "2.0.6",
 	"description": "Task management for FeathersJS",
 	"license": "MIT",
 	"exports": {
@@ -33,7 +33,7 @@
 		"@feathersjs/feathers": "5.0.0-pre.20",
 		"@snickbit/dates": "^1.0.38",
 		"@snickbit/feathers-helpers": "^1.0.2",
-		"@snickbit/feathers-model": "^1.0.2",
+		"@snickbit/feathers-model": "^1.0.3",
 		"@snickbit/node-cli": "^1.0.49",
 		"@snickbit/node-utilities": "^4.3.6",
 		"@snickbit/out": "^2.0.26",
