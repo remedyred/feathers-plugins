@@ -42,7 +42,7 @@
 		"ioredis": "^5.0.4"
 	},
 	"devDependencies": {
-		"@remedyred/indexer": "^2.3.1",
+		"@remedyred/indexer": "^2.4.0",
 		"esbuild": "^0.14.36",
 		"jest": "^27.5.1",
 		"tsup": "^5.12.7"

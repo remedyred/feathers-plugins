@@ -1,5 +1,6 @@
 {
 	"source": "src/*.ts",
 	"output": "src/index.ts",
-	"type": "default"
+	"type": "default",
+	"casing": "pascal"
 }
