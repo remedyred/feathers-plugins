@@ -8,20 +8,28 @@ export interface QueueChildOptions {
 }
 
 export function parseQueueChildOptions(options: QueueChildOptions | string = {}) {
-	if (typeof options === 'string') options = {name: options as string} as QueueChildOptions
+	if (typeof options === 'string') {
+		options = {name: options as string} as QueueChildOptions
+	}
 	if (!options.queue && options.name) {
 		options.queue = useQueue(options.name)
 		if (!options.queue) {
 			throw new Error(`Queue ${options.queue} does not exist`)
 		}
 	}
-	if (!options.queue) throw new Error('Queue is required')
+	if (!options.queue) {
+		throw new Error('Queue is required')
+	}
 	return options as QueueChildOptions
 }
 
 export function jobToPayload(job) {
-	if (!job) return {}
-	if (job.toJSON) job = job.toJSON()
+	if (!job) {
+		return {}
+	}
+	if (job.toJSON) {
+		job = job.toJSON()
+	}
 	const data = job.data
 	delete job.data
 

@@ -1,15 +1,15 @@
 import {beforeExit} from '@snickbit/node-utilities'
 import {Out} from '@snickbit/out'
 import {Worker} from 'bullmq'
+import {ConnectionOptions} from 'bullmq/dist/esm/interfaces/redis-options'
 import {Task} from '../tasks/task'
 import {WorkerConfig} from '../utilities/config'
 import {getWorkerConfig, useQueue} from '../utilities/helpers'
-import {ConnectionOptions} from 'bullmq/dist/esm/interfaces/redis-options'
-import QueueService from './queue.service'
 import {FeathersQueueService} from './queue.adapter'
+import QueueService from './queue.service'
 
 export interface QueueWorkerConfig extends WorkerOptions {
-	name: string;
+	name: string
 	enabled: boolean
 	queue: QueueService
 }
@@ -21,15 +21,20 @@ export interface WorkerOptions extends WorkerConfig {
 
 export class QueueWorker {
 	worker: Worker
+
 	options: WorkerOptions
+
 	queue: FeathersQueueService
+
 	out: Out
 
 	constructor(options: WorkerOptions) {
 		const {enabled, concurrency, limiter} = getWorkerConfig()
 
 		this.queue = useQueue(options.name)
-		if (!this.queue) throw new Error(`Queue ${options.name} not found`)
+		if (!this.queue) {
+			throw new Error(`Queue ${options.name} not found`)
+		}
 
 		options = {
 			enabled,
@@ -46,7 +51,7 @@ export class QueueWorker {
 
 	start() {
 		this.out.extra(this.options).info('Starting Worker in current process')
-		const processor = async (job) => {
+		const processor = async job => {
 			this.out.info(`Processing job: ${job.name}`)
 			const task = new Task(job, {queue: job.queue.name})
 			if (task) {

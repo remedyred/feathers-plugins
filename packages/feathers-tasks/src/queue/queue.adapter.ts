@@ -1,19 +1,19 @@
 import {AdapterBase, AdapterParams as Params, AdapterServiceOptions, filterQuery, PaginationOptions} from '@feathersjs/adapter-commons'
 import {Unprocessable} from '@feathersjs/errors'
+import {FeathersService, Paginated} from '@feathersjs/feathers'
 import {filterResults} from '@snickbit/feathers-helpers'
 import {Out} from '@snickbit/out'
 import {arrayWrap, objectOnly} from '@snickbit/utilities'
 import {Job as JobBase, Queue} from 'bullmq'
+import {ObliterateOpts} from 'bullmq/dist/esm/classes/queue'
+import {ConnectionOptions} from 'bullmq/dist/esm/interfaces/redis-options'
+import {FinishedStatus} from 'bullmq/dist/esm/types'
 import {Task} from '../tasks/task'
 import {defaultWatcherConfig, defaultWorkerConfig, WatcherConfig, WorkerConfig} from '../utilities/config'
+import {booleanConfig, getConfig, useConnection} from '../utilities/helpers'
 import {jobToPayload} from './helpers'
 import {QueueWatcher, WatcherOptions} from './queue.watcher'
 import {QueueWorker, WorkerOptions} from './queue.worker'
-import {FeathersService, Paginated} from '@feathersjs/feathers'
-import {booleanConfig, getConfig, useConnection} from '../utilities/helpers'
-import {ObliterateOpts} from 'bullmq/dist/esm/classes/queue'
-import {FinishedStatus} from 'bullmq/dist/esm/types'
-import {ConnectionOptions} from 'bullmq/dist/esm/interfaces/redis-options'
 import QueueService from './queue.service'
 
 export interface QueueParams extends Params {
@@ -82,27 +82,36 @@ export interface TaskPayload {
 }
 
 type RequireAtLeastOne<T, Keys extends keyof T = keyof T> =
-	Pick<T, Exclude<keyof T, Keys>>
-	& {
-	[K in Keys]-?: Required<Pick<T, K>> & Partial<Pick<T, Exclude<Keys, K>>>
-}[Keys]
+	{
+	[K in Keys]-?: Partial<Pick<T, Exclude<Keys, K>>> & Required<Pick<T, K>>
+}[Keys] & Pick<T, Exclude<keyof T, Keys>>
 
-export type TaskRequest = RequireAtLeastOne<TaskRequestBase, 'name' | 'job'>
+export type TaskRequest = RequireAtLeastOne<TaskRequestBase, 'job' | 'name'>
 
-export type FeathersQueueService = QueueService & FeathersService
+export type FeathersQueueService = FeathersService & QueueService
 
 export class QueueAdapter extends AdapterBase {
 	declare options: QueueServiceConfig
+
 	queueOptions: any
+
 	out: Out
+
 	queue: Queue
+
 	worker: QueueWorker
+
 	watcher: QueueWatcher
+
 	connection: ConnectionOptions
 
 	constructor(options: QueueServiceOptions) {
-		if (typeof options === 'string') options = {name: options}
-		if (!options.name) options.name = 'default'
+		if (typeof options === 'string') {
+			options = {name: options}
+		}
+		if (!options.name) {
+			options.name = 'default'
+		}
 
 		super(options)
 		this.out = new Out(`queue:${options.name}`)
@@ -111,7 +120,12 @@ export class QueueAdapter extends AdapterBase {
 
 		const _options = {
 			id: 'id',
-			events: ['created', 'updated', 'patched', 'removed'],
+			events: [
+				'created',
+				'updated',
+				'patched',
+				'removed'
+			],
 			paginate: {},
 			multi: true,
 			filters: ['$asPayload'],
@@ -131,7 +145,8 @@ export class QueueAdapter extends AdapterBase {
 
 		this.out = new Out(`queue:${_options.name}`)
 
-		this.out.extra(objectOnly(_options, ['defaultJobOptions', 'name'])).ev(5).verbose('Setting up BullMQ Redis connection')
+		this.out.extra(objectOnly(_options, ['defaultJobOptions', 'name'])).ev(5)
+			.verbose('Setting up BullMQ Redis connection')
 		this.queue = new Queue(_options.name, this.queueOptions)
 
 		this.options = _options as QueueServiceConfig
@@ -165,17 +180,17 @@ export class QueueAdapter extends AdapterBase {
 		return new this.Model(job, options)
 	}
 
-	prepParams(data: Partial<BullJob> | TaskRequestModel | TaskRequest, context, id?) {
+	prepParams(data: Partial<BullJob> | TaskRequest | TaskRequestModel, context, id?) {
 		let payload: Partial<TaskPayload> = {}
 		let options = {}
 
 		let request: TaskRequest
-		if ('toJSON' in data) request = data.toJSON()
+		if ('toJSON' in data) {
+			request = data.toJSON()
+		}
 
 		if (request.payload) {
-			request.data = {
-				payload: request.payload
-			}
+			request.data = {payload: request.payload}
 			delete request.payload
 		}
 
@@ -183,13 +198,19 @@ export class QueueAdapter extends AdapterBase {
 
 		if (!id) {
 			let job_name = request?.job || request?.name || payload.data?.name
-			if (!job_name) throw new Unprocessable('Missing required job name', request)
+			if (!job_name) {
+				throw new Unprocessable('Missing required job name', request)
+			}
 
 			payload.name = job_name
 		}
 
-		if (request.progress) payload.progress = request.progress
-		if (request.options) options = request.options
+		if (request.progress) {
+			payload.progress = request.progress
+		}
+		if (request.options) {
+			options = request.options
+		}
 
 		if (context?.user?._id) {
 			payload.data._user = context.user._id
@@ -242,7 +263,7 @@ export class QueueAdapter extends AdapterBase {
 		return this.queue.drain(delayed)
 	}
 
-	async clean(grace: number, limit: number, type?: 'completed' | 'wait' | 'active' | 'paused' | 'delayed' | 'failed'): Promise<string[]> {
+	async clean(grace: number, limit: number, type?: 'active' | 'completed' | 'delayed' | 'failed' | 'paused' | 'wait'): Promise<string[]> {
 		return this.queue.clean(grace, limit, type)
 	}
 
@@ -250,7 +271,7 @@ export class QueueAdapter extends AdapterBase {
 		return this.queue.obliterate(opts)
 	}
 
-	async retryJobs(opts?: { count?: number; state?: FinishedStatus; timestamp?: number; }): Promise<void> {
+	async retryJobs(opts?: {count?: number; state?: FinishedStatus; timestamp?: number}): Promise<void> {
 		return this.queue.retryJobs(opts)
 	}
 
@@ -270,7 +291,7 @@ export class QueueAdapter extends AdapterBase {
 	async $create(data: Partial<BullJob>, params?: QueueParams): Promise<any>
 	async $create(data: Partial<BullJob>[], params?: QueueParams): Promise<any[]>
 	async $create(data: Partial<BullJob> | Partial<BullJob>[], params?: QueueParams): Promise<any>
-	async $create(data: Partial<BullJob> | Partial<BullJob>[], params?: QueueParams): Promise<any | any[]> {
+	async $create(data: Partial<BullJob> | Partial<BullJob>[], params?: QueueParams): Promise<any[] | any> {
 		if (Array.isArray(data)) {
 			return Promise.all(data.map(current => this.$create(current, params)))
 		}
@@ -279,15 +300,17 @@ export class QueueAdapter extends AdapterBase {
 		return this.asModel(job)
 	}
 
-	async $find(params?: QueueParams & { paginate?: PaginationOptions }): Promise<Paginated<any>>
-	async $find(params?: QueueParams & { paginate: false }): Promise<any[]>
-	async $find(params: QueueParams = {} as QueueParams): Promise<Paginated<any> | any[]> {
+	async $find(params?: QueueParams & {paginate?: PaginationOptions}): Promise<Paginated<any>>
+	async $find(params?: QueueParams & {paginate: false}): Promise<any[]>
+	async $find(params: QueueParams = {} as QueueParams): Promise<any[] | Paginated<any>> {
 		let types = []
 		if (params?.query?.status) {
 			types = arrayWrap(params.query.status)
 			delete params.query.status
 		}
-		if (types.includes('waiting')) types.push('paused')
+		if (types.includes('waiting')) {
+			types.push('paused')
+		}
 		let start = params?.query?.$skip || 0
 		const end = params?.query?.$limit || -1
 		const asc = String(params?.query?.$sort).toLowerCase() === 'asc'
@@ -300,7 +323,9 @@ export class QueueAdapter extends AdapterBase {
 			let fetched_job_ids = await this.queue.getRanges(types, start, end, asc)
 
 			// if no jobs, break
-			if (fetched_job_ids.length === 0) break
+			if (fetched_job_ids.length === 0) {
+				break
+			}
 
 			// filter out jobs that have already been fetched
 			fetched_job_ids = fetched_job_ids.filter(job_id => !job_ids.includes(job_id))
@@ -319,13 +344,15 @@ export class QueueAdapter extends AdapterBase {
 			start += fetched_job_ids.length
 
 			// if end is reached, break
-			if (end === -1 || jobs.length >= end) break
+			if (end === -1 || jobs.length >= end) {
+				break
+			}
 		}
 
 		return filterResults(jobs, params, this.options)
 	}
 
-	async $get(id: JobId, params?: QueueParams): Promise<any | BullJob> {
+	async $get(id: JobId, params?: QueueParams): Promise<BullJob | any> {
 		const job: BullJob = await this.queue.getJob(id as string)
 		if (job) {
 			job.status = await job.getState()
@@ -337,15 +364,16 @@ export class QueueAdapter extends AdapterBase {
 			return jobToPayload(job)
 		} else if (params.asTask === false) {
 			return job
-		} else {
-			return this.asModel(job)
 		}
+		return this.asModel(job)
 	}
 
 	async $update(id: JobId, data: Partial<BullJob>, params: QueueParams = {} as QueueParams): Promise<any> {
 		const {payload, options} = this.prepParams(data, params, id)
 		const job = await this.queue.getJob(id)
-		if (!job) throw new Unprocessable(`Job not found`, {id})
+		if (!job) {
+			throw new Unprocessable(`Job not found`, {id})
+		}
 
 		if (payload.data) {
 			await job.update(payload.data)
@@ -357,9 +385,9 @@ export class QueueAdapter extends AdapterBase {
 		return this.asModel(job, options)
 	}
 
-	async $patch(id: null, data: Partial<BullJob>, params?: QueueParams): Promise<any[]>;
-	async $patch(id: JobId, data: Partial<BullJob>, params?: QueueParams): Promise<any>;
-	async $patch(id: NullableJobId, data: Partial<BullJob>, params?: QueueParams): Promise<any>;
+	async $patch(id: null, data: Partial<BullJob>, params?: QueueParams): Promise<any[]>
+	async $patch(id: JobId, data: Partial<BullJob>, params?: QueueParams): Promise<any>
+	async $patch(id: NullableJobId, data: Partial<BullJob>, params?: QueueParams): Promise<any>
 	async $patch(id: NullableJobId, data: Partial<BullJob>, params?: QueueParams): Promise<any[] | any> {
 		const patchEntry = async entry => this.$update(entry[this.id], entry, params)
 
@@ -370,9 +398,9 @@ export class QueueAdapter extends AdapterBase {
 		return patchEntry(data)
 	}
 
-	async $remove(id: null, params?: QueueParams): Promise<BullJob[]>;
-	async $remove(id: JobId, params?: QueueParams): Promise<BullJob>;
-	async $remove(id: NullableJobId, params?: QueueParams): Promise<BullJob>;
+	async $remove(id: null, params?: QueueParams): Promise<BullJob[]>
+	async $remove(id: JobId, params?: QueueParams): Promise<BullJob>
+	async $remove(id: NullableJobId, params?: QueueParams): Promise<BullJob>
 	async $remove(id: NullableJobId, params?: QueueParams): Promise<BullJob | BullJob[]> {
 		if (id === null) {
 			const entries = await this.getEntries(params)

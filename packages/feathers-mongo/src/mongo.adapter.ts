@@ -1,17 +1,17 @@
+import {AdapterParams as Params} from '@feathersjs/adapter-commons'
 import {BadRequest, MethodNotAllowed, NotFound, Unavailable, Unprocessable} from '@feathersjs/errors'
 import {Application, NullableId} from '@feathersjs/feathers'
+import {MongoDBAdapterOptions, MongoDBService} from '@feathersjs/mongodb'
 import {Model} from '@snickbit/feathers-model'
 import {Out} from '@snickbit/out'
 import {isArray, isObject, objectHasMethod, objectOnly} from '@snickbit/utilities'
-import {MongoDBAdapterOptions, MongoDBService} from '@feathersjs/mongodb'
 import {AggregateOptions, Collection, Db, IndexSpecification, ObjectId} from 'mongodb'
-import client from './client'
 import {transformSearchFieldsInQuery} from './fuzzy'
-import {AdapterParams as Params} from '@feathersjs/adapter-commons'
+import client from './client'
 
 export interface IndexDefinition {
-	keys: IndexSpecification;
-	options?: any;
+	keys: IndexSpecification
+	options?: any
 }
 
 export interface MongoServiceOptions extends MongoDBAdapterOptions {
@@ -22,13 +22,13 @@ export interface MongoServiceOptions extends MongoDBAdapterOptions {
 	cache?: boolean
 	disableObjectify?: boolean
 	softDelete?: boolean
-	timestamps?: boolean | TimestampsOptions
+	timestamps?: TimestampsOptions | boolean
 }
 
 export type ServiceOptions = Partial<MongoServiceOptions>
 
 export interface AdapterParams extends Params {
-	timestamps?: boolean | TimestampsOptions
+	timestamps?: TimestampsOptions | boolean
 	cache?: boolean
 }
 
@@ -39,28 +39,33 @@ export interface TimestampsOptions {
 }
 
 export type SearchOptions = {
-	escape?: boolean;
-	fieldsNotEscaped?: string[];
-	fields?: string[];
-	excludedFields?: string[];
-};
+	escape?: boolean
+	fieldsNotEscaped?: string[]
+	fields?: string[]
+	excludedFields?: string[]
+}
 
 export interface Timestamps {
-	created: string | boolean;
-	updated: string | boolean;
-	deleted?: string | boolean;
+	created: boolean | string
+	updated: boolean | string
+	deleted?: boolean | string
 }
 
 export default class MongoAdapter extends MongoDBService {
 	declare options: MongoServiceOptions
 
 	client: any
+
 	asModel: any
+
 	Cache: any
+
 	out: Out
 
 	constructor(options: ServiceOptions, app: Application) {
-		if (!options.collection) throw new Error('MongoService: options.collection is required')
+		if (!options.collection) {
+			throw new Error('MongoService: options.collection is required')
+		}
 
 		const configOptions = app.get('mongodb')?.options || {}
 		options = {
@@ -70,7 +75,22 @@ export default class MongoAdapter extends MongoDBService {
 			cache: false,
 			softDelete: false,
 			timestamps: false,
-			whitelist: ['$text', '$search', '$aggregate', '$group', '$match', '$project', '$cache', '$exists', '$withDeleted', '$onlyDeleted', '$language', '$caseSensitive', '$diacriticSensitive', '$regex'],
+			whitelist: [
+				'$text',
+				'$search',
+				'$aggregate',
+				'$group',
+				'$match',
+				'$project',
+				'$cache',
+				'$exists',
+				'$withDeleted',
+				'$onlyDeleted',
+				'$language',
+				'$caseSensitive',
+				'$diacriticSensitive',
+				'$regex'
+			],
 			indexes: [],
 			search: {
 				escape: true,
@@ -82,7 +102,16 @@ export default class MongoAdapter extends MongoDBService {
 			...options
 		}
 
-		const mongodbOptions = objectOnly(options, ['events', 'multi', 'id', 'paginate', 'whitelist', 'filters', 'Model', 'disableObjectify'])
+		const mongodbOptions = objectOnly(options, [
+			'events',
+			'multi',
+			'id',
+			'paginate',
+			'whitelist',
+			'filters',
+			'Model',
+			'disableObjectify'
+		])
 		super(mongodbOptions as MongoDBAdapterOptions)
 
 		this.options = options as MongoServiceOptions
@@ -122,7 +151,7 @@ export default class MongoAdapter extends MongoDBService {
 		return this.parseTimestamp(this.options.timestamps)
 	}
 
-	private parseTimestamp(timestampOptions: boolean | TimestampsOptions): TimestampsOptions {
+	private parseTimestamp(timestampOptions: TimestampsOptions | boolean): TimestampsOptions {
 		if (timestampOptions === true) {
 			const timestamps: TimestampsOptions = {
 				created: '_created',
@@ -137,12 +166,11 @@ export default class MongoAdapter extends MongoDBService {
 			return timestamps
 		} else if (timestampOptions) {
 			return this.options.timestamps as TimestampsOptions
-		} else {
-			return {
-				created: null,
-				updated: null,
-				deleted: null
-			}
+		}
+		return {
+			created: null,
+			updated: null,
+			deleted: null
 		}
 	}
 
@@ -205,7 +233,9 @@ export default class MongoAdapter extends MongoDBService {
 
 	async connected(): Promise<any> {
 		const connected = this.Model || await this.client
-		if (!connected) throw new Unavailable('MongoService: failed to connect to MongoDB failed')
+		if (!connected) {
+			throw new Unavailable('MongoService: failed to connect to MongoDB failed')
+		}
 	}
 
 	async getCached(params: AdapterParams, skipParamParse = false): Promise<any> {
@@ -215,9 +245,8 @@ export default class MongoAdapter extends MongoDBService {
 				const cache = await this.Cache.findOne({query: parsed, _created: {$gt: new Date(Date.now() - 1000 * 60 * 60)}})
 				if (cache) {
 					return cache.result
-				} else {
-					this.clearCached(params, skipParamParse).catch(err => this.out.error(err))
 				}
+				this.clearCached(params, skipParamParse).catch(err => this.out.error(err))
 			} catch (e) {
 				this.out.warn('MongoService: failed to get cache for query', parsed)
 			}
@@ -238,17 +267,23 @@ export default class MongoAdapter extends MongoDBService {
 	}
 
 	async destroy(id: NullableId, params: AdapterParams = {}): Promise<any> {
-		if (id === null && !this.allowsMulti('destroy')) return Promise.reject(new MethodNotAllowed(`Can not destroy multiple entries`))
+		if (id === null && !this.allowsMulti('destroy')) {
+			return Promise.reject(new MethodNotAllowed(`Can not destroy multiple entries`))
+		}
 		return this.$destroy(id, params)
 	}
 
 	async restore(id: NullableId, params: AdapterParams = {}): Promise<any> {
-		if (id === null && !this.allowsMulti('restore')) return Promise.reject(new MethodNotAllowed(`Can not restore multiple entries`))
+		if (id === null && !this.allowsMulti('restore')) {
+			return Promise.reject(new MethodNotAllowed(`Can not restore multiple entries`))
+		}
 		return this.$restore(id, params)
 	}
 
 	async getOrCreate(id: NullableId, data, params: AdapterParams = {}): Promise<any> {
-		if (id === null && !this.allowsMulti('patch')) return Promise.reject(new MethodNotAllowed(`Can not getOrCreate multiple entries`))
+		if (id === null && !this.allowsMulti('patch')) {
+			return Promise.reject(new MethodNotAllowed(`Can not getOrCreate multiple entries`))
+		}
 		return this.$getOrCreate(id, data, params)
 	}
 
@@ -266,7 +301,9 @@ export default class MongoAdapter extends MongoDBService {
 	}
 
 	async touch(id: NullableId, params: AdapterParams = {}): Promise<any> {
-		if (id === null && !this.allowsMulti('touch')) return Promise.reject(new MethodNotAllowed(`Can not touch multiple entries`))
+		if (id === null && !this.allowsMulti('touch')) {
+			return Promise.reject(new MethodNotAllowed(`Can not touch multiple entries`))
+		}
 		return this.$touch(id, params)
 	}
 
@@ -276,7 +313,9 @@ export default class MongoAdapter extends MongoDBService {
 
 		if (parsed.cache !== false) {
 			const cache = await this.getCached(params, true)
-			if (cache) return cache.result
+			if (cache) {
+				return cache.result
+			}
 		}
 
 		this.out.silly('MongoService: _find', parsed)
@@ -295,7 +334,9 @@ export default class MongoAdapter extends MongoDBService {
 	}
 
 	async $create(data, params: AdapterParams = {}) {
-		if (!data) throw new Unprocessable('No data provided')
+		if (!data) {
+			throw new Unprocessable('No data provided')
+		}
 		data = await this.prepareData(data, params)
 		params = this.parseParams(params)
 		return this.__save('$create', data, params)
@@ -318,17 +359,18 @@ export default class MongoAdapter extends MongoDBService {
 		params = this.parseParams(params)
 		if (this.options.softDelete && !params.query?.force && this.timestamps) {
 			return await this.$patch(id, {[this.timestamps.deleted as string]: new Date()}, params)
-		} else {
-			if (params.query?.force) {
-				delete params.query.force
-			}
-			return await super.$remove(id, params)
 		}
+		if (params.query?.force) {
+			delete params.query.force
+		}
+		return await super.$remove(id, params)
 	}
 
 	async $upsert(data, params: AdapterParams = {}): Promise<any> {
 		if (isArray(data)) {
-			if (!this.allowsMulti('patch')) return Promise.reject(new MethodNotAllowed(`Can not patch multiple entries`))
+			if (!this.allowsMulti('patch')) {
+				return Promise.reject(new MethodNotAllowed(`Can not patch multiple entries`))
+			}
 			return Promise.all(data.map(async item => await this.$upsert(item, params)))
 		}
 		data = await this.prepareData(data, params)
@@ -337,32 +379,30 @@ export default class MongoAdapter extends MongoDBService {
 		return this.$get(data[this.id], params).then(result => {
 			if (result) {
 				return this.$update(result[this.id], payload, params)
-			} else {
-				return this.$create(payload, params)
 			}
-		}).catch(err => {
-			if (err instanceof NotFound || err?.name === 'NotFound') {
-				return this.$create(payload, params)
-			} else {
+			return this.$create(payload, params)
+		})
+			.catch(err => {
+				if (err instanceof NotFound || err?.name === 'NotFound') {
+					return this.$create(payload, params)
+				}
 				this.out.verbose('MongoService: _upsert error is not an instance of NotFound', err)
 				throw err
-			}
-		})
+			})
 	}
 
 	async $destroy(id: NullableId, params: AdapterParams = {}): Promise<any> {
-		params.query = {...(params.query || {}), force: true, $withDeleted: true}
+		params.query = {...params.query || {}, force: true, $withDeleted: true}
 		return this.$remove(id, params)
 	}
 
 	async $restore(id: NullableId, params: AdapterParams = {}): Promise<any> {
-		params.query = {...(params.query || {}), $withDeleted: true}
+		params.query = {...params.query || {}, $withDeleted: true}
 		if (this.timestamps) {
 			const data = {$unset: {[this.timestamps.deleted as string]: 1}}
 			return this.$patch(id, data, params)
-		} else {
-			throw new Unprocessable(`Can not restore without timestamps`)
 		}
+		throw new Unprocessable(`Can not restore without timestamps`)
 	}
 
 	async $aggregate(pipeline, params: AggregateOptions = {}): Promise<any> {
@@ -388,7 +428,9 @@ export default class MongoAdapter extends MongoDBService {
 		} else {
 			result = await super.$get(id, parsed)
 		}
-		if (this.asModel) result = new this.asModel(result, {service: this})
+		if (this.asModel) {
+			result = new this.asModel(result, {service: this})
+		}
 		return result
 	}
 
@@ -398,10 +440,9 @@ export default class MongoAdapter extends MongoDBService {
 		} catch (e) {
 			if (e.code === 404) {
 				return await this.$create(data, params)
-			} else {
-				this.out.error({error: e.message, code: e.code})
-				throw e
 			}
+			this.out.error({error: e.message, code: e.code})
+			throw e
 		}
 	}
 
@@ -431,22 +472,17 @@ export default class MongoAdapter extends MongoDBService {
 		})
 	}
 
-
 	async _aggregate(pipeline, params: AggregateOptions = {}): Promise<any> {
 		return this.$aggregate(pipeline, params)
 	}
-
 
 	async _touch(id: NullableId, params?: AdapterParams): Promise<any> {
 		return this._patch(id, params)
 	}
 
-
 	async _getOrCreate(id: NullableId, data: any, params?: AdapterParams): Promise<any> {
 		if (id === null || Array.isArray(data)) {
-			throw new BadRequest(
-				'You can not replace multiple instances. Did you mean \'patch\'?'
-			)
+			throw new BadRequest('You can not replace multiple instances. Did you mean \'patch\'?')
 		}
 
 		const payload = await this.sanitizeData(data, params)
@@ -460,7 +496,9 @@ export default class MongoAdapter extends MongoDBService {
 
 	async __save(method: any, ...args: any[]): Promise<any> {
 		await this.connected()
-		if (!this.asModel) return super[method](...args)
+		if (!this.asModel) {
+			return super[method](...args)
+		}
 
 		let model
 		for (let [i, arg] of args.entries()) {

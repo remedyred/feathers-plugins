@@ -1,17 +1,17 @@
-import {MongoClient} from 'mongodb'
 import {Application} from '@snickbit/feathers-up'
+import {MongoClient} from 'mongodb'
 
 export interface MongoClientOptions {
 	uri?: string
 	database?: string
-	authSource?: string,
+	authSource?: string
 	auth?: {
 		username?: string
 		password?: string
 	}
 }
 
-export default async function (app: Application, config: MongoClientOptions | MongoClientOptions[]) {
+export default async function(app: Application, config: MongoClientOptions | MongoClientOptions[]) {
 	if (!app.get('mongoClient')) {
 		app.out.verbose('Connect to MongoDB database...')
 		if (Array.isArray(config)) {

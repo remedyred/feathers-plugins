@@ -1,10 +1,12 @@
 import {Application} from './definitions'
 
-export default function (app: Application) {
+export default function(app: Application) {
 	app.out.verbose('Configure Error handlers')
 	// Catch unhandled promise rejections
 	process.on('unhandledRejection', (reason, promise) => {
-		if (app.log) app.log.error('Unhandled Rejection: ', reason)
+		if (app.log) {
+			app.log.error('Unhandled Rejection: ', reason)
+		}
 
 		promise.then(response => {
 			app.log.error(response)
@@ -13,7 +15,9 @@ export default function (app: Application) {
 		})
 	})
 
-	process.on('uncaughtException', function (error) {
-		if (app.log) app.log.error('Unhandled Exception: ', error)
+	process.on('uncaughtException', error => {
+		if (app.log) {
+			app.log.error('Unhandled Exception: ', error)
+		}
 	})
 }

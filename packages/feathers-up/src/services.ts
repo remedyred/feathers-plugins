@@ -2,7 +2,7 @@ import {isObject} from '@snickbit/utilities'
 import {useSetup} from './config'
 import {Application} from './definitions'
 
-export default function (app: Application){
+export default function(app: Application) {
 	const services = useSetup('services')
 	if (services) {
 		app.out.verbose('Set up services')
@@ -19,7 +19,7 @@ export default function (app: Application){
 				try {
 					app.configure(services[service])
 				} catch (e) {
-					app.out.error('Error configuring service ' + service, e)
+					app.out.error(`Error configuring service ${service}`, e)
 				}
 			}
 		} else {

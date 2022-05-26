@@ -1,15 +1,23 @@
 import {AdapterParams, AdapterServiceOptions, filterQuery, select, sorter} from '@feathersjs/adapter-commons'
 import {_} from '@feathersjs/commons'
 import {NotImplemented} from '@feathersjs/errors'
+import {Params} from '@feathersjs/feathers'
 import {out} from '@snickbit/out'
 import {isJSONString, JSONParse, objectCopy} from '@snickbit/utilities'
 import sift from 'sift'
-import {Params} from '@feathersjs/feathers'
+
+export interface Sort {
+	[key: string]: any
+}
+
+export interface Sorter {
+	(sort: Sort): (a: any, b: any) => number
+}
 
 export interface QueryOptions extends Partial<AdapterServiceOptions> {
 	operators?: string[]
-	sorter?: (a: any, b: any) => number
-	matcher?: (value: any) => boolean
+	sorter?: Sorter
+	matcher?: (value: any) => any
 }
 
 export function parseResponseError(e: any): any {
@@ -47,8 +55,12 @@ export function parseResponseError(e: any): any {
 }
 
 export function parseResponse(response: any): any {
-	if (!response) return response
-	if (!response.data) return response
+	if (!response) {
+		return response
+	}
+	if (!response.data) {
+		return response
+	}
 	response.data = isJSONString(response.data) ? JSONParse(response.data) : response.data
 	if (Array.isArray(response.data) && response.data.length === 1) {
 		response.data = response.data.pop()
@@ -104,16 +116,22 @@ export interface Results {
 	data: any[]
 }
 
-export function filterResults(data: any, params?: Params, options?: QueryOptions): Results | any[] {
-	const {query, filters, paginate} = filterParams(params, options)
-	const {matcher, sorter} = getMatcherSorter(options)
+export function filterResults(data: any, params?: Params, options?: QueryOptions): any[] | Results {
+	const {
+		query,
+		filters,
+		paginate
+	} = filterParams(params, options)
+	const {
+		matcher,
+		sorter
+	} = getMatcherSorter(options)
 
-	// @ts-ignore
-	let values = _.values(data).filter(matcher(query))
+	let values = _.values(data)
+		.filter(matcher(query))
 	const total = values.length
 
 	if (filters.$sort !== undefined) {
-		// @ts-ignore
 		values.sort(sorter(filters.$sort))
 	}
 

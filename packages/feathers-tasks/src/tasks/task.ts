@@ -22,8 +22,11 @@ export interface TaskProgress {
 
 export class Task extends Model {
 	looping = false
+
 	queue: string
+
 	declare options: TaskOptions
+
 	private _job?: Job
 
 	constructor(job, options: TaskOptions = {}) {
@@ -39,9 +42,7 @@ export class Task extends Model {
 		}
 
 		const schema: ModelSchema = {
-			title: {
-				type: 'string'
-			},
+			title: {type: 'string'},
 			payload: {
 				type: ['object', 'array'],
 				default: {}
@@ -54,15 +55,9 @@ export class Task extends Model {
 				type: 'array',
 				default: []
 			},
-			stage: {
-				type: 'string'
-			},
-			status: {
-				type: 'string'
-			},
-			_user: {
-				type: 'string'
-			},
+			stage: {type: 'string'},
+			status: {type: 'string'},
+			_user: {type: 'string'},
 			_created: {
 				type: 'date',
 				default: new Date()
@@ -81,7 +76,7 @@ export class Task extends Model {
 			strict: true,
 			schema,
 			service,
-			...(options || {})
+			...options || {}
 		}
 
 		options.disableCommit = !!options?.synchronous
@@ -116,7 +111,9 @@ export class Task extends Model {
 
 	private getProgress(): TaskProgress {
 		let progress = this.get('.progress')
-		if (progress) return progress
+		if (progress) {
+			return progress
+		}
 
 		return {
 			current: 0,
@@ -135,8 +132,11 @@ export class Task extends Model {
 		this.out.log(...args)
 		if (this.options.logs) {
 			this.job().then(job => {
-				if (job) job.log(JSON.stringify(args)).catch(err => out.error(err))
-			}).catch(e => this.out.error('Error logging to job', e))
+				if (job) {
+					job.log(JSON.stringify(args)).catch(err => out.error(err))
+				}
+			})
+				.catch(e => this.out.error('Error logging to job', e))
 		}
 	}
 
@@ -187,7 +187,6 @@ export class Task extends Model {
 		return this._job
 	}
 
-
 	async tick(amount = 1) {
 		let progress = this.getProgress()
 		let current = (progress.current || 0) + amount
@@ -198,7 +197,7 @@ export class Task extends Model {
 			const deltaTimestamp = 0.001 * (timestamp - progress.lastTick)
 			const currentRate = deltaProgress / deltaTimestamp
 
-			progress.rate = !progress.rate ? currentRate : progress.rate + (deltaTimestamp / (deltaTimestamp + 2.5)) * (currentRate - progress.rate)
+			progress.rate = !progress.rate ? currentRate : progress.rate + deltaTimestamp / (deltaTimestamp + 2.5) * (currentRate - progress.rate)
 		}
 
 		if (progress.current >= progress.total) {
@@ -217,7 +216,8 @@ export class Task extends Model {
 	}
 
 	async start(stage, total = null) {
-		return this.set('stage', stage).set('.progress.total', total).save()
+		return this.set('stage', stage).set('.progress.total', total)
+			.save()
 	}
 
 	async stop(stage = 'finished', message?: any) {
@@ -231,7 +231,8 @@ export class Task extends Model {
 		if (message) {
 			this.set('.message', message)
 		}
-		return this.set('.progress', progress).set('stage', stage).save()
+		return this.set('.progress', progress).set('stage', stage)
+			.save()
 	}
 
 	async finish(returnValue?: any) {

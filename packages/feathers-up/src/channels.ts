@@ -1,7 +1,7 @@
 import {useSetup} from './config'
 import {Application} from './definitions'
 
-export default function (app: Application) {
+export default function(app: Application) {
 	const channels = useSetup('channels')
 	if (channels) {
 		app.out.verbose('Set up event channels')

@@ -1,6 +1,6 @@
 import {useSetup} from './config'
-import * as Sentry from '@sentry/node'
 import {Application} from './definitions'
+import * as Sentry from '@sentry/node'
 
 export function sentryInit(app: Application) {
 	const sentry = useSetup('sentry')

@@ -1,13 +1,13 @@
-import {ZlibOptions} from 'zlib'
 import {Application as ExpressApplication, RestOptions} from '@feathersjs/express'
+import {Out} from '@snickbit/out'
+import {OptionsJson, OptionsUrlencoded} from 'body-parser'
+import {CorsOptions} from 'cors'
+import {RequestHandler} from 'express'
 import {HelmetOptions} from 'helmet'
 import {ServerOptions} from 'socket.io'
+import {ZlibOptions} from 'zlib'
 import {ProxyLogger} from './logger'
-import {CorsOptions} from 'cors'
-import {OptionsJson, OptionsUrlencoded} from 'body-parser'
-import {RequestHandler} from 'express'
 import Logger from '@snickbit/feathers-logger'
-import {Out} from '@snickbit/out'
 
 export interface CompressOptions extends ZlibOptions {
 	filter?: () => boolean
@@ -17,19 +17,19 @@ export interface CompressOptions extends ZlibOptions {
 export interface AppSetupExpress {
 	json?: OptionsJson
 	urlencoded?: OptionsUrlencoded
-	rest?: RestOptions | RequestHandler
+	rest?: RequestHandler | RestOptions
 	express?: {
 		notFound: {
 			verbose: boolean
 		}
 	}
 	errorHandler: {
-		html: boolean,
+		html: boolean
 		logger: Out
 	}
 }
 
-type AnyFunction = ((...args: any[]) => Promise<any> | any) | { default: AnyFunction }
+type AnyFunction = ((...args: any[]) => Promise<any> | any) | {default: AnyFunction}
 
 type AppServiceResult = AnyFunction | Record<string, AnyFunction>
 
@@ -51,29 +51,29 @@ export interface AppSetup {
 }
 
 export type AppSetupPaths = {
-	root?: string;
-	storage?: string;
-	uploads?: string;
-	temp?: string;
-};
+	root?: string
+	storage?: string
+	uploads?: string
+	temp?: string
+}
 
 export interface FeathersUpOverrides {
-	out: Out;
-	log: typeof Logger;
-	error: typeof Logger;
+	out: Out
+	log: typeof Logger
+	error: typeof Logger
 }
 
 export interface Application extends ExpressApplication {
-	out: Out;
-	log: typeof Logger | ProxyLogger;
-	error: typeof Logger;
+	out: Out
+	log: ProxyLogger | typeof Logger
+	error: typeof Logger
 }
 
 export interface FeathersUpOptions {
-	verbosity?: number;
+	verbosity?: number
 }
 
-export type DatabaseLoader = (app: Application, config: any | any[]) => Promise<any>
+export type DatabaseLoader = (app: Application, config: any[] | any) => Promise<any>
 
 export interface DatabaseDefinition {
 	config?: any

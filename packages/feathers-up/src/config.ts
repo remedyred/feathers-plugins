@@ -1,6 +1,6 @@
 import {Model} from '@snickbit/model'
-import configuration from '@feathersjs/configuration'
 import {Application, AppSetup, DatabaseDefinitions} from './definitions'
+import configuration from '@feathersjs/configuration'
 
 let $setup: Model
 let $app: Application
@@ -16,8 +16,12 @@ export function initialize(app: Application, setup: AppSetup | Model = {}) {
 }
 
 export function useConfig(key: string, fallback = undefined) {
-	if ($setup.has(key)) return $setup.get(key)
-	if ($app.get(key) !== undefined) return $app.get(key)
+	if ($setup.has(key)) {
+		return $setup.get(key)
+	}
+	if ($app.get(key) !== undefined) {
+		return $app.get(key)
+	}
 	return fallback
 }
 

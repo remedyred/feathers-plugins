@@ -1,19 +1,19 @@
 import {Out} from '@snickbit/out'
 import {objectCopy, overloadOptions} from '@snickbit/utilities'
-import axios from 'axios'
 import {isBrowser, isNode} from 'browser-or-node'
+import axios from 'axios'
 
 export type LoggerOptions = Partial<LoggerConfig>
 
 export interface LoggerConfig {
-	endpoint: string;
-	service: any;
-	auth: import('axios').AxiosBasicCredentials;
-	immediate: boolean;
-	global: boolean;
-	out: import('@snickbit/out').Out | null;
-	defaultLevel: 'log' | 'info' | 'warn' | 'error' | 'fatal';
-	headers?: { [key: string]: string };
+	endpoint: string
+	service: any
+	auth: import('axios').AxiosBasicCredentials
+	immediate: boolean
+	global: boolean
+	out: import('@snickbit/out').Out | null
+	defaultLevel: 'error' | 'fatal' | 'info' | 'log' | 'warn'
+	headers?: Record<string, string>
 }
 
 interface ParsedLoggerOptions {
@@ -22,39 +22,37 @@ interface ParsedLoggerOptions {
 	options?: LoggerOptions
 }
 
-export type LoggerContext = {
-	[key: string]: any;
-};
+export type LoggerContext = Record<string, any>
 
 export interface LoggerPayload {
-	_id?: any;
-	channel: string,
-	context: any,
+	_id?: any
+	channel: string
+	context: any
 	messages: any[]
 }
 
 export class Logger {
 	#out: Out
+
 	options: LoggerOptions = {
 		auth: null,
 		out: null
 	}
+
 	payload: LoggerPayload = {
 		channel: 'default',
 		context: null,
 		messages: []
 	}
+
 	sent_messages = 0
+
 	request = null
 
-	constructor(options?: LoggerOptions, context?: LoggerContext);
-	constructor(channel?: string, options?: LoggerOptions, context?: LoggerContext);
+	constructor(options?: LoggerOptions, context?: LoggerContext)
+	constructor(channel?: string, options?: LoggerOptions, context?: LoggerContext)
 	constructor(...args) {
-		const {channel, options, context} = this.#parseLoggerArgs(args, [
-			{channel: 'string', options: 'object', context: 'object'},
-			{options: 'object', context: 'object'},
-			{options: 'object'}
-		])
+		const {channel, options, context} = this.#parseLoggerArgs(args, [{channel: 'string', options: 'object', context: 'object'}, {options: 'object', context: 'object'}, {options: 'object'}])
 
 		this.#out = new Out('logger')
 
@@ -81,12 +79,12 @@ export class Logger {
 			immediate: true,
 			global: false,
 			defaultLevel: 'log',
-			...(options || {})
+			...options || {}
 		}
 
 		context = {
 			...this.payload.context,
-			...(context || {})
+			...context || {}
 		}
 		return {
 			channel,
@@ -104,8 +102,8 @@ export class Logger {
 		return this
 	}
 
-	clone(context?: LoggerContext, config?: LoggerOptions): Logger;
-	clone(channel?: string, context?: LoggerContext, config?: LoggerOptions): Logger;
+	clone(context?: LoggerContext, config?: LoggerOptions): Logger
+	clone(channel?: string, context?: LoggerContext, config?: LoggerOptions): Logger
 	clone(...args) {
 		const {channel, options, context} = this.#parseLoggerArgs(args, [
 			{channel: 'string', context: 'object', options: 'object'},
@@ -245,15 +243,15 @@ export class Logger {
 			const config = {
 				headers: {
 					'Content-Type': 'application/json',
-					...(this.options?.headers || {})
+					...this.options?.headers || {}
 				},
 				auth: this.options?.auth
 			}
-			this.#out.debug('Sending Logger data to endpoint', this.logs.length + ' logs', this.options.endpoint)
+			this.#out.debug('Sending Logger data to endpoint', `${this.logs.length} logs`, this.options.endpoint)
 			this.request = axios.post(this.options.endpoint, payload, config)
 		} else {
 			const service = this.options?.service
-			this.#out.debug('Sending Logger data to service', this.logs.length + ' logs')
+			this.#out.debug('Sending Logger data to service', `${this.logs.length} logs`)
 
 			if (payload?._id) {
 				this.request = service.patch(payload._id, payload)
@@ -263,16 +261,16 @@ export class Logger {
 		}
 
 		return this.request
-		.then(response => {
-			if (!this.options.global) {
-				this.#out.debug('Saving response')
-				this.payload._id = response?._id || response?.data?._id
-				this.#out.debug('Updating sent messages', {current: this.sent_messages, plus: sending_messages, total: this.sent_messages + sending_messages})
-				this.sent_messages += sending_messages
-			}
-			return response
-		})
-		.catch(err => this.#out.error('Error sending Logger data', err))
+			.then(response => {
+				if (!this.options.global) {
+					this.#out.debug('Saving response')
+					this.payload._id = response?._id || response?.data?._id
+					this.#out.debug('Updating sent messages', {current: this.sent_messages, plus: sending_messages, total: this.sent_messages + sending_messages})
+					this.sent_messages += sending_messages
+				}
+				return response
+			})
+			.catch(err => this.#out.error('Error sending Logger data', err))
 	}
 }
 
@@ -294,7 +292,7 @@ function getDefaultBrowserContext() {
 	if (!_defaultContext) {
 		const {browser, version} = navigator?.userAgent.match(/(?<browser>MSIE|(?!Gecko.+)Firefox|(?!AppleWebKit.+Chrome.+)Safari|(?!AppleWebKit.+)Chrome|AppleWebKit(?!.+Chrome|.+Safari)|Gecko(?!.+Firefox))[ /](?<version>[\d.apre]+)/i)?.groups || {}
 		_defaultContext = {
-			'runtime': 'browser',
+			runtime: 'browser',
 			browser,
 			browser_version: version,
 			platform: navigator.platform,
@@ -310,9 +308,9 @@ function getDefaultBrowserContext() {
 function getDefaultNodeContext() {
 	if (!_defaultContext) {
 		_defaultContext = {
-			'runtime': 'node',
-			'env': process.env.NODE_ENV || 'development',
-			'cwd': process.cwd(),
+			runtime: 'node',
+			env: process.env.NODE_ENV || 'development',
+			cwd: process.cwd(),
 			pid: process.pid
 		}
 	}

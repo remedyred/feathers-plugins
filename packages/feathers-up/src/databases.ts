@@ -1,8 +1,8 @@
+import {isEmpty} from '@snickbit/utilities'
 import {useConfig} from './config'
 import {Application, DatabaseDefinitions} from './definitions'
-import {isEmpty} from '@snickbit/utilities'
 
-export default async function (app: Application) {
+export default async function(app: Application) {
 	const databases = useConfig('databases') as DatabaseDefinitions
 	if (!isEmpty(databases)) {
 		app.out.verbose('Set up databases')

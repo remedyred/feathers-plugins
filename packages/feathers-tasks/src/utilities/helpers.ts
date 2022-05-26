@@ -1,16 +1,16 @@
-import {TaskItem} from '../tasks/task.item'
-import {objectExcept} from '@snickbit/utilities'
-import path from 'path'
 import {fileExists, ImportRecords, parseImports, RecordOfImportRecords} from '@snickbit/node-utilities'
-import {_out, Application, defaultWatcherConfig, defaultWorkerConfig, state, TasksConfig, WatcherConfig, WorkerConfig} from './config'
+import {objectExcept} from '@snickbit/utilities'
 import {ConnectionOptions} from 'bullmq/dist/esm/interfaces/redis-options'
 import {FeathersQueueService} from '../queue/queue.adapter'
+import {TaskItem} from '../tasks/task.item'
+import {_out, Application, defaultWatcherConfig, defaultWorkerConfig, state, TasksConfig, WatcherConfig, WorkerConfig} from './config'
+import path from 'path'
 
 export function makeTaskItem(value, self, options = {}) {
 	return value instanceof TaskItem ? value : new TaskItem(value, self, options)
 }
 
-export function booleanConfig(value: boolean | any, defaultValue: any): any {
+export function booleanConfig(value: any | boolean, defaultValue: any): any {
 	if (value === false) {
 		return {
 			...defaultValue,
@@ -21,9 +21,8 @@ export function booleanConfig(value: boolean | any, defaultValue: any): any {
 			...defaultValue,
 			enabled: true
 		}
-	} else {
-		return {...value}
 	}
+	return {...value}
 }
 
 export function setConnection(connection: ConnectionOptions) {
@@ -59,9 +58,13 @@ export function getApp(): Application {
 }
 
 export function getTasksDir(tasks: string): string {
-	if (!tasks) return null
+	if (!tasks) {
+		return null
+	}
 	let base = path.dirname(tasks)
-	if (base === '.') base = process.cwd()
+	if (base === '.') {
+		base = process.cwd()
+	}
 	let dir = path.isAbsolute(tasks) ? tasks : path.join(base, tasks)
 	tasks = path.basename(tasks)
 	if (!fileExists(dir)) {
@@ -75,14 +78,13 @@ export function getTasksDir(tasks: string): string {
 	}
 	if (!fileExists(dir)) {
 		return null
-	} else {
-		return dir
 	}
+	return dir
 }
 
-export async function setTaskStore(tasks: ImportRecords): Promise<void>;
-export async function setTaskStore(tasks: RecordOfImportRecords): Promise<void>;
-export async function setTaskStore(directory: string): Promise<void>;
+export async function setTaskStore(tasks: ImportRecords): Promise<void>
+export async function setTaskStore(tasks: RecordOfImportRecords): Promise<void>
+export async function setTaskStore(directory: string): Promise<void>
 export async function setTaskStore(tasksOrDirectory: ImportRecords | RecordOfImportRecords | string): Promise<void> {
 	let tasks: ImportRecords | RecordOfImportRecords
 

@@ -1,18 +1,32 @@
-import {useConfig} from './config'
-import path from 'path'
 import {findUp} from '@snickbit/node-utilities'
+import {useConfig} from './config'
 import {Application} from './definitions'
+import path from 'path'
 
-export default function (app: Application) {
+export default function(app: Application) {
 	// Check path configuration
 	let paths = useConfig('paths', {})
-	if (!paths.root) paths.root = path.dirname(findUp('package.json', {cwd: process.cwd()}) || '.')
-	if (!paths.storage) paths.storage = path.resolve(path.join(paths.root, '..', 'storage'))
-	if (!paths.uploads) paths.uploads = path.join(paths.storage, 'uploads')
-	if (!paths.logs) paths.logs = path.join(paths.storage, 'logs')
-	if (!paths.temp) paths.temp = path.join(paths.storage, 'temp')
-	if (!paths.templates) paths.templates = path.join(paths.root, 'templates')
-	if (!paths.public) paths.public = path.join(paths.root, 'public')
+	if (!paths.root) {
+		paths.root = path.dirname(findUp('package.json', {cwd: process.cwd()}) || '.')
+	}
+	if (!paths.storage) {
+		paths.storage = path.resolve(path.join(paths.root, '..', 'storage'))
+	}
+	if (!paths.uploads) {
+		paths.uploads = path.join(paths.storage, 'uploads')
+	}
+	if (!paths.logs) {
+		paths.logs = path.join(paths.storage, 'logs')
+	}
+	if (!paths.temp) {
+		paths.temp = path.join(paths.storage, 'temp')
+	}
+	if (!paths.templates) {
+		paths.templates = path.join(paths.root, 'templates')
+	}
+	if (!paths.public) {
+		paths.public = path.join(paths.root, 'public')
+	}
 	app.set('paths', paths)
 
 	// Load package.json info

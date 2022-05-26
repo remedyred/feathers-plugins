@@ -1,8 +1,8 @@
 import {AdapterBase, AdapterParams, AdapterServiceOptions, filterQuery, PaginationOptions} from '@feathersjs/adapter-commons'
+import {Application, Id, NullableId, Paginated} from '@feathersjs/feathers'
 import {parseResponse, parseResponseError} from '@snickbit/feathers-helpers'
 import {out} from '@snickbit/out'
 import axios, {AxiosInstance, AxiosRequestConfig, AxiosRequestHeaders, Method} from 'axios'
-import {Application, Id, NullableId, Paginated} from '@feathersjs/feathers'
 
 export interface RestServiceOptions extends AdapterServiceOptions, AxiosRequestConfig {
 	baseURL?: string
@@ -17,14 +17,16 @@ export interface RestServiceRequestConfig extends AxiosRequestConfig {
 
 export default class RestAdapter<T = any, D = Partial<T>, O extends RestServiceOptions = RestServiceOptions> extends AdapterBase {
 	url_path: string
+
 	client: AxiosInstance
+
 	declare options: O
 
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	constructor(options: O, app: Application) {
 		options = {
 			headers: {
-				'Accept': 'application/json',
+				Accept: 'application/json',
 				'Content-Type': 'application/json'
 			},
 			multi: true,
@@ -83,8 +85,8 @@ export default class RestAdapter<T = any, D = Partial<T>, O extends RestServiceO
 		return response
 	}
 
-	async $find(params?: AdapterParams & { paginate?: PaginationOptions }): Promise<Paginated<T>>
-	async $find(params?: AdapterParams & { paginate: false }): Promise<T[]>
+	async $find(params?: AdapterParams & {paginate?: PaginationOptions}): Promise<Paginated<T>>
+	async $find(params?: AdapterParams & {paginate: false}): Promise<T[]>
 	async $find(params: AdapterParams = {} as AdapterParams): Promise<Paginated<T> | T[]> {
 		const {query} = filterQuery(params)
 		const {data} = await this.client.get(this.pullPath(), {params: query})
@@ -97,19 +99,19 @@ export default class RestAdapter<T = any, D = Partial<T>, O extends RestServiceO
 		return data
 	}
 
-	async $patch(id: null, data: D, params?: AdapterParams): Promise<T[]>;
-	async $patch(id: Id, data: D, params?: AdapterParams): Promise<T>;
-	async $patch(id: NullableId, data: D, params?: AdapterParams): Promise<T>;
-	async $patch(id: NullableId, data: D, params?: AdapterParams): Promise<T[] | T> {
+	async $patch(id: null, data: D, params?: AdapterParams): Promise<T[]>
+	async $patch(id: Id, data: D, params?: AdapterParams): Promise<T>
+	async $patch(id: NullableId, data: D, params?: AdapterParams): Promise<T>
+	async $patch(id: NullableId, data: D, params?: AdapterParams): Promise<T | T[]> {
 		const {query} = filterQuery(params)
 		const {data: response} = await this.client.patch(`${this.pullPath()}/${id}`, data, {params: query})
 		return response
 	}
 
-	async $remove(id: null, params?: AdapterParams): Promise<T[]>;
-	async $remove(id: Id, params?: AdapterParams): Promise<T>;
-	async $remove(id: NullableId, params?: AdapterParams): Promise<T>;
-	async $remove(id: NullableId, params?: AdapterParams): Promise<T[] | T> {
+	async $remove(id: null, params?: AdapterParams): Promise<T[]>
+	async $remove(id: Id, params?: AdapterParams): Promise<T>
+	async $remove(id: NullableId, params?: AdapterParams): Promise<T>
+	async $remove(id: NullableId, params?: AdapterParams): Promise<T | T[]> {
 		const {query} = filterQuery(params)
 		const {data} = await this.client.delete(`${this.pullPath()}/${id}`, {params: query})
 		return data

@@ -1,8 +1,8 @@
-import multer, {Multer} from 'multer'
-import {isArray} from '@snickbit/utilities'
-import {Out} from '@snickbit/out'
-import {RequestHandler} from 'express'
 import {NextFunction} from '@feathersjs/feathers'
+import {Out} from '@snickbit/out'
+import {isArray} from '@snickbit/utilities'
+import {RequestHandler} from 'express'
+import multer, {Multer} from 'multer'
 
 export type UploadOptions = multer.Options
 
@@ -16,6 +16,7 @@ export type UploadMiddleware = [RequestHandler, Uploader['moveToFeathers']]
 
 class Uploader {
 	out = new Out('uploader')
+
 	multer: Multer
 
 	constructor(options) {
@@ -24,11 +25,12 @@ class Uploader {
 
 	moveToFeathers(req: UploadRequest, res: Response, next: NextFunction) {
 		if (req?.feathers && ['POST', 'PUT'].includes(req.method) && req.files) {
-
 			const files = {}
 
 			const addFile = file => {
-				if (!file) return
+				if (!file) {
+					return
+				}
 				if (isArray(file)) {
 					return file.forEach(f => addFile(f))
 				}
@@ -62,38 +64,23 @@ class Uploader {
 	 * @returns {UploadMiddleware}
 	 */
 	single(fieldName: string): UploadMiddleware {
-		return [
-			this.multer.single(fieldName),
-			this.moveToFeathers.bind(this)
-		]
+		return [this.multer.single(fieldName), this.moveToFeathers.bind(this)]
 	}
 
 	array(fieldName: string, maxCount?: number): UploadMiddleware {
-		return [
-			this.multer.array(fieldName, maxCount),
-			this.moveToFeathers.bind(this)
-		]
+		return [this.multer.array(fieldName, maxCount), this.moveToFeathers.bind(this)]
 	}
 
 	fields(fields: multer.Field[]): UploadMiddleware {
-		return [
-			this.multer.fields(fields),
-			this.moveToFeathers.bind(this)
-		]
+		return [this.multer.fields(fields), this.moveToFeathers.bind(this)]
 	}
 
 	any(): UploadMiddleware {
-		return [
-			this.multer.any(),
-			this.moveToFeathers.bind(this)
-		]
+		return [this.multer.any(), this.moveToFeathers.bind(this)]
 	}
 
 	none(): UploadMiddleware {
-		return [
-			this.multer.none(),
-			this.moveToFeathers.bind(this)
-		]
+		return [this.multer.none(), this.moveToFeathers.bind(this)]
 	}
 }
 

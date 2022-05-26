@@ -1,8 +1,8 @@
-import *  as  winston from 'winston'
-import DailyRotateFile from 'winston-daily-rotate-file'
 import {useConfig} from './config'
-import logs, {useLogger} from '@snickbit/feathers-logs'
 import {Application} from './definitions'
+import logs, {useLogger} from '@snickbit/feathers-logs'
+import * as winston from 'winston'
+import DailyRotateFile from 'winston-daily-rotate-file'
 
 export async function initLogger(app: Application) {
 	const config = useConfig('logs')
@@ -36,11 +36,7 @@ export async function initLogger(app: Application) {
 				maxFiles: '14d'
 			})
 
-			const dailyLogger = winston.createLogger({
-				transports: [
-					transport
-				]
-			})
+			const dailyLogger = winston.createLogger({transports: [transport]})
 
 			app.log.addLogger(dailyLogger)
 		} else {

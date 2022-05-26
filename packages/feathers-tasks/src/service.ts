@@ -1,10 +1,10 @@
+import {ServiceInterface} from '@feathersjs/feathers/src/declarations'
 import {objectMergeDeep} from '@snickbit/utilities'
-import Redis from 'ioredis'
+import {FeathersQueueService, QueueServiceOptions} from './queue/queue.adapter'
 import {_out, defaultConfig, state, WatcherConfig, WorkerConfig} from './utilities/config'
 import {getConfig, setApp, setConfig, setConnection, setTaskStore} from './utilities/helpers'
-import {ServiceInterface} from '@feathersjs/feathers/src/declarations'
+import Redis from 'ioredis'
 import QueueService from './queue/queue.service'
-import {FeathersQueueService, QueueServiceOptions} from './queue/queue.adapter'
 
 export async function service(app) {
 	setApp(app)
@@ -12,8 +12,12 @@ export async function service(app) {
 	const config = getConfig()
 	_out.verbose('set config from app config')
 	Object.assign(config, objectMergeDeep(config, app.get('queue') || {}))
-	if (config.watcher === true) config.watcher = {enabled: true} as WatcherConfig
-	if (config.worker === true) config.worker = {enabled: true} as WorkerConfig
+	if (config.watcher === true) {
+		config.watcher = {enabled: true} as WatcherConfig
+	}
+	if (config.worker === true) {
+		config.worker = {enabled: true} as WorkerConfig
+	}
 	config.watcher = {...(defaultConfig.watcher as WatcherConfig), ...config.watcher}
 	config.worker = {...(defaultConfig.worker as WorkerConfig), ...config.worker}
 	_out.verbose(config)
@@ -38,7 +42,7 @@ export function makeQueue(name, options?) {
 		const queueOptions: QueueServiceOptions = {
 			name,
 			...getConfig(),
-			...(options || {})
+			...options || {}
 		}
 
 		state.app.use(`/queue/${name}`, new QueueService(queueOptions) as ServiceInterface)

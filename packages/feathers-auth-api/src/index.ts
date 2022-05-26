@@ -1,6 +1,6 @@
-import {NotAuthenticated} from '@feathersjs/errors'
 import {AuthenticationBaseStrategy} from '@feathersjs/authentication'
 import {AuthenticationRequest, AuthenticationResult} from '@feathersjs/authentication/src/core'
+import {NotAuthenticated} from '@feathersjs/errors'
 
 export class ApiKeyStrategy extends AuthenticationBaseStrategy {
 	async authenticate(authentication: AuthenticationRequest): Promise<AuthenticationResult> {
@@ -10,11 +10,11 @@ export class ApiKeyStrategy extends AuthenticationBaseStrategy {
 
 		if (allowed_keys) {
 			const match = allowed_keys.includes(token)
-			if (!match) throw new NotAuthenticated('Incorrect API Key')
-
-			return {
-				api: true
+			if (!match) {
+				throw new NotAuthenticated('Incorrect API Key')
 			}
+
+			return {api: true}
 		}
 	}
 }

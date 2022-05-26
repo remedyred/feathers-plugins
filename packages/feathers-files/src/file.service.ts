@@ -1,11 +1,11 @@
-import {BadRequest, MethodNotAllowed} from '@feathersjs/errors'
-import sift from 'sift'
-import {_select, callMethod} from '@snickbit/feathers-helpers'
 import {AdapterParams, AdapterServiceOptions, filterQuery} from '@feathersjs/adapter-commons'
-import {isArray, isString} from '@snickbit/utilities'
-import {Out} from '@snickbit/out'
-import path from 'path'
+import {BadRequest, MethodNotAllowed} from '@feathersjs/errors'
 import {Params} from '@feathersjs/feathers'
+import {_select, callMethod} from '@snickbit/feathers-helpers'
+import {Out} from '@snickbit/out'
+import {isArray, isString} from '@snickbit/utilities'
+import path from 'path'
+import sift from 'sift'
 
 const alwaysMulti = {
 	find: true,
@@ -29,7 +29,7 @@ export interface FileRecord {
 	path?: string
 }
 
-export type FileData = FileRecord | File | Buffer
+export type FileData = Buffer | File | FileRecord
 
 export interface ParsedParams extends Params {
 	path?: string
@@ -38,23 +38,25 @@ export interface ParsedParams extends Params {
 export interface FileServiceOptions extends Partial<AdapterServiceOptions> {
 	root?: string
 	url?: string
-	matcher?: (value: any) => boolean
+	matcher?: (value: any) => any
 }
 
 export class FileService {
 	protected options: FileServiceOptions
+
 	protected out: Out
 
 	constructor(options) {
-		this.options = Object.assign({
+		this.options = {
 			events: [],
 			paginate: {},
 			multi: false,
 			filters: [],
 			whitelist: [],
 			matcher: sift,
-			root: process.cwd()
-		}, options)
+			root: process.cwd(),
+			...options
+		}
 
 		this.out = new Out(`files`)
 	}
@@ -66,23 +68,20 @@ export class FileService {
 	/**
 	 * Parse the params
 	 */
-	protected parseParams(filePath?: string, data?: FileData): ParsedParams;
-	protected parseParams(params?: AdapterParams, data?: FileData): ParsedParams;
+	protected parseParams(filePath?: string, data?: FileData): ParsedParams
+	protected parseParams(params?: AdapterParams, data?: FileData): ParsedParams
 	protected parseParams(pathOrParams?: AdapterParams | string, data?: FileData): ParsedParams {
-		if (!pathOrParams) pathOrParams = {}
+		if (!pathOrParams) {
+			pathOrParams = {}
+		}
 
 		let params
 
 		if (isString(pathOrParams)) {
-			params = {
-				query: {
-					id: pathOrParams as string
-				}
-			} as AdapterParams
+			params = {query: {id: pathOrParams as string}} as AdapterParams
 		} else {
 			params = pathOrParams as AdapterParams
 		}
-
 
 		if (params?.query?.path && !params?.query?.id) {
 			params.query.id = params.query.path
@@ -136,19 +135,19 @@ export class FileService {
 
 		if (option === true || option === false) {
 			return option
-		} else {
-			return option.includes(method)
 		}
+		return option.includes(method)
 	}
 
 	protected filterQuery(params: any = {}, opts: any = {}) {
 		const paginate = params.paginate ?? opts.paginate ?? this.options.paginate
 		const {query = {}} = params
-		const options = Object.assign({
+		const options = {
 			operators: this.options.whitelist || [],
 			filters: this.options.filters,
-			paginate
-		}, opts)
+			paginate,
+			...opts
+		}
 		const result = filterQuery(query, options)
 
 		return Object.assign(result, {paginate})
@@ -156,7 +155,6 @@ export class FileService {
 
 	protected filterFiles(files = [], params) {
 		const {query, filters, paginate} = this.filterQuery(params)
-		// @ts-ignore
 		files = files.filter(this.options.matcher(query))
 		const total = files.length
 
@@ -201,7 +199,9 @@ export class FileService {
 	async create(data: FileData | FileData[], params?: Params): Promise<any> {
 		if (isArray(data)) {
 			data = data as FileData[]
-			if (!this.allowsMulti('create')) return Promise.reject(new MethodNotAllowed(`Can not create multiple entries`))
+			if (!this.allowsMulti('create')) {
+				return Promise.reject(new MethodNotAllowed(`Can not create multiple entries`))
+			}
 			return Promise.all(data.map(async file => await callMethod(this, '_create', file, params)))
 		}
 
@@ -219,7 +219,9 @@ export class FileService {
 	async patch(id?: FileId, data?: FileData | FileData[], params?: Params): Promise<any> {
 		if (!id && isArray(data)) {
 			data = data as FileData[]
-			if (!this.allowsMulti('patch')) return Promise.reject(new MethodNotAllowed(`Can not patch multiple entries`))
+			if (!this.allowsMulti('patch')) {
+				return Promise.reject(new MethodNotAllowed(`Can not patch multiple entries`))
+			}
 			return Promise.all(data.map(async file => await callMethod(this, '_patch', id, file, params)))
 		}
 
@@ -229,7 +231,9 @@ export class FileService {
 	async remove(id: FileId | FileId[], params?: Params): Promise<any> {
 		if (isArray(id)) {
 			id = id as FileId[]
-			if (!this.allowsMulti('remove')) return Promise.reject(new MethodNotAllowed(`Can not remove multiple entries`))
+			if (!this.allowsMulti('remove')) {
+				return Promise.reject(new MethodNotAllowed(`Can not remove multiple entries`))
+			}
 			return Promise.all(id.map(async file => await callMethod(this, '_remove', file, params)))
 		}
 

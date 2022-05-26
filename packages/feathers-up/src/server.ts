@@ -1,11 +1,11 @@
-import helmet from 'helmet'
 import {json as expressJson, rest as expressRest, urlencoded as expressUrlEncoded} from '@feathersjs/express'
-import socketio from '@feathersjs/socketio'
-import {useSetup} from './config'
-import cors from 'cors'
-import compress from 'compression'
 import {errorHandler as expressErrorHandler, notFound as expressNotFound} from '@feathersjs/express/lib/handlers'
+import {useSetup} from './config'
 import {Application} from './definitions'
+import socketio from '@feathersjs/socketio'
+import compress from 'compression'
+import cors from 'cors'
+import helmet from 'helmet'
 
 export function serverInit(app: Application) {
 	if (app.get('appType') === 'server') {
@@ -45,7 +45,6 @@ export function serverInit(app: Application) {
 		}
 	}
 }
-
 
 export function serverErrorHandlers(app: Application) {
 	if (app.get('appType') === 'server') {

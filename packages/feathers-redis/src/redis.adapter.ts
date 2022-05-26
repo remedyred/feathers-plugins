@@ -1,16 +1,16 @@
 import {AdapterBase, AdapterServiceOptions, filterQuery, sorter} from '@feathersjs/adapter-commons'
+import {AdapterParams, PaginationOptions} from '@feathersjs/adapter-commons/src/declarations'
 import {Conflict, Unprocessable} from '@feathersjs/errors'
+import {Application, Paginated, Params, Query} from '@feathersjs/feathers'
 import {filterResults} from '@snickbit/feathers-helpers'
 import {isObject, isPrimitive, merge, parse, uuid} from '@snickbit/utilities'
-import sift from 'sift'
 import Redis, {RedisKey, RedisOptions} from 'ioredis'
-import {Application, Paginated, Params, Query} from '@feathersjs/feathers'
-import {AdapterParams, PaginationOptions} from '@feathersjs/adapter-commons/src/declarations'
+import sift from 'sift'
 
 export interface RedisServiceOptions<T = any> extends AdapterServiceOptions {
 	connection: RedisOptions
-	matcher?: (query: T) => T;
-	sorter?: (sort: T) => T;
+	matcher?: (query: T) => T
+	sorter?: (sort: T) => T
 }
 
 export type RedisId = string
@@ -18,10 +18,11 @@ export type NullableRedisId = RedisId | null
 
 export default class RedisAdapter<T = any, D = Partial<T>, O extends RedisServiceOptions = RedisServiceOptions> extends AdapterBase {
 	declare options: O
+
 	client: Redis
 
 	constructor(options: O, app: Application) {
-		options = Object.assign({
+		options = {
 			id: 'id',
 			events: [],
 			paginate: {},
@@ -29,13 +30,15 @@ export default class RedisAdapter<T = any, D = Partial<T>, O extends RedisServic
 			filters: [],
 			whitelist: [],
 			matcher: sift,
-			sorter
-		}, options)
+			sorter, ...options
+		}
 
 		super(options)
 
-		const connection = this.options.connection || (app && app.get('redis')) || {}
-		if (connection.keyPrefix && !connection.keyPrefix.endsWith('_')) connection.keyPrefix += '_'
+		const connection = this.options.connection || app && app.get('redis') || {}
+		if (connection.keyPrefix && !connection.keyPrefix.endsWith('_')) {
+			connection.keyPrefix += '_'
+		}
 		this.client = new Redis(connection)
 	}
 
@@ -44,7 +47,9 @@ export default class RedisAdapter<T = any, D = Partial<T>, O extends RedisServic
 	}
 
 	protected parseId(id: RedisId): string {
-		if (id && this.keyPrefix) return String(id).replace(new RegExp('^' + this.keyPrefix), '')
+		if (id && this.keyPrefix) {
+			return String(id).replace(new RegExp(`^${this.keyPrefix}`), '')
+		}
 		return id
 	}
 
@@ -53,7 +58,7 @@ export default class RedisAdapter<T = any, D = Partial<T>, O extends RedisServic
 		return !id && query && Object.keys(query).length ? query : false
 	}
 
-	protected prepareResults(id: RedisId, value: string | T) {
+	protected prepareResults(id: RedisId, value: T | string) {
 		const data = {
 			key: id,
 			value: parse(value)
@@ -61,15 +66,17 @@ export default class RedisAdapter<T = any, D = Partial<T>, O extends RedisServic
 		return parse(data)
 	}
 
-	async $find(params?: AdapterParams & { paginate?: PaginationOptions }): Promise<Paginated<T>>;
-	async $find(params?: AdapterParams & { paginate: false }): Promise<T[]>
+	async $find(params?: AdapterParams & {paginate?: PaginationOptions}): Promise<Paginated<T>>
+	async $find(params?: AdapterParams & {paginate: false}): Promise<T[]>
 	async $find(params: AdapterParams = {} as AdapterParams): Promise<Paginated<T> | T[]> {
 		return new Promise(resolve => {
 			const stream = this.client.scanStream()
 			const results = []
 			let get_promises = []
-			stream.on('data', (resultKeys) => {
-				if (this.keyPrefix) resultKeys = resultKeys.filter(key => key.startsWith(this.keyPrefix))
+			stream.on('data', resultKeys => {
+				if (this.keyPrefix) {
+					resultKeys = resultKeys.filter(key => key.startsWith(this.keyPrefix))
+				}
 				for (let key of resultKeys) {
 					if (!results.includes(key)) {
 						get_promises.push(this.$get(key))
@@ -85,27 +92,30 @@ export default class RedisAdapter<T = any, D = Partial<T>, O extends RedisServic
 		const {query} = filterQuery(params)
 		id = this.parseId(id)
 		if (query && Object.keys(query).length) {
-			if (id) params.query[this.id] = id
+			if (id) {
+				params.query[this.id] = id
+			}
 			params.query.$limit = 1
 			return this.$find({
-				query: {
-					[this.id]: id
-				},
+				query: {[this.id]: id},
 				paginate: false
 			}).then(data => this.prepareResults(id, data.pop()))
-		} else {
-			const value = await this.client.get(id as RedisKey)
-			return this.prepareResults(id, value)
 		}
+		const value = await this.client.get(id as RedisKey)
+		return this.prepareResults(id, value)
 	}
 
-	async $create(data: D, params?: AdapterParams): Promise<T>;
-	async $create(data: D[], params?: AdapterParams): Promise<T[]>;
-	async $create(data: D | D[], _params?: AdapterParams): Promise<T | T[]>;
+	async $create(data: D, params?: AdapterParams): Promise<T>
+	async $create(data: D[], params?: AdapterParams): Promise<T[]>
+	async $create(data: D | D[], _params?: AdapterParams): Promise<T | T[]>
 	async $create(data: D | D[], params: AdapterParams = {} as AdapterParams): Promise<T | T[]> {
-		let key = (isObject(data) && data[this.id] ? data[this.id] : undefined)
-		if (key && await this.$get(key, params)) throw new Conflict(`Redis value with key ${key} already exists`)
-		if (!key) key = uuid()
+		let key = isObject(data) && data[this.id] ? data[this.id] : undefined
+		if (key && await this.$get(key, params)) {
+			throw new Conflict(`Redis value with key ${key} already exists`)
+		}
+		if (!key) {
+			key = uuid()
+		}
 		await this.$set(key, data, params)
 		return this.$get(key, params)
 	}
@@ -116,11 +126,13 @@ export default class RedisAdapter<T = any, D = Partial<T>, O extends RedisServic
 		return this.$get(id, params)
 	}
 
-	async $patch(id: null, data: D, params?: AdapterParams): Promise<T[]>;
-	async $patch(id: RedisId, data: D, params?: AdapterParams): Promise<T>;
-	async $patch(id: NullableRedisId, data: D, _params?: AdapterParams): Promise<T | T[]>;
+	async $patch(id: null, data: D, params?: AdapterParams): Promise<T[]>
+	async $patch(id: RedisId, data: D, params?: AdapterParams): Promise<T>
+	async $patch(id: NullableRedisId, data: D, _params?: AdapterParams): Promise<T | T[]>
 	async $patch(id: NullableRedisId, data: D, params: AdapterParams = {} as AdapterParams): Promise<T | T[]> {
-		if (this.isMulti(id, params)) return this.$multi('$patch', params)
+		if (this.isMulti(id, params)) {
+			return this.$multi('$patch', params)
+		}
 		id = this.parseId(id)
 		const old_data = this.$get(id, params)
 		const new_data = merge(old_data, data) as D
@@ -128,13 +140,15 @@ export default class RedisAdapter<T = any, D = Partial<T>, O extends RedisServic
 		return this.$get(id, params)
 	}
 
-	async $remove(id: null, params?: AdapterParams): Promise<T[]>;
-	async $remove(id: RedisId, params?: AdapterParams): Promise<T>;
-	async $remove(id: NullableRedisId, _params?: AdapterParams): Promise<T | T[]>;
+	async $remove(id: null, params?: AdapterParams): Promise<T[]>
+	async $remove(id: RedisId, params?: AdapterParams): Promise<T>
+	async $remove(id: NullableRedisId, _params?: AdapterParams): Promise<T | T[]>
 	async $remove(id: NullableRedisId, params: AdapterParams = {} as AdapterParams): Promise<T | T[]> {
 		id = this.parseId(id)
 
-		if (this.isMulti(id, params)) return this.$multi('$remove', params)
+		if (this.isMulti(id, params)) {
+			return this.$multi('$remove', params)
+		}
 
 		const entry = await this.$get(id, params)
 
@@ -143,7 +157,6 @@ export default class RedisAdapter<T = any, D = Partial<T>, O extends RedisServic
 		return entry
 	}
 
-
 	async $multi(method: string, params?: Params): Promise<T[]> {
 		const items = await this.$find({...params, paginate: false}) as unknown as T[]
 		return Promise.all(items.map(item => this[method](item[this.id])))
@@ -151,7 +164,9 @@ export default class RedisAdapter<T = any, D = Partial<T>, O extends RedisServic
 
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	async $set(key, data: D | D[], _params?: Params): Promise<string> {
-		if (!key) throw new Unprocessable('id is required')
+		if (!key) {
+			throw new Unprocessable('id is required')
+		}
 		const value = stringifyValue(data)
 		return this.client.set(key, value)
 	}

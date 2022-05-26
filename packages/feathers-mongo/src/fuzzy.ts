@@ -7,13 +7,15 @@ import {SearchOptions} from './mongo.adapter'
  * Adds " around `str` and removes any " in `str`.
  * @param {string} str
  */
-const escape = str => '"' + str.replace(/"/g, '') + '"'
+const escape = str => `"${str.replace(/"/g, '')}"`
 
 export function transformSearchFieldsInQuery(query: any, options: SearchOptions, fieldName?: string) {
 	const makeRegex = value => {
 		try {
 			value = escapeRegExp(value)
-			value = value.split(/\W/).map(v => v.trim()).filter(v => v).join('.*')
+			value = value.split(/\W/).map(v => v.trim())
+				.filter(v => v)
+				.join('.*')
 			return query.$caseSensitive ? new RegExp(value) : new RegExp(value, 'i')
 		} catch (e) {
 			out.throw('Error making regex', e)
@@ -64,18 +66,26 @@ export function transformSearchFieldsInQuery(query: any, options: SearchOptions,
 }
 
 export function fullTextSearch(query: any, options: any) {
-	if (!query) return query
+	if (!query) {
+		return query
+	}
 
 	let $search = objectPull(query, '$search')
 
 	let $language = objectPull(query, '$language')
-	if ($language === undefined) $language = options.language
+	if ($language === undefined) {
+		$language = options.language
+	}
 
 	let $caseSensitive = objectPull(query, '$caseSensitive')
-	if ($caseSensitive === undefined) $caseSensitive = options.caseSensitive
+	if ($caseSensitive === undefined) {
+		$caseSensitive = options.caseSensitive
+	}
 
 	let $diacriticSensitive = objectPull(query, '$diacriticSensitive')
-	if ($diacriticSensitive === undefined) $diacriticSensitive = options.diacriticSensitive
+	if ($diacriticSensitive === undefined) {
+		$diacriticSensitive = options.diacriticSensitive
+	}
 
 	let $text: any = {}
 

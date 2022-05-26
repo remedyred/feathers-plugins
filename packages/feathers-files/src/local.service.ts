@@ -1,11 +1,11 @@
-import {Out} from '@snickbit/out'
-import fse from 'fs-extra'
-import fg, {Options} from 'fast-glob'
-import {Conflict, NotFound} from '@feathersjs/errors'
-import {fileExists} from '@snickbit/node-utilities'
-import {FileData, FileId, FileService, FileServiceOptions, ParsedParams} from './file.service'
-import {Params} from '@feathersjs/feathers'
 import {AdapterParams} from '@feathersjs/adapter-commons'
+import {Conflict, NotFound} from '@feathersjs/errors'
+import {Params} from '@feathersjs/feathers'
+import {fileExists} from '@snickbit/node-utilities'
+import {Out} from '@snickbit/out'
+import {FileData, FileId, FileService, FileServiceOptions, ParsedParams} from './file.service'
+import fg, {Options} from 'fast-glob'
+import fse from 'fs-extra'
 
 export interface LocalFileServiceOptions extends FileServiceOptions {
 	cwd?: string
@@ -41,9 +41,7 @@ export class LocalService extends FileService {
 			'globstar',
 			'baseNameMatch'
 		]
-		const opts = {
-			cwd: this.cwd(options)
-		}
+		const opts = {cwd: this.cwd(options)}
 
 		for (const fg_opt of fg_options) {
 			if (options[fg_opt]) {

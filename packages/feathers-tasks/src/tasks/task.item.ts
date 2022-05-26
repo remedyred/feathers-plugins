@@ -1,7 +1,7 @@
 import {Model} from '@snickbit/feathers-model'
+import {out} from '@snickbit/out'
 import {uuid} from '@snickbit/utilities'
 import {Task} from './task'
-import {out} from '@snickbit/out'
 
 export class TaskItem extends Model {
 	parent: Task
@@ -35,8 +35,11 @@ export class TaskItem extends Model {
 		this.out.log(...args)
 		if (this.parent.options.logs) {
 			this.parent.job().then(job => {
-				if (job) job.log(JSON.stringify(args)).catch(err => out.error(err))
-			}).catch(e => this.out.error('Error logging to job', e))
+				if (job) {
+					job.log(JSON.stringify(args)).catch(err => out.error(err))
+				}
+			})
+				.catch(e => this.out.error('Error logging to job', e))
 		}
 	}
 
@@ -72,9 +75,8 @@ export class TaskItem extends Model {
 
 		if (this.parent.looping) {
 			return this.parent.tick()
-		} else {
-			return this._save()
 		}
+		return this._save()
 	}
 
 	async fail(reason) {
@@ -88,9 +90,8 @@ export class TaskItem extends Model {
 
 		if (this.parent.looping) {
 			return this.parent.tick()
-		} else {
-			return this._save()
 		}
+		return this._save()
 	}
 
 	async _save() {

@@ -1,15 +1,15 @@
+import {Application as FeathersApplication} from '@feathersjs/feathers'
+import {FeathersService} from '@feathersjs/feathers/src/declarations'
 import {ParsedImportRecords} from '@snickbit/node-utilities'
 import {Out} from '@snickbit/out'
-import {Application as FeathersApplication} from '@feathersjs/feathers'
-import {QueueEvent} from '../queue/queue.watcher'
-import {FeathersService} from '@feathersjs/feathers/src/declarations'
 import {ConnectionOptions} from 'bullmq/dist/esm/interfaces/redis-options'
 import {FeathersQueueService} from '../queue/queue.adapter'
+import {QueueEvent} from '../queue/queue.watcher'
 
 export const _out = new Out('feathers-tasks')
 
 export type EventArgs = {
-	[key in QueueEvent]?: ['args', 'id'] | ['id'] | ['args']
+	[key in QueueEvent]?: ['args', 'id'] | ['args'] | ['id']
 }
 
 export const event_args: EventArgs = {
@@ -99,15 +99,9 @@ export const defaultWorkerConfig: WorkerConfig = {
 export const defaultConfig: TasksConfig = {
 	connection: null,
 	tasks: 'tasks',
-	defaultJobOptions: {
-		...defaultJobConfig
-	},
-	watcher: {
-		...defaultWatcherConfig
-	},
-	worker: {
-		...defaultWorkerConfig
-	}
+	defaultJobOptions: {...defaultJobConfig},
+	watcher: {...defaultWatcherConfig},
+	worker: {...defaultWorkerConfig}
 }
 
 export interface TasksState {
@@ -120,7 +114,7 @@ export interface TasksState {
 }
 
 export interface Application extends FeathersApplication {
-	out: Out;
+	out: Out
 }
 
 export let state: TasksState = {

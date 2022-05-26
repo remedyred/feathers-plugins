@@ -1,11 +1,11 @@
 import {DeleteObjectCommand, GetObjectCommand, HeadObjectCommand, ListObjectsCommand, PutObjectCommand, S3} from '@aws-sdk/client-s3'
-import {Out} from '@snickbit/out'
-import {bufferStream, getFile, makeBuffer, saveFile} from '@snickbit/node-utilities'
-import {FileData, FileId, FileService, FileServiceOptions, ParsedParams} from './file.service'
-import {objectPull} from '@snickbit/utilities'
-import mime from 'mime/lite'
-import {Readable} from 'stream'
 import {AdapterParams} from '@feathersjs/adapter-commons'
+import {bufferStream, getFile, makeBuffer, saveFile} from '@snickbit/node-utilities'
+import {Out} from '@snickbit/out'
+import {objectPull} from '@snickbit/utilities'
+import {Readable} from 'stream'
+import {FileData, FileId, FileService, FileServiceOptions, ParsedParams} from './file.service'
+import mime from 'mime/lite'
 
 export interface S3ServiceOptions extends FileServiceOptions {
 	Bucket?: string
@@ -19,7 +19,7 @@ export interface S3Options {
 	credentials: {
 		accessKeyId: string
 		secretAccessKey: string
-	},
+	}
 	region?: string
 	ACL?: string
 }
@@ -51,7 +51,7 @@ export interface S3Request {
 
 export interface S3File {
 	Key: string
-	LastModified: string | Date
+	LastModified: Date | string
 	ETag: string
 	ChecksumAlgorithm?: string
 	Size: number
@@ -64,6 +64,7 @@ export interface S3File {
 
 export class S3Service extends FileService {
 	client: S3
+
 	declare options: S3ServiceOptions
 
 	constructor(options: S3ServiceOptions) {
@@ -114,7 +115,6 @@ export class S3Service extends FileService {
 		}
 		if (payload.content) {
 			if (!params.ContentType) {
-				// @ts-ignore
 				params.ContentType = mime.getType(params.Key, 'application/octet-stream')
 			}
 			try {
@@ -136,7 +136,6 @@ export class S3Service extends FileService {
 	_cwd(options: any = {}): any {
 		return options?.bucket || this.options.Bucket
 	}
-
 
 	async _uploadContent(Key: string, Body: Buffer | Readable | string, params) {
 		const buildRequest = this.buildRequest({Key, Body, ...params})
@@ -176,7 +175,7 @@ export class S3Service extends FileService {
 		}
 	}
 
-	async* _list(params: AdapterParams, options = {}) {
+	async *_list(params: AdapterParams, options = {}) {
 		const {filters} = this.filterQuery(params, options)
 		let query_limit = 1000
 		if (filters.$limit) {
@@ -194,7 +193,9 @@ export class S3Service extends FileService {
 		let last_key
 		let total_results = 0
 		while (true) {
-			if (last_key) commandParams.Marker = last_key
+			if (last_key) {
+				commandParams.Marker = last_key
+			}
 			if (query_limit) {
 				if (query_limit > 1000) {
 					commandParams.MaxKeys = 1000
@@ -204,12 +205,16 @@ export class S3Service extends FileService {
 				}
 			}
 			const results = await this.client.send(new ListObjectsCommand(commandParams))
-			if (!results?.Contents?.length) break
+			if (!results?.Contents?.length) {
+				break
+			}
 			total_results += results.Contents.length
 			for (const file of results.Contents) {
 				yield {file, total_results}
 			}
-			if (filters.$limit && total_results >= filters.$limit) break
+			if (filters.$limit && total_results >= filters.$limit) {
+				break
+			}
 			last_key = results.Contents[results.Contents.length - 1].Key
 		}
 	}

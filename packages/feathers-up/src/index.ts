@@ -1,34 +1,38 @@
-import express, {Application as ExpressApplication} from '@feathersjs/express'
 import {feathers} from '@feathersjs/feathers'
 import {Model} from '@snickbit/model'
 import {Out} from '@snickbit/out'
 import {initialize} from './config'
-import paths from './paths'
-import {serverErrorHandlers, serverInit} from './server'
-import queue from './queue'
-import channels from './channels'
-import authentication from './authentication'
-import services from './services'
-import hooks from './hooks'
-import databases from './databases'
-import {sentryHandleErrors, sentryInit} from './sentry'
-import middleware from './middleware'
-import status from './status'
-import {initLogger} from './logger'
 import {Application, AppSetup, FeathersUpOptions} from './definitions'
+import {initLogger} from './logger'
+import {sentryHandleErrors, sentryInit} from './sentry'
+import {serverErrorHandlers, serverInit} from './server'
+import express, {Application as ExpressApplication} from '@feathersjs/express'
+import authentication from './authentication'
+import channels from './channels'
+import databases from './databases'
 import errors from './errors'
+import hooks from './hooks'
+import middleware from './middleware'
+import paths from './paths'
+import queue from './queue'
+import services from './services'
+import status from './status'
 
 export {Application}
 
 let app: Application
 
 export function useApp(appType = 'server', setup: AppSetup = {}): Application {
-	if (app) return app
-	else return feathersUp(appType, setup)
+	if (app) {
+		return app
+	}
+	return feathersUp(appType, setup)
 }
 
 export function feathersUp(appType = 'server', setup: AppSetup | Model = {}, options: FeathersUpOptions = {}): Application {
-	if (app) return app
+	if (app) {
+		return app
+	}
 
 	let instance = feathers()
 	instance = appType === 'cli' ? instance : express(instance) as ExpressApplication

@@ -1,8 +1,8 @@
+import {InternalServiceMethods} from '@feathersjs/adapter-commons'
 import {Conflict, NotFound} from '@feathersjs/errors'
 import {callMethod, safeCallMethod} from '@snickbit/feathers-helpers'
 import {Model as BaseModel, ModelOptions as BaseModelOptions, ModelSchema as BaseModelSchema} from '@snickbit/model'
 import {Service} from 'feathers-memory'
-import {InternalServiceMethods} from '@feathersjs/adapter-commons'
 
 export interface ModelOptions extends BaseModelOptions {
 	service?: Service | any
@@ -13,25 +13,12 @@ export interface ModelOptions extends BaseModelOptions {
 export type ModelSchema = BaseModelSchema
 
 export interface ModelService extends InternalServiceMethods {
-	asModel: boolean | Model;
-}
-
-export interface Model extends BaseModel {
-	_save(): Promise<any[] | any>;
-
-	save(): Promise<any[] | any>;
-
-	_destroy(): Promise<any>;
-
-	destroy(): Promise<any>;
-
-	_fresh(): Promise<Model>;
-
-	fresh(): Promise<any>;
+	asModel: Model | boolean
 }
 
 export class Model extends BaseModel {
 	service: Service | any
+
 	declare options: ModelOptions
 
 	constructor(data, options) {
@@ -83,29 +70,25 @@ export class Model extends BaseModel {
 		let data
 		if (this.options.disableCommit) {
 			data = payload
+		} else if (this.is_new) {
+			try {
+				data = await this.service._create(payload)
+			} catch (e) {
+				if (e.code === 11000 && !attempts) {
+					this.is_new = false
+					return this._save(1)
+				}
+				return Promise.reject(e)
+			}
 		} else {
-			if (this.is_new) {
-				try {
-					data = await this.service._create(payload)
-				} catch (e) {
-					if (e.code === 11000 && !attempts) {
-						this.is_new = false
-						return this._save(1)
-					} else {
-						return Promise.reject(e)
-					}
+			try {
+				data = await this.service._update(this.id, payload)
+			} catch (e) {
+				if (e instanceof NotFound || e?.name === 'NotFound' && !attempts) {
+					this.is_new = true
+					return this._save(1)
 				}
-			} else {
-				try {
-					data = await this.service._update(this.id, payload)
-				} catch (e) {
-					if (e instanceof NotFound || e?.name === 'NotFound' && !attempts) {
-						this.is_new = true
-						return this._save(1)
-					} else {
-						return Promise.reject(e)
-					}
-				}
+				return Promise.reject(e)
 			}
 		}
 		return this.#commitSaved(data)
@@ -125,7 +108,6 @@ export class Model extends BaseModel {
 			return !this.options.disableCommit && this.service._remove(this.id)
 		}
 	}
-
 
 	async _fresh() {
 		if (!this.id) {
