@@ -1,4 +1,5 @@
 import {Model} from '@snickbit/model'
+import {isObject} from '@snickbit/utilities'
 import {Application, AppSetup, DatabaseDefinitions} from './definitions'
 import configuration from '@feathersjs/configuration'
 
@@ -10,7 +11,18 @@ export function initialize(app: Application, setup: AppSetup | Model = {}) {
 	$setup = new Model(setup)
 
 	// Load app configuration
-	app.configure(configuration())
+	if ($setup.has('config')) {
+		const config = $setup.get('config')
+		if (typeof config === 'function') {
+			app.configure(config)
+		} else if (isObject(config)) {
+			for (const name in config) {
+				app.set(name, config[name])
+			}
+		}
+	} else {
+		app.configure(configuration())
+	}
 
 	initDatabases()
 }
