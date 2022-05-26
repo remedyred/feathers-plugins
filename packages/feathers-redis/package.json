@@ -1,6 +1,6 @@
 {
 	"name": "@snickbit/feathers-redis",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "Feathers Redis Service",
 	"license": "MIT",
 	"exports": {
@@ -30,7 +30,7 @@
 	"dependencies": {
 		"@feathersjs/adapter-commons": "5.0.0-pre.20",
 		"@feathersjs/errors": "5.0.0-pre.20",
-		"@snickbit/feathers-helpers": "^1.0.3",
+		"@snickbit/feathers-helpers": "^1.0.4",
 		"@snickbit/utilities": "^3.0.17",
 		"ioredis": "^5.0.4",
 		"sift": "^16.0.0"

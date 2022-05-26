@@ -1,6 +1,6 @@
 {
 	"name": "@snickbit/feathers-up-redis",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "Redis plugin for @snickbit/feathers-up",
 	"license": "MIT",
 	"exports": {
@@ -27,7 +27,7 @@
 		"testEnvironment": "node"
 	},
 	"dependencies": {
-		"@snickbit/feathers-up": "^1.0.9",
+		"@snickbit/feathers-up": "^1.0.10",
 		"ioredis": "^5.0.4"
 	},
 	"devDependencies": {

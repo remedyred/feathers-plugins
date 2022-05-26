@@ -1,6 +1,6 @@
 {
 	"name": "@snickbit/feathers-hooks",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "Dynamic hook loader for Feathers",
 	"license": "MIT",
 	"exports": {
