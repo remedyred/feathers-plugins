@@ -28,7 +28,7 @@
 	},
 	"dependencies": {
 		"@snickbit/feathers-up": "^1.0.10",
-		"knex": "^2.0.0",
+		"knex": "^2.1.0",
 		"mysql": "^2.18.0"
 	},
 	"devDependencies": {

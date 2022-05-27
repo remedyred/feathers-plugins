@@ -50,7 +50,7 @@
 		"winston-daily-rotate-file": "^4.6.1"
 	},
 	"devDependencies": {
-		"@remedyred/indexer": "^2.4.0",
+		"@remedyred/indexer": "^2.4.1",
 		"jest": "^28.1.0",
 		"tsup": "^6.0.1"
 	},
@@ -62,7 +62,7 @@
 		"@snickbit/feathers-up-mysql": "^0.0.0",
 		"@snickbit/feathers-up-redis": "^0.0.0",
 		"ioredis": "^5.0.4",
-		"knex": "^2.0.0",
+		"knex": "^2.1.0",
 		"mongodb": "^4.5.0",
 		"mysql": "^2.18.0"
 	},

@@ -46,7 +46,7 @@
 		"sift": "^16.0.0"
 	},
 	"devDependencies": {
-		"@remedyred/indexer": "^2.4.0",
+		"@remedyred/indexer": "^2.4.1",
 		"@types/jest": "^27.4.1",
 		"@types/multer": "^1.4.7",
 		"jest": "^28.1.0",
