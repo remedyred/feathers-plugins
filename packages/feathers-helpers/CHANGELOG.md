@@ -1,5 +1,12 @@
 # @snickbit/feathers-helpers Changelog
 
+## 1.0.7
+
+### Patch Changes
+
+- [1d734fd](https://github.com/snickbit/feathers/commit/1d734fd) **fix**:  adjust type definitions
+- [c36a338](https://github.com/snickbit/feathers/commit/c36a338) **fix**:  replace Object.assign with spread
+
 ## 1.0.6
 
 ### Patch Changes

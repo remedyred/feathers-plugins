@@ -1,6 +1,6 @@
 {
 	"name": "@snickbit/feathers-up-mongodb",
-	"version": "0.0.6",
+	"version": "0.0.7",
 	"description": "MongoDB plugin for @snickbit/feathers-up",
 	"license": "MIT",
 	"exports": {
@@ -27,7 +27,7 @@
 		"testEnvironment": "node"
 	},
 	"dependencies": {
-		"@snickbit/feathers-up": "^1.0.12",
+		"@snickbit/feathers-up": "^1.0.13",
 		"mongodb": "^4.5.0"
 	},
 	"devDependencies": {

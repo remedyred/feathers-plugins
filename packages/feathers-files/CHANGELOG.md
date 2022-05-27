@@ -1,5 +1,11 @@
 # @snickbit/feathers-files Changelog
 
+## 2.0.9
+
+### Patch Changes
+
+- [65289bc](https://github.com/snickbit/feathers/commit/65289bc) **fix**:  adjust type definitions
+
 ## 2.0.8
 
 ### Patch Changes
