@@ -1,5 +1,11 @@
 # @snickbit/feathers-hooks Changelog
 
+## 1.0.4
+
+### Patch Changes
+
+- [269dea5](https://github.com/snickbit/feathers/commit/269dea5) **chore**:  bump dependencies
+
 ## 1.0.3
 
 ### Patch Changes
