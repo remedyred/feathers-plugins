@@ -99,7 +99,10 @@ export function filterParams(params: AdapterParams = {}, options: QueryOptions =
 
 	const result = filterQuery(query, options)
 
-	return Object.assign(result, {paginate})
+	return {
+		...result,
+		paginate
+	}
 }
 
 function getMatcherSorter(options: QueryOptions) {
