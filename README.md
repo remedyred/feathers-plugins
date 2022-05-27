@@ -19,6 +19,7 @@
   - [@snickbit/feathers-logs](#snickbit-feathers-logs)
   - [@snickbit/feathers-model](#snickbit-feathers-model)
   - [@snickbit/feathers-mongo](#snickbit-feathers-mongo)
+  - [@snickbit/feathers-pouchdb](#snickbit-feathers-pouchdb)
   - [@snickbit/feathers-redis](#snickbit-feathers-redis)
   - [@snickbit/feathers-rest](#snickbit-feathers-rest)
   - [@snickbit/feathers-tasks](#snickbit-feathers-tasks)
@@ -128,6 +129,18 @@ Data models for FeathersJS using [@snickbit/model](https://github.com/snickbit/s
 </div>
 
 Wrapper for [feathers-mongo](https://github.com/feathersjs-ecosystem/feathers-mongodb) with several enhancements and customizations.
+
+
+
+<div id="@snickbit/feathers-pouchdb">
+	<h3>
+		<a href="https://github.com/snickbit/feathers/tree/main/packages/feathers-pouchdb">
+			@snickbit/feathers-pouchdb
+		</a>
+	</h3>
+</div>
+
+PouchDB adapter for FeathersJS.
 
 
 
