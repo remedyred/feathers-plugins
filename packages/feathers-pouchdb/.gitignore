@@ -1,0 +1,20 @@
+# hidden folders & junk files
+.*/
+.*
+*.iml
+
+# Log files
+logs/
+*.log
+
+# Dependencies
+node_modules/
+*.lock
+*-lock.yaml
+*-lock.json
+
+# Compiled files
+dist/
+
+# keep
+!.git*

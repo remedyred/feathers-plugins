@@ -1,0 +1,64 @@
+{
+	"name": "@snickbit/feathers-pouchdb",
+	"version": "0.0.0",
+	"description": "PouchDB adapter for FeathersJS",
+	"license": "MIT",
+	"exports": {
+		"require": "./dist/index.js",
+		"import": "./dist/index.mjs",
+		"types": "./dist/index.d.ts"
+	},
+	"main": "./dist/index.js",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "tsup",
+		"clean": "shx rm -rf ./dist ",
+		"depcheck": "depcheck",
+		"meta": "pnpm run prod --metafile",
+		"prod": "pnpm run clean && pnpm run build --minify",
+		"test": "jest",
+		"watch": "pnpm run build --watch"
+	},
+	"jest": {
+		"preset": "ts-jest",
+		"testEnvironment": "node"
+	},
+	"dependencies": {
+		"@feathersjs/adapter-commons": "5.0.0-pre.20",
+		"@feathersjs/errors": "5.0.0-pre.20",
+		"@feathersjs/feathers": "5.0.0-pre.20",
+		"@snickbit/feathers-helpers": "^1.0.6",
+		"@snickbit/out": "^2.0.29",
+		"@snickbit/utilities": "^3.0.23",
+		"pouchdb": "^7.3.0",
+		"pouchdb-find": "^7.3.0",
+		"sift": "^16.0.0"
+	},
+	"devDependencies": {
+		"@types/jest": "^27.4.1",
+		"@types/pouchdb": "^6.4.0",
+		"jest": "^27.5.1",
+		"shx": "^0.3.4",
+		"ts-jest": "^27.1.4",
+		"tsup": "^5.12.6",
+		"typescript": "^4.6.3"
+	},
+	"engines": {
+		"node": ">= 12"
+	},
+	"tsup": {
+		"entry": [
+			"src/index.ts"
+		],
+		"clean": true,
+		"dts": true,
+		"format": [
+			"esm",
+			"cjs"
+		]
+	}
+}
