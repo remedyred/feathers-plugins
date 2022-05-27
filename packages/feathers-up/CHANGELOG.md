@@ -1,5 +1,12 @@
 # @snickbit/feathers-up Changelog
 
+## 1.0.11
+
+### Patch Changes
+
+- [269dea5](https://github.com/snickbit/feathers/commit/269dea5) **chore**:  bump dependencies
+- [b747f74](https://github.com/snickbit/feathers/commit/b747f74) **feat**:  add alternative configuration methods
+
 ## 1.0.10
 
 ### Patch Changes
