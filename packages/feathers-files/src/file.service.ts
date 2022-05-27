@@ -1,6 +1,6 @@
-import {AdapterParams, AdapterServiceOptions, filterQuery} from '@feathersjs/adapter-commons'
+import {AdapterParams, AdapterServiceOptions, filterQuery, PaginationParams} from '@feathersjs/adapter-commons'
 import {BadRequest, MethodNotAllowed} from '@feathersjs/errors'
-import {Params} from '@feathersjs/feathers'
+import {Params, Query} from '@feathersjs/feathers'
 import {_select, callMethod} from '@snickbit/feathers-helpers'
 import {Out} from '@snickbit/out'
 import {isArray, isString} from '@snickbit/utilities'
@@ -39,6 +39,12 @@ export interface FileServiceOptions extends Partial<AdapterServiceOptions> {
 	root?: string
 	url?: string
 	matcher?: (value: any) => any
+}
+
+export interface FilteredQuery {
+	query: Query
+	filters: {[key: string]: any}
+	paginate: PaginationParams
 }
 
 export class FileService {
@@ -139,7 +145,7 @@ export class FileService {
 		return option.includes(method)
 	}
 
-	protected filterQuery(params: any = {}, opts: any = {}) {
+	protected filterQuery(params: any = {}, opts: any = {}): FilteredQuery {
 		const paginate = params.paginate ?? opts.paginate ?? this.options.paginate
 		const {query = {}} = params
 		const options = {
@@ -150,7 +156,7 @@ export class FileService {
 		}
 		const result = filterQuery(query, options)
 
-		return Object.assign(result, {paginate})
+		return {...result, paginate}
 	}
 
 	protected filterFiles(files = [], params) {
