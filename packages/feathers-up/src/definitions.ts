@@ -33,7 +33,10 @@ type AnyFunction = ((...args: any[]) => Promise<any> | any) | {default: AnyFunct
 
 type AppServiceResult = AnyFunction | Record<string, AnyFunction>
 
+type ConfigureFunction = (app: ExpressApplication) => Promise<void> | void
+
 export interface AppSetup {
+	config?: ConfigureFunction | any
 	paths?: AppSetupPaths
 	helmet?: Partial<HelmetOptions>
 	cors?: CorsOptions
