@@ -37,7 +37,7 @@ export default class PouchAdapter<T = any, P extends Params = Params, O extends 
 
 	constructor(name: string, options?: O, app?: Application) {
 		options = {
-			id: 'id',
+			id: '_id',
 			events: [],
 			paginate: {},
 			multi: false,
