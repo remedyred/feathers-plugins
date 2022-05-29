@@ -95,11 +95,7 @@ export default class PouchAdapter<T = any, P extends Params = Params, O extends 
 	async $find(params?: P & {paginate: false}): Promise<T[]>
 	async $find(params: P = {} as P): Promise<Paginated<T> | T[]> {
 		await this.$ready()
-		const {
-			filters,
-			query,
-			paginate
-		} = filterParams(params)
+		const {filters, query, paginate} = filterParams(params)
 
 		let options: PouchDB.Find.FindRequest<any> = {selector: query}
 
