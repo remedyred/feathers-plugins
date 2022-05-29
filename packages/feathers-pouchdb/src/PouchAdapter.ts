@@ -29,11 +29,11 @@ function checkAppForConnection(app: Application) {
 export default class PouchAdapter<T = any, P extends Params = Params, O extends PouchServiceOptions = PouchServiceOptions> extends AdapterBase {
 	declare options: O
 
-	client: PouchDB.Database<Document>
+	protected client: PouchDB.Database<Document>
 
-	remote?: PouchDB.Database<Document>
+	protected remote?: PouchDB.Database<Document>
 
-	out: Out
+	protected out: Out
 
 	constructor(name: string, options?: O, app?: Application) {
 		options = {
