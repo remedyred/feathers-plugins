@@ -94,6 +94,7 @@ export default class PouchAdapter<T = any, P extends Params = Params, O extends 
 	async $find(params?: P & {paginate?: PaginationOptions}): Promise<Paginated<T>>
 	async $find(params?: P & {paginate: false}): Promise<T[]>
 	async $find(params: P = {} as P): Promise<Paginated<T> | T[]> {
+		await this.$ready()
 		const {
 			filters,
 			query,
@@ -134,7 +135,14 @@ export default class PouchAdapter<T = any, P extends Params = Params, O extends 
 		return results
 	}
 
+	async $ready() {
+		if (!this.client) {
+			throw new GeneralError('PouchDB client is not initialized! If you are overriding the setup() method, make sure to call super.setup()')
+		}
+	}
+
 	async $get(id: Id, params: P = {} as P): Promise<ExistingDocument<T>> {
+		await this.$ready()
 		this.out.info('Getting document', id)
 		const {query} = this.getQuery(params)
 		const doc = await this.client.get(String(id))
@@ -148,6 +156,7 @@ export default class PouchAdapter<T = any, P extends Params = Params, O extends 
 	async $create(data: PostDocument<Document>[], params?: P): Promise<ExistingDocument<T>[]>
 	async $create(data: PostDocument<Document> | PostDocument<Document>[], _params?: P): Promise<ExistingDocument<T> | ExistingDocument<T>[]>
 	async $create(data: PostDocument<Document> | PostDocument<Document>[], params: P = {} as P): Promise<ExistingDocument<T> | ExistingDocument<T>[]> {
+		await this.$ready()
 		if (Array.isArray(data) && this.allowsMulti('create')) {
 			return Promise.all(data.map(current => this.$create(current, params)))
 		}
@@ -163,6 +172,7 @@ export default class PouchAdapter<T = any, P extends Params = Params, O extends 
 	}
 
 	async $update(id: Id, data: PutDocument<Document>, params: P = {} as P): Promise<ExistingDocument<T>> {
+		await this.$ready()
 		if (!id) {
 			throw new NotFound('No id provided')
 		}
@@ -176,6 +186,7 @@ export default class PouchAdapter<T = any, P extends Params = Params, O extends 
 	async $patch(id: Id, data: PostDocument<Document>, params?: P): Promise<ExistingDocument<T>>
 	async $patch(id: NullableId, data: PostDocument<Document>, _params?: P): Promise<ExistingDocument<T>[] | T>
 	async $patch(id: NullableId, data: PostDocument<Document>, params: P = {} as P): Promise<ExistingDocument<T>[] | T> {
+		await this.$ready()
 		if (this.isMulti(id, params)) {
 			return this.$multi('$patch', params)
 		}
@@ -188,6 +199,7 @@ export default class PouchAdapter<T = any, P extends Params = Params, O extends 
 	async $remove(id: Id, params?: P): Promise<T>
 	async $remove(id: NullableId, _params?: P): Promise<ExistingDocument<T>[] | T>
 	async $remove(id: NullableId, params: P = {} as P): Promise<ExistingDocument<T>[] | T> {
+		await this.$ready()
 		if (!id && this.allowsMulti('remove')) {
 			return this.$multi('$remove', params)
 		}
