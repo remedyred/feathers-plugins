@@ -35,7 +35,7 @@ export default class PouchAdapter<T = any, P extends Params = Params, O extends 
 
 	protected out: Out
 
-	constructor(name: string, options?: O, app?: Application) {
+	constructor(options: O) {
 		options = {
 			id: '_id',
 			events: [],
@@ -49,17 +49,6 @@ export default class PouchAdapter<T = any, P extends Params = Params, O extends 
 		} as O & {matcher: Matcher<T>}
 
 		super(options)
-
-		this.out = new Out(name)
-
-		this.out.info('Initializing PouchDB adapter')
-
-		const connection: DatabaseConfig = this.options.connection || checkAppForConnection(app) || {}
-		this.client = new PouchDB(name, connection)
-
-		if (this.options.replicate) {
-			this.remote = new PouchDB(name, this.options.replicate)
-		}
 	}
 
 	protected isMulti(id: Id, params?: Params): Query | false {
@@ -89,6 +78,44 @@ export default class PouchAdapter<T = any, P extends Params = Params, O extends 
 
 	protected filterDocs(docs: any) {
 		return docs.filter(doc => !doc._id.startsWith('_'))
+	}
+
+	async setup(app: Application, servicePath: string) {
+		this.out = new Out('pouchdb')
+
+		const connection = this.options.connection || checkAppForConnection(app) || {}
+
+		const adapter: string | undefined = this.options.encrypt && !this.options.encryptionKey ? 'memory' : connection.adapter
+
+		this.client = new PouchDB(servicePath, {...connection, adapter})
+
+		this.client.createIndex({index: {fields: [this.options.id]}})
+
+		if (this.options.replicate) {
+			const options = {...connection, ...this.options.replicate}
+			this.remote = new PouchDB(servicePath, options)
+
+			PouchDB.sync(this.client, this.remote, {live: true, retry: true})
+		}
+	}
+
+	private async encryptionReady(app: Application): Promise<string | false> {
+		if (!this.options.encrypt) {
+			return false
+		} else if (this.options.encryptionKey) {
+			return this.options.encryptionKey
+		}
+
+		return new Promise((resolve, reject) => {
+			app.on('login', (user: any) => {
+				const encryptionKey = user[this.encryptionProperty(app) || 'password']
+				if (encryptionKey) {
+					resolve(encryptionKey)
+				} else {
+					reject('No encryption key found, Unable to decrypt data.')
+				}
+			})
+		})
 	}
 
 	async $find(params?: P & {paginate?: PaginationOptions}): Promise<Paginated<T>>
