@@ -39,15 +39,16 @@ export function feathersUp(appType = 'server', setup: AppSetup | Model = {}, opt
 
 	app = instance as Application
 
-	initialize(app, setup)
+	app.out = new Out(appType)
+	app.out.setVerbosity(options.verbosity)
 
 	app.set('appType', appType)
 	app.set('env', process.env.NODE_ENV || 'development')
 
-	app.out = new Out(appType)
-	app.out.setVerbosity(options.verbosity)
 	const appEnv = app.get('env')
 	app.out.block.info(`Initializing {cyan}${appType}{/cyan} in {magenta}${appEnv}{/megenta} mode`)
+
+	initialize(app, setup)
 
 	// configure paths
 	app.configure(paths)
