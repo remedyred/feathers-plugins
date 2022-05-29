@@ -166,12 +166,12 @@ export default class PouchAdapter<T = any, P extends Params = Params, O extends 
 
 	async $get(id: Id, params: P = {} as P): Promise<ExistingDocument<T>> {
 		await this.$ready()
-		this.out.info('Getting document', id)
 		const {query} = this.getQuery(params)
 		const doc = await this.client.get(String(id))
 		if (!this.options.matcher || this.options.matcher(query)(doc)) {
 			return _select(doc, params, this.id)
 		}
+		this.out.error('Document does not match query', query)
 		throw new NotFound(`No record found for id '${id}'`)
 	}
 
@@ -183,8 +183,6 @@ export default class PouchAdapter<T = any, P extends Params = Params, O extends 
 		if (Array.isArray(data) && this.allowsMulti('create')) {
 			return Promise.all(data.map(current => this.$create(current, params)))
 		}
-
-		this.out.info('Creating document', data)
 
 		try {
 			const result = await this.client.post(data as PostDocument<Document>)
