@@ -14,13 +14,16 @@ export function initialize(app: Application, setup: AppSetup | Model = {}) {
 	if ($setup.has('config')) {
 		const config = $setup.get('config')
 		if (typeof config === 'function') {
+			app.out.debug('Loading custom configuration method')
 			app.configure(config)
 		} else if (isObject(config)) {
+			app.out.debug('Loading custom configuration object')
 			for (const name in config) {
 				app.set(name, config[name])
 			}
 		}
 	} else {
+		app.out.debug('Loading configuration')
 		app.configure(configuration())
 	}
 
