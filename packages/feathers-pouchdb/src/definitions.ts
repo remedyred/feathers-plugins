@@ -11,8 +11,10 @@ export type RemoveDocument = PouchDB.Core.RemoveDocument
 export type Matcher<T = any> = (query: T) => T
 export type Sorter<T = any> = (sort: T) => T
 
+export type PouchEndpointType = 'local' | 'remote'
+
 export interface PouchServiceOptions<T = any> extends AdapterServiceOptions {
-	connection: PouchDB.Configuration.DatabaseConfiguration
+	connection?: PouchDB.Configuration.DatabaseConfiguration
 	replicate?: PouchDB.Configuration.DatabaseConfiguration
 	matcher?: Matcher<T>
 	sorter?: Sorter<T>
