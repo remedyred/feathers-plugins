@@ -34,6 +34,8 @@
 		"@snickbit/feathers-helpers": "^1.0.7",
 		"@snickbit/out": "^2.0.29",
 		"@snickbit/utilities": "^3.0.23",
+		"comdb": "6.0.0-beta",
+		"crypto-pouch": "^4.0.1",
 		"pouchdb": "^7.3.0",
 		"pouchdb-find": "^7.3.0",
 		"sift": "^16.0.0"

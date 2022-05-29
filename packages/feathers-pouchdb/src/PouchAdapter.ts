@@ -4,12 +4,16 @@ import {Application, Id, NullableId, Paginated, Params, Query} from '@feathersjs
 import {_select, filterParams} from '@snickbit/feathers-helpers'
 import {Out} from '@snickbit/out'
 import {merge} from '@snickbit/utilities'
-import {DatabaseConfig, ExistingDocument, Matcher, PostDocument, PouchServiceOptions, PutDocument} from './definitions'
+import {ExistingDocument, Matcher, PostDocument, PouchServiceOptions, PutDocument} from './definitions'
+import comdb from 'comdb'
+import crypto_pouch from 'crypto-pouch'
 import PouchDB from 'pouchdb'
 import pouchdb_find from 'pouchdb-find'
 import sift from 'sift'
 
 PouchDB.plugin(pouchdb_find)
+PouchDB.plugin(comdb)
+PouchDB.plugin(crypto_pouch)
 
 const possibleConnectionKeys = [
 	'pouch',
@@ -49,6 +53,13 @@ export default class PouchAdapter<T = any, P extends Params = Params, O extends 
 		} as O & {matcher: Matcher<T>}
 
 		super(options)
+	}
+
+	private encryptionProperty(app: Application): string | undefined {
+		if (this.options.encryptionProperty) {
+			return this.options.encryptionProperty
+		}
+		return app.get('authentication')?.local?.passwordField
 	}
 
 	protected isMulti(id: Id, params?: Params): Query | false {
@@ -92,8 +103,30 @@ export default class PouchAdapter<T = any, P extends Params = Params, O extends 
 		this.client.createIndex({index: {fields: [this.options.id]}})
 
 		if (this.options.replicate) {
+			let encryptionKey: string | false
+			try {
+				encryptionKey = await this.encryptionReady(app)
+			} catch (e) {
+				throw new GeneralError(e.message)
+			}
+
 			const options = {...connection, ...this.options.replicate}
 			this.remote = new PouchDB(servicePath, options)
+
+			if (this.options.encrypt && encryptionKey) {
+				if (this.options.encrypt === true || this.options.encrypt === 'remote') {
+					await this.client.setPassword(encryptionKey)
+
+					// We only need to load the encrypted data if we are using e2e encryption
+					if (this.options.encrypt === true) {
+						await this.client.loadEncrypted()
+					}
+				}
+
+				if (this.options.encrypt === 'local') {
+					await this.client.crypto(encryptionKey)
+				}
+			}
 
 			PouchDB.sync(this.client, this.remote, {live: true, retry: true})
 		}

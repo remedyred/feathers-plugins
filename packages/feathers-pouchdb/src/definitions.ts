@@ -18,6 +18,9 @@ export interface PouchServiceOptions<T = any> extends AdapterServiceOptions {
 	replicate?: PouchDB.Configuration.DatabaseConfiguration
 	matcher?: Matcher<T>
 	sorter?: Sorter<T>
+	encrypt?: PouchEndpointType | boolean
+	encryptionKey?: string
+	encryptionProperty?: string
 }
 
 export type DatabaseConfig = PouchDB.Configuration.DatabaseConfiguration
