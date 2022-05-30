@@ -210,6 +210,7 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 	async $find(params: P = {} as P): Promise<Paginated<T> | T[]> {
 		await this.$ready()
 		const {filters, query, paginate} = filterParams(params)
+		this.out.debug('$find', {filters, query, paginate})
 
 		let options: PouchDB.Find.FindRequest<any> = {selector: query}
 
