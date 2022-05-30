@@ -13,9 +13,11 @@ export function transformSearchFieldsInQuery(query: any, options: SearchOptions,
 	const makeRegex = value => {
 		try {
 			value = escapeRegExp(value)
-			value = value.split(/\W/).map(v => v.trim())
-				.filter(v => v)
-				.join('.*')
+			value =
+				value.split(/\W/)
+					.map(v => v.trim())
+					.filter(v => v)
+					.join('.*')
 			return query.$caseSensitive ? new RegExp(value) : new RegExp(value, 'i')
 		} catch (e) {
 			out.throw('Error making regex', e)

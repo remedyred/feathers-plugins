@@ -260,17 +260,15 @@ export class Logger {
 			}
 		}
 
-		return this.request
-			.then(response => {
-				if (!this.options.global) {
-					this.#out.debug('Saving response')
-					this.payload._id = response?._id || response?.data?._id
-					this.#out.debug('Updating sent messages', {current: this.sent_messages, plus: sending_messages, total: this.sent_messages + sending_messages})
-					this.sent_messages += sending_messages
-				}
-				return response
-			})
-			.catch(err => this.#out.error('Error sending Logger data', err))
+		return this.request.then(response => {
+			if (!this.options.global) {
+				this.#out.debug('Saving response')
+				this.payload._id = response?._id || response?.data?._id
+				this.#out.debug('Updating sent messages', {current: this.sent_messages, plus: sending_messages, total: this.sent_messages + sending_messages})
+				this.sent_messages += sending_messages
+			}
+			return response
+		}).catch(err => this.#out.error('Error sending Logger data', err))
 	}
 }
 
