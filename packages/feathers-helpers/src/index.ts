@@ -1,30 +1,11 @@
-import {AdapterParams, AdapterServiceOptions, filterQuery, PaginationParams, select, sorter} from '@feathersjs/adapter-commons'
+import {AdapterParams, filterQuery, select, sorter} from '@feathersjs/adapter-commons'
 import {_} from '@feathersjs/commons'
 import {NotImplemented} from '@feathersjs/errors'
-import {Params, Query} from '@feathersjs/feathers'
+import {Params} from '@feathersjs/feathers'
 import {out} from '@snickbit/out'
 import {isJSONString, JSONParse, objectCopy} from '@snickbit/utilities'
+import {FilteredQuery, QueryOptions, TimestampOptions, Timestamps} from './definitions'
 import sift from 'sift'
-
-export interface Sort {
-	[key: string]: any
-}
-
-export interface Sorter {
-	(sort: Sort): (a: any, b: any) => number
-}
-
-export interface QueryOptions extends Partial<AdapterServiceOptions> {
-	operators?: string[]
-	sorter?: Sorter
-	matcher?(value: any): any
-}
-
-export interface FilteredQuery {
-	query: Query
-	filters: {[key: string]: any}
-	paginate: PaginationParams
-}
 
 export function parseResponseError(e: any): any {
 	const data: any = {message: 'Unknown error'}
