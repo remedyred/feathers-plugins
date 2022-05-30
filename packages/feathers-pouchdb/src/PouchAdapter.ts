@@ -238,7 +238,7 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 			throw new GeneralError('Failed to find documents', e)
 		}
 
-		if (!paginate) {
+		if (paginate === false) {
 			return results.data
 		}
 
