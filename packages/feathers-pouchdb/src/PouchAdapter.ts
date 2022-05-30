@@ -43,7 +43,7 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 
 	protected out: Out
 
-	constructor(options: O) {
+	constructor(options: O = {} as O) {
 		options = {
 			id: '_id',
 			events: [],
@@ -125,52 +125,58 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 			this.out.debug('Initializing replication', {replication})
 			this.remote = new PouchDB(servicePath, replication)
 
-			let encryptionKey: string | false
-			this.encryptionReady(app)
-				.then(async () => {
-					if (this.options.encrypt && encryptionKey) {
-						this.out.debug('Encrypting data')
-						if (this.options.encrypt === true || this.options.encrypt === 'remote') {
-							await this.client.setPassword(encryptionKey)
+			if (this.options.encrypt) {
+				let encryptionKey: string | false
+				try {
+					this.out.debug('Waiting for encryption key...')
+					encryptionKey = await this.encryptionReady(app)
+				} catch (e) {
+					this.out.error('Failed to initialize encryption', e)
+					throw new GeneralError(e.message)
+				}
 
-							// We only need to load the encrypted data if we are using e2e encryption
-							if (this.options.encrypt === true) {
-								await this.client.loadEncrypted()
-							}
-						}
+				if (encryptionKey) {
+					this.out.debug('Encrypting data')
+					if (this.options.encrypt === true || this.options.encrypt === 'remote') {
+						this.out.debug('Encrypting remote data', this.options.encrypt)
+						await this.client.setPassword(encryptionKey)
 
-						if (this.options.encrypt === 'local') {
-							await this.client.crypto(encryptionKey)
+						// We only need to load the encrypted data if we are using e2e encryption
+						if (this.options.encrypt === true) {
+							this.out.debug('Loading encrypted data')
+							await this.client.loadEncrypted()
 						}
 					}
+
+					if (this.options.encrypt === 'local') {
+						this.out.debug('Encrypting local data')
+						await this.client.crypto(encryptionKey)
+					}
+				}
+			}
+
+			this.out.debug('Starting data replication')
+			this.client.sync(this.remote, {
+				live: true,
+				retry: true
+			})
+				.on('change', info => {
+					this.emit('sync.change', info)
 				})
-				.catch(err => {
-					this.out.error('Failed to initialize encryption', err)
-					throw new GeneralError(err.message)
+				.on('paused', error => {
+					this.emit('sync.paused', error)
 				})
-				.finally(() => {
-					this.client.sync(this.remote, {
-						live: true,
-						retry: true
-					})
-						.on('change', info => {
-							this.emit('sync.change', info)
-						})
-						.on('paused', error => {
-							this.emit('sync.paused', error)
-						})
-						.on('active', () => {
-							this.emit('sync.active')
-						})
-						.on('denied', error => {
-							this.emit('sync.denied', error)
-						})
-						.on('complete', info => {
-							this.emit('sync.complete', info)
-						})
-						.on('error', error => {
-							this.emit('sync.error', error)
-						})
+				.on('active', () => {
+					this.emit('sync.active')
+				})
+				.on('denied', error => {
+					this.emit('sync.denied', error)
+				})
+				.on('complete', info => {
+					this.emit('sync.complete', info)
+				})
+				.on('error', error => {
+					this.emit('sync.error', error)
 				})
 		}
 	}
