@@ -45,12 +45,6 @@ export type SearchOptions = {
 	excludedFields?: string[]
 }
 
-export interface Timestamps {
-	created: boolean | string
-	updated: boolean | string
-	deleted?: boolean | string
-}
-
 export default class MongoAdapter extends MongoDBService {
 	declare options: MongoServiceOptions
 
