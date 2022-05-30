@@ -9,8 +9,8 @@ import sift from 'sift'
 
 export interface RedisServiceOptions<T = any> extends AdapterServiceOptions {
 	connection: RedisOptions
-	matcher?: (query: T) => T
-	sorter?: (sort: T) => T
+	matcher?(query: T): T
+	sorter?(sort: T): T
 }
 
 export type RedisId = string

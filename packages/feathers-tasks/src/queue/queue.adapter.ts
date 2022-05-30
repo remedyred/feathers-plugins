@@ -63,7 +63,7 @@ export interface TaskRequestBase {
 	data?: any
 	progress?: TaskProgress
 	options?: any
-	toJSON?: () => TaskRequest
+	toJSON?(): TaskRequest
 }
 
 export interface TaskProgress {
@@ -72,7 +72,7 @@ export interface TaskProgress {
 }
 
 export interface TaskRequestModel {
-	toJSON: () => TaskRequest
+	toJSON(): TaskRequest
 }
 
 export interface TaskPayload {

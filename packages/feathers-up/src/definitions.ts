@@ -10,7 +10,7 @@ import {ProxyLogger} from './logger'
 import Logger from '@snickbit/feathers-logger'
 
 export interface CompressOptions extends ZlibOptions {
-	filter?: () => boolean
+	filter?(): boolean
 	threshold?: number
 }
 
@@ -43,11 +43,11 @@ export interface AppSetup {
 	compress?: CompressOptions
 	express?: AppSetupExpress
 	socketio?: ServerOptions
-	middleware?: (...args) => any
-	authentication?: (...args) => any
+	middleware?(...args): any
+	authentication?(...args): any
 	services?: AppServiceResult | Record<string, AppServiceResult>
-	channels?: (...args) => any
-	hooks?: (...args) => any
+	channels?(...args): any
+	hooks?(...args): any
 	mongodb?: DatabaseLoader
 	redis?: DatabaseLoader
 	mysql?: DatabaseLoader

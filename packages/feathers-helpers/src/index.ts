@@ -17,7 +17,7 @@ export interface Sorter {
 export interface QueryOptions extends Partial<AdapterServiceOptions> {
 	operators?: string[]
 	sorter?: Sorter
-	matcher?: (value: any) => any
+	matcher?(value: any): any
 }
 
 export interface FilteredQuery {

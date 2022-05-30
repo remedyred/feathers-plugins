@@ -38,7 +38,7 @@ export interface ParsedParams extends Params {
 export interface FileServiceOptions extends Partial<AdapterServiceOptions> {
 	root?: string
 	url?: string
-	matcher?: (value: any) => any
+	matcher?(value: any): any
 }
 
 export interface FilteredQuery {
