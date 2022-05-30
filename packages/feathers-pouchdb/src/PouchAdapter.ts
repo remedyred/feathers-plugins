@@ -1,19 +1,20 @@
-import {AdapterBase, filterQuery, PaginationOptions, sorter} from '@feathersjs/adapter-commons'
+import {AdapterBase, filterQuery, PaginationOptions} from '@feathersjs/adapter-commons'
 import {GeneralError, NotFound} from '@feathersjs/errors'
 import {Application, Id, NullableId, Paginated, Params, Query} from '@feathersjs/feathers'
-import {_select, filterParams} from '@snickbit/feathers-helpers'
+import {filterParams} from '@snickbit/feathers-helpers'
 import {Out} from '@snickbit/out'
 import {merge} from '@snickbit/utilities'
-import {ExistingDocument, Matcher, PostDocument, PouchServiceOptions, PutDocument} from './definitions'
+import {ExistingDocument, PostDocument, PouchServiceOptions, PutDocument} from './definitions'
 import comdb from 'comdb'
 import crypto_pouch from 'crypto-pouch'
 import PouchDB from 'pouchdb'
 import pouchdb_find from 'pouchdb-find'
-import sift from 'sift'
+import pouchdb_adapter_memory from 'pouchdb-adapter-memory'
 
 PouchDB.plugin(pouchdb_find)
 PouchDB.plugin(comdb)
 PouchDB.plugin(crypto_pouch)
+PouchDB.plugin(pouchdb_adapter_memory)
 
 const possibleConnectionKeys = [
 	'pouch',
@@ -47,10 +48,8 @@ export default class PouchAdapter<T = any, P extends Params = Params, O extends 
 			multi: false,
 			filters: [],
 			whitelist: [],
-			matcher: sift,
-			sorter,
 			...options
-		} as O & {matcher: Matcher<T>}
+		} as O
 
 		super(options)
 	}
@@ -92,7 +91,7 @@ export default class PouchAdapter<T = any, P extends Params = Params, O extends 
 	}
 
 	async setup(app: Application, servicePath: string) {
-		this.out = new Out('pouchdb')
+		this.out = new Out(`pouchdb:${servicePath}`)
 
 		const connection = this.options.connection || checkAppForConnection(app) || {}
 
@@ -201,8 +200,8 @@ export default class PouchAdapter<T = any, P extends Params = Params, O extends 
 		await this.$ready()
 		const {query} = this.getQuery(params)
 		const doc = await this.client.get(String(id))
-		if (!this.options.matcher || this.options.matcher(query)(doc)) {
-			return _select(doc, params, this.id)
+		if (doc) {
+			return doc as unknown as ExistingDocument<T>
 		}
 		this.out.error('Document does not match query', query)
 		throw new NotFound(`No record found for id '${id}'`)
