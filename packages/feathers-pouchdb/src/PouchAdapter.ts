@@ -57,13 +57,6 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 		super(options)
 	}
 
-	private encryptionProperty(app: Application): string | undefined {
-		if (this.options.encryptionProperty) {
-			return this.options.encryptionProperty
-		}
-		return app.get('authentication')?.local?.passwordField
-	}
-
 	protected isMulti(id: Id, params?: Params): Query | false {
 		const {query} = filterQuery(params || {})
 		return !id && query && Object.keys(query).length ? query : false
@@ -196,12 +189,34 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 					}
 				})
 			} else {
-				app.on('login', (user: any) => {
-					const encryptionKey = user[this.encryptionProperty(app) || 'password']
+				app.on('login', authResult => {
+					const authentication = app.get('authentication')
+
+					this.out.debug(`${authentication.entity} logged in, attempting to decrypt`)
+
+					const entity = authResult[authentication.entity]
+					let encryptionKey: string | undefined
+
+					if (this.options.encryptionProperty) {
+						if (this.options.encryptionProperty in entity) {
+							encryptionKey = entity[this.options.encryptionProperty]
+						} else {
+							encryptionKey = interpolate(this.options.encryptionProperty, entity)
+							if (encryptionKey === this.options.encryptionProperty) {
+								encryptionKey = undefined
+							}
+						}
+					} else {
+						encryptionKey = entity._id || entity.id
+					}
+
+					this.out.debug('entity', entity)
+
 					if (encryptionKey) {
+						this.out.debug('encryptionKey', encryptionKey)
 						resolve(encryptionKey)
 					} else {
-						reject('No encryption key found, Unable to decrypt data.')
+						reject(`No encryption key found for ${authentication.entity}`)
 					}
 				})
 			}
