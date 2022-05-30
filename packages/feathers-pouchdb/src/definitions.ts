@@ -15,7 +15,7 @@ export type PouchEndpointType = 'local' | 'remote'
 
 export type DatabaseConfig = PouchDB.Configuration.LocalDatabaseConfiguration & PouchDB.Configuration.RemoteDatabaseConfiguration
 
-export interface PouchOptions {
+export interface PouchServiceOptions extends AdapterServiceOptions {
 	connection?: DatabaseConfig
 	replicate?: DatabaseConfig
 	encrypt?: PouchEndpointType | boolean
@@ -25,8 +25,6 @@ export interface PouchOptions {
 	prefix?: string
 	verbosity?: number
 }
-
-export interface PouchServiceOptions extends AdapterServiceOptions, PouchOptions {}
 
 export type PouchRecord<T> = T & {
 	_id: string
