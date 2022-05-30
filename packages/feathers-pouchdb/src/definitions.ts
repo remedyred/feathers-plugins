@@ -21,6 +21,7 @@ export interface PouchOptions {
 	encrypt?: PouchEndpointType | boolean
 	encryptionKey?: string
 	encryptionProperty?: string
+	decryptOn?: 'decrypt' | 'login'
 	prefix?: string
 }
 

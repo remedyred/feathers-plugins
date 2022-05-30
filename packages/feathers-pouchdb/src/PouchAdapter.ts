@@ -186,14 +186,25 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 		}
 
 		return new Promise((resolve, reject) => {
-			app.on('login', (user: any) => {
-				const encryptionKey = user[this.encryptionProperty(app) || 'password']
-				if (encryptionKey) {
-					resolve(encryptionKey)
-				} else {
-					reject('No encryption key found, Unable to decrypt data.')
-				}
-			})
+			if (this.options.decryptOn === 'decrypt') {
+				app.on('decrypt', encryptionKey => {
+					this.out.info(`decrypt event called, attempting to decrypt`)
+					if (encryptionKey) {
+						resolve(encryptionKey)
+					} else {
+						reject(`Encryption key is invalid`)
+					}
+				})
+			} else {
+				app.on('login', (user: any) => {
+					const encryptionKey = user[this.encryptionProperty(app) || 'password']
+					if (encryptionKey) {
+						resolve(encryptionKey)
+					} else {
+						reject('No encryption key found, Unable to decrypt data.')
+					}
+				})
+			}
 		})
 	}
 
