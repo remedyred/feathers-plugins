@@ -38,8 +38,7 @@
 		"crypto-pouch": "^4.0.1",
 		"pouchdb": "^7.3.0",
 		"pouchdb-adapter-memory": "^7.3.0",
-		"pouchdb-find": "^7.3.0",
-		"sift": "^16.0.0"
+		"pouchdb-find": "^7.3.0"
 	},
 	"devDependencies": {
 		"@types/jest": "^27.4.1",
