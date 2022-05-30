@@ -19,6 +19,7 @@
 		"clean": "shx rm -rf ./dist",
 		"depcheck": "depcheck",
 		"dev": "pnpm run build --sourcemap",
+		"index": "indexer",
 		"meta": "pnpm run prod --metafile",
 		"prod": "pnpm run build --minify",
 		"watch": "pnpm run dev --watch"
@@ -37,6 +38,7 @@
 	},
 	"devDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.20",
+		"@remedyred/indexer": "^2.4.1",
 		"@types/jest": "^27.4.1",
 		"jest": "^28.1.0",
 		"shx": "^0.3.4",
