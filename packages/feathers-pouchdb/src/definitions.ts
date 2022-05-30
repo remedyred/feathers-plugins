@@ -13,17 +13,18 @@ export type Sorter<T = any> = (sort: T) => T
 
 export type PouchEndpointType = 'local' | 'remote'
 
-export interface PouchServiceOptions<T = any> extends AdapterServiceOptions {
-	connection?: PouchDB.Configuration.DatabaseConfiguration
-	replicate?: PouchDB.Configuration.DatabaseConfiguration
-	matcher?: Matcher<T>
-	sorter?: Sorter<T>
+export type DatabaseConfig = PouchDB.Configuration.LocalDatabaseConfiguration & PouchDB.Configuration.RemoteDatabaseConfiguration
+
+export interface PouchOptions {
+	connection?: DatabaseConfig
+	replicate?: DatabaseConfig
 	encrypt?: PouchEndpointType | boolean
 	encryptionKey?: string
 	encryptionProperty?: string
+	prefix?: string
 }
 
-export type DatabaseConfig = PouchDB.Configuration.DatabaseConfiguration
+export interface PouchServiceOptions extends AdapterServiceOptions, PouchOptions {}
 
 export type PouchRecord<T> = T & {
 	_id: string

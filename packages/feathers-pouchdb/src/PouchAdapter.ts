@@ -16,7 +16,7 @@ PouchDB.plugin(comdb)
 PouchDB.plugin(crypto_pouch)
 PouchDB.plugin(pouchdb_adapter_memory)
 
-const possibleConnectionKeys = [
+const possibleOptionKeys = [
 	'pouch',
 	'pouchdb',
 	'couch',
@@ -98,9 +98,11 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 
 		this.options = {...checkAppForOptions(app), ...this.options}
 
-		const adapter: string | undefined = this.options.encrypt && !this.options.encryptionKey ? 'memory' : connection.adapter
+		const connection = this.options.connection || {}
+		connection.adapter = this.options.encrypt && !this.options.encryptionKey ? 'memory' : connection?.adapter
+		connection.prefix = this.options.prefix || ''
 
-		this.client = new PouchDB(servicePath, {...connection, adapter})
+		this.client = new PouchDB(servicePath, connection)
 
 		this.client.changes({
 			since: 'now',
@@ -119,54 +121,60 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 
 		this.client.createIndex({index: {fields: [this.options.id]}})
 
+		this.out.debug('Created PouchDB instance')
+
 		if (this.options.replicate) {
+			const replication = {...connection, ...this.options.replicate}
+			this.out.debug('Starting replication', {replication})
+			this.remote = new PouchDB(servicePath, replication)
+
 			let encryptionKey: string | false
-			try {
-				encryptionKey = await this.encryptionReady(app)
-			} catch (e) {
-				throw new GeneralError(e.message)
-			}
+			this.encryptionReady(app)
+				.then(async () => {
+					if (this.options.encrypt && encryptionKey) {
+						this.out.debug('Encrypting data')
+						if (this.options.encrypt === true || this.options.encrypt === 'remote') {
+							await this.client.setPassword(encryptionKey)
 
-			const options = {...connection, ...this.options.replicate}
-			this.remote = new PouchDB(servicePath, options)
+							// We only need to load the encrypted data if we are using e2e encryption
+							if (this.options.encrypt === true) {
+								await this.client.loadEncrypted()
+							}
+						}
 
-			if (this.options.encrypt && encryptionKey) {
-				if (this.options.encrypt === true || this.options.encrypt === 'remote') {
-					await this.client.setPassword(encryptionKey)
-
-					// We only need to load the encrypted data if we are using e2e encryption
-					if (this.options.encrypt === true) {
-						await this.client.loadEncrypted()
+						if (this.options.encrypt === 'local') {
+							await this.client.crypto(encryptionKey)
+						}
 					}
-				}
-
-				if (this.options.encrypt === 'local') {
-					await this.client.crypto(encryptionKey)
-				}
-			}
-
-			this.client.sync(this.remote, {
-				live: true,
-				retry: true
-			})
-			    .on('change', info => {
-				    this.emit('sync.change', info)
-			    })
-			    .on('paused', error => {
-				    this.emit('sync.paused', error)
-			    })
-			    .on('active', () => {
-				    this.emit('sync.active')
-			    })
-			    .on('denied', error => {
-				    this.emit('sync.denied', error)
-			    })
-			    .on('complete', info => {
-				    this.emit('sync.complete', info)
-			    })
-			    .on('error', error => {
-				    this.emit('sync.error', error)
-			    })
+				})
+				.catch(err => {
+					this.out.error('Failed to initialize encryption', err)
+					throw new GeneralError(err.message)
+				})
+				.finally(() => {
+					this.client.sync(this.remote, {
+						live: true,
+						retry: true
+					})
+						.on('change', info => {
+							this.emit('sync.change', info)
+						})
+						.on('paused', error => {
+							this.emit('sync.paused', error)
+						})
+						.on('active', () => {
+							this.emit('sync.active')
+						})
+						.on('denied', error => {
+							this.emit('sync.denied', error)
+						})
+						.on('complete', info => {
+							this.emit('sync.complete', info)
+						})
+						.on('error', error => {
+							this.emit('sync.error', error)
+						})
+				})
 		}
 	}
 
