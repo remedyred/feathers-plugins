@@ -23,15 +23,18 @@ const possibleConnectionKeys = [
 	'couchdb'
 ]
 
-function checkAppForConnection(app: Application) {
-	for (const key of possibleConnectionKeys) {
+function checkAppForOptions(app: Application) {
+	for (const key of possibleOptionKeys) {
 		if (app.get(key)) {
 			return app.get(key)
 		}
 	}
+	return {}
 }
 
-export default class PouchAdapter<T = any, P extends Params = Params, O extends PouchServiceOptions = PouchServiceOptions> extends AdapterBase {
+export interface PouchAdapter extends AdapterBase, EventEmitter {}
+
+export class PouchAdapter<T = any, P extends Params = Params, O extends PouchServiceOptions = PouchServiceOptions> extends AdapterBase {
 	declare options: O
 
 	protected client: PouchDB.Database<Document>
@@ -93,11 +96,26 @@ export default class PouchAdapter<T = any, P extends Params = Params, O extends 
 	async setup(app: Application, servicePath: string) {
 		this.out = new Out(`pouchdb:${servicePath}`)
 
-		const connection = this.options.connection || checkAppForConnection(app) || {}
+		this.options = {...checkAppForOptions(app), ...this.options}
 
 		const adapter: string | undefined = this.options.encrypt && !this.options.encryptionKey ? 'memory' : connection.adapter
 
 		this.client = new PouchDB(servicePath, {...connection, adapter})
+
+		this.client.changes({
+			since: 'now',
+			live: true,
+			include_docs: true
+		})
+			.on('change', change => {
+				this.emit('changes.change', change)
+			})
+			.on('complete', info => {
+				this.emit('changes.complete', info)
+			})
+			.on('error', error => {
+				this.emit('changes.error', error)
+			})
 
 		this.client.createIndex({index: {fields: [this.options.id]}})
 
@@ -127,7 +145,28 @@ export default class PouchAdapter<T = any, P extends Params = Params, O extends 
 				}
 			}
 
-			PouchDB.sync(this.client, this.remote, {live: true, retry: true})
+			this.client.sync(this.remote, {
+				live: true,
+				retry: true
+			})
+			    .on('change', info => {
+				    this.emit('sync.change', info)
+			    })
+			    .on('paused', error => {
+				    this.emit('sync.paused', error)
+			    })
+			    .on('active', () => {
+				    this.emit('sync.active')
+			    })
+			    .on('denied', error => {
+				    this.emit('sync.denied', error)
+			    })
+			    .on('complete', info => {
+				    this.emit('sync.complete', info)
+			    })
+			    .on('error', error => {
+				    this.emit('sync.error', error)
+			    })
 		}
 	}
 
@@ -270,3 +309,5 @@ export default class PouchAdapter<T = any, P extends Params = Params, O extends 
 		return Promise.all(items.map(item => this[method](item[this.id])))
 	}
 }
+
+export default PouchAdapter
