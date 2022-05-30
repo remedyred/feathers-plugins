@@ -120,40 +120,40 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 
 		this.client.createIndex({index: {fields: [this.options.id]}})
 
+		if (this.options.encrypt) {
+			let encryptionKey: string | false
+			try {
+				this.out.debug('Waiting for encryption key...')
+				encryptionKey = await this.encryptionReady(app)
+			} catch (e) {
+				this.out.error('Failed to initialize encryption', e)
+				throw new GeneralError(e.message)
+			}
+
+			if (encryptionKey) {
+				this.out.debug('Encrypting data')
+				if (this.options.encrypt === true || this.options.encrypt === 'remote') {
+					this.out.debug('Encrypting remote data', this.options.encrypt)
+					await this.client.setPassword(encryptionKey)
+
+					// We only need to load the encrypted data if we are using e2e encryption
+					if (this.options.encrypt === true) {
+						this.out.debug('Loading encrypted data')
+						await this.client.loadEncrypted()
+					}
+				}
+
+				if (this.options.encrypt === 'local') {
+					this.out.debug('Encrypting local data')
+					await this.client.crypto(encryptionKey)
+				}
+			}
+		}
+
 		if (this.options.replicate) {
 			const replication = {...connection, ...this.options.replicate}
 			this.out.debug('Initializing replication', {replication})
 			this.remote = new PouchDB(servicePath, replication)
-
-			if (this.options.encrypt) {
-				let encryptionKey: string | false
-				try {
-					this.out.debug('Waiting for encryption key...')
-					encryptionKey = await this.encryptionReady(app)
-				} catch (e) {
-					this.out.error('Failed to initialize encryption', e)
-					throw new GeneralError(e.message)
-				}
-
-				if (encryptionKey) {
-					this.out.debug('Encrypting data')
-					if (this.options.encrypt === true || this.options.encrypt === 'remote') {
-						this.out.debug('Encrypting remote data', this.options.encrypt)
-						await this.client.setPassword(encryptionKey)
-
-						// We only need to load the encrypted data if we are using e2e encryption
-						if (this.options.encrypt === true) {
-							this.out.debug('Loading encrypted data')
-							await this.client.loadEncrypted()
-						}
-					}
-
-					if (this.options.encrypt === 'local') {
-						this.out.debug('Encrypting local data')
-						await this.client.crypto(encryptionKey)
-					}
-				}
-			}
 
 			this.out.debug('Starting data replication')
 			this.client.sync(this.remote, {
