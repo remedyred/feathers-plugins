@@ -1,5 +1,15 @@
 # @snickbit/feathers-up Changelog
 
+## 1.0.14
+
+### Patch Changes
+
+- [667078f](https://github.com/snickbit/feathers/commit/667078f) **style**:  lint
+- [77c1666](https://github.com/snickbit/feathers/commit/77c1666) **fix**:  adjust logging
+- [88f550d](https://github.com/snickbit/feathers/commit/88f550d) **fix**:  add debug output to config
+- [453e258](https://github.com/snickbit/feathers/commit/453e258) **fix**:  move initialize() after out, appType, and env
+- [7b8b88c](https://github.com/snickbit/feathers/commit/7b8b88c) **fix**:  type definition
+
 ## 1.0.11
 
 ### Patch Changes

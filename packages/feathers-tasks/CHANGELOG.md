@@ -1,5 +1,12 @@
 # @snickbit/feathers-tasks Changelog
 
+## 2.0.12
+
+### Patch Changes
+
+- [667078f](https://github.com/snickbit/feathers/commit/667078f) **style**:  lint
+- [9418e23](https://github.com/snickbit/feathers/commit/9418e23) **fix**:  rollback tsup to maintain dynamic import support
+
 ## 2.0.8
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
 	"name": "@snickbit/feathers-pouchdb",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "PouchDB adapter for FeathersJS",
 	"license": "MIT",
 	"exports": {
