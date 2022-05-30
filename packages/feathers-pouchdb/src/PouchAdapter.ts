@@ -3,7 +3,7 @@ import {GeneralError, NotFound} from '@feathersjs/errors'
 import {Application, Id, NullableId, Paginated, Params, Query} from '@feathersjs/feathers'
 import {filterParams} from '@snickbit/feathers-helpers'
 import {Out} from '@snickbit/out'
-import {merge} from '@snickbit/utilities'
+import {merge, objectExcept} from '@snickbit/utilities'
 import {ExistingDocument, PostDocument, PouchServiceOptions, PutDocument} from './definitions'
 import comdb from 'comdb'
 import crypto_pouch from 'crypto-pouch'
@@ -120,6 +120,8 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 
 		this.client.createIndex({index: {fields: [this.options.id]}})
 
+		let replicateFrom = this.client
+
 		if (this.options.encrypt) {
 			let encryptionKey: string | false
 			try {
@@ -132,15 +134,18 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 
 			if (encryptionKey) {
 				this.out.debug('Encrypting data')
+				const encryptOptions = objectExcept(connection, ['name'])
 				if (this.options.encrypt === true || this.options.encrypt === 'remote') {
-					this.out.debug('Encrypting remote data', this.options.encrypt)
-					await this.client.setPassword(encryptionKey)
+					this.out.debug('Encrypting remote data', this.options.encrypt, encryptOptions)
+					await this.client.setPassword(encryptionKey, {opts: encryptOptions})
 
 					// We only need to load the encrypted data if we are using e2e encryption
 					if (this.options.encrypt === true) {
 						this.out.debug('Loading encrypted data')
 						await this.client.loadEncrypted()
 					}
+
+					replicateFrom = this.client._encrypted as PouchDB.Database<Document>
 				}
 
 				if (this.options.encrypt === 'local') {
@@ -156,10 +161,7 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 			this.remote = new PouchDB(servicePath, replication)
 
 			this.out.debug('Starting data replication')
-			this.client.sync(this.remote, {
-				live: true,
-				retry: true
-			})
+			PouchDB.sync(replicateFrom, this.remote, {live: true, retry: true})
 				.on('change', info => {
 					this.emit('sync.change', info)
 				})
