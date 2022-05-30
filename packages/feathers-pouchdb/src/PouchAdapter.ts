@@ -263,6 +263,23 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 		throw new NotFound(`No record found for id '${id}'`)
 	}
 
+	async $put(data: PutDocument<Document>, params?: P): Promise<ExistingDocument<T>>
+	async $put(data: PutDocument<Document>[], params?: P): Promise<ExistingDocument<T>[]>
+	async $put(data: PutDocument<Document> | PutDocument<Document>[], _params?: P): Promise<ExistingDocument<T> | ExistingDocument<T>[]>
+	async $put(data: PutDocument<Document> | PutDocument<Document>[], params: P = {} as P): Promise<ExistingDocument<T> | ExistingDocument<T>[]> {
+		await this.$ready()
+		if (Array.isArray(data) && this.allowsMulti('put')) {
+			return Promise.all(data.map(current => this.$put(current, params)))
+		}
+
+		try {
+			const result = await this.client.put(data as PutDocument<Document>)
+			return this.$get(result.id, params)
+		} catch (e) {
+			throw new GeneralError('Failed to put document', e)
+		}
+	}
+
 	async $create(data: PostDocument<Document>, params?: P): Promise<ExistingDocument<T>>
 	async $create(data: PostDocument<Document>[], params?: P): Promise<ExistingDocument<T>[]>
 	async $create(data: PostDocument<Document> | PostDocument<Document>[], _params?: P): Promise<ExistingDocument<T> | ExistingDocument<T>[]>
@@ -291,10 +308,10 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 		return this.$get(data._id, params)
 	}
 
-	async $patch(id: null, data: PostDocument<Document>, params?: P): Promise<ExistingDocument<T>[]>
-	async $patch(id: Id, data: PostDocument<Document>, params?: P): Promise<ExistingDocument<T>>
-	async $patch(id: NullableId, data: PostDocument<Document>, _params?: P): Promise<ExistingDocument<T>[] | T>
-	async $patch(id: NullableId, data: PostDocument<Document>, params: P = {} as P): Promise<ExistingDocument<T>[] | T> {
+	async $patch(id: null, data: PutDocument<Document>, params?: P): Promise<ExistingDocument<T>[]>
+	async $patch(id: Id, data: PutDocument<Document>, params?: P): Promise<ExistingDocument<T>>
+	async $patch(id: NullableId, data: PutDocument<Document>, _params?: P): Promise<ExistingDocument<T>[] | T>
+	async $patch(id: NullableId, data: PutDocument<Document>, params: P = {} as P): Promise<ExistingDocument<T>[] | T> {
 		await this.$ready()
 		if (this.isMulti(id, params)) {
 			return this.$multi('$patch', params)
