@@ -91,6 +91,10 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 
 		this.options = {...checkAppForOptions(app), ...this.options}
 
+		if (this.options.verbosity) {
+			this.out.setVerbosity(this.options.verbosity)
+		}
+
 		const connection = this.options.connection || {}
 		connection.adapter = this.options.encrypt && !this.options.encryptionKey ? 'memory' : connection?.adapter
 		connection.prefix = this.options.prefix || ''

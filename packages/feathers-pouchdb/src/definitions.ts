@@ -23,6 +23,7 @@ export interface PouchOptions {
 	encryptionProperty?: string
 	decryptOn?: 'decrypt' | 'login'
 	prefix?: string
+	verbosity?: number
 }
 
 export interface PouchServiceOptions extends AdapterServiceOptions, PouchOptions {}
