@@ -20,8 +20,6 @@ export interface PouchServiceOptions extends AdapterServiceOptions {
 	replicate?: DatabaseConfig
 	encrypt?: PouchEndpointType | boolean
 	encryptionKey?: string
-	encryptionProperty?: string
-	decryptOn?: 'decrypt' | 'login'
 	prefix?: string
 	verbosity?: number
 }

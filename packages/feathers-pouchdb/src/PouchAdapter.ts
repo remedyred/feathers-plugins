@@ -3,7 +3,7 @@ import {GeneralError, NotFound} from '@feathersjs/errors'
 import {Application, Id, NullableId, Paginated, Params, Query} from '@feathersjs/feathers'
 import {filterParams} from '@snickbit/feathers-helpers'
 import {Out} from '@snickbit/out'
-import {interpolate, merge} from '@snickbit/utilities'
+import {merge} from '@snickbit/utilities'
 import {ExistingDocument, PostDocument, PouchServiceOptions, PutDocument} from './definitions'
 import comdb from 'comdb'
 import crypto_pouch from 'crypto-pouch'
@@ -99,6 +99,8 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 		connection.adapter = this.options.encrypt && !this.options.encryptionKey ? 'memory' : connection?.adapter
 		connection.prefix = this.options.prefix || ''
 
+		this.out.debug('Initializing pouchdb', connection)
+
 		this.client = new PouchDB(servicePath, connection)
 
 		this.client.changes({
@@ -118,11 +120,9 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 
 		this.client.createIndex({index: {fields: [this.options.id]}})
 
-		this.out.debug('Created PouchDB instance')
-
 		if (this.options.replicate) {
 			const replication = {...connection, ...this.options.replicate}
-			this.out.debug('Starting replication', {replication})
+			this.out.debug('Initializing replication', {replication})
 			this.remote = new PouchDB(servicePath, replication)
 
 			let encryptionKey: string | false
@@ -179,51 +179,21 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 		if (!this.options.encrypt) {
 			return false
 		} else if (this.options.encryptionKey) {
+			this.out.debug('Encrypting with preset key')
 			return this.options.encryptionKey
 		}
 
+		this.out.debug('Encrypting with dynamic key')
 		return new Promise((resolve, reject) => {
-			if (this.options.decryptOn === 'decrypt') {
-				app.on('decrypt', encryptionKey => {
-					this.out.info(`decrypt event called, attempting to decrypt`)
-					if (encryptionKey) {
-						resolve(encryptionKey)
-					} else {
-						reject(`Encryption key is invalid`)
-					}
-				})
-			} else {
-				app.on('login', authResult => {
-					const authentication = app.get('authentication')
-
-					this.out.debug(`${authentication.entity} logged in, attempting to decrypt`)
-
-					const entity = authResult[authentication.entity]
-					let encryptionKey: string | undefined
-
-					if (this.options.encryptionProperty) {
-						if (this.options.encryptionProperty in entity) {
-							encryptionKey = entity[this.options.encryptionProperty]
-						} else {
-							encryptionKey = interpolate(this.options.encryptionProperty, entity)
-							if (encryptionKey === this.options.encryptionProperty) {
-								encryptionKey = undefined
-							}
-						}
-					} else {
-						encryptionKey = entity._id || entity.id
-					}
-
-					this.out.debug('entity', entity)
-
-					if (encryptionKey) {
-						this.out.debug('encryptionKey', encryptionKey)
-						resolve(encryptionKey)
-					} else {
-						reject(`No encryption key found for ${authentication.entity}`)
-					}
-				})
-			}
+			this.out.debug('Waiting for decrypt event...')
+			app.on('decrypt', encryptionKey => {
+				this.out.info(`decrypt event called, attempting to decrypt`)
+				if (encryptionKey) {
+					resolve(encryptionKey)
+				} else {
+					reject(`Encryption key is invalid`)
+				}
+			})
 		})
 	}
 
