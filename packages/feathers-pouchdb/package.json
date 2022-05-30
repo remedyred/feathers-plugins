@@ -37,6 +37,7 @@
 		"comdb": "6.0.0-beta",
 		"crypto-pouch": "^4.0.1",
 		"pouchdb": "^7.3.0",
+		"pouchdb-adapter-memory": "^7.3.0",
 		"pouchdb-find": "^7.3.0",
 		"sift": "^16.0.0"
 	},
