@@ -1,10 +1,11 @@
 import {AdapterBase, filterQuery, PaginationOptions} from '@feathersjs/adapter-commons'
-import {GeneralError, NotFound} from '@feathersjs/errors'
+import {NotFound} from '@feathersjs/errors'
 import {Application, Id, NullableId, Paginated, Params, Query} from '@feathersjs/feathers'
 import {filterParams} from '@snickbit/feathers-helpers'
 import {Out} from '@snickbit/out'
 import {merge, objectExcept} from '@snickbit/utilities'
 import {ExistingDocument, PostDocument, PouchServiceOptions, PutDocument} from './definitions'
+import {PouchError} from './PouchError'
 import comdb from 'comdb'
 import crypto_pouch from 'crypto-pouch'
 import PouchDB from 'pouchdb'
@@ -128,8 +129,9 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 				this.out.debug('Waiting for encryption key...')
 				encryptionKey = await this.encryptionReady(app)
 			} catch (e) {
-				this.out.error('Failed to initialize encryption', e)
-				throw new GeneralError(e.message)
+				const error = new PouchError('Failed to initialize encryption', e)
+				this.out.error(error)
+				throw error
 			}
 
 			if (encryptionKey) {
@@ -137,12 +139,24 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 				const encryptOptions = objectExcept(connection, ['name'])
 				if (this.options.encrypt === true || this.options.encrypt === 'remote') {
 					this.out.debug('Encrypting remote data', this.options.encrypt, encryptOptions)
-					await this.client.setPassword(encryptionKey, {opts: encryptOptions})
+					try {
+						await this.client.setPassword(encryptionKey, {opts: encryptOptions})
+					} catch (e) {
+						const error = new PouchError('Failed to encrypt remote data', e)
+						this.out.error(error)
+						throw error
+					}
 
 					// We only need to load the encrypted data if we are using e2e encryption
 					if (this.options.encrypt === true) {
 						this.out.debug('Loading encrypted data')
-						await this.client.loadEncrypted()
+						try {
+							await this.client.loadEncrypted()
+						} catch (e) {
+							const error = new PouchError('Failed to load encrypted data', e)
+							this.out.error(error)
+							throw error
+						}
 					}
 
 					replicateFrom = this.client._encrypted as PouchDB.Database<Document>
@@ -150,7 +164,13 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 
 				if (this.options.encrypt === 'local') {
 					this.out.debug('Encrypting local data')
-					await this.client.crypto(encryptionKey)
+					try {
+						await this.client.crypto(encryptionKey)
+					} catch (e) {
+						const error = new PouchError('Failed to encrypt local data', e)
+						this.out.error(error)
+						throw error
+					}
 				}
 			}
 		}
@@ -236,7 +256,9 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 			const res = await this.client.find(options)
 			results.data = this.filterDocs(res.docs)
 		} catch (e) {
-			throw new GeneralError('Failed to find documents', e)
+			const error = new PouchError('Failed to find documents', e)
+			this.out.error(error)
+			throw error
 		}
 
 		if (paginate === false) {
@@ -248,18 +270,24 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 
 	async $ready() {
 		if (!this.client) {
-			throw new GeneralError('PouchDB client is not initialized! If you are overriding the setup() method, make sure to call super.setup()')
+			const error = new PouchError('PouchDB client is not initialized! If you are overriding the setup() method, make sure to call super.setup()')
+			this.out.error(error)
+			throw error
 		}
 	}
 
-	async $get(id: Id, params: P = {} as P): Promise<ExistingDocument<T>> {
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	async $get(id: Id, _params: P = {} as P): Promise<ExistingDocument<T>> {
 		await this.$ready()
-		const {query} = this.getQuery(params)
-		const doc = await this.client.get(String(id))
+		let doc: any
+		try {
+			doc = await this.client.get(String(id))
+		} catch (e) {
+			throw new NotFound(`No record found for id '${id}'`)
+		}
 		if (doc) {
 			return doc as unknown as ExistingDocument<T>
 		}
-		this.out.error('Document does not match query', query)
 		throw new NotFound(`No record found for id '${id}'`)
 	}
 
@@ -276,7 +304,9 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 			const result = await this.client.put(data as PutDocument<Document>)
 			return this.$get(result.id, params)
 		} catch (e) {
-			throw new GeneralError('Failed to put document', e)
+			const error = new PouchError('Failed to put document', e)
+			this.out.error(error)
+			throw error
 		}
 	}
 
@@ -293,7 +323,9 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 			const result = await this.client.post(data as PostDocument<Document>)
 			return this.$get(result.id, params)
 		} catch (e) {
-			throw new GeneralError('Failed to create document', e)
+			const error = new PouchError('Failed to create document', e)
+			this.out.error(error)
+			throw error
 		}
 	}
 
