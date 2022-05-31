@@ -97,6 +97,7 @@ export function feathersUp(appType = 'server', setup: AppSetup | Model = {}, opt
 
 	// Feathers up!
 	app.out.verbose.success('Feathers Up!')
+	app.emit('ready')
 
 	return app
 }
