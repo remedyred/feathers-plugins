@@ -4,18 +4,16 @@ import {Application, Id, NullableId, Paginated, Params, Query} from '@feathersjs
 import {filterParams} from '@snickbit/feathers-helpers'
 import {Out} from '@snickbit/out'
 import {merge, objectExcept} from '@snickbit/utilities'
-import {ExistingDocument, PostDocument, PouchServiceOptions, PutDocument} from './definitions'
+import {ExistingDocument, PostDocument, PouchDatabase, PouchServiceOptions, PutDocument} from './definitions'
 import {PouchError} from './PouchError'
-import comdb from 'comdb'
-import crypto_pouch from 'crypto-pouch'
+import pouchCrypt, {PouchCrypt} from './PouchCrypt'
 import PouchDB from 'pouchdb'
 import pouchdb_find from 'pouchdb-find'
 import pouchdb_adapter_memory from 'pouchdb-adapter-memory'
 
 PouchDB.plugin(pouchdb_find)
-PouchDB.plugin(comdb)
-PouchDB.plugin(crypto_pouch)
-PouchDB.plugin(pouchdb_adapter_memory)
+	.plugin(pouchCrypt)
+	.plugin(pouchdb_adapter_memory)
 
 const possibleOptionKeys = [
 	'pouch',
@@ -38,9 +36,9 @@ export interface PouchAdapter extends AdapterBase, EventEmitter {}
 export class PouchAdapter<T = any, P extends Params = Params, O extends PouchServiceOptions = PouchServiceOptions> extends AdapterBase {
 	declare options: O
 
-	protected client: PouchDB.Database<Document>
+	protected client: PouchDatabase<Document>
 
-	protected remote?: PouchDB.Database<Document>
+	protected remote?: PouchDatabase<Document>
 
 	protected out: Out
 
@@ -97,12 +95,12 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 		}
 
 		const connection = this.options.connection || {}
-		connection.adapter = this.options.encrypt && !this.options.encryptionKey ? 'memory' : connection?.adapter
+		connection.adapter = this.options.encrypt && (this.options.encrypt === 'local' || !this.options.encryptionKey) ? 'memory' : connection?.adapter
 		connection.prefix = this.options.prefix || ''
 
 		this.out.debug('Initializing pouchdb', connection)
 
-		this.client = new PouchDB(servicePath, connection)
+		this.client = new PouchDB(servicePath, connection) as PouchCrypt<Document>
 
 		this.client.changes({
 			since: 'now',
@@ -137,7 +135,7 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 			if (encryptionKey) {
 				this.out.debug('Encrypting data')
 				const encryptOptions = objectExcept(connection, ['name'])
-				if (this.options.encrypt === true || this.options.encrypt === 'remote') {
+				if (this.options.encrypt) {
 					this.out.debug('Encrypting remote data', this.options.encrypt, encryptOptions)
 					try {
 						await this.client.setPassword(encryptionKey, {opts: encryptOptions})
@@ -148,7 +146,7 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 					}
 
 					// We only need to load the encrypted data if we are using e2e encryption
-					if (this.options.encrypt === true) {
+					if (this.options.encrypt === true || this.options.encrypt === 'remote') {
 						this.out.debug('Loading encrypted data')
 						try {
 							await this.client.loadEncrypted()
@@ -159,18 +157,7 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 						}
 					}
 
-					replicateFrom = this.client._encrypted as PouchDB.Database<Document>
-				}
-
-				if (this.options.encrypt === 'local') {
-					this.out.debug('Encrypting local data')
-					try {
-						await this.client.crypto(encryptionKey)
-					} catch (e) {
-						const error = new PouchError('Failed to encrypt local data', e)
-						this.out.error(error)
-						throw error
-					}
+					replicateFrom = this.client._encrypted as PouchDatabase<Document>
 				}
 			}
 		}
@@ -178,7 +165,7 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 		if (this.options.replicate) {
 			const replication = {...connection, ...this.options.replicate}
 			this.out.debug('Initializing replication', {replication})
-			this.remote = new PouchDB(servicePath, replication)
+			this.remote = new PouchDB(servicePath, replication) as PouchDatabase<Document>
 
 			this.out.debug('Starting data replication')
 			PouchDB.sync(replicateFrom, this.remote, {live: true, retry: true})

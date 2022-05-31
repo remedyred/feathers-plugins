@@ -34,11 +34,14 @@
 		"@snickbit/feathers-helpers": "^1.0.7",
 		"@snickbit/out": "^2.0.29",
 		"@snickbit/utilities": "^3.0.23",
-		"comdb": "6.0.0-beta",
-		"crypto-pouch": "^4.0.1",
+		"garbados-crypt": "3.0.0-beta",
 		"pouchdb": "^7.3.0",
 		"pouchdb-adapter-memory": "^7.3.0",
-		"pouchdb-find": "^7.3.0"
+		"pouchdb-find": "^7.3.0",
+		"pouchdb-md5": "^7.3.0",
+		"transform-pouch": "^2.0.0",
+		"tweetnacl": "^1.0.3",
+		"tweetnacl-util": "^0.15.1"
 	},
 	"devDependencies": {
 		"@types/jest": "^27.4.1",

@@ -1,4 +1,5 @@
 import {AdapterServiceOptions} from '@feathersjs/adapter-commons'
+import {PouchCrypt} from './PouchCrypt'
 import PouchDB from 'pouchdb'
 
 export type ExistingDocument<T> = PouchDB.Core.ExistingDocument<T>
@@ -13,7 +14,9 @@ export type Sorter<T = any> = (sort: T) => T
 
 export type PouchEndpointType = 'local' | 'remote'
 
-export type DatabaseConfig = PouchDB.Configuration.LocalDatabaseConfiguration & PouchDB.Configuration.RemoteDatabaseConfiguration
+export type DatabaseConfig = PouchDB.Configuration.LocalDatabaseConfiguration & PouchDB.Configuration.RemoteDatabaseConfiguration & {opts?: {[key: string]: any}}
+
+export type PouchDatabase<Content extends object = any> = PouchCrypt<Content>
 
 export interface PouchServiceOptions extends AdapterServiceOptions {
 	connection?: DatabaseConfig

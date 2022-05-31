@@ -1,13 +1,32 @@
-declare namespace PouchDB {
-	interface Database {
-		// comdb
-		setPassword(password: string, options: {opts?: PouchDB.Configuration.LocalDatabaseConfiguration & PouchDB.Configuration.RemoteDatabaseConfiguration}): Promise<void>
-		loadEncrypted(): Promise<void>
-		loadDecrypted(): Promise<void>
-		_encrypted?: Database
+/* eslint-disable @typescript-eslint/ban-types */
 
-		// crypto-pouch
-		crypto(password: string): Promise<void>
-		removeCrypto(): void
+declare namespace PouchDB {
+	namespace Core {
+		interface IdMeta {
+			isEncrypted?: boolean
+			payload?
+		}
+	}
+
+	interface Database<Content extends {} = {}> {
+		_destroyed?: boolean
+
+		// transform-pouch
+		transform<NewContent extends object>(config: {
+			incoming?(doc: Core.Document<Content>): Core.Document<NewContent> | Promise<Core.Document<NewContent>>
+			outgoing?(doc: Core.Document<NewContent>): Core.Document<Content> | Promise<Core.Document<Content>>
+		}): void
+		// api.filter provided for backwards compat with the old "filter-pouch"
+		filter<NewContent extends object>(config: {
+			incoming?(doc: Core.Document<Content>): Core.Document<NewContent> | Promise<Core.Document<NewContent>>
+			outgoing?(doc: Core.Document<NewContent>): Core.Document<Content> | Promise<Core.Document<Content>>
+		}): void
+
+	}
+
+	namespace Replication {
+		interface ReplicateOptions {
+			encrypt?: boolean
+		}
 	}
 }
