@@ -1,10 +1,16 @@
 import {PaginationOptions} from '@feathersjs/adapter-commons'
 import {Id, NullableId, Paginated, Params, ServiceMethods} from '@feathersjs/feathers'
-import {ExistingDocument, PutDocument} from './definitions'
-import {MethodNotAllowed} from '@feathersjs/errors'
+import {PouchAttachment, PutDocument} from './definitions'
 import PouchAdapter from './PouchAdapter'
+import PouchDB from 'pouchdb'
 
 export default class PouchService<T = any, D = Partial<T>, P extends Params = Params> extends PouchAdapter implements ServiceMethods<Paginated<T> | T, D, P> {
+	async attach(id: string, attachment: PouchAttachment): Promise<PouchDB.Core.Response>
+	async attach(id: null, attachments: PouchAttachment[]): Promise<PouchDB.Core.Response[]>
+	async attach(id: string | null, attachmentOrAttachments: PouchAttachment | PouchAttachment[]): Promise<PouchDB.Core.Response | PouchDB.Core.Response[]> {
+		return this.attach(id, attachmentOrAttachments as any)
+	}
+
 	async find(params?: P & {paginate?: PaginationOptions}): Promise<Paginated<T>>
 	async find(params?: P & {paginate: false}): Promise<T[]>
 	async find(params?: P): Promise<Paginated<T> | T[]>

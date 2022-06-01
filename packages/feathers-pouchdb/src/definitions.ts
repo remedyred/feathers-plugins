@@ -18,6 +18,13 @@ export type DatabaseConfig = PouchDB.Configuration.LocalDatabaseConfiguration & 
 
 export type PouchDatabase<Content extends object = any> = PouchCrypt<Content>
 
+export interface PouchAttachment {
+	id?: string
+	name: string
+	type: string
+	data: Buffer
+}
+
 export interface PouchServiceOptions extends AdapterServiceOptions {
 	connection?: DatabaseConfig
 	replicate?: DatabaseConfig

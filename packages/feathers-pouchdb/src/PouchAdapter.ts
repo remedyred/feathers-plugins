@@ -1,10 +1,10 @@
 import {AdapterBase, filterQuery, PaginationOptions} from '@feathersjs/adapter-commons'
-import {NotFound} from '@feathersjs/errors'
+import {MethodNotAllowed, NotFound} from '@feathersjs/errors'
 import {Application, Id, NullableId, Paginated, Params, Query} from '@feathersjs/feathers'
 import {filterParams} from '@snickbit/feathers-helpers'
 import {Out} from '@snickbit/out'
 import {merge, objectExcept} from '@snickbit/utilities'
-import {ExistingDocument, PostDocument, PouchDatabase, PouchServiceOptions, PutDocument} from './definitions'
+import {ExistingDocument, PostDocument, PouchAttachment, PouchDatabase, PouchServiceOptions, PutDocument} from './definitions'
 import {PouchError} from './PouchError'
 import pouchCrypt, {PouchCrypt} from './PouchCrypt'
 import PouchDB from 'pouchdb'
@@ -364,6 +364,59 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 			paginate: false
 		}) as unknown as ExistingDocument<T>[]
 		return Promise.all(items.map(item => this[method](item[this.id])))
+	}
+
+	async $attach(id: string, attachment: PouchAttachment): Promise<PouchDB.Core.Response>
+	async $attach(id: null, attachments: PouchAttachment[]): Promise<PouchDB.Core.Response[]>
+	async $attach(id: string | null, attachmentOrAttachments: PouchAttachment | PouchAttachment[]): Promise<PouchDB.Core.Response | PouchDB.Core.Response[]> {
+		await this.$ready()
+		if (Array.isArray(attachmentOrAttachments)) {
+			const attachments = attachmentOrAttachments as PouchAttachment[]
+			return Promise.all(attachments.map(att => this.$attach(att.id, att)))
+		}
+
+		const attachment = attachmentOrAttachments as PouchAttachment
+		try {
+			return this.client.putAttachment(id, attachment.name, attachment.data, attachment.type)
+		} catch (e) {
+			const error = new PouchError('Failed to attach object', e)
+			this.out.error(error)
+			throw error
+		}
+	}
+
+	async _attach(id: string, attachment: PouchAttachment): Promise<PouchDB.Core.Response>
+	async _attach(id: null, attachments: PouchAttachment[]): Promise<PouchDB.Core.Response[]>
+	async _attach(id: string | null, attachmentOrAttachments: PouchAttachment | PouchAttachment[]): Promise<PouchDB.Core.Response | PouchDB.Core.Response[]> {
+		if (Array.isArray(attachmentOrAttachments) && !this.allowsMulti('attach')) {
+			throw new MethodNotAllowed('Can not put multiple attachments')
+		}
+
+		return this.$attach(id, attachmentOrAttachments as any)
+	}
+
+	/**
+	 * Put a new resource for this service, skipping any service-level hooks, sanitize the data
+	 * and check if multiple updates are allowed.
+	 *
+	 * @param data - Data to insert into this service.
+	 * @param params - Service call parameters
+	 * @see {@link HookLessServiceMethods}
+	 * @see {@link https://docs.feathersjs.com/api/services.html#put-data-params|Feathers API Documentation: .put(data, params)}
+	 */
+	async _put(data: PutDocument<Document>, params?: P): Promise<ExistingDocument<T>>
+	async _put(data: PutDocument<Document>[], params?: P): Promise<ExistingDocument<T>[]>
+	async _put(data: PutDocument<Document> | PutDocument<Document>[], params?: P): Promise<ExistingDocument<T> | ExistingDocument<T>[]>
+	async _put(data: PutDocument<Document> | PutDocument<Document>[], params?: P): Promise<ExistingDocument<T> | ExistingDocument<T>[]> {
+		if (Array.isArray(data) && !this.allowsMulti('put', params)) {
+			throw new MethodNotAllowed('Can not put multiple entries')
+		}
+
+		const payload = Array.isArray(data)
+			? await Promise.all(data.map(current => this.sanitizeData(current, params)))
+			: await this.sanitizeData(data, params)
+
+		return this.$put(payload, params)
 	}
 }
 
