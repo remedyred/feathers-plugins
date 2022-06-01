@@ -49,28 +49,4 @@ export default class PouchService<T = any, D = Partial<T>, P extends Params = Pa
 	async remove(id: NullableId, params?: P): Promise<T | T[]> {
 		return this._remove(id, params)
 	}
-
-	/**
-	 * Put a new resource for this service, skipping any service-level hooks, sanitize the data
-	 * and check if multiple updates are allowed.
-	 *
-	 * @param data - Data to insert into this service.
-	 * @param params - Service call parameters
-	 * @see {@link HookLessServiceMethods}
-	 * @see {@link https://docs.feathersjs.com/api/services.html#put-data-params|Feathers API Documentation: .put(data, params)}
-	 */
-	async _put(data: PutDocument<Document>, params?: P): Promise<ExistingDocument<T>>
-	async _put(data: PutDocument<Document>[], params?: P): Promise<ExistingDocument<T>[]>
-	async _put(data: PutDocument<Document> | PutDocument<Document>[], params?: P): Promise<ExistingDocument<T> | ExistingDocument<T>[]>
-	async _put(data: PutDocument<Document> | PutDocument<Document>[], params?: P): Promise<ExistingDocument<T> | ExistingDocument<T>[]> {
-		if (Array.isArray(data) && !this.allowsMulti('put', params)) {
-			throw new MethodNotAllowed('Can not put multiple entries')
-		}
-
-		const payload = Array.isArray(data)
-			? await Promise.all(data.map(current => this.sanitizeData(current, params)))
-			: await this.sanitizeData(data, params)
-
-		return this.$put(payload, params)
-	}
 }
