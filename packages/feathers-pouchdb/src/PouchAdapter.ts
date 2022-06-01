@@ -257,9 +257,13 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 
 	async $ready() {
 		if (!this.client) {
-			const error = new PouchError('PouchDB client is not initialized! If you are overriding the setup() method, make sure to call super.setup()')
-			this.out.error(error)
-			throw error
+			return new Promise(resolve => {
+				PouchDB.on('created', () => {
+					if (this.client) {
+						resolve(true)
+					}
+				})
+			})
 		}
 	}
 
