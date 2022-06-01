@@ -77,7 +77,7 @@ export class PouchCrypt<Content extends object = any> implements PouchDB.Databas
 			incoming: async (doc: PouchDB.Core.Document<any>) => {
 				if (doc.isEncrypted) {
 					// feed already-encrypted docs back to the decrypted db
-					await this.bulkDocs([doc], {new_edits: false})
+					await db.bulkDocs([doc], {new_edits: false})
 					return doc
 				}
 				if (!this._crypt) {
@@ -92,7 +92,7 @@ export class PouchCrypt<Content extends object = any> implements PouchDB.Databas
 				const encrypted = {_id: id, payload, isEncrypted: true}
 				// maybe feed back to decrypted db
 				if (doc._rev && doc._deleted) {
-					await this.bulkDocs([encrypted as PouchDB.Core.PutDocument<any>])
+					await db.bulkDocs([encrypted as PouchDB.Core.PutDocument<any>])
 				}
 				return encrypted as unknown as PouchCrypt<Document>
 			}
