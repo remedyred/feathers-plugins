@@ -123,6 +123,7 @@ export class PouchCrypt<Content extends object = any> implements PouchDB.Databas
 				if (!doc._id) {
 					doc._id = uuid()
 				}
+
 				await this._encrypted.bulkDocs([doc]).catch(e => {
 					throw e
 				})

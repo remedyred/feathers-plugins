@@ -16,12 +16,13 @@
 	],
 	"scripts": {
 		"build": "tsup",
+		"dev": "pnpm run build --sourcemap",
 		"clean": "shx rm -rf ./dist ",
 		"depcheck": "depcheck",
 		"meta": "pnpm run prod --metafile",
 		"prod": "pnpm run clean && pnpm run build --minify",
 		"test": "jest",
-		"watch": "pnpm run build --watch"
+		"watch": "pnpm run dev --watch"
 	},
 	"jest": {
 		"preset": "ts-jest",
