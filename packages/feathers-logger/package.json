@@ -32,14 +32,14 @@
 		"browser-or-node": "^2.0.0"
 	},
 	"devDependencies": {
-		"@feathersjs/feathers": "5.0.0-pre.20",
+		"@feathersjs/feathers": "5.0.0-pre.22",
 		"@types/node": "^17.0.31",
 		"jest": "^28.1.0",
 		"tsup": "^6.0.1",
 		"typescript": "^4.6.4"
 	},
 	"peerDependencies": {
-		"@feathersjs/feathers": "5.0.0-pre.20"
+		"@feathersjs/feathers": "5.0.0-pre.22"
 	},
 	"engines": {
 		"node": ">= 12"

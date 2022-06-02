@@ -28,10 +28,10 @@
 		"testEnvironment": "node"
 	},
 	"dependencies": {
-		"@feathersjs/configuration": "5.0.0-pre.20",
-		"@feathersjs/express": "5.0.0-pre.20",
-		"@feathersjs/feathers": "5.0.0-pre.20",
-		"@feathersjs/socketio": "5.0.0-pre.20",
+		"@feathersjs/configuration": "5.0.0-pre.22",
+		"@feathersjs/express": "5.0.0-pre.22",
+		"@feathersjs/feathers": "5.0.0-pre.22",
+		"@feathersjs/socketio": "5.0.0-pre.22",
 		"@sentry/node": "^6.19.6",
 		"@snickbit/feathers-hooks": "^1.0.1",
 		"@snickbit/feathers-logger": "^1.0.6",
@@ -55,7 +55,7 @@
 		"tsup": "^6.0.1"
 	},
 	"peerDependencies": {
-		"@feathersjs/feathers": "5.0.0-pre.20"
+		"@feathersjs/feathers": "5.0.0-pre.22"
 	},
 	"optionalDependencies": {
 		"@snickbit/feathers-up-mongodb": "^0.0.0",

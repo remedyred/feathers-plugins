@@ -28,13 +28,13 @@
 		"testEnvironment": "node"
 	},
 	"devDependencies": {
-		"@feathersjs/feathers": "5.0.0-pre.20",
+		"@feathersjs/feathers": "5.0.0-pre.22",
 		"@remedyred/indexer": "^2.4.1",
 		"jest": "^28.1.0",
 		"tsup": "^6.0.1"
 	},
 	"peerDependencies": {
-		"@feathersjs/feathers": "5.0.0-pre.20"
+		"@feathersjs/feathers": "5.0.0-pre.22"
 	},
 	"engines": {
 		"node": ">= 12"

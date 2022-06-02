@@ -28,8 +28,8 @@
 		"testEnvironment": "node"
 	},
 	"dependencies": {
-		"@feathersjs/adapter-commons": "5.0.0-pre.20",
-		"@feathersjs/feathers": "5.0.0-pre.20",
+		"@feathersjs/adapter-commons": "5.0.0-pre.22",
+		"@feathersjs/feathers": "5.0.0-pre.22",
 		"@snickbit/feathers-helpers": "^1.0.7",
 		"@snickbit/out": "^2.0.29",
 		"axios": "^0.27.2"
@@ -40,7 +40,7 @@
 		"tsup": "^6.0.1"
 	},
 	"peerDependencies": {
-		"@feathersjs/feathers": "5.0.0-pre.20"
+		"@feathersjs/feathers": "5.0.0-pre.22"
 	},
 	"engines": {
 		"node": ">= 12"
