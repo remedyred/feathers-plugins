@@ -1,5 +1,15 @@
 # @snickbit/feathers-helpers Changelog
 
+## 1.0.8
+
+### Patch Changes
+
+- [88d436e](https://github.com/snickbit/feathers/commit/88d436e) **chore**:  updated to 5.0.0-pre.22
+- [e6c18af](https://github.com/snickbit/feathers/commit/e6c18af) **feat**:  add timestamp option parser
+- [6e0bbd6](https://github.com/snickbit/feathers/commit/6e0bbd6) **refactor**:  split into multiple files
+- [7aeaa2a](https://github.com/snickbit/feathers/commit/7aeaa2a) **refactor**:  split type definitions
+- [667078f](https://github.com/snickbit/feathers/commit/667078f) **style**:  lint
+
 ## 1.0.7
 
 ### Patch Changes
