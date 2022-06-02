@@ -32,19 +32,19 @@
 		"@feathersjs/adapter-commons": "5.0.0-pre.22",
 		"@feathersjs/commons": "5.0.0-pre.22",
 		"@feathersjs/errors": "5.0.0-pre.22",
-		"@snickbit/out": "^2.0.29",
-		"@snickbit/utilities": "^3.0.23",
+		"@snickbit/out": "workspace:^2.0.29",
+		"@snickbit/utilities": "workspace:^3.0.23",
 		"sift": "^16.0.0"
 	},
 	"devDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.22",
 		"@remedyred/indexer": "^2.4.1",
-		"@types/jest": "^27.4.1",
+		"@types/jest": "^27.5.2",
 		"jest": "^28.1.0",
 		"shx": "^0.3.4",
 		"ts-jest": "^28.0.3",
 		"tsup": "^6.0.1",
-		"typescript": "^4.6.3"
+		"typescript": "^4.7.2"
 	},
 	"peerDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.22"

@@ -32,22 +32,22 @@
 		"@feathersjs/express": "5.0.0-pre.22",
 		"@feathersjs/feathers": "5.0.0-pre.22",
 		"@feathersjs/socketio": "5.0.0-pre.22",
-		"@sentry/node": "^6.19.6",
-		"@snickbit/feathers-hooks": "^1.0.1",
-		"@snickbit/feathers-logger": "^1.0.6",
-		"@snickbit/feathers-logs": "^1.0.12",
-		"@snickbit/model": "^1.0.45",
-		"@snickbit/node-utilities": "^4.3.9",
-		"@snickbit/out": "^2.0.29",
-		"@snickbit/utilities": "^3.0.23",
+		"@sentry/node": "^6.19.7",
+		"@snickbit/feathers-hooks": "workspace:^1.0.4",
+		"@snickbit/feathers-logger": "workspace:^1.0.6",
+		"@snickbit/feathers-logs": "workspace:^1.0.12",
+		"@snickbit/model": "workspace:^1.0.45",
+		"@snickbit/node-utilities": "workspace:^4.3.9",
+		"@snickbit/out": "workspace:^2.0.29",
+		"@snickbit/utilities": "workspace:^3.0.23",
 		"body-parser": "^1.20.0",
 		"compression": "^1.7.4",
 		"cors": "^2.8.5",
-		"express": "^4.18.0",
-		"helmet": "^5.0.2",
-		"socket.io": "^4.5.0",
+		"express": "^4.18.1",
+		"helmet": "^5.1.0",
+		"socket.io": "^4.5.1",
 		"winston": "^3.7.2",
-		"winston-daily-rotate-file": "^4.6.1"
+		"winston-daily-rotate-file": "^4.7.1"
 	},
 	"devDependencies": {
 		"@remedyred/indexer": "^2.4.1",
@@ -61,10 +61,10 @@
 		"@snickbit/feathers-up-mongodb": "^0.0.0",
 		"@snickbit/feathers-up-mysql": "^0.0.0",
 		"@snickbit/feathers-up-redis": "^0.0.0",
-		"ioredis": "^5.0.4",
+		"ioredis": "^5.0.6",
 		"knex": "^2.1.0",
-		"mongodb": "^4.5.0",
-		"mysql": "^2.18.0"
+		"mongodb": "^4.6.0",
+		"mysql": "^2.18.1"
 	},
 	"engines": {
 		"node": ">= 12"

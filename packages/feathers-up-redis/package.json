@@ -27,8 +27,8 @@
 		"testEnvironment": "node"
 	},
 	"dependencies": {
-		"@snickbit/feathers-up": "^1.0.15",
-		"ioredis": "^5.0.4"
+		"@snickbit/feathers-up": "workspace:^1.0.15",
+		"ioredis": "^5.0.6"
 	},
 	"devDependencies": {
 		"jest": "^28.1.0",

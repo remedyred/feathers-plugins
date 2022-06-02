@@ -27,9 +27,9 @@
 		"testEnvironment": "node"
 	},
 	"dependencies": {
-		"@snickbit/feathers-up": "^1.0.15",
+		"@snickbit/feathers-up": "workspace:^1.0.15",
 		"knex": "^2.1.0",
-		"mysql": "^2.18.0"
+		"mysql": "^2.18.1"
 	},
 	"devDependencies": {
 		"jest": "^28.1.0",

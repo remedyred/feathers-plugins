@@ -27,8 +27,8 @@
 		"testEnvironment": "node"
 	},
 	"dependencies": {
-		"@snickbit/feathers-up": "^1.0.15",
-		"mongodb": "^4.5.0"
+		"@snickbit/feathers-up": "workspace:^1.0.15",
+		"mongodb": "^4.6.0"
 	},
 	"devDependencies": {
 		"jest": "^28.1.0",
