@@ -1,5 +1,11 @@
 # @snickbit/feathers-up Changelog
 
+## 1.0.17
+
+### Patch Changes
+
+- [c4d1b99](https://github.com/snickbit/feathers/commit/c4d1b99) **fix**:  remove workspace protocol
+
 ## 1.0.16
 
 ### Patch Changes
