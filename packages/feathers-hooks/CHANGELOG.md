@@ -1,5 +1,11 @@
 # @snickbit/feathers-hooks Changelog
 
+## 1.0.5
+
+### Patch Changes
+
+- [88d436e](https://github.com/snickbit/feathers/commit/88d436e) **chore**:  updated to 5.0.0-pre.22
+
 ## 1.0.4
 
 ### Patch Changes

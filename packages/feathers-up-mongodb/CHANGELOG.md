@@ -1,5 +1,11 @@
 # @snickbit/feathers-up-mongodb Changelog
 
+## 0.0.10
+
+### Patch Changes
+
+- [d7bece4](https://github.com/snickbit/feathers/commit/d7bece4) **chore**:  update dependencies
+
 ## 0.0.4
 
 ### Patch Changes

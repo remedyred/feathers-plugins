@@ -1,6 +1,6 @@
 {
 	"name": "@snickbit/feathers-rest",
-	"version": "1.0.9",
+	"version": "1.0.10",
 	"description": "Feathers service for interactive with REST APIs",
 	"license": "MIT",
 	"exports": {
@@ -30,8 +30,8 @@
 	"dependencies": {
 		"@feathersjs/adapter-commons": "5.0.0-pre.22",
 		"@feathersjs/feathers": "5.0.0-pre.22",
-		"@snickbit/feathers-helpers": "workspace:^1.0.8",
-		"@snickbit/out": "workspace:^2.0.29",
+		"@snickbit/feathers-helpers": "^1.0.9",
+		"@snickbit/out": "^2.0.30",
 		"axios": "^0.27.2"
 	},
 	"devDependencies": {

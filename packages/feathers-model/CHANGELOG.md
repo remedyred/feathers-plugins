@@ -1,5 +1,11 @@
 # @snickbit/feathers-model Changelog
 
+## 1.0.10
+
+### Patch Changes
+
+- [d7bece4](https://github.com/snickbit/feathers/commit/d7bece4) **chore**:  update dependencies
+
 ## 1.0.5
 
 ### Patch Changes

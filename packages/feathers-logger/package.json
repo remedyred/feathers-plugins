@@ -1,6 +1,6 @@
 {
 	"name": "@snickbit/feathers-logger",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"license": "MIT",
 	"exports": {
 		"require": "./dist/index.js",
@@ -26,8 +26,8 @@
 		"testEnvironment": "node"
 	},
 	"dependencies": {
-		"@snickbit/out": "workspace:^2.0.29",
-		"@snickbit/utilities": "workspace:^3.0.23",
+		"@snickbit/out": "^2.0.30",
+		"@snickbit/utilities": "^3.0.24",
 		"axios": "^0.27.2",
 		"browser-or-node": "^2.0.0"
 	},

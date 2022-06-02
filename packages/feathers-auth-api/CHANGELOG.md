@@ -1,5 +1,12 @@
 # @snickbit/feathers-auth-api Changelog
 
+## 1.0.4
+
+### Patch Changes
+
+- [d7bece4](https://github.com/snickbit/feathers/commit/d7bece4) **chore**:  update dependencies
+- [88d436e](https://github.com/snickbit/feathers/commit/88d436e) **chore**:  updated to 5.0.0-pre.22
+
 ## 1.0.3
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @snickbit/feathers-tasks Changelog
 
+## 2.0.14
+
+### Patch Changes
+
+- [d7bece4](https://github.com/snickbit/feathers/commit/d7bece4) **chore**:  update dependencies
+
 ## 2.0.12
 
 ### Patch Changes
