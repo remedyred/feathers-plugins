@@ -187,6 +187,8 @@ export class QueueAdapter extends AdapterBase {
 		let request: TaskRequest
 		if ('toJSON' in data) {
 			request = data.toJSON()
+		} else {
+			request = data as TaskRequest
 		}
 
 		if (request.payload) {
