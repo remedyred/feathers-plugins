@@ -1,5 +1,66 @@
 # @snickbit/feathers-files Changelog
 
+## 2.0.13
+
+### Patch Changes
+
+- [e800ada](https://github.com/snickbit/feathers/commit/e800ada) **chore**:  update dependencies
+- [2882240](https://github.com/snickbit/feathers/commit/2882240) **chore**(release):  publish
+- [a9cdadc](https://github.com/snickbit/feathers/commit/a9cdadc) **chore**(release):  publish
+- [d7bece4](https://github.com/snickbit/feathers/commit/d7bece4) **chore**:  update dependencies
+- [b283bfc](https://github.com/snickbit/feathers/commit/b283bfc) **chore**(release):  publish
+- [88d436e](https://github.com/snickbit/feathers/commit/88d436e) **chore**:  updated to 5.0.0-pre.22
+- [667078f](https://github.com/snickbit/feathers/commit/667078f) **style**:  lint
+- [34a33f1](https://github.com/snickbit/feathers/commit/34a33f1) **chore**(release):  publish
+- [65289bc](https://github.com/snickbit/feathers/commit/65289bc) **fix**:  adjust type definitions
+- [bee0039](https://github.com/snickbit/feathers/commit/bee0039) **chore**(release):  publish
+- [506df52](https://github.com/snickbit/feathers/commit/506df52) **chore**(release):  publish
+- [269dea5](https://github.com/snickbit/feathers/commit/269dea5) **chore**:  bump dependencies
+- [4f30bb6](https://github.com/snickbit/feathers/commit/4f30bb6) **chore**(release):  publish
+- [89dedae](https://github.com/snickbit/feathers/commit/89dedae) **chore**(release):  publish
+- [6424d19](https://github.com/snickbit/feathers/commit/6424d19) **style**:  heavy code restyling
+- [fc26f3f](https://github.com/snickbit/feathers/commit/fc26f3f) **chore**:  bump dependencies
+- [ea65de5](https://github.com/snickbit/feathers/commit/ea65de5) **chore**:  bump indexer version, and rerun
+- [70dd26e](https://github.com/snickbit/feathers/commit/70dd26e) **chore**:  bump indexer version
+- [a23bd71](https://github.com/snickbit/feathers/commit/a23bd71) **chore**(release):  publish
+- [109a753](https://github.com/snickbit/feathers/commit/109a753) **chore**:  update dependencies
+- [8a0d453](https://github.com/snickbit/feathers/commit/8a0d453) **chore**(release):  publish
+- [786318e](https://github.com/snickbit/feathers/commit/786318e) **chore**(release):  publish
+- [16f2465](https://github.com/snickbit/feathers/commit/16f2465) **build**:  remove nx
+- [3df2d1a](https://github.com/snickbit/feathers/commit/3df2d1a) **chore**(release):  publish
+- [df3f0e5](https://github.com/snickbit/feathers/commit/df3f0e5) **chore**:  release version
+- [a2204c4](https://github.com/snickbit/feathers/commit/a2204c4) **chore**(release):  publish
+- [ec4c91e](https://github.com/snickbit/feathers/commit/ec4c91e) **style**:  sort package.json
+- [787cbab](https://github.com/snickbit/feathers/commit/787cbab) **fix**:  pagination parsing
+- [575c738](https://github.com/snickbit/feathers/commit/575c738) **fix**:  option parsing
+- [02e9e43](https://github.com/snickbit/feathers/commit/02e9e43) **chore**:  bump feathers versions
+- [e23a105](https://github.com/snickbit/feathers/commit/e23a105) **style**:  relint
+- [0438805](https://github.com/snickbit/feathers/commit/0438805) **chore**(release):  publish
+- [c4eb65e](https://github.com/snickbit/feathers/commit/c4eb65e) **chore**:  update indexer and indexer config
+- [07f58c7](https://github.com/snickbit/feathers/commit/07f58c7) **fix**:  declare options instead of initializing
+- [6ca7dc0](https://github.com/snickbit/feathers/commit/6ca7dc0) **fix**:  use options close to S3
+- [46e9ca6](https://github.com/snickbit/feathers/commit/46e9ca6) **chore**(release):  publish
+- [a9f6985](https://github.com/snickbit/feathers/commit/a9f6985) **fix**:  use s3 request to upload
+- [092b6a2](https://github.com/snickbit/feathers/commit/092b6a2) **chore**(release):  publish
+- [9542176](https://github.com/snickbit/feathers/commit/9542176) **build**:  switch to pnpm for running
+- [61a67b2](https://github.com/snickbit/feathers/commit/61a67b2) **fix**:  add type options to all methods
+- [8d89010](https://github.com/snickbit/feathers/commit/8d89010) **chore**(deps):  bump dependencies
+- [31b5b74](https://github.com/snickbit/feathers/commit/31b5b74) **build**:  bump indexer, regenerate indexes
+- [8ae00e8](https://github.com/snickbit/feathers/commit/8ae00e8) **chore**(release):  publish
+- [a6972cd](https://github.com/snickbit/feathers/commit/a6972cd) **chore**(dep):  update dependencies
+- [072d657](https://github.com/snickbit/feathers/commit/072d657) **style**:  reformat
+- [d129bfe](https://github.com/snickbit/feathers/commit/d129bfe) **fix**:  remove workspace protocol
+- [7bcaf82](https://github.com/snickbit/feathers/commit/7bcaf82) **chore**:  update dependencies
+- [94cb5ff](https://github.com/snickbit/feathers/commit/94cb5ff) **chore**(release):  publish
+- [14c98e6](https://github.com/snickbit/feathers/commit/14c98e6) **build**:  add dev watcher scripts with source maps
+- [e3de828](https://github.com/snickbit/feathers/commit/e3de828) **build**:  migrate to nx
+- [af808c1](https://github.com/snickbit/feathers/commit/af808c1) **docs**:  update chore: update config docs: update chore: update dependencies chore: adjust configurations
+- [685f222](https://github.com/snickbit/feathers/commit/685f222) **chore**(release):  publish
+- [2aff954](https://github.com/snickbit/feathers/commit/2aff954) **fix**:  pin feathers version
+- [393104b](https://github.com/snickbit/feathers/commit/393104b) **fix**:  update usage of makeBuffer/bufferStream
+- [886e7eb](https://github.com/snickbit/feathers/commit/886e7eb) **chore**:  update build config
+- [44ca51e](https://github.com/snickbit/feathers/commit/44ca51e) **docs**:  update
+
 ## 2.0.12
 
 ### Patch Changes
