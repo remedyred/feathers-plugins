@@ -1,5 +1,11 @@
 # @snickbit/feathers-tasks Changelog
 
+## 2.0.17
+
+### Patch Changes
+
+- [9ca192f](https://github.com/snickbit/feathers/commit/9ca192f) **fix**:  ensure request is always set
+
 ## 2.0.14
 
 ### Patch Changes

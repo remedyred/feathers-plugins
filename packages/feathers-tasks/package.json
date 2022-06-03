@@ -1,6 +1,6 @@
 {
 	"name": "@snickbit/feathers-tasks",
-	"version": "2.0.16",
+	"version": "2.0.17",
 	"description": "Task management for FeathersJS",
 	"license": "MIT",
 	"exports": {
