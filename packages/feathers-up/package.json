@@ -58,9 +58,9 @@
 		"@feathersjs/feathers": "5.0.0-pre.22"
 	},
 	"optionalDependencies": {
-		"@snickbit/feathers-up-mongodb": "^0.0.12",
-		"@snickbit/feathers-up-mysql": "^0.0.12",
-		"@snickbit/feathers-up-redis": "^0.0.12",
+		"@snickbit/feathers-up-mongodb": "^0.0.13",
+		"@snickbit/feathers-up-mysql": "^0.0.13",
+		"@snickbit/feathers-up-redis": "^0.0.13",
 		"ioredis": "^5.0.6",
 		"knex": "^2.1.0",
 		"mongodb": "^4.6.0",
