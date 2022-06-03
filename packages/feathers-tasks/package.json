@@ -38,11 +38,11 @@
 		"@snickbit/node-utilities": "^4.3.11",
 		"@snickbit/out": "^2.0.31",
 		"@snickbit/utilities": "^3.0.25",
-		"bullmq": "^1.85.2",
+		"bullmq": "^1.85.3",
 		"ioredis": "^5.0.6"
 	},
 	"devDependencies": {
-		"@remedyred/indexer": "^2.4.1",
+		"@remedyred/indexer": "^2.4.2",
 		"esbuild": "^0.14.42",
 		"jest": "^28.1.0",
 		"tsup": "^5.12.9"
