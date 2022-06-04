@@ -1,5 +1,11 @@
 # @snickbit/feathers-files Changelog
 
+## 2.0.15
+
+### Patch Changes
+
+- [24b0067](https://github.com/snickbit/feathers/commit/24b0067) **chore**:  bump deps
+
 ## 2.0.14
 
 ### Patch Changes
