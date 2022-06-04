@@ -1,6 +1,6 @@
 {
 	"name": "@snickbit/feathers-up-mysql",
-	"version": "0.0.13",
+	"version": "0.0.14",
 	"description": "MySQL/Knex plugin for @snickbit/feathers-up",
 	"license": "MIT",
 	"exports": {
@@ -27,7 +27,7 @@
 		"testEnvironment": "node"
 	},
 	"dependencies": {
-		"@snickbit/feathers-up": "^1.0.19",
+		"@snickbit/feathers-up": "^1.0.20",
 		"knex": "^2.1.0",
 		"mysql": "^2.18.1"
 	},
