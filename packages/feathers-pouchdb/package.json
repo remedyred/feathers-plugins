@@ -33,8 +33,8 @@
 		"@feathersjs/errors": "5.0.0-pre.22",
 		"@feathersjs/feathers": "5.0.0-pre.22",
 		"@snickbit/feathers-helpers": "^1.0.11",
-		"@snickbit/out": "^2.0.32",
-		"@snickbit/utilities": "^3.0.26",
+		"@snickbit/out": "^2.0.33",
+		"@snickbit/utilities": "^3.0.27",
 		"garbados-crypt": "3.0.0-beta",
 		"pouchdb": "^7.3.0",
 		"pouchdb-adapter-memory": "^7.3.0",
@@ -45,13 +45,13 @@
 		"tweetnacl-util": "^0.15.1"
 	},
 	"devDependencies": {
-		"@types/jest": "^27.5.2",
+		"@types/jest": "^28.1.0",
 		"@types/pouchdb": "^6.4.0",
 		"jest": "^28.1.0",
 		"shx": "^0.3.4",
 		"ts-jest": "^28.0.4",
 		"tsup": "^5.12.9",
-		"typescript": "^4.7.2"
+		"typescript": "^4.7.3"
 	},
 	"engines": {
 		"node": ">= 12"

@@ -36,13 +36,13 @@
 		"@snickbit/feathers-model": "^1.0.12",
 		"@snickbit/node-cli": "^1.0.56",
 		"@snickbit/node-utilities": "^4.3.13",
-		"@snickbit/out": "^2.0.32",
-		"@snickbit/utilities": "^3.0.26",
+		"@snickbit/out": "^2.0.33",
+		"@snickbit/utilities": "^3.0.27",
 		"bullmq": "^1.85.3",
 		"ioredis": "^5.0.6"
 	},
 	"devDependencies": {
-		"@remedyred/indexer": "^2.4.2",
+		"@remedyred/indexer": "^2.5.0",
 		"esbuild": "^0.14.42",
 		"jest": "^28.1.0",
 		"tsup": "^5.12.9"
