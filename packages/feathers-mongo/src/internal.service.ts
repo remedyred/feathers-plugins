@@ -6,7 +6,7 @@ import MongoAdapter, {MongoServiceOptions} from './mongo.adapter'
 export class InternalService<T = any, D = Partial<T>, P extends MongoServiceOptions = MongoServiceOptions> extends MongoAdapter implements ServiceMethods<Paginated<T> | T, D, P> {
 	protected allowedMethods: string[] = []
 
-	constructor(options, app) {
+	constructor(options) {
 		const allowedMethods = []
 
 		if (options.allowedMethods) {
@@ -14,7 +14,7 @@ export class InternalService<T = any, D = Partial<T>, P extends MongoServiceOpti
 			delete options.allowedMethods
 		}
 
-		super(options, app)
+		super(options)
 
 		this.allowedMethods = allowedMethods
 	}
