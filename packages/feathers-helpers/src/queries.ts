@@ -20,7 +20,6 @@ export interface Results {
 }
 
 export interface QueryOptions extends Partial<AdapterServiceOptions> {
-	allow?: string[]
 	operators?: string[]
 	sorter?: Sorter
 	matcher?(value: any): any
@@ -41,7 +40,7 @@ export function filterParams(params: AdapterParams = {}, options: QueryOptions =
 	const paginate = typeof params.paginate !== 'undefined' ? params.paginate : options.paginate
 	const {query = {}} = params
 	options = {
-		operators: options.allow || [],
+		operators: options.operators || [],
 		filters: options.filters,
 		paginate,
 		...options

@@ -65,7 +65,7 @@ export default class MongoAdapter<T = any, D = Partial<T>, O extends MongoServic
 			cache: false,
 			softDelete: false,
 			timestamps: false,
-			allow: [
+			operators: [
 				'$text',
 				'$search',
 				'$aggregate',
@@ -114,12 +114,13 @@ export default class MongoAdapter<T = any, D = Partial<T>, O extends MongoServic
 			'events',
 			'multi',
 			'id',
+			'operators',
 			'paginate',
-			'allow',
 			'filters',
 			'Model',
 			'disableObjectify'
 		])
+
 		super(mongodbOptions as MongoDBAdapterOptions)
 
 		this.options = options as O

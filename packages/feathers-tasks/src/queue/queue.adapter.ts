@@ -129,7 +129,7 @@ export class QueueAdapter extends AdapterBase {
 			paginate: {},
 			multi: true,
 			filters: ['$asPayload'],
-			allow: [],
+			operators: [],
 			Model: Task,
 			defaultJobOptions,
 			watcher,
