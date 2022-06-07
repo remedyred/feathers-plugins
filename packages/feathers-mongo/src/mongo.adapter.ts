@@ -1,6 +1,6 @@
-import {AdapterParams as Params} from '@feathersjs/adapter-commons'
+import {filterQuery, FILTERS} from '@feathersjs/adapter-commons'
 import {BadRequest, MethodNotAllowed, NotFound, Unavailable, Unprocessable} from '@feathersjs/errors'
-import {Application, NullableId} from '@feathersjs/feathers'
+import {Application, NullableId, Query} from '@feathersjs/feathers'
 import {MongoDBAdapterOptions, MongoDBService} from '@feathersjs/mongodb'
 import {Model} from '@snickbit/feathers-model'
 import {Out} from '@snickbit/out'
@@ -85,6 +85,7 @@ export default class MongoAdapter extends MongoDBService {
 				'$diacriticSensitive',
 				'$regex'
 			],
+			filters: {...FILTERS},
 			indexes: [],
 			search: {
 				escape: true,
@@ -225,7 +226,17 @@ export default class MongoAdapter extends MongoDBService {
 		return params
 	}
 
-	async connected(): Promise<any> {
+	async sanitizeQuery(params: AdapterParams = {} as AdapterParams): Promise<Query> {
+		const options = this.getOptions(params)
+		const {query, filters} = filterQuery(params.query, options)
+
+		return {
+			...filters,
+			...query
+		}
+	}
+
+	async connected(): Promise<void> {
 		const connected = this.Model || await this.client
 		if (!connected) {
 			throw new Unavailable('MongoService: failed to connect to MongoDB failed')
@@ -363,13 +374,13 @@ export default class MongoAdapter extends MongoDBService {
 			}
 			return this.$create(payload, params)
 		})
-			.catch(err => {
-				if (err instanceof NotFound || err?.name === 'NotFound') {
-					return this.$create(payload, params)
-				}
-				this.out.verbose('MongoService: _upsert error is not an instance of NotFound', err)
-				throw err
-			})
+		           .catch(err => {
+			           if (err instanceof NotFound || err?.name === 'NotFound') {
+				           return this.$create(payload, params)
+			           }
+			           this.out.verbose('MongoService: _upsert error is not an instance of NotFound', err)
+			           throw err
+		           })
 	}
 
 	async $destroy(id: NullableId, params: AdapterParams = {}): Promise<any> {
