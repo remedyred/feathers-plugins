@@ -1,6 +1,7 @@
 import {PaginationOptions} from '@feathersjs/adapter-commons'
 import {NotImplemented} from '@feathersjs/errors'
 import {Id, NullableId, Paginated, ServiceMethods} from '@feathersjs/feathers'
+import {AggregateOptions} from 'mongodb'
 import MongoAdapter, {MongoServiceOptions} from './mongo.adapter'
 
 export class InternalService<T = any, D = Partial<T>, P extends MongoServiceOptions = MongoServiceOptions> extends MongoAdapter implements ServiceMethods<Paginated<T> | T, D, P> {
@@ -17,6 +18,13 @@ export class InternalService<T = any, D = Partial<T>, P extends MongoServiceOpti
 		super(options)
 
 		this.allowedMethods = allowedMethods
+	}
+
+	async aggregate(pipeline: any[], params: AggregateOptions = {}): Promise<any[]> {
+		if (!this.allowedMethods.includes('aggregate')) {
+			throw new NotImplemented('Method `aggregate` not implemented')
+		}
+		return super._aggregate(pipeline, params)
 	}
 
 	async find(params?: P & {paginate?: PaginationOptions}): Promise<Paginated<T>>
