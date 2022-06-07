@@ -116,27 +116,6 @@ export default class MongoAdapter<T = any, D = Partial<T>, O extends MongoServic
 		}
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	setup(app: Application, _servicePath: string) {
-		this.client = client(app)
-		this.asModel = this.options.asModel === true ? Model : this.options.asModel
-
-		this.client.then((db: Db) => {
-			this.options.Model = db.collection(this.options.collection) as Collection
-			if (this.options.cache) {
-				this.Cache = db.collection(`query_cache`)
-			}
-
-			if (this.options.indexes && this.options.indexes.length) {
-				for (const index of this.options.indexes) {
-					this.Model.createIndex(index.keys, index.options)
-				}
-			}
-		}).catch((err: Error) => {
-			this.out.error(err)
-		})
-	}
-
 	get Model(): Collection {
 		return this.options.Model as Collection
 	}
@@ -223,6 +202,27 @@ export default class MongoAdapter<T = any, D = Partial<T>, O extends MongoServic
 			}
 		}
 		return params
+	}
+
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	async setup(app: Application, _servicePath: string) {
+		this.client = client(app)
+		this.asModel = this.options.asModel === true ? Model : this.options.asModel
+
+		this.client.then((db: Db) => {
+			this.options.Model = db.collection(this.options.collection) as Collection
+			if (this.options.cache) {
+				this.Cache = db.collection(`query_cache`)
+			}
+
+			if (this.options.indexes && this.options.indexes.length) {
+				for (const index of this.options.indexes) {
+					this.Model.createIndex(index.keys, index.options)
+				}
+			}
+		}).catch((err: Error) => {
+			this.out.error(err)
+		})
 	}
 
 	async sanitizeQuery(params: P = {} as P): Promise<Query> {
