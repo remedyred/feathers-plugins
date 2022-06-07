@@ -281,19 +281,6 @@ export default class MongoAdapter extends MongoDBService {
 		return this.$getOrCreate(id, data, params)
 	}
 
-	async aggregate(pipeline, params: AggregateOptions = {}): Promise<any[]> {
-		const cursor = await this.$aggregate(pipeline, params)
-		let records = []
-		for await (const doc of cursor) {
-			if (this.asModel) {
-				records.push(new this.asModel(doc, {service: this}))
-			} else {
-				records.push(doc)
-			}
-		}
-		return records
-	}
-
 	async touch(id: NullableId, params: AdapterParams = {}): Promise<any> {
 		if (id === null && !this.allowsMulti('touch')) {
 			return Promise.reject(new MethodNotAllowed(`Can not touch multiple entries`))
@@ -399,9 +386,18 @@ export default class MongoAdapter extends MongoDBService {
 		throw new Unprocessable(`Can not restore without timestamps`)
 	}
 
-	async $aggregate(pipeline, params: AggregateOptions = {}): Promise<any> {
+	async $aggregate(pipeline: any[], params: AggregateOptions = {}): Promise<any> {
 		await this.connected()
-		return this.Model.aggregate(pipeline, params)
+		const cursor = await this.Model.aggregate(pipeline, params)
+		let records = []
+		for await (const doc of cursor) {
+			if (this.asModel) {
+				records.push(new this.asModel(doc, {service: this}))
+			} else {
+				records.push(doc)
+			}
+		}
+		return records
 	}
 
 	async $touch(id: NullableId, params: AdapterParams = {}): Promise<any> {
@@ -466,7 +462,7 @@ export default class MongoAdapter extends MongoDBService {
 		})
 	}
 
-	async _aggregate(pipeline, params: AggregateOptions = {}): Promise<any> {
+	async _aggregate(pipeline: any[], params: AggregateOptions = {}): Promise<any> {
 		return this.$aggregate(pipeline, params)
 	}
 
