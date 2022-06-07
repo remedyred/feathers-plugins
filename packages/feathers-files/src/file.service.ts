@@ -58,7 +58,7 @@ export class FileService {
 			paginate: {},
 			multi: false,
 			filters: [],
-			whitelist: [],
+			allow: [],
 			matcher: sift,
 			root: process.cwd(),
 			...options
@@ -149,7 +149,7 @@ export class FileService {
 		const paginate = params.paginate ?? opts.paginate ?? this.options.paginate
 		const {query = {}} = params
 		const options = {
-			operators: this.options.whitelist || [],
+			operators: this.options.allow || [],
 			filters: this.options.filters,
 			paginate,
 			...opts

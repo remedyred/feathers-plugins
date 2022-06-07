@@ -69,7 +69,7 @@ export default class MongoAdapter extends MongoDBService {
 			cache: false,
 			softDelete: false,
 			timestamps: false,
-			whitelist: [
+			allow: [
 				'$text',
 				'$search',
 				'$aggregate',
@@ -101,7 +101,7 @@ export default class MongoAdapter extends MongoDBService {
 			'multi',
 			'id',
 			'paginate',
-			'whitelist',
+			'allow',
 			'filters',
 			'Model',
 			'disableObjectify'

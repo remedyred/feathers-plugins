@@ -49,7 +49,7 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 			paginate: {},
 			multi: false,
 			filters: [],
-			whitelist: [],
+			allow: [],
 			...options
 		} as O
 

@@ -40,7 +40,7 @@ export function filterParams(params: AdapterParams = {}, options: QueryOptions =
 	const paginate = typeof params.paginate !== 'undefined' ? params.paginate : options.paginate
 	const {query = {}} = params
 	options = {
-		operators: options.whitelist || [],
+		operators: options.allow || [],
 		filters: options.filters,
 		paginate,
 		...options

@@ -28,7 +28,7 @@ export default class RedisAdapter<T = any, D = Partial<T>, O extends RedisServic
 			paginate: {},
 			multi: false,
 			filters: [],
-			whitelist: [],
+			allow: [],
 			matcher: sift,
 			sorter, ...options
 		}
