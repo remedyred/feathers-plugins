@@ -81,7 +81,24 @@ export default class MongoAdapter<T = any, D = Partial<T>, O extends MongoServic
 				'$diacriticSensitive',
 				'$regex'
 			],
-			filters: {...FILTERS},
+			methods: [
+				'find',
+				'get',
+				'create',
+				'update',
+				'patch',
+				'remove',
+				'aggregate'
+			],
+			filters: {
+				...FILTERS,
+				$aggregate(aggregate: any) {
+					if (!Array.isArray(aggregate)) {
+						throw new BadRequest(`Aggregate must be a MongoDB pipeline array`)
+					}
+					return aggregate
+				}
+			},
 			indexes: [],
 			search: {
 				escape: true,
@@ -302,6 +319,11 @@ export default class MongoAdapter<T = any, D = Partial<T>, O extends MongoServic
 	async $find(params?: P & {paginate: false}): Promise<T[]>
 	async $find(params: P = {} as P): Promise<Paginated<T> | T[]> {
 		await this.connected()
+
+		if (params?.query?.$aggregate) {
+			return this.$aggregate(params?.query?.$aggregate, params as AggregateOptions)
+		}
+
 		const parsed = this.parseParams(params)
 
 		if (parsed.cache !== false) {

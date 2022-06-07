@@ -20,6 +20,7 @@ export interface Results {
 }
 
 export interface QueryOptions extends Partial<AdapterServiceOptions> {
+	allow?: string[]
 	operators?: string[]
 	sorter?: Sorter
 	matcher?(value: any): any
