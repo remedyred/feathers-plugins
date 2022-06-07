@@ -34,14 +34,14 @@ export class InternalService<T = any, D = Partial<T>, P extends MongoServiceOpti
 		if (!this.allowedMethods.includes('find')) {
 			throw new NotImplemented('Method `find` not implemented')
 		}
-		return super.find(params)
+		return super._find(params)
 	}
 
 	async get(id: Id, params?: P): Promise<T> {
 		if (!this.allowedMethods.includes('get')) {
 			throw new NotImplemented('Method `get` not implemented')
 		}
-		return super.get(id, params)
+		return super._get(id, params)
 	}
 
 	async create(data: Partial<D>, params?: P): Promise<T>
@@ -50,14 +50,14 @@ export class InternalService<T = any, D = Partial<T>, P extends MongoServiceOpti
 		if (!this.allowedMethods.includes('create')) {
 			throw new NotImplemented('Method `create` not implemented')
 		}
-		return super.create(data, params)
+		return super._create(data, params)
 	}
 
 	async update(id: Id, data: D, params?: P): Promise<T> {
 		if (!this.allowedMethods.includes('update')) {
 			throw new NotImplemented('Method `update` not implemented')
 		}
-		return super.update(id, data, params)
+		return super._update(id, data, params)
 	}
 
 	async patch(id: Id, data: Partial<D>, params?: P): Promise<T>
@@ -66,7 +66,7 @@ export class InternalService<T = any, D = Partial<T>, P extends MongoServiceOpti
 		if (!this.allowedMethods.includes('patch')) {
 			throw new NotImplemented('Method `patch` not implemented')
 		}
-		return super.patch(id, data, params)
+		return super._patch(id, data, params)
 	}
 
 	async remove(id: Id, params?: P): Promise<T>
@@ -75,6 +75,6 @@ export class InternalService<T = any, D = Partial<T>, P extends MongoServiceOpti
 		if (!this.allowedMethods.includes('remove')) {
 			throw new NotImplemented('Method `remove` not implemented')
 		}
-		return super.remove(id, params)
+		return super._remove(id, params)
 	}
 }
