@@ -1,5 +1,13 @@
 # @snickbit/feathers-auth-api Changelog
 
+## 1.0.5
+
+### Patch Changes
+
+- [e9f938f](https://github.com/snickbit/feathers/commit/e9f938f) **chore**:  bump dependencies
+- [24b0067](https://github.com/snickbit/feathers/commit/24b0067) **chore**:  bump deps
+- [e800ada](https://github.com/snickbit/feathers/commit/e800ada) **chore**:  update dependencies
+
 ## 1.0.4
 
 ### Patch Changes
