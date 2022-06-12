@@ -28,11 +28,11 @@
 		"testEnvironment": "node"
 	},
 	"dependencies": {
-		"@feathersjs/configuration": "5.0.0-pre.22",
-		"@feathersjs/express": "5.0.0-pre.22",
-		"@feathersjs/feathers": "5.0.0-pre.22",
-		"@feathersjs/socketio": "5.0.0-pre.22",
-		"@sentry/node": "^7.0.0",
+		"@feathersjs/configuration": "5.0.0-pre.23",
+		"@feathersjs/express": "5.0.0-pre.23",
+		"@feathersjs/feathers": "5.0.0-pre.23",
+		"@feathersjs/socketio": "5.0.0-pre.23",
+		"@sentry/node": "^7.1.1",
 		"@snickbit/feathers-hooks": "^1.0.5",
 		"@snickbit/feathers-logger": "^1.0.9",
 		"@snickbit/feathers-logs": "^1.0.15",
@@ -50,17 +50,17 @@
 		"winston-daily-rotate-file": "^4.7.1"
 	},
 	"devDependencies": {
-		"@remedyred/indexer": "^2.5.0",
-		"jest": "^28.1.0",
-		"tsup": "^6.0.1"
+		"@remedyred/indexer": "^2.5.1",
+		"jest": "^28.1.1",
+		"tsup": "^6.1.2"
 	},
 	"peerDependencies": {
-		"@feathersjs/feathers": "5.0.0-pre.22"
+		"@feathersjs/feathers": "5.0.0-pre.23"
 	},
 	"optionalDependencies": {
 		"ioredis": "^5.0.6",
 		"knex": "^2.1.0",
-		"mongodb": "^4.6.0",
+		"mongodb": "^4.7.0",
 		"mysql": "^2.18.1"
 	},
 	"engines": {

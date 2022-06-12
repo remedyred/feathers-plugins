@@ -28,19 +28,19 @@
 		"testEnvironment": "node"
 	},
 	"dependencies": {
-		"@feathersjs/adapter-commons": "5.0.0-pre.22",
-		"@feathersjs/feathers": "5.0.0-pre.22",
+		"@feathersjs/adapter-commons": "5.0.0-pre.23",
+		"@feathersjs/feathers": "5.0.0-pre.23",
 		"@snickbit/feathers-helpers": "^1.0.11",
 		"@snickbit/out": "^2.0.33",
 		"axios": "^0.27.2"
 	},
 	"devDependencies": {
-		"@remedyred/indexer": "^2.5.0",
-		"jest": "^28.1.0",
-		"tsup": "^6.0.1"
+		"@remedyred/indexer": "^2.5.1",
+		"jest": "^28.1.1",
+		"tsup": "^6.1.2"
 	},
 	"peerDependencies": {
-		"@feathersjs/feathers": "5.0.0-pre.22"
+		"@feathersjs/feathers": "5.0.0-pre.23"
 	},
 	"engines": {
 		"node": ">= 12"

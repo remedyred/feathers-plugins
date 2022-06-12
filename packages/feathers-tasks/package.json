@@ -28,9 +28,9 @@
 		"testEnvironment": "node"
 	},
 	"dependencies": {
-		"@feathersjs/adapter-commons": "5.0.0-pre.22",
-		"@feathersjs/errors": "5.0.0-pre.22",
-		"@feathersjs/feathers": "5.0.0-pre.22",
+		"@feathersjs/adapter-commons": "5.0.0-pre.23",
+		"@feathersjs/errors": "5.0.0-pre.23",
+		"@feathersjs/feathers": "5.0.0-pre.23",
 		"@snickbit/dates": "^1.0.45",
 		"@snickbit/feathers-helpers": "^1.0.11",
 		"@snickbit/feathers-model": "^1.0.12",
@@ -38,17 +38,17 @@
 		"@snickbit/node-utilities": "^4.3.14",
 		"@snickbit/out": "^2.0.33",
 		"@snickbit/utilities": "^3.0.27",
-		"bullmq": "^1.85.3",
+		"bullmq": "^1.86.1",
 		"ioredis": "^5.0.6"
 	},
 	"devDependencies": {
-		"@remedyred/indexer": "^2.5.0",
-		"esbuild": "^0.14.42",
-		"jest": "^28.1.0",
+		"@remedyred/indexer": "^2.5.1",
+		"esbuild": "^0.14.43",
+		"jest": "^28.1.1",
 		"tsup": "^5.12.9"
 	},
 	"peerDependencies": {
-		"@feathersjs/feathers": "5.0.0-pre.22"
+		"@feathersjs/feathers": "5.0.0-pre.23"
 	},
 	"engines": {
 		"node": ">= 12"

@@ -32,8 +32,8 @@
 		"mysql": "^2.18.1"
 	},
 	"devDependencies": {
-		"jest": "^28.1.0",
-		"tsup": "^6.0.1"
+		"jest": "^28.1.1",
+		"tsup": "^6.1.2"
 	},
 	"peerDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.22"

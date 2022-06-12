@@ -29,9 +29,9 @@
 		"testEnvironment": "node"
 	},
 	"dependencies": {
-		"@feathersjs/adapter-commons": "5.0.0-pre.22",
-		"@feathersjs/errors": "5.0.0-pre.22",
-		"@feathersjs/feathers": "5.0.0-pre.22",
+		"@feathersjs/adapter-commons": "5.0.0-pre.23",
+		"@feathersjs/errors": "5.0.0-pre.23",
+		"@feathersjs/feathers": "5.0.0-pre.23",
 		"@snickbit/feathers-helpers": "^1.0.11",
 		"@snickbit/out": "^2.0.33",
 		"@snickbit/utilities": "^3.0.27",
@@ -45,9 +45,9 @@
 		"tweetnacl-util": "^0.15.1"
 	},
 	"devDependencies": {
-		"@types/jest": "^28.1.0",
+		"@types/jest": "^28.1.1",
 		"@types/pouchdb": "^6.4.0",
-		"jest": "^28.1.0",
+		"jest": "^28.1.1",
 		"shx": "^0.3.4",
 		"ts-jest": "^28.0.4",
 		"tsup": "^5.12.9",

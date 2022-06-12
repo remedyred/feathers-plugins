@@ -31,12 +31,12 @@
 		"@snickbit/feathers-mongo": "^1.0.14"
 	},
 	"devDependencies": {
-		"@feathersjs/feathers": "5.0.0-pre.22",
-		"jest": "^28.1.0",
-		"tsup": "^6.0.1"
+		"@feathersjs/feathers": "5.0.0-pre.23",
+		"jest": "^28.1.1",
+		"tsup": "^6.1.2"
 	},
 	"peerDependencies": {
-		"@feathersjs/feathers": "5.0.0-pre.22"
+		"@feathersjs/feathers": "5.0.0-pre.23"
 	},
 	"engines": {
 		"node": ">= 12"
