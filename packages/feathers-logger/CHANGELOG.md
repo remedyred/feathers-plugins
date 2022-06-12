@@ -1,5 +1,12 @@
 # @snickbit/feathers-logger Changelog
 
+## 1.0.10
+
+### Patch Changes
+
+- [e9f938f](https://github.com/snickbit/feathers/commit/e9f938f) **chore**:  bump dependencies
+- [24b0067](https://github.com/snickbit/feathers/commit/24b0067) **chore**:  bump deps
+
 ## 1.0.9
 
 ### Patch Changes
