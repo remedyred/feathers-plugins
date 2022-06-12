@@ -1,5 +1,11 @@
 # @snickbit/feathers-up-redis Changelog
 
+## 0.0.17
+
+### Patch Changes
+
+- [3f50403](https://github.com/snickbit/feathers/commit/3f50403) **fix**:  update peer dependencies
+
 ## 0.0.10
 
 ### Patch Changes
