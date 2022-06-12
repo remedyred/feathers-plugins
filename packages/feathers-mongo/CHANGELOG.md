@@ -1,5 +1,22 @@
 # @snickbit/feathers-mongo Changelog
 
+## 2.0.0
+
+### Major Changes
+
+- [e9f938f](https://github.com/snickbit/feathers/commit/e9f938f) **chore**:  bump dependencies
+- [3031d38](https://github.com/snickbit/feathers/commit/3031d38) **fix**:  rename allow to operators
+- [872a0fb](https://github.com/snickbit/feathers/commit/872a0fb) **fix**:  add allow to QueryOptions
+- [f50270a](https://github.com/snickbit/feathers/commit/f50270a) **fix**:  InternalService should send to _ versions of methods directly
+- [81ca336](https://github.com/snickbit/feathers/commit/81ca336) **fix**:  add aggregate to internal service
+- [b6d5e02](https://github.com/snickbit/feathers/commit/b6d5e02) **fix**:  remove app from InternalService
+- [781f167](https://github.com/snickbit/feathers/commit/781f167) **fix**:  make setup async
+- [7e8259b](https://github.com/snickbit/feathers/commit/7e8259b) **feat**:  adjust typings and params
+- [f144fc3](https://github.com/snickbit/feathers/commit/f144fc3) **fix**:  intercept sanitizeQuery
+- [c35d7b2](https://github.com/snickbit/feathers/commit/c35d7b2) **fix**:  rename whitelist to allow
+- [7968708](https://github.com/snickbit/feathers/commit/7968708) **refactor**:  move aggregate() to service
+- [24b0067](https://github.com/snickbit/feathers/commit/24b0067) **chore**:  bump deps
+
 ## 1.0.12
 
 ### Patch Changes
