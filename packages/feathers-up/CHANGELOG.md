@@ -1,5 +1,12 @@
 # @snickbit/feathers-up Changelog
 
+## 1.0.22
+
+### Patch Changes
+
+- [e9f938f](https://github.com/snickbit/feathers/commit/e9f938f) **chore**:  bump dependencies
+- [ae5a7d7](https://github.com/snickbit/feathers/commit/ae5a7d7) **fix**:  improve sentry configuration
+
 ## 1.0.17
 
 ### Patch Changes

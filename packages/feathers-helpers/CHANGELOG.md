@@ -1,5 +1,15 @@
 # @snickbit/feathers-helpers Changelog
 
+## 1.0.12
+
+### Patch Changes
+
+- [e9f938f](https://github.com/snickbit/feathers/commit/e9f938f) **chore**:  bump dependencies
+- [3031d38](https://github.com/snickbit/feathers/commit/3031d38) **fix**:  rename allow to operators
+- [872a0fb](https://github.com/snickbit/feathers/commit/872a0fb) **fix**:  add allow to QueryOptions
+- [c35d7b2](https://github.com/snickbit/feathers/commit/c35d7b2) **fix**:  rename whitelist to allow
+- [24b0067](https://github.com/snickbit/feathers/commit/24b0067) **chore**:  bump deps
+
 ## 1.0.11
 
 ### Patch Changes
