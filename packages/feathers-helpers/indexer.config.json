@@ -1,6 +1,4 @@
 {
-	"typescript": true,
 	"source": "src/**/*.ts",
-	"output": "src/index.ts",
-	"type": "wildcard"
+	"output": "src/index.ts"
 }

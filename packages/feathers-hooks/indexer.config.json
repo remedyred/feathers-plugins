@@ -1,5 +1,4 @@
 {
 	"source": "src/hooks/**/*.ts",
-	"output": "src/hooks/index.ts",
-	"type": "wildcard"
+	"output": "src/hooks/index.ts"
 }

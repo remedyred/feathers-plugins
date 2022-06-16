@@ -1,92 +1,24 @@
-[
-	{
-		"index": "src/index.ts",
-		"files": [
-			{
-				"export": "group",
-				"file": "src/commands/"
+{
+
+	"indexes": [
+		{
+			"source": "src/commands/*.ts",
+			"output": "src/commands/index.ts",
+			"type": "group"
+		},
+		{
+			"source": [
+				"src/tasks/*.ts",
+				"src/service.ts",
+				"src/commands/index.ts"
+			],
+			"output": "src/index.ts",
+			"overrides": {
+				"src/commands/index.ts": "group"
 			},
-			{
-				"export": "skip",
-				"file": "src/queue/"
-			},
-			{
-				"export": "skip",
-				"file": "src/tasks/"
-			},
-			{
-				"export": "skip",
-				"file": "src/utilities/"
-			}
-		]
-	},
-	{
-		"index": "src/utilities/index.ts",
-		"files": [
-			{
-				"export": "skip",
-				"dir": "src/utilities"
-			}
-		]
-	},
-	{
-		"index": "src/tasks/index.ts",
-		"files": [
-			{
-				"export": "skip",
-				"dir": "src/tasks"
-			}
-		]
-	},
-	{
-		"index": "src/queue/index.ts",
-		"files": [
-			{
-				"export": "skip",
-				"dir": "src/queue"
-			}
-		]
-	},
-	{
-		"index": "src/index.ts",
-		"files": [
-			{
-				"export": "group",
-				"file": "src/commands"
-			},
-			{
-				"export": "individual",
-				"file": "src/tasks/task.ts"
-			},
-			{
-				"export": "skip",
-				"dir": "src/queue"
-			},
-			{
-				"export": "skip",
-				"dir": "src/tasks"
-			},
-			{
-				"export": "skip",
-				"dir": "src/utilities"
-			},
-			{
-				"export": "skip",
-				"dir": "src/commands"
-			},
-			{
-				"export": "individual",
-				"dir": "src"
-			}
-		]
-	},
-	{
-		"index": "src/commands/index.ts",
-		"files": [
-			{
-				"export": "group",
-				"dir": "src/commands"
-			}
-		]
-	}
-]
+			"include": [
+				"src/commands/index.ts"
+			]
+		}
+	]
+}

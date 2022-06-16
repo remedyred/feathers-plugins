@@ -1,11 +1,4 @@
-[
-	{
-		"index": "src/index.ts",
-		"files": [
-			{
-				"export": "individual",
-				"dir": "src"
-			}
-		]
-	}
-]
+{
+	"source": "src/*.ts",
+	"output": "src/index.ts"
+}

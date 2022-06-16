@@ -35,7 +35,7 @@
 		"axios": "^0.27.2"
 	},
 	"devDependencies": {
-		"@remedyred/indexer": "^2.5.1",
+		"@snickbit/indexer": "^2.5.4",
 		"jest": "^28.1.1",
 		"tsup": "^6.1.2"
 	},

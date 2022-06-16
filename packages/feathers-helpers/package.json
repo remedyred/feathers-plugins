@@ -38,7 +38,7 @@
 	},
 	"devDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.23",
-		"@remedyred/indexer": "^2.5.1",
+		"@snickbit/indexer": "^2.5.4",
 		"@types/jest": "^28.1.1",
 		"jest": "^28.1.1",
 		"shx": "^0.3.4",

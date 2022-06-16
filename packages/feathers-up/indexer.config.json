@@ -1,5 +1,4 @@
 {
-	"typescript": true,
 	"source": "src/loaders/*.ts",
 	"output": "src/loaders/index.ts",
 	"type": "default"
