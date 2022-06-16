@@ -33,7 +33,7 @@
 		"@feathersjs/feathers": "5.0.0-pre.23",
 		"@feathersjs/socketio": "5.0.0-pre.23",
 		"@sentry/node": "^7.1.1",
-		"@snickbit/feathers-hooks": "^1.0.5",
+		"@snickbit/feathers-hooks": "^1.0.6",
 		"@snickbit/feathers-logger": "^1.0.10",
 		"@snickbit/feathers-logs": "^1.0.17",
 		"@snickbit/model": "^1.0.48",
