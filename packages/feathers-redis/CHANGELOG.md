@@ -1,5 +1,11 @@
 # @snickbit/feathers-redis Changelog
 
+## 1.0.13
+
+### Patch Changes
+
+- [a007d3d](https://github.com/snickbit/feathers/commit/a007d3d) **fix**:  migrate to @snickbit/indexer
+
 ## 1.0.9
 
 ### Patch Changes

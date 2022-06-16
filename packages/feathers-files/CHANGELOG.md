@@ -1,5 +1,12 @@
 # @snickbit/feathers-files Changelog
 
+## 2.0.18
+
+### Patch Changes
+
+- [a007d3d](https://github.com/snickbit/feathers/commit/a007d3d) **fix**:  migrate to @snickbit/indexer
+- [b293316](https://github.com/snickbit/feathers/commit/b293316) **chore**:  bump dependencies
+
 ## 2.0.16
 
 ### Patch Changes

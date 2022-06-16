@@ -1,5 +1,11 @@
 # @snickbit/feathers-hooks Changelog
 
+## 1.0.7
+
+### Patch Changes
+
+- [a007d3d](https://github.com/snickbit/feathers/commit/a007d3d) **fix**:  migrate to @snickbit/indexer
+
 ## 1.0.6
 
 ### Patch Changes

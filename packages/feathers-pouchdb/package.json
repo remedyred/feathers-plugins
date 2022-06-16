@@ -1,6 +1,6 @@
 {
 	"name": "@snickbit/feathers-pouchdb",
-	"version": "0.0.8",
+	"version": "0.0.9",
 	"description": "PouchDB adapter for FeathersJS",
 	"license": "MIT",
 	"exports": {
@@ -32,9 +32,9 @@
 		"@feathersjs/adapter-commons": "5.0.0-pre.23",
 		"@feathersjs/errors": "5.0.0-pre.23",
 		"@feathersjs/feathers": "5.0.0-pre.23",
-		"@snickbit/feathers-helpers": "^1.0.12",
-		"@snickbit/out": "^2.0.33",
-		"@snickbit/utilities": "^3.0.27",
+		"@snickbit/feathers-helpers": "^1.0.13",
+		"@snickbit/out": "^2.0.34",
+		"@snickbit/utilities": "^3.0.28",
 		"garbados-crypt": "3.0.0-beta",
 		"pouchdb": "^7.3.0",
 		"pouchdb-adapter-memory": "^7.3.0",

@@ -1,5 +1,11 @@
 # @snickbit/feathers-pouchdb Changelog
 
+## 0.0.9
+
+### Patch Changes
+
+- [b293316](https://github.com/snickbit/feathers/commit/b293316) **chore**:  bump dependencies
+
 ## 0.0.5
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @snickbit/feathers-auth-api Changelog
 
+## 1.0.6
+
+### Patch Changes
+
+- [b293316](https://github.com/snickbit/feathers/commit/b293316) **chore**:  bump dependencies
+
 ## 1.0.5
 
 ### Patch Changes
