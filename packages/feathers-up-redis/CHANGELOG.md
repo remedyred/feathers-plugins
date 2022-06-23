@@ -1,5 +1,11 @@
 # @snickbit/feathers-up-redis Changelog
 
+## 0.0.20
+
+### Patch Changes
+
+- [db11874](https://github.com/snickbit/feathers/commit/db11874) **chore**:  update dependencies
+
 ## 0.0.17
 
 ### Patch Changes

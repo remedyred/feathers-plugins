@@ -1,5 +1,11 @@
 # @snickbit/feathers-hooks Changelog
 
+## 1.0.8
+
+### Patch Changes
+
+- [db11874](https://github.com/snickbit/feathers/commit/db11874) **chore**:  update dependencies
+
 ## 1.0.7
 
 ### Patch Changes

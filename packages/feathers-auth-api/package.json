@@ -1,6 +1,6 @@
 {
 	"name": "@snickbit/feathers-auth-api",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"description": "FeathersJS API Key Authentication",
 	"license": "MIT",
 	"exports": {
