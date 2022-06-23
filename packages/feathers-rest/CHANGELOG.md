@@ -1,5 +1,11 @@
 # @snickbit/feathers-rest Changelog
 
+## 1.0.15
+
+### Patch Changes
+
+- [db11874](https://github.com/snickbit/feathers/commit/db11874) **chore**:  update dependencies
+
 ## 1.0.14
 
 ### Patch Changes

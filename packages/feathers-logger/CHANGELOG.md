@@ -1,5 +1,11 @@
 # @snickbit/feathers-logger Changelog
 
+## 1.0.12
+
+### Patch Changes
+
+- [db11874](https://github.com/snickbit/feathers/commit/db11874) **chore**:  update dependencies
+
 ## 1.0.11
 
 ### Patch Changes

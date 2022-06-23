@@ -1,5 +1,11 @@
 # @snickbit/feathers-mongo Changelog
 
+## 2.0.3
+
+### Patch Changes
+
+- [db11874](https://github.com/snickbit/feathers/commit/db11874) **chore**:  update dependencies
+
 ## 2.0.0
 
 ### Major Changes

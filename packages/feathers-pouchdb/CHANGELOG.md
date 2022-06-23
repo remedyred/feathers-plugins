@@ -1,5 +1,11 @@
 # @snickbit/feathers-pouchdb Changelog
 
+## 0.0.10
+
+### Patch Changes
+
+- [db11874](https://github.com/snickbit/feathers/commit/db11874) **chore**:  update dependencies
+
 ## 0.0.9
 
 ### Patch Changes

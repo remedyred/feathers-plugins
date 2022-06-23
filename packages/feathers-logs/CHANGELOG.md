@@ -1,5 +1,11 @@
 # @snickbit/feathers-logs Changelog
 
+## 1.0.19
+
+### Patch Changes
+
+- [db11874](https://github.com/snickbit/feathers/commit/db11874) **chore**:  update dependencies
+
 ## 1.0.15
 
 ### Patch Changes
