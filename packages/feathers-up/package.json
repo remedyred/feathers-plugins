@@ -28,12 +28,12 @@
 		"testEnvironment": "node"
 	},
 	"dependencies": {
-		"@feathersjs/configuration": "5.0.0-pre.23",
-		"@feathersjs/express": "5.0.0-pre.23",
-		"@feathersjs/feathers": "5.0.0-pre.23",
-		"@feathersjs/socketio": "5.0.0-pre.23",
-		"@sentry/node": "^7.1.1",
-		"@snickbit/feathers-hooks": "^1.0.6",
+		"@feathersjs/configuration": "5.0.0-pre.26",
+		"@feathersjs/express": "5.0.0-pre.26",
+		"@feathersjs/feathers": "5.0.0-pre.26",
+		"@feathersjs/socketio": "5.0.0-pre.26",
+		"@sentry/node": "^7.2.0",
+		"@snickbit/feathers-hooks": "^1.0.7",
 		"@snickbit/feathers-logger": "^1.0.11",
 		"@snickbit/feathers-logs": "^1.0.18",
 		"@snickbit/model": "^1.0.49",
@@ -46,7 +46,7 @@
 		"express": "^4.18.1",
 		"helmet": "^5.1.0",
 		"socket.io": "^4.5.1",
-		"winston": "^3.7.2",
+		"winston": "^3.8.0",
 		"winston-daily-rotate-file": "^4.7.1"
 	},
 	"devDependencies": {
@@ -55,7 +55,7 @@
 		"tsup": "^6.1.2"
 	},
 	"peerDependencies": {
-		"@feathersjs/feathers": "5.0.0-pre.23"
+		"@feathersjs/feathers": "5.0.0-pre.26"
 	},
 	"optionalDependencies": {
 		"ioredis": "^5.0.6",

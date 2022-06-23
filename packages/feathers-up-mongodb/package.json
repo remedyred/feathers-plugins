@@ -35,7 +35,7 @@
 		"tsup": "^6.1.2"
 	},
 	"peerDependencies": {
-		"@feathersjs/feathers": "5.0.0-pre.23"
+		"@feathersjs/feathers": "5.0.0-pre.26"
 	},
 	"engines": {
 		"node": ">= 12"
