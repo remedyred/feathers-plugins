@@ -1,5 +1,11 @@
 # @snickbit/feathers-up Changelog
 
+## 1.0.27
+
+### Patch Changes
+
+- [a1af421](https://github.com/snickbit/feathers/commit/a1af421) **fix**:  bump @snickbit/feathers-hooks version
+
 ## 1.0.25
 
 ### Patch Changes

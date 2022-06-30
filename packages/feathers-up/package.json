@@ -1,6 +1,6 @@
 {
 	"name": "@snickbit/feathers-up",
-	"version": "1.0.26",
+	"version": "1.0.27",
 	"description": "Boot manager for FeathersJS with sane defaults",
 	"license": "MIT",
 	"exports": {
