@@ -1,7 +1,7 @@
 import {filterQuery, FILTERS, PaginationOptions} from '@feathersjs/adapter-commons'
 import {BadRequest, MethodNotAllowed, NotFound, Unavailable, Unprocessable} from '@feathersjs/errors'
 import {Application, Id, NullableId, Paginated, Query} from '@feathersjs/feathers'
-import {MongoDBAdapterOptions, MongoDBAdapterParams, MongoDBService} from '@feathersjs/mongodb'
+import {MongoDbAdapter, MongoDBAdapterOptions, MongoDBAdapterParams} from '@feathersjs/mongodb'
 import {Model} from '@snickbit/feathers-model'
 import {Out} from '@snickbit/out'
 import {isArray, isObject, objectHasMethod, objectOnly} from '@snickbit/utilities'
@@ -23,11 +23,12 @@ export interface MongoServiceOptions extends MongoDBAdapterOptions {
 	disableObjectify?: boolean
 	softDelete?: boolean
 	timestamps?: TimestampsOptions | boolean
+	methods?: string[]
 }
 
 export type ServiceOptions = Partial<MongoServiceOptions>
 
-export interface AdapterParams extends MongoDBAdapterParams {
+export interface MongoAdapterParams extends MongoDBAdapterParams {
 	timestamps?: TimestampsOptions | boolean
 	cache?: boolean
 }
@@ -45,14 +46,16 @@ export type SearchOptions = {
 	excludedFields?: string[]
 }
 
-export default class MongoAdapter<T = any, D = Partial<T>, O extends MongoServiceOptions = MongoServiceOptions, P extends AdapterParams = AdapterParams> extends MongoDBService<T, D, P> {
-	declare options: O
+export default class MongoAdapter<T = any,
+	D = Partial<T>,
+	P extends MongoAdapterParams = MongoAdapterParams> extends MongoDbAdapter<T, D, P> {
+	declare options: MongoServiceOptions
 	client: any
 	asModel: any
 	Cache: any
 	out: Out
 
-	constructor(options?: O) {
+	constructor(options?: MongoServiceOptions) {
 		if (!options.collection) {
 			throw new Error('MongoService: options.collection is required')
 		}
@@ -123,7 +126,7 @@ export default class MongoAdapter<T = any, D = Partial<T>, O extends MongoServic
 
 		super(mongodbOptions as MongoDBAdapterOptions)
 
-		this.options = options as O
+		this.options = options as MongoServiceOptions
 
 		this.out = new Out('mongo')
 
