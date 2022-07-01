@@ -29,6 +29,7 @@ export interface MongoServiceOptions extends MongoDBAdapterOptions {
 export type ServiceOptions = Partial<MongoServiceOptions>
 
 export interface MongoAdapterParams extends MongoDBAdapterParams {
+	Model?: Collection | Promise<Collection>
 	timestamps?: TimestampsOptions | boolean
 	cache?: boolean
 }
@@ -48,14 +49,16 @@ export type SearchOptions = {
 
 export default class MongoAdapter<T = any,
 	D = Partial<T>,
-	P extends MongoAdapterParams = MongoAdapterParams> extends MongoDbAdapter<T, D, P> {
-	declare options: MongoServiceOptions
+	O extends MongoServiceOptions = MongoServiceOptions,
+	P extends MongoAdapterParams = MongoAdapterParams
+	> extends MongoDbAdapter<T, D, P> {
+	declare options: O
 	client: any
 	asModel: any
 	Cache: any
 	out: Out
 
-	constructor(options?: MongoServiceOptions) {
+	constructor(options?: Partial<O>) {
 		if (!options.collection) {
 			throw new Error('MongoService: options.collection is required')
 		}
@@ -126,7 +129,7 @@ export default class MongoAdapter<T = any,
 
 		super(mongodbOptions as MongoDBAdapterOptions)
 
-		this.options = options as MongoServiceOptions
+		this.options = options as O
 
 		this.out = new Out('mongo')
 
