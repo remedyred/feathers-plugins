@@ -1,5 +1,11 @@
 # @snickbit/feathers-mongo Changelog
 
+## 2.0.5
+
+### Patch Changes
+
+- [3e4821a](https://github.com/snickbit/feathers/commit/3e4821a) **fix**:  MongoAdapter options types
+
 ## 2.0.3
 
 ### Patch Changes
