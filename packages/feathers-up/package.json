@@ -1,6 +1,6 @@
 {
 	"name": "@snickbit/feathers-up",
-	"version": "1.0.30",
+	"version": "1.0.31",
 	"description": "Boot manager for FeathersJS with sane defaults",
 	"license": "MIT",
 	"exports": {
@@ -37,7 +37,7 @@
 		"@snickbit/feathers-logger": "^1.0.14",
 		"@snickbit/feathers-logs": "^1.0.22",
 		"@snickbit/model": "^1.0.51",
-		"@snickbit/node-utilities": "^4.4.0",
+		"@snickbit/node-utilities": "^4.4.1",
 		"@snickbit/out": "^2.0.36",
 		"@snickbit/utilities": "^3.1.0",
 		"body-parser": "^1.20.0",
