@@ -50,7 +50,7 @@
 		"winston-daily-rotate-file": "^4.7.1"
 	},
 	"devDependencies": {
-		"@snickbit/indexer": "^2.5.4",
+		"@snickbit/indexer": "^2.5.5",
 		"jest": "^28.1.1",
 		"tsup": "^6.1.2"
 	},

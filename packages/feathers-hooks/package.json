@@ -29,7 +29,7 @@
 	},
 	"devDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.26",
-		"@snickbit/indexer": "^2.5.4",
+		"@snickbit/indexer": "^2.5.5",
 		"jest": "^28.1.1",
 		"tsup": "^6.1.2"
 	},
