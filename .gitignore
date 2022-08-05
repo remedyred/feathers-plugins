@@ -5,15 +5,16 @@
 
 # Log files
 logs/
+*.log
 
 # Dependencies
 node_modules/
-*.lock
 
 # Compiled files
 dist/
 
 # Keep
-!.changeset/
-!.gitignore
+!.git*
+!.eslintignore
+!.eslintrc.json
 !.depcheckrc
