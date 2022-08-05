@@ -50,7 +50,7 @@ importers:
   packages/feathers-files:
     specifiers:
       '@aws-sdk/client-s3': ^3.113.0
-      '@feathersjs/adapter-commons': 5.0.0-pre.26
+      '@feathersjs/adapter-commons': 5.0.0-pre.28
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/feathers-helpers': ^1.0.18
@@ -74,7 +74,7 @@ importers:
       typescript: 4.7.4
     dependencies:
       '@aws-sdk/client-s3': 3.142.0
-      '@feathersjs/adapter-commons': 5.0.0-pre.26
+      '@feathersjs/adapter-commons': 5.0.0-pre.28
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/feathers-helpers': link:../feathers-helpers
@@ -100,7 +100,7 @@ importers:
 
   packages/feathers-helpers:
     specifiers:
-      '@feathersjs/adapter-commons': 5.0.0-pre.26
+      '@feathersjs/adapter-commons': 5.0.0-pre.28
       '@feathersjs/commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
@@ -115,7 +115,7 @@ importers:
       tsup: 6.2.2
       typescript: 4.7.4
     dependencies:
-      '@feathersjs/adapter-commons': 5.0.0-pre.26
+      '@feathersjs/adapter-commons': 5.0.0-pre.28
       '@feathersjs/commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
       '@snickbit/out': 2.0.37
@@ -183,7 +183,7 @@ importers:
 
   packages/feathers-model:
     specifiers:
-      '@feathersjs/adapter-commons': 5.0.0-pre.26
+      '@feathersjs/adapter-commons': 5.0.0-pre.28
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/feathers-helpers': ^1.0.18
@@ -192,7 +192,7 @@ importers:
       jest: 28.1.3
       tsup: 6.2.2
     dependencies:
-      '@feathersjs/adapter-commons': 5.0.0-pre.26
+      '@feathersjs/adapter-commons': 5.0.0-pre.28
       '@feathersjs/errors': 5.0.0-pre.26
       '@snickbit/feathers-helpers': link:../feathers-helpers
       '@snickbit/model': 1.0.53
@@ -204,7 +204,7 @@ importers:
 
   packages/feathers-mongo:
     specifiers:
-      '@feathersjs/adapter-commons': 5.0.0-pre.26
+      '@feathersjs/adapter-commons': 5.0.0-pre.28
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
       '@feathersjs/mongodb': 5.0.0-pre.26
@@ -215,7 +215,7 @@ importers:
       mongodb: ^4.7.0
       tsup: 6.2.2
     dependencies:
-      '@feathersjs/adapter-commons': 5.0.0-pre.26
+      '@feathersjs/adapter-commons': 5.0.0-pre.28
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
       '@feathersjs/mongodb': 5.0.0-pre.26_mongodb@4.8.1
@@ -229,7 +229,7 @@ importers:
 
   packages/feathers-pouchdb:
     specifiers:
-      '@feathersjs/adapter-commons': 5.0.0-pre.26
+      '@feathersjs/adapter-commons': 5.0.0-pre.28
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/feathers-helpers': ^1.0.18
@@ -251,7 +251,7 @@ importers:
       tweetnacl-util: ^0.15.1
       typescript: 4.7.4
     dependencies:
-      '@feathersjs/adapter-commons': 5.0.0-pre.26
+      '@feathersjs/adapter-commons': 5.0.0-pre.28
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/feathers-helpers': link:../feathers-helpers
@@ -276,7 +276,7 @@ importers:
 
   packages/feathers-redis:
     specifiers:
-      '@feathersjs/adapter-commons': 5.0.0-pre.26
+      '@feathersjs/adapter-commons': 5.0.0-pre.28
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/feathers-helpers': ^1.0.18
@@ -287,7 +287,7 @@ importers:
       sift: ^16.0.0
       tsup: 6.2.2
     dependencies:
-      '@feathersjs/adapter-commons': 5.0.0-pre.26
+      '@feathersjs/adapter-commons': 5.0.0-pre.28
       '@feathersjs/errors': 5.0.0-pre.26
       '@snickbit/feathers-helpers': link:../feathers-helpers
       '@snickbit/utilities': 3.2.0
@@ -301,7 +301,7 @@ importers:
 
   packages/feathers-rest:
     specifiers:
-      '@feathersjs/adapter-commons': 5.0.0-pre.26
+      '@feathersjs/adapter-commons': 5.0.0-pre.28
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/feathers-helpers': ^1.0.18
       '@snickbit/indexer': 2.5.7
@@ -310,7 +310,7 @@ importers:
       jest: 28.1.3
       tsup: 6.2.2
     dependencies:
-      '@feathersjs/adapter-commons': 5.0.0-pre.26
+      '@feathersjs/adapter-commons': 5.0.0-pre.28
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/feathers-helpers': link:../feathers-helpers
       '@snickbit/out': 2.0.37
@@ -322,7 +322,7 @@ importers:
 
   packages/feathers-tasks:
     specifiers:
-      '@feathersjs/adapter-commons': 5.0.0-pre.26
+      '@feathersjs/adapter-commons': 5.0.0-pre.28
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/dates': ^1.0.48
@@ -338,7 +338,7 @@ importers:
       jest: 28.1.3
       tsup: 6.2.2
     dependencies:
-      '@feathersjs/adapter-commons': 5.0.0-pre.26
+      '@feathersjs/adapter-commons': 5.0.0-pre.28
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/dates': 1.0.50
@@ -1727,13 +1727,13 @@ packages:
       - supports-color
     dev: false
 
-  /@feathersjs/adapter-commons/5.0.0-pre.26:
-    resolution: {integrity: sha512-hlhujANCFKZEkLODEEn8L6ZAwLpSmr24awtdx70v3vNV1glSNWStKWzw0KJY2vZPsn9sLJ3owDfO5yNtSJ533A==}
+  /@feathersjs/adapter-commons/5.0.0-pre.28:
+    resolution: {integrity: sha512-ocOSQIGxmQs8Lrb2BNSCthlMDy96BoqeCl7WsYKWPiD8QHYcwvkzUA7wlyKP232YnL8WWYGAMvld9Kwfg5ZMlg==}
     engines: {node: '>= 12'}
     dependencies:
-      '@feathersjs/commons': 5.0.0-pre.26
-      '@feathersjs/errors': 5.0.0-pre.26
-      '@feathersjs/feathers': 5.0.0-pre.26
+      '@feathersjs/commons': 5.0.0-pre.28
+      '@feathersjs/errors': 5.0.0-pre.28
+      '@feathersjs/feathers': 5.0.0-pre.28
     dev: false
 
   /@feathersjs/authentication/5.0.0-pre.26:
@@ -1867,7 +1867,7 @@ packages:
     peerDependencies:
       mongodb: ^4.5.0
     dependencies:
-      '@feathersjs/adapter-commons': 5.0.0-pre.26
+      '@feathersjs/adapter-commons': 5.0.0-pre.28
       '@feathersjs/commons': 5.0.0-pre.28
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
