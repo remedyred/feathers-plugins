@@ -31,8 +31,8 @@
 	"dependencies": {
 		"@aws-sdk/client-s3": "^3.113.0",
 		"@feathersjs/adapter-commons": "5.0.0-pre.26",
-		"@feathersjs/errors": "5.0.0-pre.26",
-		"@feathersjs/feathers": "5.0.0-pre.26",
+		"@feathersjs/errors": "5.0.0-pre.28",
+		"@feathersjs/feathers": "5.0.0-pre.28",
 		"@snickbit/feathers-helpers": "^1.0.17",
 		"@snickbit/node-utilities": "^4.4.2",
 		"@snickbit/out": "^2.0.37",
@@ -56,7 +56,7 @@
 		"typescript": "4.7.4"
 	},
 	"peerDependencies": {
-		"@feathersjs/feathers": "5.0.0-pre.26"
+		"@feathersjs/feathers": "5.0.0-pre.28"
 	},
 	"engines": {
 		"node": ">= 12"

@@ -28,9 +28,9 @@
 	},
 	"dependencies": {
 		"@feathersjs/adapter-commons": "5.0.0-pre.26",
-		"@feathersjs/errors": "5.0.0-pre.26",
-		"@feathersjs/feathers": "5.0.0-pre.26",
-		"@feathersjs/mongodb": "5.0.0-pre.26",
+		"@feathersjs/errors": "5.0.0-pre.28",
+		"@feathersjs/feathers": "5.0.0-pre.28",
+		"@feathersjs/mongodb": "5.0.0-pre.28",
 		"@snickbit/feathers-model": "^1.0.18",
 		"@snickbit/out": "^2.0.37",
 		"@snickbit/utilities": "^3.2.0",
@@ -41,7 +41,7 @@
 		"tsup": "6.2.1"
 	},
 	"peerDependencies": {
-		"@feathersjs/feathers": "5.0.0-pre.26"
+		"@feathersjs/feathers": "5.0.0-pre.28"
 	},
 	"engines": {
 		"node": ">= 12"
