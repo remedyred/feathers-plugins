@@ -24,7 +24,7 @@
 		"testEnvironment": "node"
 	},
 	"devDependencies": {
-		"@lerna-lite/cli": "1.9.1",
+		"@lerna-lite/cli": "1.10.0",
 		"@snickbit/readmes": "0.0.2",
 		"@types/jest": "27.5.2",
 		"@typescript-eslint/eslint-plugin": "5.32.0",
