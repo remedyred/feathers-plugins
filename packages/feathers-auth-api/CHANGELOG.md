@@ -1,3 +1,12 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.0.8](https://github.com/snickbit/feathers-plugins/compare/@snickbit/feathers-auth-api@1.0.6...@snickbit/feathers-auth-api@1.0.8) (2022-08-12)
+
+**Note:** Version bump only for package @snickbit/feathers-auth-api
+
 # @snickbit/feathers-auth-api Changelog
 
 ## 1.0.7
@@ -89,4 +98,3 @@
 
 - [d96b843](https://github.com/snickbit/feathers/commit/d96b843) **chore**:  update build config
 - [6c355f0](https://github.com/snickbit/feathers/commit/6c355f0) **chore**:  update build config
-

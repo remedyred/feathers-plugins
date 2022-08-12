@@ -1,3 +1,12 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.0.19](https://github.com/snickbit/feathers-plugins/compare/@snickbit/feathers-rest@1.0.18...@snickbit/feathers-rest@1.0.19) (2022-08-12)
+
+**Note:** Version bump only for package @snickbit/feathers-rest
+
 # @snickbit/feathers-rest Changelog
 
 ## 1.0.15
@@ -120,4 +129,3 @@
 ### Patch Changes
 
 - [bb54c99](https://github.com/snickbit/feathers/commit/bb54c99) **chore**:  update dependencies
-

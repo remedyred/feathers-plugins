@@ -1,3 +1,14 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.0.9](https://github.com/snickbit/feathers-plugins/compare/@snickbit/feathers-hooks@1.0.7...@snickbit/feathers-hooks@1.0.9) (2022-08-12)
+
+### Bug Fixes
+
+* switch to shared eslint config ([#14](https://github.com/snickbit/feathers-plugins/issues/14)) ([b6bc23d](https://github.com/snickbit/feathers-plugins/commit/b6bc23d3ec5ad4fbb6a398bb223470912b8db435))
+
 # @snickbit/feathers-hooks Changelog
 
 ## 1.0.8
@@ -105,4 +116,3 @@
 
 - [d96b843](https://github.com/snickbit/feathers/commit/d96b843) **chore**:  update build config
 - [6c355f0](https://github.com/snickbit/feathers/commit/6c355f0) **chore**:  update build config
-

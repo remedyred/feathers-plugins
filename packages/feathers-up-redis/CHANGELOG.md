@@ -1,3 +1,14 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [0.0.28](https://github.com/snickbit/feathers-plugins/compare/@snickbit/feathers-up-redis@0.0.27...@snickbit/feathers-up-redis@0.0.28) (2022-08-12)
+
+### Bug Fixes
+
+* switch to shared eslint config ([#14](https://github.com/snickbit/feathers-plugins/issues/14)) ([b6bc23d](https://github.com/snickbit/feathers-plugins/commit/b6bc23d3ec5ad4fbb6a398bb223470912b8db435))
+
 # @snickbit/feathers-up-redis Changelog
 
 ## 0.0.20
@@ -34,4 +45,3 @@
 - [6424d19](https://github.com/snickbit/feathers/commit/6424d19) **style**:  heavy code restyling
 - [fc26f3f](https://github.com/snickbit/feathers/commit/fc26f3f) **chore**:  bump dependencies
 - [899479b](https://github.com/snickbit/feathers/commit/899479b) **build**:  remove unused indexer script
-

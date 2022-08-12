@@ -1,3 +1,14 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.0.8](https://github.com/snickbit/feathers-plugins/compare/@snickbit/feathers-mongo@2.0.7...@snickbit/feathers-mongo@2.0.8) (2022-08-12)
+
+### Bug Fixes
+
+* switch to shared eslint config ([#14](https://github.com/snickbit/feathers-plugins/issues/14)) ([b6bc23d](https://github.com/snickbit/feathers-plugins/commit/b6bc23d3ec5ad4fbb6a398bb223470912b8db435))
+
 # @snickbit/feathers-mongo Changelog
 
 ## 2.0.5
@@ -152,4 +163,3 @@
 ### Patch Changes
 
 - [cf9301d](https://github.com/snickbit/feathers/commit/cf9301d) **chore**:  bump dependency
-
