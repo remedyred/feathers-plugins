@@ -89,7 +89,7 @@ export class QueueWatcher {
 			events = events.filter(event => event !== 'all')
 		}
 
-		for (let event of events as BullQueueEvent[]) {
+		for (const event of events as BullQueueEvent[]) {
 			this.listener.on(event, this.handleEvent.bind(this, event))
 		}
 

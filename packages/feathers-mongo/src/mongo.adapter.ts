@@ -442,7 +442,7 @@ export default class MongoAdapter<T = any,
 	async $aggregate(pipeline: any[], params: AggregateOptions = {}): Promise<any> {
 		await this.connected()
 		const cursor = await this.Model.aggregate(pipeline, params)
-		let records = []
+		const records = []
 		for await (const doc of cursor) {
 			if (this.asModel) {
 				records.push(new this.asModel(doc, {service: this}))
@@ -462,7 +462,7 @@ export default class MongoAdapter<T = any,
 		const parsed = this.parseParams(params)
 		let result
 		if (id === null || isObject(id)) {
-			let items = await this.$find((id || params) as P)
+			const items = await this.$find((id || params) as P)
 			if (Array.isArray(items)) {
 				result = items.shift()
 			} else if (isObject(items) && Array.isArray(items?.data)) {
@@ -544,7 +544,7 @@ export default class MongoAdapter<T = any,
 		}
 
 		let model
-		for (let [i, arg] of args.entries()) {
+		for (const [i, arg] of args.entries()) {
 			if (objectHasMethod(arg, 'toJSON') && !(arg instanceof ObjectId)) {
 				model = arg
 				args[i] = arg.toJSON()

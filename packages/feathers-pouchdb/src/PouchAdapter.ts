@@ -219,7 +219,7 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 		const {filters, query, paginate} = filterParams(params)
 		this.out.debug('$find', {filters, query, paginate})
 
-		let options: PouchDB.Find.FindRequest<any> = {selector: query}
+		const options: PouchDB.Find.FindRequest<any> = {selector: query}
 
 		if (paginate) {
 			options.limit = filters?.$limit || paginate.default

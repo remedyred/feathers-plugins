@@ -181,7 +181,7 @@ export class QueueAdapter extends AdapterBase {
 	}
 
 	prepParams(data: Partial<BullJob> | TaskRequest | TaskRequestModel, context, id?) {
-		let payload: Partial<TaskPayload> = {}
+		const payload: Partial<TaskPayload> = {}
 		let options = {}
 
 		let request: TaskRequest
@@ -199,7 +199,7 @@ export class QueueAdapter extends AdapterBase {
 		payload.data = request.data || {}
 
 		if (!id) {
-			let job_name = request?.job || request?.name || payload.data?.name
+			const job_name = request?.job || request?.name || payload.data?.name
 			if (!job_name) {
 				throw new Unprocessable('Missing required job name', request)
 			}

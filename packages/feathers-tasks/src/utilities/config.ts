@@ -117,7 +117,7 @@ export interface Application extends FeathersApplication {
 	out: Out
 }
 
-export let state: TasksState = {
+export const state: TasksState = {
 	app: null,
 	tasks: null,
 	service: null,

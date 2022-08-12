@@ -65,8 +65,8 @@ export class ProxyLogger {
 			throw new Error('No loggers found')
 		}
 
-		for (let logger of this.loggers) {
-			let method = level in logger ? level : 'log'
+		for (const logger of this.loggers) {
+			const method = level in logger ? level : 'log'
 			if (method in logger) {
 				logger[method](...args)
 			}

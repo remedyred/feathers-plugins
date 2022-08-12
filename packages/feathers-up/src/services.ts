@@ -7,7 +7,7 @@ export default function(app: Application) {
 	if (services) {
 		app.out.verbose('Set up services')
 		if (Array.isArray(services)) {
-			for (let service of services) {
+			for (const service of services) {
 				try {
 					app.configure(service)
 				} catch (e) {
@@ -15,7 +15,7 @@ export default function(app: Application) {
 				}
 			}
 		} else if (isObject(services)) {
-			for (let service in services) {
+			for (const service in services) {
 				try {
 					app.configure(services[service])
 				} catch (e) {

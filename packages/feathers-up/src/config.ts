@@ -48,7 +48,7 @@ function initDatabases() {
 	const databaseOptions = ['mysql', 'redis', 'mongodb']
 
 	const databases: DatabaseDefinitions = {}
-	for (let database of databaseOptions) {
+	for (const database of databaseOptions) {
 		const config = $app.get(database)
 		const loader = $setup.get(database)
 

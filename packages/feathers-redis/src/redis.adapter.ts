@@ -72,12 +72,12 @@ export default class RedisAdapter<T = any, D = Partial<T>, O extends RedisServic
 		return new Promise(resolve => {
 			const stream = this.client.scanStream()
 			const results = []
-			let get_promises = []
+			const get_promises = []
 			stream.on('data', resultKeys => {
 				if (this.keyPrefix) {
 					resultKeys = resultKeys.filter(key => key.startsWith(this.keyPrefix))
 				}
-				for (let key of resultKeys) {
+				for (const key of resultKeys) {
 					if (!results.includes(key)) {
 						get_promises.push(this.$get(key))
 						results.push(key)

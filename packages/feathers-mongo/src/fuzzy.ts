@@ -37,7 +37,7 @@ export function transformSearchFieldsInQuery(query: any, options: SearchOptions,
 		}
 		const $regex = makeRegex(query.$search)
 		const $searchQueries = []
-		for (let field of options.fields) {
+		for (const field of options.fields) {
 			$searchQueries.push({[field]: {$regex}})
 		}
 
@@ -47,7 +47,7 @@ export function transformSearchFieldsInQuery(query: any, options: SearchOptions,
 			newQuery = {...newQuery, ...$searchQueries.pop()}
 		}
 	} else {
-		for (let [key, value] of Object.entries(query)) {
+		for (const [key, value] of Object.entries(query)) {
 			// Process current attribute or recurse
 			if (key === '$search') {
 				if (isString(value) && String(value).trim().length) {
@@ -72,7 +72,7 @@ export function fullTextSearch(query: any, options: any) {
 		return query
 	}
 
-	let $search = objectPull(query, '$search')
+	const $search = objectPull(query, '$search')
 
 	let $language = objectPull(query, '$language')
 	if ($language === undefined) {
@@ -89,7 +89,7 @@ export function fullTextSearch(query: any, options: any) {
 		$diacriticSensitive = options.diacriticSensitive
 	}
 
-	let $text: any = {}
+	const $text: any = {}
 
 	if ($search) {
 		$text.$search = options.escape ? escape($search) : $search
