@@ -23,20 +23,13 @@
 		"prod": "pnpm run build --minify",
 		"watch": "pnpm run dev --watch"
 	},
-	"jest": {
-		"preset": "ts-jest",
-		"testEnvironment": "node"
-	},
 	"dependencies": {
 		"@feathersjs/authentication": "5.0.0-pre.26",
 		"@feathersjs/errors": "5.0.0-pre.26"
 	},
 	"devDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.26",
-		"@types/jest": "28.1.6",
-		"jest": "28.1.3",
 		"shx": "0.3.4",
-		"ts-jest": "28.0.7",
 		"tsup": "6.2.1",
 		"typescript": "4.7.4"
 	},
