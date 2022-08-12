@@ -7,7 +7,7 @@ export class TaskItem extends Model {
 	parent: Task
 
 	constructor(data: any, parent: Task, options: any = {}) {
-		let is_new = !(data instanceof TaskItem)
+		const is_new = !(data instanceof TaskItem)
 
 		if (is_new) {
 			data = {

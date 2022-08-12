@@ -6,7 +6,7 @@ export default async function(app: Application, config: RedisOptions | RedisOpti
 	if (!app.get('redisClient')) {
 		app.out.verbose('Connect to redis databases...')
 		if (Array.isArray(config)) {
-			for (let redisDb of config) {
+			for (const redisDb of config) {
 				app.set(`redisClient.${redisDb.keyPrefix}`, new Redis(redisDb))
 			}
 		} else {

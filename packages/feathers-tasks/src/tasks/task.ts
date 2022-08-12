@@ -110,7 +110,7 @@ export class Task extends Model {
 	}
 
 	private getProgress(): TaskProgress {
-		let progress = this.get('.progress')
+		const progress = this.get('.progress')
 		if (progress) {
 			return progress
 		}
@@ -188,9 +188,9 @@ export class Task extends Model {
 	}
 
 	async tick(amount = 1) {
-		let progress = this.getProgress()
-		let current = (progress.current || 0) + amount
-		let timestamp = Date.now()
+		const progress = this.getProgress()
+		const current = (progress.current || 0) + amount
+		const timestamp = Date.now()
 
 		if (progress.lastTick && progress.current) {
 			const deltaProgress = current - progress.current

@@ -16,7 +16,7 @@ export default async function(app: Application, config: MongoClientOptions | Mon
 		app.out.verbose('Connect to MongoDB database...')
 		if (Array.isArray(config)) {
 			const promises = []
-			for (let mongodb of config) {
+			for (const mongodb of config) {
 				const mongoClientPromise = connectToMongoDB(app, mongodb)
 				app.set(`mongoClientPromise.${mongodb.database}`, mongoClientPromise)
 				app.set(`mongoClient.${mongodb.database}`, mongoClientPromise.then(client => client.db(mongodb.database)))

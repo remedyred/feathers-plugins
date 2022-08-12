@@ -171,7 +171,7 @@ export class Logger {
 
 	addLogs(messages, level?) {
 		level = level || this.options.defaultLevel || 'log'
-		for (let message of messages) {
+		for (const message of messages) {
 			this.addLog(message, level, false)
 		}
 
@@ -237,7 +237,7 @@ export class Logger {
 			this.payload.messages = []
 		}
 
-		let sending_messages = this.payload.messages.length
+		const sending_messages = this.payload.messages.length
 
 		if (this.options.endpoint) {
 			const config = {

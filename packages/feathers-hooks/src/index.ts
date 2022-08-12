@@ -23,10 +23,10 @@ export default function setHooks(app: Application, hooks: Hooks = {}) {
 
 	hooks = hooks || {}
 
-	for (let hook_type of hook_types) {
+	for (const hook_type of hook_types) {
 		app_hooks[hook_type] = {}
 		const hook_type_hooks = hooks[hook_type]
-		for (let hook_name of hook_names) {
+		for (const hook_name of hook_names) {
 			if (hook_type_hooks && hook_type_hooks[hook_name]) {
 				app_hooks[hook_type][hook_name] = Object.values(hook_type_hooks[hook_name]).filter(Boolean)
 			} else {

@@ -15,6 +15,9 @@ dist/
 
 # Keep
 !.git*
-!.eslintignore
-!.eslintrc.json
-!.depcheckrc
+!.*ignore
+!.*rc*
+!.husky/
+
+# Force
+.npmrc
