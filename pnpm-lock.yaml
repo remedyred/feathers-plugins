@@ -9,6 +9,7 @@ importers:
       '@snickbit/readmes': 0.0.2
       '@types/jest': 27.5.2
       depcheck: 1.4.3
+      husky: ^8.0.0
       jest: 27.5.1
       shx: 0.3.4
       ts-jest: 27.1.5
@@ -20,6 +21,7 @@ importers:
       '@snickbit/readmes': 0.0.2
       '@types/jest': 27.5.2
       depcheck: 1.4.3
+      husky: 8.0.1
       jest: 27.5.1
       shx: 0.3.4
       ts-jest: 27.1.5_5ad62742t534jpseix4ezmbr64
@@ -6359,6 +6361,12 @@ packages:
     resolution: {integrity: sha512-Fl70vYtsAFb/C06PTS9dZBo7ihau+Tu/DNCk/OyHhea07S+aeMWpFFkUaXRa8fI+ScZbEI8dfSxwY7gxZ9SAVQ==}
     dependencies:
       ms: 2.1.3
+    dev: true
+
+  /husky/8.0.1:
+    resolution: {integrity: sha512-xs7/chUH/CKdOCs7Zy0Aev9e/dKOMZf3K1Az1nar3tzlv0jfqnYtu235bstsWTmXOR0EfINrPa97yy4Lz6RiKw==}
+    engines: {node: '>=14'}
+    hasBin: true
     dev: true
 
   /iconv-lite/0.4.24:
