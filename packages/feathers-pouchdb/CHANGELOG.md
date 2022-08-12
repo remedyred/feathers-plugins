@@ -1,3 +1,14 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [0.0.14](https://github.com/snickbit/feathers-plugins/compare/@snickbit/feathers-pouchdb@0.0.13...@snickbit/feathers-pouchdb@0.0.14) (2022-08-12)
+
+### Bug Fixes
+
+* switch to shared eslint config ([#14](https://github.com/snickbit/feathers-plugins/issues/14)) ([b6bc23d](https://github.com/snickbit/feathers-plugins/commit/b6bc23d3ec5ad4fbb6a398bb223470912b8db435))
+
 # @snickbit/feathers-pouchdb Changelog
 
 ## 0.0.10
@@ -61,4 +72,3 @@
 - [8447ef1](https://github.com/snickbit/feathers/commit/8447ef1) **fix**:  set id to _id
 - [9418e23](https://github.com/snickbit/feathers/commit/9418e23) **fix**:  rollback tsup to maintain dynamic import support
 - [7b8b88c](https://github.com/snickbit/feathers/commit/7b8b88c) **fix**:  type definition
-

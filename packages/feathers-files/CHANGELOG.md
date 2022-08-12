@@ -1,3 +1,12 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.0.25](https://github.com/snickbit/feathers-plugins/compare/@snickbit/feathers-files@2.0.24...@snickbit/feathers-files@2.0.25) (2022-08-12)
+
+**Note:** Version bump only for package @snickbit/feathers-files
+
 # @snickbit/feathers-files Changelog
 
 ## 2.0.19
@@ -623,4 +632,3 @@
 ### Patch Changes
 
 - [bb54c99](https://github.com/snickbit/feathers/commit/bb54c99) **chore**:  update dependencies
-

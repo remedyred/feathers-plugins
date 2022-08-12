@@ -1,3 +1,14 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.0.34](https://github.com/snickbit/feathers-plugins/compare/@snickbit/feathers-tasks@2.0.33...@snickbit/feathers-tasks@2.0.34) (2022-08-12)
+
+### Bug Fixes
+
+* switch to shared eslint config ([#14](https://github.com/snickbit/feathers-plugins/issues/14)) ([b6bc23d](https://github.com/snickbit/feathers-plugins/commit/b6bc23d3ec5ad4fbb6a398bb223470912b8db435))
+
 # @snickbit/feathers-tasks Changelog
 
 ## 2.0.23
@@ -151,4 +162,3 @@
 
 - [bb54c99](https://github.com/snickbit/feathers/commit/bb54c99) **chore**:  update dependencies
 - [cf9301d](https://github.com/snickbit/feathers/commit/cf9301d) **chore**:  bump dependency
-
