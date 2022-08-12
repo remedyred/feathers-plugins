@@ -11,11 +11,14 @@
 		"fix": "eslint **/*.{ts,json} --cache --color --fix",
 		"index": "turbo run index",
 		"lint": "eslint **/*.{ts,json} --cache --color",
+		"prepare": "husky install",
 		"readmes": "readmes",
 		"prerelease": "turbo run prod test fix depcheck readmes",
 		"release": "pnpm run prerelease && lerna publish",
-		"test": "pnpm jest",
-		"prepare": "husky install"
+		"test": "pnpm jest"
+	},
+	"lint-staged": {
+		"*.{ts,json}": "pnpm run fix"
 	},
 	"jest": {
 		"noStackTrace": true,
@@ -43,8 +46,5 @@
 	},
 	"readmes": {
 		"repo": "snickbit/feathers-plugins"
-	},
-	"lint-staged": {
-		"*.{ts,json}": "pnpm run fix"
 	}
 }

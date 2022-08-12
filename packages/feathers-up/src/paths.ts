@@ -5,7 +5,7 @@ import path from 'path'
 
 export default function(app: Application) {
 	// Check path configuration
-	let paths = useConfig('paths', {})
+	const paths = useConfig('paths', {})
 	if (!paths.root) {
 		paths.root = path.dirname(findUp('package.json', {cwd: process.cwd()}) || '.')
 	}

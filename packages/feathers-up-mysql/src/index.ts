@@ -6,7 +6,7 @@ export default async function(app: Application, config: Knex.ConnectionConfig | 
 	if (!app.get('mysqlClient')) {
 		app.out.verbose('Connect to mysql databases...')
 		if (Array.isArray(config)) {
-			for (let mysqlDb of config) {
+			for (const mysqlDb of config) {
 				app.set(`mysqlClient.${mysqlDb.database}`, knex({
 					client: KnexMysql,
 					connection: mysqlDb
