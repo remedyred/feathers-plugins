@@ -43,7 +43,6 @@
 	},
 	"devDependencies": {
 		"@snickbit/indexer": "2.5.7",
-		"esbuild": "0.15.1",
 		"jest": "28.1.3",
 		"tsup": "5.12.9"
 	},
