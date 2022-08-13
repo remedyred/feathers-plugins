@@ -8,9 +8,9 @@
 		"clean:builds": "turbo run clean",
 		"clean:modules": "shx rm -rf **/node_modules",
 		"dev": "turbo run dev",
-		"fix": "eslint **/*.{ts,json} --cache --color --fix",
+		"fix": "eslint \"**/*.{ts,json}\" --cache --color --fix",
 		"index": "turbo run index",
-		"lint": "eslint **/*.{ts,json} --cache --color",
+		"lint": "eslint \"**/*.{ts,json}\" --cache --color",
 		"prepare": "husky install",
 		"readmes": "readmes",
 		"prerelease": "turbo run prod test fix depcheck readmes",
@@ -18,7 +18,7 @@
 		"test": "pnpm jest"
 	},
 	"lint-staged": {
-		"*.{ts,json}": "pnpm run fix"
+		"*.{ts,json}": "eslint --fix --cache"
 	},
 	"jest": {
 		"noStackTrace": true,
