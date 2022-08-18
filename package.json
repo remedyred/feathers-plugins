@@ -29,7 +29,7 @@
 	},
 	"devDependencies": {
 		"@lerna-lite/cli": "1.10.0",
-		"@snickbit/eslint-config": "0.0.7",
+		"@snickbit/eslint-config": "0.0.10",
 		"@snickbit/readmes": "0.0.2",
 		"@types/jest": "28.1.6",
 		"depcheck": "1.4.3",
