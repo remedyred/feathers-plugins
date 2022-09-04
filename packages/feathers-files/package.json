@@ -24,6 +24,12 @@
 		"test": "jest",
 		"watch": "pnpm run dev --watch"
 	},
+	"release": {
+		"extends": [
+			"semantic-release-monorepo",
+			"@snickbit/semantic-release"
+		]
+	},
 	"dependencies": {
 		"@aws-sdk/client-s3": "^3.113.0",
 		"@feathersjs/adapter-commons": "5.0.0-pre.26",

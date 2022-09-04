@@ -23,6 +23,12 @@
 		"test": "jest",
 		"watch": "pnpm run dev --watch"
 	},
+	"release": {
+		"extends": [
+			"semantic-release-monorepo",
+			"@snickbit/semantic-release"
+		]
+	},
 	"dependencies": {
 		"@snickbit/out": "^2.0.37",
 		"@snickbit/utilities": "^3.2.0",
