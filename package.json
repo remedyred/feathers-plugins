@@ -3,7 +3,7 @@
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
-		"build": "turbo run build",
+		"check": "turbo run build //#lint //#test",
 		"clean": "pnpm run clean:builds && pnpm run clean:modules",
 		"clean:builds": "turbo run clean",
 		"clean:modules": "shx rm -rf **/node_modules",
@@ -20,13 +20,6 @@
 	"lint-staged": {
 		"*.{ts,json}": "eslint --fix --cache"
 	},
-	"jest": {
-		"noStackTrace": true,
-		"passWithNoTests": true,
-		"preset": "ts-jest",
-		"silent": true,
-		"testEnvironment": "node"
-	},
 	"devDependencies": {
 		"@lerna-lite/cli": "1.10.0",
 		"@snickbit/eslint-config": "0.0.10",
@@ -34,10 +27,8 @@
 		"@types/jest": "28.1.6",
 		"depcheck": "1.4.3",
 		"husky": "^8.0.0",
-		"jest": "28.1.3",
 		"lint-staged": "^13.0.3",
 		"shx": "0.3.4",
-		"ts-jest": "28.0.7",
 		"turbo": "1.4.3",
 		"typescript": "4.7.4"
 	},

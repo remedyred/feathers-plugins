@@ -14,16 +14,14 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "tsup",
-		"clean": "shx rm -rf ./dist",
+		"build": "tsup --minify --dts",
+		"clean": "shx rm -rf ./dist ./.types",
 		"depcheck": "depcheck",
-		"dev": "pnpm run build --sourcemap",
-		"meta": "pnpm run prod --metafile",
-		"prod": "pnpm run build --minify",
+		"dev": "tsup",
+		"docs": "typedoc src/index.ts --tsconfig ./tsconfig.typedoc.json",
+		"release": "semantic-release",
+		"test": "jest",
 		"watch": "pnpm run dev --watch"
-	},
-	"jest": {
-		"testEnvironment": "node"
 	},
 	"dependencies": {
 		"@snickbit/out": "^2.0.37",
@@ -34,7 +32,6 @@
 	"devDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.26",
 		"@types/node": "18.6.4",
-		"jest": "28.1.3",
 		"tsup": "6.2.2",
 		"typescript": "4.7.4"
 	},
@@ -44,16 +41,5 @@
 	"engines": {
 		"node": ">= 12"
 	},
-	"desciption": "Client for @snickbit/feathers-logs",
-	"tsup": {
-		"entry": [
-			"src/index.ts"
-		],
-		"clean": true,
-		"dts": true,
-		"format": [
-			"esm",
-			"cjs"
-		]
-	}
+	"desciption": "Client for @snickbit/feathers-logs"
 }
