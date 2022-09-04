@@ -31,8 +31,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build, test, and lint
-        run: pnpm turbo run build docs //#fix //#test
+      - name: Build and lint
+        run: pnpm turbo run build docs //#fix
 
       - name: Release
         env:

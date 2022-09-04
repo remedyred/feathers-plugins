@@ -40,7 +40,6 @@
 	"devDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.26",
 		"@snickbit/indexer": "2.5.7",
-		"@types/jest": "28.1.6",
 		"shx": "0.3.4",
 		"tsup": "6.2.2",
 		"typescript": "4.7.4"

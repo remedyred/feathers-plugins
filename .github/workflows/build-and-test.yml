@@ -28,8 +28,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build, test, and lint
-        run: pnpm turbo run build //#lint //#test
+      - name: Build and lint
+        run: pnpm turbo run build //#lint
 
       - name: Reset git state
         run: git reset --hard
