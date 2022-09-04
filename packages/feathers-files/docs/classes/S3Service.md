@@ -19,11 +19,11 @@
 
 ### Accessors
 
+- [bucket](S3Service.md#bucket)
 - [events](S3Service.md#events)
 
 ### Methods
 
-- [\_bucket](S3Service.md#_bucket)
 - [\_create](S3Service.md#_create)
 - [\_cwd](S3Service.md#_cwd)
 - [\_download](S3Service.md#_download)
@@ -38,7 +38,6 @@
 - [\_update](S3Service.md#_update)
 - [\_uploadContent](S3Service.md#_uploadcontent)
 - [\_uploadFile](S3Service.md#_uploadfile)
-- [bucket](S3Service.md#bucket)
 - [bucketParams](S3Service.md#bucketparams)
 - [create](S3Service.md#create)
 - [cwd](S3Service.md#cwd)
@@ -76,13 +75,23 @@ ___
 
 ### options
 
-• **options**: [`S3ServiceOptions`](../interfaces/S3ServiceOptions.md) = `{}`
+• **options**: [`S3ServiceOptions`](../interfaces/S3ServiceOptions.md)
 
 #### Overrides
 
 FileService.options
 
 ## Accessors
+
+### bucket
+
+• `get` **bucket**(): `string`
+
+#### Returns
+
+`string`
+
+___
 
 ### events
 
@@ -98,36 +107,16 @@ FileService.events
 
 ## Methods
 
-### \_bucket
-
-▸ **_bucket**(`params`): `string`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `params` | `any` |
-
-#### Returns
-
-`string`
-
-#### Inherited from
-
-[FileService](FileService.md).[_bucket](FileService.md#_bucket)
-
-___
-
 ### \_create
 
-▸ **_create**(`data`, `params`): `Promise`<`string`\>
+▸ **_create**(`data`, `params?`): `Promise`<`string`\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `data` | `any` |
-| `params` | `any` |
+| `data` | [`FileData`](../README.md#filedata) |
+| `params?` | `AdapterParams`<`AdapterQuery`, `Partial`<`AdapterServiceOptions`\>\> |
 
 #### Returns
 
@@ -161,7 +150,7 @@ ___
 | :------ | :------ |
 | `key?` | `string` |
 | `file_path?` | `string` |
-| `params?` | [`FileParams`](../README.md#fileparams) |
+| `params?` | `AdapterParams`<`AdapterQuery`, `Partial`<`AdapterServiceOptions`\>\> |
 
 #### Returns
 
@@ -178,7 +167,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `id` | `string` |
-| `params?` | [`FileParams`](../README.md#fileparams) |
+| `params?` | `AdapterParams`<`AdapterQuery`, `Partial`<`AdapterServiceOptions`\>\> |
 
 #### Returns
 
@@ -194,7 +183,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `params` | `any` |
+| `params` | `AdapterParams`<`AdapterQuery`, `Partial`<`AdapterServiceOptions`\>\> |
 | `options` | `Object` |
 
 #### Returns
@@ -212,7 +201,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `id` | `string` |
-| `params?` | [`FileParams`](../README.md#fileparams) |
+| `params?` | `AdapterParams`<`AdapterQuery`, `Partial`<`AdapterServiceOptions`\>\> |
 
 #### Returns
 
@@ -248,7 +237,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `params` | `any` |
+| `params` | `AdapterParams`<`AdapterQuery`, `Partial`<`AdapterServiceOptions`\>\> |
 | `options` | `Object` |
 
 #### Returns
@@ -259,15 +248,15 @@ ___
 
 ### \_patch
 
-▸ **_patch**(`id`, `data`, `params`): `Promise`<`string`\>
+▸ **_patch**(`id`, `data`, `params?`): `Promise`<`string`\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `id` | `any` |
-| `data` | `any` |
-| `params` | `any` |
+| `id` | `string` |
+| `data` | [`FileData`](../README.md#filedata) |
+| `params?` | `AdapterParams`<`AdapterQuery`, `Partial`<`AdapterServiceOptions`\>\> |
 
 #### Returns
 
@@ -277,14 +266,14 @@ ___
 
 ### \_readContent
 
-▸ **_readContent**(`key?`, `params?`): `Promise`<`string` \| `Buffer`\>
+▸ **_readContent**(`Key?`, `params?`): `Promise`<`string` \| `Buffer`\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `key?` | `string` |
-| `params?` | [`FileParams`](../README.md#fileparams) |
+| `Key?` | `string` |
+| `params?` | `AdapterParams`<`AdapterQuery`, `Partial`<`AdapterServiceOptions`\>\> |
 
 #### Returns
 
@@ -294,14 +283,14 @@ ___
 
 ### \_remove
 
-▸ **_remove**(`id`, `params`): `Promise`<`DeleteObjectCommandOutput`\>
+▸ **_remove**(`id`, `params?`): `Promise`<`DeleteObjectCommandOutput`\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `id` | `any` |
-| `params` | `any` |
+| `id` | `string` |
+| `params?` | `AdapterParams`<`AdapterQuery`, `Partial`<`AdapterServiceOptions`\>\> |
 
 #### Returns
 
@@ -311,15 +300,15 @@ ___
 
 ### \_update
 
-▸ **_update**(`id`, `data`, `params`): `Promise`<`string`\>
+▸ **_update**(`id`, `data`, `params?`): `Promise`<`string`\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `id` | `any` |
-| `data` | `any` |
-| `params` | `any` |
+| `id` | `string` |
+| `data` | [`FileData`](../README.md#filedata) |
+| `params?` | `AdapterParams`<`AdapterQuery`, `Partial`<`AdapterServiceOptions`\>\> |
 
 #### Returns
 
@@ -329,14 +318,14 @@ ___
 
 ### \_uploadContent
 
-▸ **_uploadContent**(`key`, `content`, `params`): `Promise`<`string`\>
+▸ **_uploadContent**(`Key`, `Body`, `params`): `Promise`<`string`\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `key` | `any` |
-| `content` | `any` |
+| `Key` | `string` |
+| `Body` | `string` \| `Buffer` \| `Readable` |
 | `params` | `any` |
 
 #### Returns
@@ -360,26 +349,6 @@ ___
 #### Returns
 
 `Promise`<`string`\>
-
-___
-
-### bucket
-
-▸ **bucket**(`params`): `any`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `params` | `any` |
-
-#### Returns
-
-`any`
-
-#### Inherited from
-
-[FileService](FileService.md).[bucket](FileService.md#bucket)
 
 ___
 
@@ -409,7 +378,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `data` | [`FileData`](../README.md#filedata) \| [`FileData`](../README.md#filedata)[] |
-| `params?` | `Params` |
+| `params?` | `Params`<`Query`\> |
 
 #### Returns
 
@@ -429,7 +398,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `params?` | `Params` |
+| `params?` | `Params`<`Query`\> |
 
 #### Returns
 
@@ -450,7 +419,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `id` | `string` |
-| `params?` | `Params` |
+| `params?` | `Params`<`Query`\> |
 
 #### Returns
 
@@ -470,7 +439,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `params` | [`FileParams`](../README.md#fileparams) |
+| `params` | `AdapterParams`<`AdapterQuery`, `Partial`<`AdapterServiceOptions`\>\> |
 
 #### Returns
 
@@ -491,7 +460,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `id` | `string` \| `string`[] |
-| `params?` | `Params` |
+| `params?` | `Params`<`Query`\> |
 
 #### Returns
 
@@ -533,7 +502,7 @@ ___
 | :------ | :------ |
 | `id?` | `string` |
 | `data?` | [`FileData`](../README.md#filedata) \| [`FileData`](../README.md#filedata)[] |
-| `params?` | `Params` |
+| `params?` | `Params`<`Query`\> |
 
 #### Returns
 
@@ -554,7 +523,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `id` | `string` \| `string`[] |
-| `params?` | `Params` |
+| `params?` | `Params`<`Query`\> |
 
 #### Returns
 
@@ -576,7 +545,7 @@ ___
 | :------ | :------ |
 | `id` | `string` \| `string`[] |
 | `data?` | [`FileData`](../README.md#filedata) |
-| `params?` | `Params` |
+| `params?` | `Params`<`Query`\> |
 
 #### Returns
 

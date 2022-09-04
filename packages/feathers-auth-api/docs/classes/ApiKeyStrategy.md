@@ -88,11 +88,11 @@ ___
 
 ### entityService
 
-• `get` **entityService**(): `Service`<`any`, `Partial`<`any`\>\>
+• `get` **entityService**(): `Service`<`any`, `Partial`<`any`\>, `Params`<`Query`\>\>
 
 #### Returns
 
-`Service`<`any`, `Partial`<`any`\>\>
+`Service`<`any`, `Partial`<`any`\>, `Params`<`Query`\>\>
 
 #### Inherited from
 

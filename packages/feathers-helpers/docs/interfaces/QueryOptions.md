@@ -1,32 +1,27 @@
-# Interface: FileServiceOptions
+# Interface: QueryOptions
 
 ## Hierarchy
 
 - `Partial`<`AdapterServiceOptions`\>
 
-  ↳ **`FileServiceOptions`**
-
-  ↳↳ [`LocalFileServiceOptions`](LocalFileServiceOptions.md)
-
-  ↳↳ [`S3ServiceOptions`](S3ServiceOptions.md)
+  ↳ **`QueryOptions`**
 
 ## Table of contents
 
 ### Properties
 
-- [events](FileServiceOptions.md#events)
-- [filters](FileServiceOptions.md#filters)
-- [id](FileServiceOptions.md#id)
-- [multi](FileServiceOptions.md#multi)
-- [operators](FileServiceOptions.md#operators)
-- [paginate](FileServiceOptions.md#paginate)
-- [root](FileServiceOptions.md#root)
-- [url](FileServiceOptions.md#url)
-- [whitelist](FileServiceOptions.md#whitelist)
+- [events](QueryOptions.md#events)
+- [filters](QueryOptions.md#filters)
+- [id](QueryOptions.md#id)
+- [multi](QueryOptions.md#multi)
+- [operators](QueryOptions.md#operators)
+- [paginate](QueryOptions.md#paginate)
+- [sorter](QueryOptions.md#sorter)
+- [whitelist](QueryOptions.md#whitelist)
 
 ### Methods
 
-- [matcher](FileServiceOptions.md#matcher)
+- [matcher](QueryOptions.md#matcher)
 
 ## Properties
 
@@ -85,9 +80,7 @@ ___
 
 • `Optional` **operators**: `string`[]
 
-A list of additional property query operators to allow in a query
-
-#### Inherited from
+#### Overrides
 
 Partial.operators
 
@@ -105,15 +98,9 @@ Partial.paginate
 
 ___
 
-### root
+### sorter
 
-• `Optional` **root**: `string`
-
-___
-
-### url
-
-• `Optional` **url**: `string`
+• `Optional` **sorter**: [`Sorter`](Sorter.md)
 
 ___
 

@@ -10,12 +10,12 @@
 
 ### Properties
 
-- [allow](LocalFileServiceOptions.md#allow)
 - [cwd](LocalFileServiceOptions.md#cwd)
 - [events](LocalFileServiceOptions.md#events)
 - [filters](LocalFileServiceOptions.md#filters)
 - [id](LocalFileServiceOptions.md#id)
 - [multi](LocalFileServiceOptions.md#multi)
+- [operators](LocalFileServiceOptions.md#operators)
 - [paginate](LocalFileServiceOptions.md#paginate)
 - [root](LocalFileServiceOptions.md#root)
 - [url](LocalFileServiceOptions.md#url)
@@ -27,16 +27,6 @@
 
 ## Properties
 
-### allow
-
-• `Optional` **allow**: `string`[]
-
-#### Inherited from
-
-[FileServiceOptions](FileServiceOptions.md).[allow](FileServiceOptions.md#allow)
-
-___
-
 ### cwd
 
 • `Optional` **cwd**: `string`
@@ -47,6 +37,10 @@ ___
 
 • `Optional` **events**: `string`[]
 
+**`Deprecated`**
+
+Use service `events` option when registering the service with `app.use`.
+
 #### Inherited from
 
 [FileServiceOptions](FileServiceOptions.md).[events](FileServiceOptions.md#events)
@@ -55,7 +49,10 @@ ___
 
 ### filters
 
-• `Optional` **filters**: `string`[]
+• `Optional` **filters**: `FilterSettings`
+
+An object of additional top level query filters, e.g. `{ $populate: true }`
+Can also be a converter function like `{ $ignoreCase: (value) => value === 'true' ? true : false }`
 
 #### Inherited from
 
@@ -67,6 +64,8 @@ ___
 
 • `Optional` **id**: `string`
 
+The name of the id property
+
 #### Inherited from
 
 [FileServiceOptions](FileServiceOptions.md).[id](FileServiceOptions.md#id)
@@ -77,22 +76,31 @@ ___
 
 • `Optional` **multi**: `boolean` \| `string`[]
 
+Whether to allow multiple updates for everything (`true`) or specific methods (e.g. `['create', 'remove']`)
+
 #### Inherited from
 
 [FileServiceOptions](FileServiceOptions.md).[multi](FileServiceOptions.md#multi)
 
 ___
 
+### operators
+
+• `Optional` **operators**: `string`[]
+
+A list of additional property query operators to allow in a query
+
+#### Inherited from
+
+[FileServiceOptions](FileServiceOptions.md).[operators](FileServiceOptions.md#operators)
+
+___
+
 ### paginate
 
-• `Optional` **paginate**: `Object`
+• `Optional` **paginate**: `PaginationParams`
 
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `default?` | `number` |
-| `max?` | `number` |
+Pagination settings for this service
 
 #### Inherited from
 
@@ -124,7 +132,9 @@ ___
 
 • `Optional` **whitelist**: `string`[]
 
-**`deprecated`** renamed to `allow`.
+**`Deprecated`**
+
+renamed to `operators`.
 
 #### Inherited from
 
@@ -134,7 +144,7 @@ ___
 
 ### matcher
 
-▸ `Optional` **matcher**(`value`): `boolean`
+▸ `Optional` **matcher**(`value`): `any`
 
 #### Parameters
 
@@ -144,7 +154,7 @@ ___
 
 #### Returns
 
-`boolean`
+`any`
 
 #### Inherited from
 

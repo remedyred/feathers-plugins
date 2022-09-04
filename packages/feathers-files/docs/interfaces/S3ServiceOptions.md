@@ -11,13 +11,13 @@
 ### Properties
 
 - [ACL](S3ServiceOptions.md#acl)
-- [allow](S3ServiceOptions.md#allow)
-- [bucket](S3ServiceOptions.md#bucket)
+- [Bucket](S3ServiceOptions.md#bucket)
 - [endpoint](S3ServiceOptions.md#endpoint)
 - [events](S3ServiceOptions.md#events)
 - [filters](S3ServiceOptions.md#filters)
 - [id](S3ServiceOptions.md#id)
 - [multi](S3ServiceOptions.md#multi)
+- [operators](S3ServiceOptions.md#operators)
 - [paginate](S3ServiceOptions.md#paginate)
 - [root](S3ServiceOptions.md#root)
 - [url](S3ServiceOptions.md#url)
@@ -35,19 +35,9 @@
 
 ___
 
-### allow
+### Bucket
 
-• `Optional` **allow**: `string`[]
-
-#### Inherited from
-
-[FileServiceOptions](FileServiceOptions.md).[allow](FileServiceOptions.md#allow)
-
-___
-
-### bucket
-
-• `Optional` **bucket**: `string`
+• `Optional` **Bucket**: `string`
 
 ___
 
@@ -61,6 +51,10 @@ ___
 
 • `Optional` **events**: `string`[]
 
+**`Deprecated`**
+
+Use service `events` option when registering the service with `app.use`.
+
 #### Inherited from
 
 [FileServiceOptions](FileServiceOptions.md).[events](FileServiceOptions.md#events)
@@ -69,7 +63,10 @@ ___
 
 ### filters
 
-• `Optional` **filters**: `string`[]
+• `Optional` **filters**: `FilterSettings`
+
+An object of additional top level query filters, e.g. `{ $populate: true }`
+Can also be a converter function like `{ $ignoreCase: (value) => value === 'true' ? true : false }`
 
 #### Inherited from
 
@@ -81,6 +78,8 @@ ___
 
 • `Optional` **id**: `string`
 
+The name of the id property
+
 #### Inherited from
 
 [FileServiceOptions](FileServiceOptions.md).[id](FileServiceOptions.md#id)
@@ -91,22 +90,31 @@ ___
 
 • `Optional` **multi**: `boolean` \| `string`[]
 
+Whether to allow multiple updates for everything (`true`) or specific methods (e.g. `['create', 'remove']`)
+
 #### Inherited from
 
 [FileServiceOptions](FileServiceOptions.md).[multi](FileServiceOptions.md#multi)
 
 ___
 
+### operators
+
+• `Optional` **operators**: `string`[]
+
+A list of additional property query operators to allow in a query
+
+#### Inherited from
+
+[FileServiceOptions](FileServiceOptions.md).[operators](FileServiceOptions.md#operators)
+
+___
+
 ### paginate
 
-• `Optional` **paginate**: `Object`
+• `Optional` **paginate**: `PaginationParams`
 
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `default?` | `number` |
-| `max?` | `number` |
+Pagination settings for this service
 
 #### Inherited from
 
@@ -138,7 +146,9 @@ ___
 
 • `Optional` **whitelist**: `string`[]
 
-**`deprecated`** renamed to `allow`.
+**`Deprecated`**
+
+renamed to `operators`.
 
 #### Inherited from
 
@@ -148,7 +158,7 @@ ___
 
 ### matcher
 
-▸ `Optional` **matcher**(`value`): `boolean`
+▸ `Optional` **matcher**(`value`): `any`
 
 #### Parameters
 
@@ -158,7 +168,7 @@ ___
 
 #### Returns
 
-`boolean`
+`any`
 
 #### Inherited from
 

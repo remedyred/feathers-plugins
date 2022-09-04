@@ -1,7 +1,5 @@
 # Interface: UploadRequest
 
-**`inheritdoc`**
-
 ## Hierarchy
 
 - `Request`
@@ -46,7 +44,7 @@ ___
 
 ### files
 
-• `Optional` **files**: { `[fieldname: string]`: `Multer.File`[]; } \| `File`[]
+• `Optional` **files**: { `[fieldname: string]`: `Multer.File`[];  } \| `File`[]
 
 Array or dictionary of `Multer.File` object populated by `array()`,
 `fields()`, and `any()` middleware.
