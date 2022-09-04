@@ -22,7 +22,6 @@
 		"*.{ts,json}": "eslint --fix --cache"
 	},
 	"devDependencies": {
-		"@lerna-lite/cli": "1.10.0",
 		"@snickbit/eslint-config": "0.0.10",
 		"@snickbit/readmes": "0.0.2",
 		"depcheck": "1.4.3",
