@@ -30,16 +30,20 @@ importers:
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
       shx: 0.3.4
-      tsup: 6.2.2
-      typescript: 4.7.4
+      tsup: 6.2.3
+      typedoc: 0.23.12
+      typedoc-plugin-markdown: 3.13.5
+      typescript: 4.8.2
     dependencies:
       '@feathersjs/authentication': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
     devDependencies:
       '@feathersjs/feathers': 5.0.0-pre.26
       shx: 0.3.4
-      tsup: 6.2.2_typescript@4.7.4
-      typescript: 4.7.4
+      tsup: 6.2.3_typescript@4.8.2
+      typedoc: 0.23.12_typescript@4.8.2
+      typedoc-plugin-markdown: 3.13.5_typedoc@0.23.12
+      typescript: 4.8.2
 
   packages/feathers-files:
     specifiers:
@@ -61,8 +65,10 @@ importers:
       multer: 1.4.5-lts.1
       shx: 0.3.4
       sift: ^16.0.0
-      tsup: 6.2.2
-      typescript: 4.7.4
+      tsup: 6.2.3
+      typedoc: 0.23.12
+      typedoc-plugin-markdown: 3.13.5
+      typescript: 4.8.2
     dependencies:
       '@aws-sdk/client-s3': 3.142.0
       '@feathersjs/adapter-commons': 5.0.0-pre.26
@@ -83,8 +89,10 @@ importers:
       '@snickbit/indexer': 2.5.7
       '@types/multer': 1.4.7
       shx: 0.3.4
-      tsup: 6.2.2_typescript@4.7.4
-      typescript: 4.7.4
+      tsup: 6.2.3_typescript@4.8.2
+      typedoc: 0.23.12_typescript@4.8.2
+      typedoc-plugin-markdown: 3.13.5_typedoc@0.23.12
+      typescript: 4.8.2
 
   packages/feathers-helpers:
     specifiers:
@@ -97,8 +105,10 @@ importers:
       '@snickbit/utilities': ^3.2.0
       shx: 0.3.4
       sift: ^16.0.0
-      tsup: 6.2.2
-      typescript: 4.7.4
+      tsup: 6.2.3
+      typedoc: 0.23.12
+      typedoc-plugin-markdown: 3.13.5
+      typescript: 4.8.2
     dependencies:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/commons': 5.0.0-pre.26
@@ -110,18 +120,26 @@ importers:
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/indexer': 2.5.7
       shx: 0.3.4
-      tsup: 6.2.2_typescript@4.7.4
-      typescript: 4.7.4
+      tsup: 6.2.3_typescript@4.8.2
+      typedoc: 0.23.12_typescript@4.8.2
+      typedoc-plugin-markdown: 3.13.5_typedoc@0.23.12
+      typescript: 4.8.2
 
   packages/feathers-hooks:
     specifiers:
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/indexer': 2.5.7
-      tsup: 6.2.2
+      tsup: 6.2.3
+      typedoc: 0.23.12
+      typedoc-plugin-markdown: 3.13.5
+      typescript: 4.8.2
     devDependencies:
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/indexer': 2.5.7
-      tsup: 6.2.2
+      tsup: 6.2.3_typescript@4.8.2
+      typedoc: 0.23.12_typescript@4.8.2
+      typedoc-plugin-markdown: 3.13.5_typedoc@0.23.12
+      typescript: 4.8.2
 
   packages/feathers-logger:
     specifiers:
@@ -131,8 +149,10 @@ importers:
       '@types/node': 18.6.4
       axios: ^0.27.2
       browser-or-node: ^2.0.0
-      tsup: 6.2.2
-      typescript: 4.7.4
+      tsup: 6.2.3
+      typedoc: 0.23.12
+      typedoc-plugin-markdown: 3.13.5
+      typescript: 4.8.2
     dependencies:
       '@snickbit/out': 2.0.37
       '@snickbit/utilities': 3.2.0
@@ -141,21 +161,29 @@ importers:
     devDependencies:
       '@feathersjs/feathers': 5.0.0-pre.26
       '@types/node': 18.6.4
-      tsup: 6.2.2_typescript@4.7.4
-      typescript: 4.7.4
+      tsup: 6.2.3_typescript@4.8.2
+      typedoc: 0.23.12_typescript@4.8.2
+      typedoc-plugin-markdown: 3.13.5_typedoc@0.23.12
+      typescript: 4.8.2
 
   packages/feathers-logs:
     specifiers:
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/feathers-logger': ^1.0.16
       '@snickbit/feathers-mongo': ^2.0.8
-      tsup: 6.2.2
+      tsup: 6.2.3
+      typedoc: 0.23.12
+      typedoc-plugin-markdown: 3.13.5
+      typescript: 4.8.2
     dependencies:
       '@snickbit/feathers-logger': link:../feathers-logger
       '@snickbit/feathers-mongo': link:../feathers-mongo
     devDependencies:
       '@feathersjs/feathers': 5.0.0-pre.26
-      tsup: 6.2.2
+      tsup: 6.2.3_typescript@4.8.2
+      typedoc: 0.23.12_typescript@4.8.2
+      typedoc-plugin-markdown: 3.13.5_typedoc@0.23.12
+      typescript: 4.8.2
 
   packages/feathers-model:
     specifiers:
@@ -165,7 +193,10 @@ importers:
       '@snickbit/feathers-helpers': ^1.0.18
       '@snickbit/model': ^1.0.52
       feathers-memory: ^4.1.0
-      tsup: 6.2.2
+      tsup: 6.2.3
+      typedoc: 0.23.12
+      typedoc-plugin-markdown: 3.13.5
+      typescript: 4.8.2
     dependencies:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
@@ -174,7 +205,10 @@ importers:
       feathers-memory: 4.1.0
     devDependencies:
       '@feathersjs/feathers': 5.0.0-pre.26
-      tsup: 6.2.2
+      tsup: 6.2.3_typescript@4.8.2
+      typedoc: 0.23.12_typescript@4.8.2
+      typedoc-plugin-markdown: 3.13.5_typedoc@0.23.12
+      typescript: 4.8.2
 
   packages/feathers-mongo:
     specifiers:
@@ -186,7 +220,10 @@ importers:
       '@snickbit/out': ^2.0.37
       '@snickbit/utilities': ^3.2.0
       mongodb: ^4.7.0
-      tsup: 6.2.2
+      tsup: 6.2.3
+      typedoc: 0.23.12
+      typedoc-plugin-markdown: 3.13.5
+      typescript: 4.8.2
     dependencies:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
@@ -197,7 +234,10 @@ importers:
       '@snickbit/utilities': 3.2.0
       mongodb: 4.8.1
     devDependencies:
-      tsup: 6.2.2
+      tsup: 6.2.3_typescript@4.8.2
+      typedoc: 0.23.12_typescript@4.8.2
+      typedoc-plugin-markdown: 3.13.5_typedoc@0.23.12
+      typescript: 4.8.2
 
   packages/feathers-pouchdb:
     specifiers:
@@ -215,10 +255,12 @@ importers:
       pouchdb-md5: ^7.3.0
       shx: 0.3.4
       transform-pouch: ^2.0.0
-      tsup: 6.2.2
+      tsup: 6.2.3
       tweetnacl: ^1.0.3
       tweetnacl-util: ^0.15.1
-      typescript: 4.7.4
+      typedoc: 0.23.12
+      typedoc-plugin-markdown: 3.13.5
+      typescript: 4.8.2
     dependencies:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
@@ -237,8 +279,10 @@ importers:
     devDependencies:
       '@types/pouchdb': 6.4.0
       shx: 0.3.4
-      tsup: 6.2.2_typescript@4.7.4
-      typescript: 4.7.4
+      tsup: 6.2.3_typescript@4.8.2
+      typedoc: 0.23.12_typescript@4.8.2
+      typedoc-plugin-markdown: 3.13.5_typedoc@0.23.12
+      typescript: 4.8.2
 
   packages/feathers-redis:
     specifiers:
@@ -250,7 +294,10 @@ importers:
       '@snickbit/utilities': ^3.2.0
       ioredis: ^5.0.6
       sift: ^16.0.0
-      tsup: 6.2.2
+      tsup: 6.2.3
+      typedoc: 0.23.12
+      typedoc-plugin-markdown: 3.13.5
+      typescript: 4.8.2
     dependencies:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
@@ -261,7 +308,10 @@ importers:
     devDependencies:
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/indexer': 2.5.7
-      tsup: 6.2.2
+      tsup: 6.2.3_typescript@4.8.2
+      typedoc: 0.23.12_typescript@4.8.2
+      typedoc-plugin-markdown: 3.13.5_typedoc@0.23.12
+      typescript: 4.8.2
 
   packages/feathers-rest:
     specifiers:
@@ -271,7 +321,10 @@ importers:
       '@snickbit/indexer': 2.5.7
       '@snickbit/out': ^2.0.37
       axios: ^0.27.2
-      tsup: 6.2.2
+      tsup: 6.2.3
+      typedoc: 0.23.12
+      typedoc-plugin-markdown: 3.13.5
+      typescript: 4.8.2
     dependencies:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
@@ -280,7 +333,10 @@ importers:
       axios: 0.27.2
     devDependencies:
       '@snickbit/indexer': 2.5.7
-      tsup: 6.2.2
+      tsup: 6.2.3_typescript@4.8.2
+      typedoc: 0.23.12_typescript@4.8.2
+      typedoc-plugin-markdown: 3.13.5_typedoc@0.23.12
+      typescript: 4.8.2
 
   packages/feathers-tasks:
     specifiers:
@@ -297,7 +353,10 @@ importers:
       '@snickbit/utilities': ^3.2.0
       bullmq: ^1.86.2
       ioredis: ^5.0.6
-      tsup: 6.2.2
+      tsup: 6.2.3
+      typedoc: 0.23.12
+      typedoc-plugin-markdown: 3.13.5
+      typescript: 4.8.2
     dependencies:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
@@ -313,7 +372,10 @@ importers:
       ioredis: 5.2.2
     devDependencies:
       '@snickbit/indexer': 2.5.7
-      tsup: 6.2.2
+      tsup: 6.2.3_typescript@4.8.2
+      typedoc: 0.23.12_typescript@4.8.2
+      typedoc-plugin-markdown: 3.13.5_typedoc@0.23.12
+      typescript: 4.8.2
 
   packages/feathers-up:
     specifiers:
@@ -340,7 +402,10 @@ importers:
       mongodb: ^4.7.0
       mysql: ^2.18.1
       socket.io: ^4.5.1
-      tsup: 6.2.2
+      tsup: 6.2.3
+      typedoc: 0.23.12
+      typedoc-plugin-markdown: 3.13.5
+      typescript: 4.8.2
       winston: ^3.8.0
       winston-daily-rotate-file: ^4.7.1
     dependencies:
@@ -371,20 +436,29 @@ importers:
       mysql: 2.18.1
     devDependencies:
       '@snickbit/indexer': 2.5.7
-      tsup: 6.2.2
+      tsup: 6.2.3_typescript@4.8.2
+      typedoc: 0.23.12_typescript@4.8.2
+      typedoc-plugin-markdown: 3.13.5_typedoc@0.23.12
+      typescript: 4.8.2
 
   packages/feathers-up-mongodb:
     specifiers:
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/feathers-up': ^1.0.33
       mongodb: ^4.7.0
-      tsup: 6.2.2
+      tsup: 6.2.3
+      typedoc: 0.23.12
+      typedoc-plugin-markdown: 3.13.5
+      typescript: 4.8.2
     dependencies:
       '@snickbit/feathers-up': link:../feathers-up
       mongodb: 4.8.1
     devDependencies:
       '@feathersjs/feathers': 5.0.0-pre.26
-      tsup: 6.2.2
+      tsup: 6.2.3_typescript@4.8.2
+      typedoc: 0.23.12_typescript@4.8.2
+      typedoc-plugin-markdown: 3.13.5_typedoc@0.23.12
+      typescript: 4.8.2
 
   packages/feathers-up-mysql:
     specifiers:
@@ -392,27 +466,39 @@ importers:
       '@snickbit/feathers-up': ^1.0.33
       knex: ^2.1.0
       mysql: ^2.18.1
-      tsup: 6.2.2
+      tsup: 6.2.3
+      typedoc: 0.23.12
+      typedoc-plugin-markdown: 3.13.5
+      typescript: 4.8.2
     dependencies:
       '@snickbit/feathers-up': link:../feathers-up
       knex: 2.2.0_mysql@2.18.1
       mysql: 2.18.1
     devDependencies:
       '@feathersjs/feathers': 5.0.0-pre.26
-      tsup: 6.2.2
+      tsup: 6.2.3_typescript@4.8.2
+      typedoc: 0.23.12_typescript@4.8.2
+      typedoc-plugin-markdown: 3.13.5_typedoc@0.23.12
+      typescript: 4.8.2
 
   packages/feathers-up-redis:
     specifiers:
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/feathers-up': ^1.0.33
       ioredis: ^5.0.6
-      tsup: 6.2.2
+      tsup: 6.2.3
+      typedoc: 0.23.12
+      typedoc-plugin-markdown: 3.13.5
+      typescript: 4.8.2
     dependencies:
       '@snickbit/feathers-up': link:../feathers-up
       ioredis: 5.2.2
     devDependencies:
       '@feathersjs/feathers': 5.0.0-pre.26
-      tsup: 6.2.2
+      tsup: 6.2.3_typescript@4.8.2
+      typedoc: 0.23.12_typescript@4.8.2
+      typedoc-plugin-markdown: 3.13.5_typedoc@0.23.12
+      typescript: 4.8.2
 
 packages:
 
@@ -3166,8 +3252,8 @@ packages:
       - supports-color
     dev: false
 
-  /bundle-require/3.0.4_esbuild@0.15.2:
-    resolution: {integrity: sha512-VXG6epB1yrLAvWVQpl92qF347/UXmncQj7J3U8kZEbdVZ1ZkQyr4hYeL/9RvcE8vVVdp53dY78Fd/3pqfRqI1A==}
+  /bundle-require/3.1.0_esbuild@0.15.2:
+    resolution: {integrity: sha512-IIXtAO7fKcwPHNPt9kY/WNVJqy7NDy6YqJvv6ENH0TOZoJ+yjpEsn1w40WKZbR2ibfu5g1rfgJTvmFHpm5aOMA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     peerDependencies:
       esbuild: '>=0.13'
@@ -5889,6 +5975,10 @@ packages:
     resolution: {integrity: sha512-AI2r85+4MquTw9ZYqabu4nMwy9Oftlfa/e/52t9IjtfG+mGBbTNdAoZ3RQKLHR6r0wQnwZnPIEh/Ya6XTWAKNA==}
     dev: false
 
+  /lunr/2.3.9:
+    resolution: {integrity: sha512-zTU3DaZaF3Rt9rhN3uBMGQD3dD2/vFQqnvZCDv4dl5iOzq2IZQqTxu90r4E5J+nP70J3ilqVCrbho2eWaeW8Ow==}
+    dev: true
+
   /luxon/3.0.1:
     resolution: {integrity: sha512-hF3kv0e5gwHQZKz4wtm4c+inDtyc7elkanAsBq+fundaCdUBNJB1dHEGUZIM6SfSBUlbVFduPwEtNjFK8wLtcw==}
     engines: {node: '>=12'}
@@ -5948,6 +6038,12 @@ packages:
   /map-obj/4.3.0:
     resolution: {integrity: sha512-hdN1wVrZbb29eBGiGjJbeP8JbKjq1urkHJ/LIP/NY48MZ1QVXUsQBV1G1zvYFHn1XE06cwjBsOI2K3Ulnj1YXQ==}
     engines: {node: '>=8'}
+    dev: true
+
+  /marked/4.1.0:
+    resolution: {integrity: sha512-+Z6KDjSPa6/723PQYyc1axYZpYYpDnECDaU6hkaf5gqBieBkMKYReL5hteF2QizhlMbgbo8umXl/clZ67+GlsA==}
+    engines: {node: '>= 12'}
+    hasBin: true
     dev: true
 
   /media-typer/0.3.0:
@@ -7517,6 +7613,14 @@ packages:
       rechoir: 0.6.2
     dev: true
 
+  /shiki/0.11.1:
+    resolution: {integrity: sha512-EugY9VASFuDqOexOgXR18ZV+TbFrQHeCpEYaXamO+SZlsnT/2LxuLBX25GGtIrwaEVFXUAbUQ601SWE2rMwWHA==}
+    dependencies:
+      jsonc-parser: 3.1.0
+      vscode-oniguruma: 1.6.2
+      vscode-textmate: 6.0.0
+    dev: true
+
   /shx/0.3.4:
     resolution: {integrity: sha512-N6A9MLVqjxZYcVn8hLmtneQWIJtp8IKzMP4eMnx+nqkvXoqinUPCbUFLp2UcWTEIUONhlk0ewxr/jaVGlc+J+g==}
     engines: {node: '>=6'}
@@ -8064,8 +8168,8 @@ packages:
   /tslib/2.4.0:
     resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
 
-  /tsup/6.2.2:
-    resolution: {integrity: sha512-vJ9IAdif4GKAz2XMZzjX1hNqhBezJWXjm0qeQEoI7y//a64cxgCF8178eTMV4jBu7YNKnfAPpPSuyXW4mN+9rA==}
+  /tsup/6.2.3_typescript@4.8.2:
+    resolution: {integrity: sha512-J5Pu2Dx0E1wlpIEsVFv9ryzP1pZ1OYsJ2cBHZ7GrKteytNdzaSz5hmLX7/nAxtypq+jVkVvA79d7S83ETgHQ5w==}
     engines: {node: '>=14'}
     hasBin: true
     peerDependencies:
@@ -8080,7 +8184,7 @@ packages:
       typescript:
         optional: true
     dependencies:
-      bundle-require: 3.0.4_esbuild@0.15.2
+      bundle-require: 3.1.0_esbuild@0.15.2
       cac: 6.7.12
       chokidar: 3.5.3
       debug: 4.3.4
@@ -8094,42 +8198,7 @@ packages:
       source-map: 0.8.0-beta.0
       sucrase: 3.25.0
       tree-kill: 1.2.2
-    transitivePeerDependencies:
-      - supports-color
-      - ts-node
-    dev: true
-
-  /tsup/6.2.2_typescript@4.7.4:
-    resolution: {integrity: sha512-vJ9IAdif4GKAz2XMZzjX1hNqhBezJWXjm0qeQEoI7y//a64cxgCF8178eTMV4jBu7YNKnfAPpPSuyXW4mN+9rA==}
-    engines: {node: '>=14'}
-    hasBin: true
-    peerDependencies:
-      '@swc/core': ^1
-      postcss: ^8.4.12
-      typescript: ^4.1.0
-    peerDependenciesMeta:
-      '@swc/core':
-        optional: true
-      postcss:
-        optional: true
-      typescript:
-        optional: true
-    dependencies:
-      bundle-require: 3.0.4_esbuild@0.15.2
-      cac: 6.7.12
-      chokidar: 3.5.3
-      debug: 4.3.4
-      esbuild: 0.15.2
-      execa: 5.1.1
-      globby: 11.1.0
-      joycon: 3.1.1
-      postcss-load-config: 3.1.4
-      resolve-from: 5.0.0
-      rollup: 2.77.2
-      source-map: 0.8.0-beta.0
-      sucrase: 3.25.0
-      tree-kill: 1.2.2
-      typescript: 4.7.4
+      typescript: 4.8.2
     transitivePeerDependencies:
       - supports-color
       - ts-node
@@ -8340,8 +8409,37 @@ packages:
   /typedarray/0.0.6:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
 
+  /typedoc-plugin-markdown/3.13.5_typedoc@0.23.12:
+    resolution: {integrity: sha512-E6bSn96MtiWTU4fr9wddD7d2T91XTtONj4Jdx2TZsjdAg/ig4ft2ECet/rNbBOiyw9MC0VO9toC/yvI8ZcY2PQ==}
+    peerDependencies:
+      typedoc: '>=0.23.0'
+    dependencies:
+      handlebars: 4.7.7
+      typedoc: 0.23.12_typescript@4.8.2
+    dev: true
+
+  /typedoc/0.23.12_typescript@4.8.2:
+    resolution: {integrity: sha512-wr7r/ufgGSsw2ntKTkLDJA7a+0hDdk2oRPouJGd9lwpFj305ZV6gjUwVxncp3ZuD92iKpc+kqsl5ag109rvkmA==}
+    engines: {node: '>= 14.14'}
+    hasBin: true
+    peerDependencies:
+      typescript: 4.6.x || 4.7.x || 4.8.x
+    dependencies:
+      lunr: 2.3.9
+      marked: 4.1.0
+      minimatch: 5.1.0
+      shiki: 0.11.1
+      typescript: 4.8.2
+    dev: true
+
   /typescript/4.7.4:
     resolution: {integrity: sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
+    dev: true
+
+  /typescript/4.8.2:
+    resolution: {integrity: sha512-C0I1UsrrDHo2fYI5oaCGbSejwX4ch+9Y5jTQELvovfmFkK3HHSZJB8MSJcWLmCUBzQBchCrZ9rMRV6GuNrvGtw==}
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: true
@@ -8454,6 +8552,14 @@ packages:
 
   /vscode-nls/5.0.1:
     resolution: {integrity: sha512-hHQV6iig+M21lTdItKPkJAaWrxALQb/nqpVffakO4knJOh3DrU2SXOMzUzNgo1eADPzu3qSsJY1weCzvR52q9A==}
+    dev: true
+
+  /vscode-oniguruma/1.6.2:
+    resolution: {integrity: sha512-KH8+KKov5eS/9WhofZR8M8dMHWN2gTxjMsG4jd04YhpbPR91fUj7rYQ2/XjeHCJWbg7X++ApRIU9NUwM2vTvLA==}
+    dev: true
+
+  /vscode-textmate/6.0.0:
+    resolution: {integrity: sha512-gu73tuZfJgu+mvCSy4UZwd2JXykjK9zAZsfmDeut5dx/1a7FeTk0XwJsSuqQn+cuMCGVbIBfl+s53X4T19DnzQ==}
     dev: true
 
   /vscode-uri/3.0.3:
