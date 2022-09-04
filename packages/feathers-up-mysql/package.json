@@ -35,26 +35,15 @@
 		"mysql": "^2.18.1"
 	},
 	"devDependencies": {
-		"tsup": "6.2.2"
+		"tsup": "6.2.3",
+		"typedoc": "0.23.12",
+		"typedoc-plugin-markdown": "3.13.5",
+		"typescript": "4.8.2"
 	},
 	"peerDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.26"
 	},
 	"engines": {
 		"node": ">= 12"
-	},
-	"tsup": {
-		"entry": [
-			"src/index.ts"
-		],
-		"clean": true,
-		"dts": true,
-		"format": [
-			"esm",
-			"cjs"
-		],
-		"external": [
-			"mysql"
-		]
 	}
 }
