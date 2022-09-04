@@ -443,7 +443,6 @@ importers:
 
   packages/feathers-up-mongodb:
     specifiers:
-      '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/feathers-up': ~1.0.33
       mongodb: 4.8.1
       tsup: 6.2.3
@@ -454,7 +453,6 @@ importers:
       '@snickbit/feathers-up': link:../feathers-up
       mongodb: 4.8.1
     devDependencies:
-      '@feathersjs/feathers': 5.0.0-pre.26
       tsup: 6.2.3_typescript@4.8.2
       typedoc: 0.23.12_typescript@4.8.2
       typedoc-plugin-markdown: 3.13.5_typedoc@0.23.12
@@ -462,7 +460,6 @@ importers:
 
   packages/feathers-up-mysql:
     specifiers:
-      '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/feathers-up': ~1.0.33
       knex: 2.2.0
       mysql: 2.18.1
@@ -475,7 +472,6 @@ importers:
       knex: 2.2.0_mysql@2.18.1
       mysql: 2.18.1
     devDependencies:
-      '@feathersjs/feathers': 5.0.0-pre.26
       tsup: 6.2.3_typescript@4.8.2
       typedoc: 0.23.12_typescript@4.8.2
       typedoc-plugin-markdown: 3.13.5_typedoc@0.23.12
@@ -483,7 +479,6 @@ importers:
 
   packages/feathers-up-redis:
     specifiers:
-      '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/feathers-up': ~1.0.33
       ioredis: 5.2.2
       tsup: 6.2.3
@@ -494,7 +489,6 @@ importers:
       '@snickbit/feathers-up': link:../feathers-up
       ioredis: 5.2.2
     devDependencies:
-      '@feathersjs/feathers': 5.0.0-pre.26
       tsup: 6.2.3_typescript@4.8.2
       typedoc: 0.23.12_typescript@4.8.2
       typedoc-plugin-markdown: 3.13.5_typedoc@0.23.12
