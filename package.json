@@ -7,15 +7,17 @@
 		"clean": "pnpm run clean:builds && pnpm run clean:modules",
 		"clean:builds": "turbo run clean",
 		"clean:modules": "shx rm -rf **/node_modules",
+		"depcheck": "turbo run depcheck",
 		"dev": "turbo run dev",
-		"fix": "eslint \"**/*.{ts,json}\" --cache --color --fix",
+		"docs": "readmes",
+		"fix": "eslint \"**/*.{ts,json,yml,yaml}\" --cache --color --fix",
 		"index": "turbo run index",
-		"lint": "eslint \"**/*.{ts,json}\" --cache --color",
+		"lint": "eslint \"**/*.{ts,json,yml,yaml}\" --cache --color",
 		"prepare": "husky install",
-		"readmes": "readmes",
-		"prerelease": "turbo run prod test fix depcheck readmes",
-		"release": "pnpm run prerelease && lerna publish",
-		"test": "pnpm jest"
+		"prerelease": "turbo run build docs ///#fix ///#test depcheck",
+		"release": "turbo run release",
+		"release:ci": "turbo run release --concurrency=1",
+		"test": "jest"
 	},
 	"lint-staged": {
 		"*.{ts,json}": "eslint --fix --cache"
