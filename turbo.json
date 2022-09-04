@@ -40,10 +40,6 @@
 			"dependsOn": ["^build"],
 			"outputs": []
 		},
-		"//#test": {
-			"dependsOn": ["build"],
-			"outputs": []
-		},
 		"//#lint": {
 			"outputs": []
 		},
@@ -63,7 +59,7 @@
 			"outputs": []
 		},
 		"release": {
-			"dependsOn": ["build", "//#lint", "//#test"],
+			"dependsOn": ["build", "//#lint"],
 			"outputs": ["CHANGELOG.md", "package.json", "docs/**", "README.md"]
 		},
 		"//#release:ci": {

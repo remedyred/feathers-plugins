@@ -21,7 +21,6 @@
 		"dev": "tsup",
 		"docs": "typedoc src/index.ts --tsconfig ./tsconfig.typedoc.json",
 		"release": "semantic-release",
-		"test": "jest",
 		"watch": "pnpm run dev --watch"
 	},
 	"release": {

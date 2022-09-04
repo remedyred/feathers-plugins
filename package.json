@@ -3,7 +3,7 @@
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
-		"check": "turbo run build //#lint //#test",
+		"check": "turbo run build //#lint",
 		"clean": "pnpm run clean:builds && pnpm run clean:modules",
 		"clean:builds": "turbo run clean",
 		"clean:modules": "shx rm -rf **/node_modules",
@@ -14,10 +14,9 @@
 		"index": "turbo run index",
 		"lint": "eslint \"**/*.{ts,json,yml,yaml}\" --cache --color",
 		"prepare": "husky install",
-		"prerelease": "turbo run build docs ///#fix ///#test depcheck",
+		"prerelease": "turbo run build docs ///#fix depcheck",
 		"release": "turbo run release",
-		"release:ci": "turbo run release --concurrency=1",
-		"test": "jest"
+		"release:ci": "turbo run release --concurrency=1"
 	},
 	"lint-staged": {
 		"*.{ts,json}": "eslint --fix --cache"
