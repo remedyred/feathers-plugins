@@ -8,6 +8,8 @@
 		"cjs"
 	],
 	"external": [
-		"redis"
+		"redis",
+		"mysql",
+		"mongodb"
 	]
 }
