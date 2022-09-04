@@ -30,8 +30,8 @@
 		]
 	},
 	"dependencies": {
-		"@snickbit/feathers-up": "^1.0.33",
-		"mongodb": "^4.7.0"
+		"@snickbit/feathers-up": "~1.0.33",
+		"mongodb": "4.8.1"
 	},
 	"devDependencies": {
 		"tsup": "6.2.3",

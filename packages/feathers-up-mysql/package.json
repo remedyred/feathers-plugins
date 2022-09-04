@@ -30,9 +30,9 @@
 		]
 	},
 	"dependencies": {
-		"@snickbit/feathers-up": "^1.0.33",
-		"knex": "^2.1.0",
-		"mysql": "^2.18.1"
+		"@snickbit/feathers-up": "~1.0.33",
+		"knex": "2.2.0",
+		"mysql": "2.18.1"
 	},
 	"devDependencies": {
 		"tsup": "6.2.3",

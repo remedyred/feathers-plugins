@@ -8,8 +8,8 @@ importers:
       '@snickbit/eslint-config': 0.0.10
       '@snickbit/readmes': 0.0.2
       depcheck: 1.4.3
-      husky: ^8.0.0
-      lint-staged: ^13.0.3
+      husky: 8.0.1
+      lint-staged: 13.0.3
       shx: 0.3.4
       turbo: 1.4.3
       typescript: 4.7.4
@@ -47,24 +47,24 @@ importers:
 
   packages/feathers-files:
     specifiers:
-      '@aws-sdk/client-s3': ^3.113.0
+      '@aws-sdk/client-s3': 3.142.0
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/feathers-helpers': ^1.0.18
+      '@snickbit/feathers-helpers': ~1.0.18
       '@snickbit/indexer': 2.5.7
-      '@snickbit/node-utilities': ^4.4.2
-      '@snickbit/out': ^2.0.37
-      '@snickbit/utilities': ^3.2.0
-      '@types/express': ^4.17.13
+      '@snickbit/node-utilities': ~4.4.2
+      '@snickbit/out': ~2.0.37
+      '@snickbit/utilities': ~3.2.0
+      '@types/express': 4.17.13
       '@types/multer': 1.4.7
-      express: ^4.18.1
-      fast-glob: ^3.2.11
-      fs-extra: ^10.1.0
-      mime: ^3.0.0
+      express: 4.18.1
+      fast-glob: 3.2.11
+      fs-extra: 10.1.0
+      mime: 3.0.0
       multer: 1.4.5-lts.1
       shx: 0.3.4
-      sift: ^16.0.0
+      sift: 16.0.0
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.5
@@ -77,7 +77,7 @@ importers:
       '@snickbit/feathers-helpers': link:../feathers-helpers
       '@snickbit/node-utilities': 4.4.2
       '@snickbit/out': 2.0.37
-      '@snickbit/utilities': 3.2.0
+      '@snickbit/utilities': 3.2.1
       '@types/express': 4.17.13
       express: 4.18.1
       fast-glob: 3.2.11
@@ -101,10 +101,10 @@ importers:
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/indexer': 2.5.7
-      '@snickbit/out': ^2.0.37
-      '@snickbit/utilities': ^3.2.0
+      '@snickbit/out': ~2.0.37
+      '@snickbit/utilities': ~3.2.0
       shx: 0.3.4
-      sift: ^16.0.0
+      sift: 16.0.0
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.5
@@ -114,7 +114,7 @@ importers:
       '@feathersjs/commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
       '@snickbit/out': 2.0.37
-      '@snickbit/utilities': 3.2.0
+      '@snickbit/utilities': 3.2.1
       sift: 16.0.0
     devDependencies:
       '@feathersjs/feathers': 5.0.0-pre.26
@@ -144,18 +144,18 @@ importers:
   packages/feathers-logger:
     specifiers:
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/out': ^2.0.37
-      '@snickbit/utilities': ^3.2.0
+      '@snickbit/out': ~2.0.37
+      '@snickbit/utilities': ~3.2.0
       '@types/node': 18.6.4
-      axios: ^0.27.2
-      browser-or-node: ^2.0.0
+      axios: 0.27.2
+      browser-or-node: 2.0.0
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.5
       typescript: 4.8.2
     dependencies:
       '@snickbit/out': 2.0.37
-      '@snickbit/utilities': 3.2.0
+      '@snickbit/utilities': 3.2.1
       axios: 0.27.2
       browser-or-node: 2.0.0
     devDependencies:
@@ -169,8 +169,8 @@ importers:
   packages/feathers-logs:
     specifiers:
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/feathers-logger': ^1.0.16
-      '@snickbit/feathers-mongo': ^2.0.8
+      '@snickbit/feathers-logger': ~1.0.16
+      '@snickbit/feathers-mongo': ~2.0.8
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.5
@@ -190,9 +190,9 @@ importers:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/feathers-helpers': ^1.0.18
-      '@snickbit/model': ^1.0.52
-      feathers-memory: ^4.1.0
+      '@snickbit/feathers-helpers': ~1.0.18
+      '@snickbit/model': ~1.0.52
+      feathers-memory: 4.1.0
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.5
@@ -216,10 +216,10 @@ importers:
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
       '@feathersjs/mongodb': 5.0.0-pre.26
-      '@snickbit/feathers-model': ^1.0.19
-      '@snickbit/out': ^2.0.37
-      '@snickbit/utilities': ^3.2.0
-      mongodb: ^4.7.0
+      '@snickbit/feathers-model': ~1.0.19
+      '@snickbit/out': ~2.0.37
+      '@snickbit/utilities': ~3.2.0
+      mongodb: 4.8.1
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.5
@@ -231,7 +231,7 @@ importers:
       '@feathersjs/mongodb': 5.0.0-pre.26_mongodb@4.8.1
       '@snickbit/feathers-model': link:../feathers-model
       '@snickbit/out': 2.0.37
-      '@snickbit/utilities': 3.2.0
+      '@snickbit/utilities': 3.2.1
       mongodb: 4.8.1
     devDependencies:
       tsup: 6.2.3_typescript@4.8.2
@@ -244,20 +244,20 @@ importers:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/feathers-helpers': ^1.0.18
-      '@snickbit/out': ^2.0.37
-      '@snickbit/utilities': ^3.2.0
+      '@snickbit/feathers-helpers': ~1.0.18
+      '@snickbit/out': ~2.0.37
+      '@snickbit/utilities': ~3.2.0
       '@types/pouchdb': 6.4.0
       garbados-crypt: 3.0.0-beta
-      pouchdb: ^7.3.0
-      pouchdb-adapter-memory: ^7.3.0
-      pouchdb-find: ^7.3.0
-      pouchdb-md5: ^7.3.0
+      pouchdb: 7.3.0
+      pouchdb-adapter-memory: 7.3.0
+      pouchdb-find: 7.3.0
+      pouchdb-md5: 7.3.0
       shx: 0.3.4
-      transform-pouch: ^2.0.0
+      transform-pouch: 2.0.0
       tsup: 6.2.3
-      tweetnacl: ^1.0.3
-      tweetnacl-util: ^0.15.1
+      tweetnacl: 1.0.3
+      tweetnacl-util: 0.15.1
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.5
       typescript: 4.8.2
@@ -267,7 +267,7 @@ importers:
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/feathers-helpers': link:../feathers-helpers
       '@snickbit/out': 2.0.37
-      '@snickbit/utilities': 3.2.0
+      '@snickbit/utilities': 3.2.1
       garbados-crypt: 3.0.0-beta
       pouchdb: 7.3.0
       pouchdb-adapter-memory: 7.3.0
@@ -289,11 +289,11 @@ importers:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/feathers-helpers': ^1.0.18
+      '@snickbit/feathers-helpers': ~1.0.18
       '@snickbit/indexer': 2.5.7
-      '@snickbit/utilities': ^3.2.0
-      ioredis: ^5.0.6
-      sift: ^16.0.0
+      '@snickbit/utilities': ~3.2.0
+      ioredis: 5.2.2
+      sift: 16.0.0
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.5
@@ -302,7 +302,7 @@ importers:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
       '@snickbit/feathers-helpers': link:../feathers-helpers
-      '@snickbit/utilities': 3.2.0
+      '@snickbit/utilities': 3.2.1
       ioredis: 5.2.2
       sift: 16.0.0
     devDependencies:
@@ -317,10 +317,10 @@ importers:
     specifiers:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/feathers-helpers': ^1.0.18
+      '@snickbit/feathers-helpers': ~1.0.18
       '@snickbit/indexer': 2.5.7
-      '@snickbit/out': ^2.0.37
-      axios: ^0.27.2
+      '@snickbit/out': ~2.0.37
+      axios: 0.27.2
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.5
@@ -343,16 +343,16 @@ importers:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/dates': ^1.0.48
-      '@snickbit/feathers-helpers': ^1.0.18
-      '@snickbit/feathers-model': ^1.0.19
+      '@snickbit/dates': ~1.0.48
+      '@snickbit/feathers-helpers': ~1.0.18
+      '@snickbit/feathers-model': ~1.0.19
       '@snickbit/indexer': 2.5.7
-      '@snickbit/node-cli': ^3.0.4
-      '@snickbit/node-utilities': ^4.4.2
-      '@snickbit/out': ^2.0.37
-      '@snickbit/utilities': ^3.2.0
-      bullmq: ^1.86.2
-      ioredis: ^5.0.6
+      '@snickbit/node-cli': ~3.0.4
+      '@snickbit/node-utilities': ~4.4.2
+      '@snickbit/out': ~2.0.37
+      '@snickbit/utilities': ~3.2.0
+      bullmq: 1.86.10
+      ioredis: 5.2.2
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.5
@@ -367,7 +367,7 @@ importers:
       '@snickbit/node-cli': 3.0.4
       '@snickbit/node-utilities': 4.4.2
       '@snickbit/out': 2.0.37
-      '@snickbit/utilities': 3.2.0
+      '@snickbit/utilities': 3.2.1
       bullmq: 1.86.10
       ioredis: 5.2.2
     devDependencies:
@@ -383,44 +383,44 @@ importers:
       '@feathersjs/express': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
       '@feathersjs/socketio': 5.0.0-pre.26
-      '@sentry/node': ^7.2.0
-      '@snickbit/feathers-hooks': ^1.0.9
-      '@snickbit/feathers-logger': ^1.0.16
-      '@snickbit/feathers-logs': ^1.0.24
+      '@sentry/node': 7.2.0
+      '@snickbit/feathers-hooks': ~1.0.9
+      '@snickbit/feathers-logger': ~1.0.16
+      '@snickbit/feathers-logs': ~1.0.24
       '@snickbit/indexer': 2.5.7
-      '@snickbit/model': ^1.0.52
-      '@snickbit/node-utilities': ^4.4.2
-      '@snickbit/out': ^2.0.37
-      '@snickbit/utilities': ^3.2.0
-      body-parser: ^1.20.0
-      compression: ^1.7.4
-      cors: ^2.8.5
-      express: ^4.18.1
-      helmet: ^5.1.0
-      ioredis: ^5.0.6
-      knex: ^2.1.0
-      mongodb: ^4.7.0
-      mysql: ^2.18.1
-      socket.io: ^4.5.1
+      '@snickbit/model': ~1.0.52
+      '@snickbit/node-utilities': ~4.4.2
+      '@snickbit/out': ~2.0.37
+      '@snickbit/utilities': ~3.2.0
+      body-parser: 1.20.0
+      compression: 1.7.4
+      cors: 2.8.5
+      express: 4.18.1
+      helmet: 5.1.1
+      ioredis: 5.0.6
+      knex: 2.1.0
+      mongodb: 4.7.0
+      mysql: 2.18.1
+      socket.io: 4.5.1
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.5
       typescript: 4.8.2
-      winston: ^3.8.0
-      winston-daily-rotate-file: ^4.7.1
+      winston: 3.8.1
+      winston-daily-rotate-file: 4.7.1
     dependencies:
       '@feathersjs/configuration': 5.0.0-pre.26
       '@feathersjs/express': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
       '@feathersjs/socketio': 5.0.0-pre.26
-      '@sentry/node': 7.8.1
+      '@sentry/node': 7.2.0
       '@snickbit/feathers-hooks': link:../feathers-hooks
       '@snickbit/feathers-logger': link:../feathers-logger
       '@snickbit/feathers-logs': link:../feathers-logs
       '@snickbit/model': 1.0.53
       '@snickbit/node-utilities': 4.4.2
       '@snickbit/out': 2.0.37
-      '@snickbit/utilities': 3.2.0
+      '@snickbit/utilities': 3.2.1
       body-parser: 1.20.0
       compression: 1.7.4
       cors: 2.8.5
@@ -430,9 +430,9 @@ importers:
       winston: 3.8.1
       winston-daily-rotate-file: 4.7.1_winston@3.8.1
     optionalDependencies:
-      ioredis: 5.2.2
-      knex: 2.2.0_mysql@2.18.1
-      mongodb: 4.8.1
+      ioredis: 5.0.6
+      knex: 2.1.0_mysql@2.18.1
+      mongodb: 4.7.0
       mysql: 2.18.1
     devDependencies:
       '@snickbit/indexer': 2.5.7
@@ -444,8 +444,8 @@ importers:
   packages/feathers-up-mongodb:
     specifiers:
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/feathers-up': ^1.0.33
-      mongodb: ^4.7.0
+      '@snickbit/feathers-up': ~1.0.33
+      mongodb: 4.8.1
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.5
@@ -463,9 +463,9 @@ importers:
   packages/feathers-up-mysql:
     specifiers:
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/feathers-up': ^1.0.33
-      knex: ^2.1.0
-      mysql: ^2.18.1
+      '@snickbit/feathers-up': ~1.0.33
+      knex: 2.2.0
+      mysql: 2.18.1
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.5
@@ -484,8 +484,8 @@ importers:
   packages/feathers-up-redis:
     specifiers:
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/feathers-up': ^1.0.33
-      ioredis: ^5.0.6
+      '@snickbit/feathers-up': ~1.0.33
+      ioredis: 5.2.2
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.5
@@ -2239,33 +2239,33 @@ packages:
       '@octokit/openapi-types': 12.11.0
     dev: true
 
-  /@sentry/core/7.8.1:
-    resolution: {integrity: sha512-PRivbdIzApi/gSixAxozhOBTylSVdw/9VxaStYHd7JJGhs36KXkV8ylpbCmYO4ap7/Ue9/slzwpvPOJJzmzAgA==}
+  /@sentry/core/7.2.0:
+    resolution: {integrity: sha512-9amsbB9/ePkJRgc0cVXCVW2hQUPImgTqBbnKu4frBXBza+9MBC5W3S8ZyZt2InCK22kuhNVo3z61a8mzCgXoCA==}
     engines: {node: '>=8'}
     dependencies:
-      '@sentry/hub': 7.8.1
-      '@sentry/types': 7.8.1
-      '@sentry/utils': 7.8.1
+      '@sentry/hub': 7.2.0
+      '@sentry/types': 7.2.0
+      '@sentry/utils': 7.2.0
       tslib: 1.14.1
     dev: false
 
-  /@sentry/hub/7.8.1:
-    resolution: {integrity: sha512-AxwyGyS9Lp4XsURu4t8opa5vZ+NAB6I/n+B/Uix3YZea9z8jdWYAu9vsXSizOrtxekc/i7ZN4bnlNgXVHix0iA==}
+  /@sentry/hub/7.2.0:
+    resolution: {integrity: sha512-uzd+GzD++Z4QopRh3AyRc4jz4AzomMnrXTOmdXgud1BH/Du9AYutVlBc5ZYwqCuJH7QPuAW3ySU3P+16UCinIg==}
     engines: {node: '>=8'}
     dependencies:
-      '@sentry/types': 7.8.1
-      '@sentry/utils': 7.8.1
+      '@sentry/types': 7.2.0
+      '@sentry/utils': 7.2.0
       tslib: 1.14.1
     dev: false
 
-  /@sentry/node/7.8.1:
-    resolution: {integrity: sha512-gQHeIip7QudeK1YWrLyZPc7nfirhbVDJ3gfCfL9mLT724Sk8gKd1kcpU1niI+wwIwY7SOpJqX4Oh/F0lRKjzDQ==}
+  /@sentry/node/7.2.0:
+    resolution: {integrity: sha512-dSI+2DrT98+eqSAv3QG3jMrq4YefBaxRbSCR9Ok7oLQW2/eskbRWH4mgYssrDXEx319SBYHh90qq/EwCOEkHtw==}
     engines: {node: '>=8'}
     dependencies:
-      '@sentry/core': 7.8.1
-      '@sentry/hub': 7.8.1
-      '@sentry/types': 7.8.1
-      '@sentry/utils': 7.8.1
+      '@sentry/core': 7.2.0
+      '@sentry/hub': 7.2.0
+      '@sentry/types': 7.2.0
+      '@sentry/utils': 7.2.0
       cookie: 0.4.2
       https-proxy-agent: 5.0.1
       lru_map: 0.3.3
@@ -2274,16 +2274,16 @@ packages:
       - supports-color
     dev: false
 
-  /@sentry/types/7.8.1:
-    resolution: {integrity: sha512-LOoaeBXVI23Kh5SpIbxSRiJ6+eYZXVOFyPFH1T1mGBj95LPwRMqOdg0lUTmFJGBKbDGDB/YNjNnu1kQ7GrXBXw==}
+  /@sentry/types/7.2.0:
+    resolution: {integrity: sha512-e6w62C2AmE5ULr9w/BuVaKTRpKUMGWyw4PhcBlSdDRoS47QgURGgDFIvr3VlaDwkUfCbASwSv49fDhKRX3aoew==}
     engines: {node: '>=8'}
     dev: false
 
-  /@sentry/utils/7.8.1:
-    resolution: {integrity: sha512-isUZjft4HWTOk1Z58KFJ/zzXeFtIJgP82CkYQlW464ZR2WCqPHYlXXXRWZpOHOfMnrf+gWeX9WAGS9rTAdhiSg==}
+  /@sentry/utils/7.2.0:
+    resolution: {integrity: sha512-uUKIsIXyb6ZXBbl/L8UwG4gy8PBXZl5pGCUFRPbns+vi0U6vtmDRDYa1A/7E17VkBJNRPVNJQr9Pq5Yd0I0MRA==}
     engines: {node: '>=8'}
     dependencies:
-      '@sentry/types': 7.8.1
+      '@sentry/types': 7.2.0
       tslib: 1.14.1
     dev: false
 
@@ -2366,7 +2366,7 @@ packages:
     dependencies:
       '@snickbit/node-utilities': 4.4.2
       '@snickbit/out': 2.0.37
-      '@snickbit/utilities': 3.2.0
+      '@snickbit/utilities': 3.2.1
       lilconfig: 2.0.6
       yargs-parser: 21.0.1
 
@@ -2375,7 +2375,7 @@ packages:
     engines: {node: '>= 12'}
     dependencies:
       '@snickbit/out': 2.0.37
-      '@snickbit/utilities': 3.2.0
+      '@snickbit/utilities': 3.2.1
       ansi-styles-template: 1.0.0
       cli-progress: 3.11.2
       is-wsl: 2.2.0
@@ -2389,7 +2389,7 @@ packages:
     dependencies:
       '@snickbit/ansi': 0.0.12
       '@snickbit/cycle': 0.0.29
-      '@snickbit/utilities': 3.2.0
+      '@snickbit/utilities': 3.2.1
       ansi-styles-template: 1.0.0
       browser-or-node: 2.0.0
       node-inspect-extracted: 1.1.0
@@ -2419,14 +2419,6 @@ packages:
     engines: {node: '>= 12'}
     dev: true
 
-  /@snickbit/utilities/3.2.0:
-    resolution: {integrity: sha512-eko5xA6B4AZaT/6SlXiOa1uqWrhmWmal4sZUD44VYjPQu7T2OjPYKRPrfWlGMPxuRdLtny5n/KYeXIIStyrwxg==}
-    engines: {node: '>= 12'}
-    dependencies:
-      '@snickbit/plural': 0.0.3
-      just-camel-case: 6.0.1
-      nanoid: 3.3.4
-
   /@snickbit/utilities/3.2.1:
     resolution: {integrity: sha512-hMZm1RzgyJsxsn+alcoeYg2c6RifIfnZBhenr4s3Qy+f++wMyM7R4NZefzmwfh+qG2lQKlEzkuQqsCw/ezyXxQ==}
     engines: {node: '>= 12'}
@@ -2444,7 +2436,7 @@ packages:
     resolution: {integrity: sha512-ALYone6pm6QmwZoAgeyNksccT9Q4AWZQ6PvfwR37GT6r6FWUPguq6sUmNGSMV2Wr761oQoBxwGGa6DR5o1DC9g==}
     dependencies:
       '@types/connect': 3.4.35
-      '@types/node': 18.6.3
+      '@types/node': 18.6.4
 
   /@types/component-emitter/1.2.11:
     resolution: {integrity: sha512-SRXjM+tfsSlA9VuG8hGO2nft2p8zjXCK1VcC6N4NXbBbYbSia9kzCChYQajIjzIqOOOuh5Ock6MmV2oux4jDZQ==}
@@ -2457,7 +2449,7 @@ packages:
   /@types/connect/3.4.35:
     resolution: {integrity: sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==}
     dependencies:
-      '@types/node': 18.6.3
+      '@types/node': 18.6.4
 
   /@types/cookie/0.4.1:
     resolution: {integrity: sha512-XW/Aa8APYr6jSVVA1y/DEIZX0/GMKLEVekNG727R8cs56ahETkRAy/3DR7+fJyh7oUgGwNQaRfXCun0+KbWY7Q==}
@@ -2689,7 +2681,7 @@ packages:
     resolution: {integrity: sha512-z5xyF6uh8CbjAu9760KDKsH2FcDxZ2tFCsA4HIMWE6IkiYMXfVoa+4f9KX+FN0ZLsaMw1WNG2ETLA6N+/YA+cg==}
     dependencies:
       '@types/mime': 3.0.1
-      '@types/node': 18.6.3
+      '@types/node': 18.6.4
 
   /@types/webidl-conversions/6.1.1:
     resolution: {integrity: sha512-XAahCdThVuCFDQLT7R7Pk/vqeObFNL3YqRyFZg+AqAP/W1/w3xHaIxuW7WszQqTbIBOPRcItYJIou3i/mppu3Q==}
@@ -2698,7 +2690,7 @@ packages:
   /@types/whatwg-url/8.2.2:
     resolution: {integrity: sha512-FtQu10RWgn3D9U4aazdwIE2yzphmTJREDqNdODHrbrZmmMqI0vMheC/6NE/J1Yveaj8H+ela+YwWTjq5PGmuhA==}
     dependencies:
-      '@types/node': 18.6.3
+      '@types/node': 18.6.4
       '@types/webidl-conversions': 6.1.1
     dev: false
 
@@ -3275,7 +3267,7 @@ packages:
     dev: true
 
   /bytes/3.0.0:
-    resolution: {integrity: sha1-0ygVQE1olpn4Wk6k+odV3ROpYEg=}
+    resolution: {integrity: sha512-pMhOfFDPiv9t5jjIXkHosWmkSyQbvsgEVNkz0ERHbuLh2T/7j4Mqqpz523Fe8MVY89KC6Sh/QfS2sM+SjgFDcw==}
     engines: {node: '>= 0.8'}
     dev: false
 
@@ -3503,6 +3495,11 @@ packages:
       color-convert: 1.9.3
       color-string: 1.9.1
     dev: false
+
+  /colorette/2.0.16:
+    resolution: {integrity: sha512-hUewv7oMjCp+wkBv5Rm0v87eJhq4woh5rSR+42YSQJKecCqgIqNkZ6lAlQms/BwHPJA5NKMRlpxPRv0n8HQW6g==}
+    dev: false
+    optional: true
 
   /colorette/2.0.19:
     resolution: {integrity: sha512-3tlv/dIP7FWvj3BsbHrGLJ6l/oKh1O3TcgBqMn+yyCagOxc23fyzDS6HypQbgxWbkpDnf52p1LuR4eWDQ/K9WQ==}
@@ -4033,7 +4030,7 @@ packages:
     dependencies:
       '@types/cookie': 0.4.1
       '@types/cors': 2.8.12
-      '@types/node': 18.6.3
+      '@types/node': 18.6.4
       accepts: 1.3.8
       base64id: 2.0.0
       cookie: 0.4.2
@@ -5274,6 +5271,25 @@ packages:
       - supports-color
     dev: false
 
+  /ioredis/5.0.6:
+    resolution: {integrity: sha512-KUm7wPzIet9QrFMoMm09/4bkfVKBUD9KXwBitP3hrNkZ+A6NBndweXGwYIB/7szHcTZgfo7Kvx88SxljJV4D9A==}
+    engines: {node: '>=12.22.0'}
+    requiresBuild: true
+    dependencies:
+      '@ioredis/commands': 1.2.0
+      cluster-key-slot: 1.1.0
+      debug: 4.3.4
+      denque: 2.1.0
+      lodash.defaults: 4.2.0
+      lodash.isarguments: 3.1.0
+      redis-errors: 1.2.0
+      redis-parser: 3.0.0
+      standard-as-callback: 2.1.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+    optional: true
+
   /ioredis/5.2.2:
     resolution: {integrity: sha512-wryKc1ur8PcCmNwfcGkw5evouzpbDXxxkMkzPK8wl4xQfQf7lHe11Jotell5ikMVAtikXJEu/OJVaoV51BggRQ==}
     engines: {node: '>=12.22.0'}
@@ -5552,7 +5568,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.isstring: 4.0.1
       lodash.once: 4.1.1
-      ms: 2.1.2
+      ms: 2.1.3
       semver: 5.7.1
     dev: false
 
@@ -5582,6 +5598,55 @@ packages:
   /kleur/3.0.3:
     resolution: {integrity: sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==}
     engines: {node: '>=6'}
+
+  /knex/2.1.0_mysql@2.18.1:
+    resolution: {integrity: sha512-vVsnD6UJdSJy55TvCXfFF9syfwyXNxfE9mvr2hJL/4Obciy2EPGoqjDpgRSlMruHuPWDOeYAG25nyrGvU+jJog==}
+    engines: {node: '>=12'}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      better-sqlite3: '*'
+      mysql: '*'
+      mysql2: '*'
+      pg: '*'
+      pg-native: '*'
+      sqlite3: '*'
+      tedious: '*'
+    peerDependenciesMeta:
+      better-sqlite3:
+        optional: true
+      mysql:
+        optional: true
+      mysql2:
+        optional: true
+      pg:
+        optional: true
+      pg-native:
+        optional: true
+      sqlite3:
+        optional: true
+      tedious:
+        optional: true
+    dependencies:
+      colorette: 2.0.16
+      commander: 9.4.0
+      debug: 4.3.4
+      escalade: 3.1.1
+      esm: 3.2.25
+      get-package-type: 0.1.0
+      getopts: 2.3.0
+      interpret: 2.2.0
+      lodash: 4.17.21
+      mysql: 2.18.1
+      pg-connection-string: 2.5.0
+      rechoir: 0.8.0
+      resolve-from: 5.0.0
+      tarn: 3.0.2
+      tildify: 2.0.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+    optional: true
 
   /knex/2.2.0_mysql@2.18.1:
     resolution: {integrity: sha512-yhm1Qe9Ok0TeXBq3nNHqZYJPrQ4Iw2tq9k/HxjrZ/EWec2ifOjJlkNHr26v8cQrWtk5iG3iwfUazTIWy+VKG5g==}
@@ -6260,6 +6325,20 @@ packages:
       '@types/whatwg-url': 8.2.2
       whatwg-url: 11.0.0
     dev: false
+
+  /mongodb/4.7.0:
+    resolution: {integrity: sha512-HhVar6hsUeMAVlIbwQwWtV36iyjKd9qdhY+s4wcU8K6TOj4Q331iiMy+FoPuxEntDIijTYWivwFJkLv8q/ZgvA==}
+    engines: {node: '>=12.9.0'}
+    requiresBuild: true
+    dependencies:
+      bson: 4.6.5
+      denque: 2.1.0
+      mongodb-connection-string-url: 2.5.3
+      socks: 2.7.0
+    optionalDependencies:
+      saslprep: 1.0.3
+    dev: false
+    optional: true
 
   /mongodb/4.8.1:
     resolution: {integrity: sha512-/NyiM3Ox9AwP5zrfT9TXjRKDJbXlLaUDQ9Rg//2lbg8D2A8GXV0VidYYnA/gfdK6uwbnL4FnAflH7FbGw3TS7w==}

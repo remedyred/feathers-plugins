@@ -30,21 +30,21 @@
 		]
 	},
 	"dependencies": {
-		"@aws-sdk/client-s3": "^3.113.0",
+		"@aws-sdk/client-s3": "3.142.0",
 		"@feathersjs/adapter-commons": "5.0.0-pre.26",
 		"@feathersjs/errors": "5.0.0-pre.26",
 		"@feathersjs/feathers": "5.0.0-pre.26",
-		"@snickbit/feathers-helpers": "^1.0.18",
-		"@snickbit/node-utilities": "^4.4.2",
-		"@snickbit/out": "^2.0.37",
-		"@snickbit/utilities": "^3.2.0",
-		"@types/express": "^4.17.13",
-		"express": "^4.18.1",
-		"fast-glob": "^3.2.11",
-		"fs-extra": "^10.1.0",
-		"mime": "^3.0.0",
+		"@snickbit/feathers-helpers": "~1.0.18",
+		"@snickbit/node-utilities": "~4.4.2",
+		"@snickbit/out": "~2.0.37",
+		"@snickbit/utilities": "~3.2.0",
+		"@types/express": "4.17.13",
+		"express": "4.18.1",
+		"fast-glob": "3.2.11",
+		"fs-extra": "10.1.0",
+		"mime": "3.0.0",
 		"multer": "1.4.5-lts.1",
-		"sift": "^16.0.0"
+		"sift": "16.0.0"
 	},
 	"devDependencies": {
 		"@snickbit/indexer": "2.5.7",
