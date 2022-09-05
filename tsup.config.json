@@ -1,0 +1,15 @@
+{
+	"entry": [
+		"src/index.ts"
+	],
+	"clean": true,
+	"format": [
+		"esm",
+		"cjs"
+	],
+	"external": [
+		"redis",
+		"mysql",
+		"mongodb"
+	]
+}

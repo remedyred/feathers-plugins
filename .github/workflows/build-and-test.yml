@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  check:
+    name: Build Checks
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'lts/*'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build and lint
+        run: pnpm turbo run build //#lint
+
+      - name: Reset git state
+        run: git reset --hard
+
+      - name: Build docs
+        run: pnpm turbo run docs
+
+      - name: Check working tree
+        run: git diff --quiet || { echo 'Working tree is dirty. Did you forget to update the docs?'; exit 1; }

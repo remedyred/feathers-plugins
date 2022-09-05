@@ -1,0 +1,12 @@
+{
+	"githubPages": false,
+	"hideGenerator": true,
+	"excludeProtected": true,
+	"excludeInternal": true,
+	"hideBreadcrumbs": true,
+	"excludePrivate": true,
+	"disableSources": true,
+	"defaultCategory": "Modules",
+	"readme": "none",
+	"plugin": ["typedoc-plugin-markdown"]
+}

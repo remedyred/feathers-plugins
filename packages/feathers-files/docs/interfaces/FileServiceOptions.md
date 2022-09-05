@@ -2,7 +2,7 @@
 
 ## Hierarchy
 
-- `Partial`<`ServiceOptions`\>
+- `Partial`<`AdapterServiceOptions`\>
 
   ↳ **`FileServiceOptions`**
 
@@ -14,11 +14,11 @@
 
 ### Properties
 
-- [allow](FileServiceOptions.md#allow)
 - [events](FileServiceOptions.md#events)
 - [filters](FileServiceOptions.md#filters)
 - [id](FileServiceOptions.md#id)
 - [multi](FileServiceOptions.md#multi)
+- [operators](FileServiceOptions.md#operators)
 - [paginate](FileServiceOptions.md#paginate)
 - [root](FileServiceOptions.md#root)
 - [url](FileServiceOptions.md#url)
@@ -30,19 +30,13 @@
 
 ## Properties
 
-### allow
-
-• `Optional` **allow**: `string`[]
-
-#### Inherited from
-
-Partial.allow
-
-___
-
 ### events
 
 • `Optional` **events**: `string`[]
+
+**`Deprecated`**
+
+Use service `events` option when registering the service with `app.use`.
 
 #### Inherited from
 
@@ -52,7 +46,10 @@ ___
 
 ### filters
 
-• `Optional` **filters**: `string`[]
+• `Optional` **filters**: `FilterSettings`
+
+An object of additional top level query filters, e.g. `{ $populate: true }`
+Can also be a converter function like `{ $ignoreCase: (value) => value === 'true' ? true : false }`
 
 #### Inherited from
 
@@ -64,6 +61,8 @@ ___
 
 • `Optional` **id**: `string`
 
+The name of the id property
+
 #### Inherited from
 
 Partial.id
@@ -74,22 +73,31 @@ ___
 
 • `Optional` **multi**: `boolean` \| `string`[]
 
+Whether to allow multiple updates for everything (`true`) or specific methods (e.g. `['create', 'remove']`)
+
 #### Inherited from
 
 Partial.multi
 
 ___
 
+### operators
+
+• `Optional` **operators**: `string`[]
+
+A list of additional property query operators to allow in a query
+
+#### Inherited from
+
+Partial.operators
+
+___
+
 ### paginate
 
-• `Optional` **paginate**: `Object`
+• `Optional` **paginate**: `PaginationParams`
 
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `default?` | `number` |
-| `max?` | `number` |
+Pagination settings for this service
 
 #### Inherited from
 
@@ -113,7 +121,9 @@ ___
 
 • `Optional` **whitelist**: `string`[]
 
-**`deprecated`** renamed to `allow`.
+**`Deprecated`**
+
+renamed to `operators`.
 
 #### Inherited from
 
@@ -123,7 +133,7 @@ Partial.whitelist
 
 ### matcher
 
-▸ `Optional` **matcher**(`value`): `boolean`
+▸ `Optional` **matcher**(`value`): `any`
 
 #### Parameters
 
@@ -133,4 +143,4 @@ Partial.whitelist
 
 #### Returns
 
-`boolean`
+`any`
