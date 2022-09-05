@@ -1,6 +1,6 @@
 {
 	"name": "@snickbit/feathers-redis",
-	"version": "1.0.18",
+	"version": "1.0.19",
 	"description": "Feathers Redis Service",
 	"license": "MIT",
 	"exports": {
