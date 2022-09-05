@@ -62,7 +62,7 @@
 		"@feathersjs/feathers": "5.0.0-pre.26"
 	},
 	"optionalDependencies": {
-		"ioredis": "5.0.6",
+		"ioredis": "5.2.3",
 		"knex": "2.1.0",
 		"mongodb": "4.7.0",
 		"mysql": "2.18.1"

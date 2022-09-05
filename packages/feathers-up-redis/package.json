@@ -31,7 +31,7 @@
 	},
 	"dependencies": {
 		"@snickbit/feathers-up": "~1.0.33",
-		"ioredis": "5.2.2"
+		"ioredis": "5.2.3"
 	},
 	"devDependencies": {
 		"tsup": "6.2.3",

@@ -34,7 +34,7 @@
 		"@feathersjs/errors": "5.0.0-pre.26",
 		"@snickbit/feathers-helpers": "~1.0.18",
 		"@snickbit/utilities": "~3.2.0",
-		"ioredis": "5.2.2",
+		"ioredis": "5.2.3",
 		"sift": "16.0.0"
 	},
 	"devDependencies": {
