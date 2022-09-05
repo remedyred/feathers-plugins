@@ -1,6 +1,6 @@
 {
 	"name": "@snickbit/feathers-model",
-	"version": "1.0.19",
+	"version": "1.0.20",
 	"description": "Data models for FeathersJS using @snickbit/model",
 	"license": "MIT",
 	"exports": {
