@@ -56,7 +56,7 @@ importers:
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/feathers-helpers': ~1.0.18
-      '@snickbit/indexer': 2.5.7
+      '@snickbit/indexer': 2.5.12
       '@snickbit/node-utilities': ~4.4.2
       '@snickbit/out': ~2.0.37
       '@snickbit/utilities': ~3.2.0
@@ -90,7 +90,7 @@ importers:
       multer: 1.4.5-lts.1
       sift: 16.0.0
     devDependencies:
-      '@snickbit/indexer': 2.5.7
+      '@snickbit/indexer': 2.5.12
       '@types/multer': 1.4.7
       shx: 0.3.4
       tsup: 6.2.3_typescript@4.8.2
@@ -104,7 +104,7 @@ importers:
       '@feathersjs/commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/indexer': 2.5.7
+      '@snickbit/indexer': 2.5.12
       '@snickbit/out': ~2.0.37
       '@snickbit/utilities': ~3.2.0
       shx: 0.3.4
@@ -122,7 +122,7 @@ importers:
       sift: 16.0.0
     devDependencies:
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/indexer': 2.5.7
+      '@snickbit/indexer': 2.5.12
       shx: 0.3.4
       tsup: 6.2.3_typescript@4.8.2
       typedoc: 0.23.12_typescript@4.8.2
@@ -132,14 +132,14 @@ importers:
   packages/feathers-hooks:
     specifiers:
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/indexer': 2.5.7
+      '@snickbit/indexer': 2.5.12
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.5
       typescript: 4.8.2
     devDependencies:
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/indexer': 2.5.7
+      '@snickbit/indexer': 2.5.12
       tsup: 6.2.3_typescript@4.8.2
       typedoc: 0.23.12_typescript@4.8.2
       typedoc-plugin-markdown: 3.13.5_typedoc@0.23.12
@@ -294,7 +294,7 @@ importers:
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/feathers-helpers': ~1.0.18
-      '@snickbit/indexer': 2.5.7
+      '@snickbit/indexer': 2.5.12
       '@snickbit/utilities': ~3.2.0
       ioredis: 5.2.2
       sift: 16.0.0
@@ -311,7 +311,7 @@ importers:
       sift: 16.0.0
     devDependencies:
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/indexer': 2.5.7
+      '@snickbit/indexer': 2.5.12
       tsup: 6.2.3_typescript@4.8.2
       typedoc: 0.23.12_typescript@4.8.2
       typedoc-plugin-markdown: 3.13.5_typedoc@0.23.12
@@ -322,7 +322,7 @@ importers:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/feathers-helpers': ~1.0.18
-      '@snickbit/indexer': 2.5.7
+      '@snickbit/indexer': 2.5.12
       '@snickbit/out': ~2.0.37
       axios: 0.27.2
       tsup: 6.2.3
@@ -336,7 +336,7 @@ importers:
       '@snickbit/out': 2.0.37
       axios: 0.27.2
     devDependencies:
-      '@snickbit/indexer': 2.5.7
+      '@snickbit/indexer': 2.5.12
       tsup: 6.2.3_typescript@4.8.2
       typedoc: 0.23.12_typescript@4.8.2
       typedoc-plugin-markdown: 3.13.5_typedoc@0.23.12
@@ -350,7 +350,7 @@ importers:
       '@snickbit/dates': ~1.0.48
       '@snickbit/feathers-helpers': ~1.0.18
       '@snickbit/feathers-model': ~1.0.19
-      '@snickbit/indexer': 2.5.7
+      '@snickbit/indexer': 2.5.12
       '@snickbit/node-cli': ~3.0.4
       '@snickbit/node-utilities': ~4.4.2
       '@snickbit/out': ~2.0.37
@@ -375,7 +375,7 @@ importers:
       bullmq: 1.86.10
       ioredis: 5.2.2
     devDependencies:
-      '@snickbit/indexer': 2.5.7
+      '@snickbit/indexer': 2.5.12
       tsup: 6.2.3_typescript@4.8.2
       typedoc: 0.23.12_typescript@4.8.2
       typedoc-plugin-markdown: 3.13.5_typedoc@0.23.12
@@ -391,7 +391,7 @@ importers:
       '@snickbit/feathers-hooks': ~1.0.9
       '@snickbit/feathers-logger': ~1.0.16
       '@snickbit/feathers-logs': ~1.0.24
-      '@snickbit/indexer': 2.5.7
+      '@snickbit/indexer': 2.5.12
       '@snickbit/model': ~1.0.52
       '@snickbit/node-utilities': ~4.4.2
       '@snickbit/out': ~2.0.37
@@ -439,7 +439,7 @@ importers:
       mongodb: 4.7.0
       mysql: 2.18.1
     devDependencies:
-      '@snickbit/indexer': 2.5.7
+      '@snickbit/indexer': 2.5.12
       tsup: 6.2.3_typescript@4.8.2
       typedoc: 0.23.12_typescript@4.8.2
       typedoc-plugin-markdown: 3.13.5_typedoc@0.23.12
@@ -2173,15 +2173,15 @@ packages:
       - typescript
     dev: true
 
-  /@snickbit/indexer/2.5.7:
-    resolution: {integrity: sha512-5lee6hYSa+nih2GOcNWpW1AGLzzthN6wF4yVkWLy4RBZtjc+7lBt2KPtd8UJeuf7M5idSEH8zfv2G/EztboRVA==}
+  /@snickbit/indexer/2.5.12:
+    resolution: {integrity: sha512-Sw3VGdpRC3lnFxaJ9gGP49NZMfjKFXSgwjk0FE5gYhtIA8Fe34Z0SO8P2po+N/nyoFc79aqMzEnS8HZRZxu+MQ==}
     engines: {node: '>= 12'}
     hasBin: true
     dependencies:
       '@snickbit/node-cli': 2.0.2
-      '@snickbit/node-utilities': 4.4.2
+      '@snickbit/node-utilities': 4.4.9
       '@snickbit/out': 2.0.37
-      '@snickbit/utilities': 3.2.1
+      '@snickbit/utilities': 3.4.2
       fast-glob: 3.2.11
       lilconfig: 2.0.6
       picomatch: 2.3.1
@@ -2200,9 +2200,9 @@ packages:
     resolution: {integrity: sha512-AAvtvzmL+b9lqT0gIzjWR98MVE5TEVDTv1eFFqAvEB9g+A+3aBE1wgdxLPqndaQpDg20SpbMl/xlzG4o3er0zQ==}
     engines: {node: '>= 12'}
     dependencies:
-      '@snickbit/node-utilities': 4.4.2
+      '@snickbit/node-utilities': 4.4.9
       '@snickbit/out': 2.0.37
-      '@snickbit/utilities': 3.2.1
+      '@snickbit/utilities': 3.4.2
       lilconfig: 2.0.6
       yargs-parser: 21.0.1
     dev: true
@@ -2230,6 +2230,20 @@ packages:
       nanospinner: 1.1.0
       prompts: 2.4.2
 
+  /@snickbit/node-utilities/4.4.9:
+    resolution: {integrity: sha512-FZPHi2JhujSIwGi113iHz2+0G9mEBR0m1H8y87kY9Sov3PdzCuBq8zBoy+i2cWjJzPHQj++MhLyCXmu2ArBOlg==}
+    engines: {node: '>= 12'}
+    dependencies:
+      '@snickbit/out': 2.0.37
+      '@snickbit/utilities': 3.4.2
+      ansi-styles-template: 1.0.0
+      cli-progress: 3.11.2
+      is-wsl: 2.2.0
+      lodash.throttle: 4.1.1
+      nanospinner: 1.1.0
+      prompts: 2.4.2
+    dev: true
+
   /@snickbit/out/2.0.37:
     resolution: {integrity: sha512-fTVcE5QKVSNKMddUVqwXGsc5jx87L8sKm6ufA1z/02ygibz/pCGqmDI5lQZsv7qIFwm+9h0r3ydk59RCf7gw8Q==}
     engines: {node: '>= 12'}
@@ -2245,6 +2259,11 @@ packages:
   /@snickbit/plural/0.0.3:
     resolution: {integrity: sha512-t6I0o9EUlug3N8zpOrCECLVy02yd5BdGL/Z/0BS6cnhs8ryn7IxVl/ZBRD9aRwGbAsK7W76ZvfTjUGv8RHd+yQ==}
     engines: {node: '>= 12'}
+
+  /@snickbit/plural/0.0.6:
+    resolution: {integrity: sha512-Bmxmhi984QgV+Yo5T4uMuKGmfgkkv7BpFkfo0p1di/4ZZt379vDTOLCPf3+HZec12pabMFUCHcq8vyxjUCxcDA==}
+    engines: {node: '>= 12'}
+    dev: true
 
   /@snickbit/readmes/0.0.2:
     resolution: {integrity: sha512-BahHYKrOyih3x5veF4r6jZA3mTrT0Bn+RGLdXLmqc/7xKMQD8AbdSpzYoMZDNm6VsaP/bo7H4WN1bkKpR5i58g==}
@@ -2291,6 +2310,15 @@ packages:
       '@snickbit/plural': 0.0.3
       just-camel-case: 6.0.1
       nanoid: 3.3.4
+
+  /@snickbit/utilities/3.4.2:
+    resolution: {integrity: sha512-juE9uuScBQc11By89w7pf/VvRPQuU012ucMTPBeTTs18RzDXz2gEBAQIAnkoN1SNRN+LQUIp0hLGz9hxZB1ElQ==}
+    engines: {node: '>= 12'}
+    dependencies:
+      '@snickbit/plural': 0.0.6
+      just-camel-case: 6.0.1
+      nanoid: 3.3.4
+    dev: true
 
   /@tootallnate/once/2.0.0:
     resolution: {integrity: sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==}
