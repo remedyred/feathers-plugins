@@ -39,7 +39,7 @@
 		"@snickbit/node-cli": "~3.0.4",
 		"@snickbit/node-utilities": "~4.4.2",
 		"@snickbit/out": "~2.0.37",
-		"@snickbit/utilities": "~3.2.0",
+		"@snickbit/utilities": "~3.4.0",
 		"bullmq": "1.86.10",
 		"ioredis": "5.2.2"
 	},

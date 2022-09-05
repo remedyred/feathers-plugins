@@ -35,7 +35,7 @@
 		"@feathersjs/feathers": "5.0.0-pre.26",
 		"@snickbit/feathers-helpers": "~1.0.18",
 		"@snickbit/out": "~2.0.37",
-		"@snickbit/utilities": "~3.2.0",
+		"@snickbit/utilities": "~3.4.0",
 		"garbados-crypt": "3.0.0-beta",
 		"pouchdb": "7.3.0",
 		"pouchdb-adapter-memory": "7.3.0",
