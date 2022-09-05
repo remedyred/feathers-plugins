@@ -31,7 +31,7 @@
 		"@feathersjs/feathers": "5.0.0-pre.26",
 		"@snickbit/indexer": "2.5.7",
 		"jest": "28.1.3",
-		"tsup": "6.2.2"
+		"tsup": "6.2.3"
 	},
 	"peerDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.26"
