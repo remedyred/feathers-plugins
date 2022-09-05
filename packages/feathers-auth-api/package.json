@@ -15,13 +15,19 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "tsup",
-		"clean": "shx rm -rf ./dist",
+		"build": "tsup --minify --dts",
+		"clean": "shx rm -rf ./dist ./.types",
 		"depcheck": "depcheck",
-		"dev": "pnpm run build --sourcemap",
-		"meta": "pnpm run prod --metafile",
-		"prod": "pnpm run build --minify",
+		"dev": "tsup",
+		"docs": "typedoc src/index.ts --tsconfig ./tsconfig.typedoc.json",
+		"release": "pnpm dlx semantic-release",
 		"watch": "pnpm run dev --watch"
+	},
+	"release": {
+		"extends": [
+			"semantic-release-monorepo",
+			"@snickbit/semantic-release"
+		]
 	},
 	"dependencies": {
 		"@feathersjs/authentication": "5.0.0-pre.26",
@@ -30,24 +36,15 @@
 	"devDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.26",
 		"shx": "0.3.4",
-		"tsup": "6.2.2",
-		"typescript": "4.7.4"
+		"tsup": "6.2.3",
+		"typedoc": "0.23.12",
+		"typedoc-plugin-markdown": "3.13.5",
+		"typescript": "4.8.2"
 	},
 	"peerDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.26"
 	},
 	"engines": {
 		"node": ">= 12"
-	},
-	"tsup": {
-		"entry": [
-			"src/index.ts"
-		],
-		"clean": true,
-		"dts": true,
-		"format": [
-			"esm",
-			"cjs"
-		]
 	}
 }

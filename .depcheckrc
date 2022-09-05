@@ -2,8 +2,9 @@
 	"specials": [
 	],
 	"ignores": [
+		"typedoc",
+		"typedoc-plugin-markdown",
 		"@feathersjs/feathers",
-		"@types/jest",
 		"@types/node",
 		"bson-ext",
 		"kerberos",

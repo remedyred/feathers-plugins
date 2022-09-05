@@ -5,7 +5,7 @@
 ### Properties
 
 - [ACL](S3RequestParams.md#acl)
-- [bucket](S3RequestParams.md#bucket)
+- [Bucket](S3RequestParams.md#bucket)
 - [content](S3RequestParams.md#content)
 - [key](S3RequestParams.md#key)
 
@@ -17,9 +17,9 @@
 
 ___
 
-### bucket
+### Bucket
 
-• `Optional` **bucket**: `string`
+• `Optional` **Bucket**: `string`
 
 ___
 

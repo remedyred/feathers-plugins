@@ -47,8 +47,8 @@ export type SearchOptions = {
 	excludedFields?: string[]
 }
 
-export default class MongoAdapter<T = any,
-	D = Partial<T>,
+export default class MongoAdapter<T extends Partial<D> = any,
+	D extends Partial<T> = Partial<T>,
 	O extends MongoServiceOptions = MongoServiceOptions,
 	P extends MongoAdapterParams = MongoAdapterParams
 	> extends MongoDbAdapter<T, D, P> {
@@ -389,7 +389,8 @@ export default class MongoAdapter<T = any,
 		await this.connected()
 		params = this.parseParams(params)
 		if (this.options.softDelete && !params.query?.force && this.timestamps) {
-			return await this.$patch(id, {[this.timestamps.deleted as string]: new Date()} as unknown as T, params)
+			const data = {[this.timestamps.deleted as string]: new Date()} as T
+			return await this.$patch(id, data, params)
 		}
 		if (params.query?.force) {
 			delete params.query.force

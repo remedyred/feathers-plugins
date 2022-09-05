@@ -7,7 +7,7 @@ export class LogService extends MongoService {
 			disableObjectify: false,
 			collection: 'logs',
 			timestamps: true
-		}, app)
+		})
 	}
 
 	async channels() {

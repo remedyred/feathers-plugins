@@ -1,43 +1,71 @@
 {
 	"$schema": "https://turborepo.org/schema.json",
 	"pipeline": {
-		"prod": {
-			"dependsOn": ["^prod"],
-			"outputs": ["dist/**"]
+		"build": {
+			"inputs": [
+				"src/**",
+				"*.json",
+				"../../tsup.config.json"
+			],
+			"dependsOn": ["^build"],
+			"outputs": ["dist/**"],
+			"outputMode": "new-only"
+		},
+		"build:types": {
+			"dependsOn": ["build"],
+			"outputs": ["dist/**/*.d.ts"],
+			"outputMode": "new-only"
 		},
 		"dev": {
+			"inputs": [
+				"src/**",
+				"*.json",
+				"../../tsup.config.json"
+			],
 			"dependsOn": ["^dev"],
-			"outputs": ["dist/**"]
+			"outputs": ["dist/**"],
+			"outputMode": "new-only"
+		},
+		"dev:types": {
+			"dependsOn": ["dev"],
+			"outputs": [".types"],
+			"outputMode": "new-only"
 		},
 		"docs": {
-			"dependsOn": ["prod"],
+			"dependsOn": ["build"],
 			"outputs": ["docs/**", "README.md"],
 			"inputs": ["src/**/*.tsx", "src/**/*.ts", "typedoc.json"]
 		},
-		"//#test": {
-			"dependsOn": ["prod"],
+		"//#build": {
+			"dependsOn": ["^build"],
 			"outputs": []
 		},
 		"//#lint": {
 			"outputs": []
 		},
 		"//#fix": {
-			"outputs": []
+			"outputs": ["**/*.ts", "**/*.json"],
+			"outputMode": "new-only"
 		},
-		"//#prod": {
-			"outputs": []
-		},
-		"//#readmes": {
+		"//#docs": {
 			"outputs": ["README.md"]
 		},
 		"depcheck": {
-			"outputs": []
-		},
-		"index": {
+			"inputs": ["package.json"],
 			"outputs": []
 		},
 		"clean": {
+			"inputs": [".types/**", "dist/**"],
 			"outputs": []
+		},
+		"release": {
+			"dependsOn": ["build", "//#lint"],
+			"outputs": ["CHANGELOG.md", "package.json", "docs/**", "README.md"]
+		},
+		"//#release:ci": {
+			"dependsOn": ["$GITHUB_TOKEN", "$NPM_TOKEN"],
+			"outputs": ["CHANGELOG.md", "package.json", "docs/**", "README.md"],
+			"outputMode": "new-only"
 		}
 	}
 }

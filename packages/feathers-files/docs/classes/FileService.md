@@ -20,9 +20,7 @@
 
 ### Methods
 
-- [\_bucket](FileService.md#_bucket)
 - [\_getContent](FileService.md#_getcontent)
-- [bucket](FileService.md#bucket)
 - [create](FileService.md#create)
 - [cwd](FileService.md#cwd)
 - [exists](FileService.md#exists)
@@ -57,22 +55,6 @@
 
 ## Methods
 
-### \_bucket
-
-▸ **_bucket**(`params`): `string`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `params` | `any` |
-
-#### Returns
-
-`string`
-
-___
-
 ### \_getContent
 
 ▸ **_getContent**(`data`): `any`
@@ -89,22 +71,6 @@ ___
 
 ___
 
-### bucket
-
-▸ **bucket**(`params`): `any`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `params` | `any` |
-
-#### Returns
-
-`any`
-
-___
-
 ### create
 
 ▸ **create**(`data`, `params?`): `Promise`<`any`\>
@@ -114,7 +80,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `data` | [`FileData`](../README.md#filedata) \| [`FileData`](../README.md#filedata)[] |
-| `params?` | `Params` |
+| `params?` | `Params`<`Query`\> |
 
 #### Returns
 
@@ -130,7 +96,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `params?` | `Params` |
+| `params?` | `Params`<`Query`\> |
 
 #### Returns
 
@@ -147,7 +113,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `id` | `string` |
-| `params?` | `Params` |
+| `params?` | `Params`<`Query`\> |
 
 #### Returns
 
@@ -163,7 +129,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `params` | [`FileParams`](../README.md#fileparams) |
+| `params` | `AdapterParams`<`AdapterQuery`, `Partial`<`AdapterServiceOptions`\>\> |
 
 #### Returns
 
@@ -180,7 +146,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `id` | `string` \| `string`[] |
-| `params?` | `Params` |
+| `params?` | `Params`<`Query`\> |
 
 #### Returns
 
@@ -214,7 +180,7 @@ ___
 | :------ | :------ |
 | `id?` | `string` |
 | `data?` | [`FileData`](../README.md#filedata) \| [`FileData`](../README.md#filedata)[] |
-| `params?` | `Params` |
+| `params?` | `Params`<`Query`\> |
 
 #### Returns
 
@@ -231,7 +197,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `id` | `string` \| `string`[] |
-| `params?` | `Params` |
+| `params?` | `Params`<`Query`\> |
 
 #### Returns
 
@@ -249,7 +215,7 @@ ___
 | :------ | :------ |
 | `id` | `string` \| `string`[] |
 | `data?` | [`FileData`](../README.md#filedata) |
-| `params?` | `Params` |
+| `params?` | `Params`<`Query`\> |
 
 #### Returns
 
