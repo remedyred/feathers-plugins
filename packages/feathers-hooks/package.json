@@ -23,6 +23,12 @@
 		"release": "pnpm dlx semantic-release",
 		"watch": "pnpm run dev --watch"
 	},
+	"release": {
+		"extends": [
+			"semantic-release-monorepo",
+			"@snickbit/semantic-release"
+		]
+	},
 	"devDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.26",
 		"@snickbit/indexer": "2.5.12",
