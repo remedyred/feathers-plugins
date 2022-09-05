@@ -37,7 +37,7 @@
 		"axios": "0.27.2"
 	},
 	"devDependencies": {
-		"@snickbit/indexer": "2.5.7",
+		"@snickbit/indexer": "2.5.12",
 		"tsup": "6.2.3",
 		"typedoc": "0.23.12",
 		"typedoc-plugin-markdown": "3.13.5",
