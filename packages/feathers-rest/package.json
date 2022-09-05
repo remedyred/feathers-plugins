@@ -1,6 +1,6 @@
 {
 	"name": "@snickbit/feathers-rest",
-	"version": "1.0.19",
+	"version": "1.0.20",
 	"description": "Feathers service for interactive with REST APIs",
 	"license": "MIT",
 	"exports": {
