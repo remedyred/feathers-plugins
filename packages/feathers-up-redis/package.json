@@ -20,7 +20,7 @@
 		"depcheck": "depcheck",
 		"dev": "tsup",
 		"docs": "typedoc src/index.ts --tsconfig ./tsconfig.typedoc.json",
-		"release": "semantic-release",
+		"release": "pnpm dlx semantic-release",
 		"watch": "pnpm run dev --watch"
 	},
 	"release": {
