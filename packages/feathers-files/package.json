@@ -47,7 +47,7 @@
 		"sift": "16.0.0"
 	},
 	"devDependencies": {
-		"@snickbit/indexer": "2.5.12",
+		"@snickbit/indexer": "2.5.19",
 		"@types/multer": "1.4.7",
 		"shx": "0.3.4",
 		"tsup": "6.2.3",
