@@ -33,7 +33,7 @@
 		"@feathersjs/commons": "5.0.0-pre.26",
 		"@feathersjs/errors": "5.0.0-pre.26",
 		"@snickbit/out": "~2.0.37",
-		"@snickbit/utilities": "~3.2.0",
+		"@snickbit/utilities": "~3.4.0",
 		"sift": "16.0.0"
 	},
 	"devDependencies": {
