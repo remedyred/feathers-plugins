@@ -225,7 +225,7 @@ importers:
       '@snickbit/feathers-model': ~1.0.19
       '@snickbit/out': ~2.0.37
       '@snickbit/utilities': ~3.2.0
-      mongodb: 4.8.1
+      mongodb: 4.10.0
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.5
@@ -234,11 +234,11 @@ importers:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@feathersjs/mongodb': 5.0.0-pre.26_mongodb@4.8.1
+      '@feathersjs/mongodb': 5.0.0-pre.26_mongodb@4.10.0
       '@snickbit/feathers-model': link:../feathers-model
       '@snickbit/out': 2.0.37
       '@snickbit/utilities': 3.2.1
-      mongodb: 4.8.1
+      mongodb: 4.10.0
     devDependencies:
       tsup: 6.2.3_typescript@4.8.2
       typedoc: 0.23.12_typescript@4.8.2
@@ -405,7 +405,7 @@ importers:
       helmet: 5.1.1
       ioredis: 5.0.6
       knex: 2.1.0
-      mongodb: 4.7.0
+      mongodb: 4.10.0
       mysql: 2.18.1
       socket.io: 4.5.1
       tsup: 6.2.3
@@ -438,7 +438,7 @@ importers:
     optionalDependencies:
       ioredis: 5.0.6
       knex: 2.1.0_mysql@2.18.1
-      mongodb: 4.7.0
+      mongodb: 4.10.0
       mysql: 2.18.1
     devDependencies:
       '@snickbit/indexer': 2.5.12
@@ -450,14 +450,14 @@ importers:
   packages/feathers-up-mongodb:
     specifiers:
       '@snickbit/feathers-up': ~1.0.33
-      mongodb: 4.8.1
+      mongodb: 4.10.0
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.5
       typescript: 4.8.2
     dependencies:
       '@snickbit/feathers-up': link:../feathers-up
-      mongodb: 4.8.1
+      mongodb: 4.10.0
     devDependencies:
       tsup: 6.2.3_typescript@4.8.2
       typedoc: 0.23.12_typescript@4.8.2
@@ -1686,7 +1686,7 @@ packages:
     resolution: {integrity: sha512-xHbWPCJ5upr9eDdRSuJgWSKgCLN07YLvVjS7PdDqWrEz/iz5YBqoIQOzHhNPsWXOA6T7v+ArifrTUitG+ZzIRA==}
     engines: {node: '>= 14'}
 
-  /@feathersjs/mongodb/5.0.0-pre.26_mongodb@4.8.1:
+  /@feathersjs/mongodb/5.0.0-pre.26_mongodb@4.10.0:
     resolution: {integrity: sha512-nC5KSwHFkaknzs6/c7o86WvdNy8pT3tCE2O2X/K879AlmBQVjJ2fBxGAGO5u2xgl6v1ViHXmyPIvuxJ3TYJaNQ==}
     engines: {node: '>= 14'}
     peerDependencies:
@@ -1696,7 +1696,7 @@ packages:
       '@feathersjs/commons': 5.0.0-pre.28
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
-      mongodb: 4.8.1
+      mongodb: 4.10.0
     dev: false
 
   /@feathersjs/schema/5.0.0-pre.28:
@@ -2405,7 +2405,7 @@ packages:
   /@types/express-serve-static-core/4.17.30:
     resolution: {integrity: sha512-gstzbTWro2/nFed1WXtf+TtrpwxH7Ggs4RLYTLbeVgIkUQOI3WG/JKjgeOU1zXDvezllupjrf8OPIdvTbIaVOQ==}
     dependencies:
-      '@types/node': 18.6.3
+      '@types/node': 18.6.4
       '@types/qs': 6.9.7
       '@types/range-parser': 1.2.4
 
@@ -2457,9 +2457,6 @@ packages:
   /@types/node/12.20.55:
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
     dev: true
-
-  /@types/node/18.6.3:
-    resolution: {integrity: sha512-6qKpDtoaYLM+5+AFChLhHermMQxc3TOEFIDzrZLPRGHPrLEwqFkkT5Kx3ju05g6X7uDPazz3jHbKPX0KzCjntg==}
 
   /@types/node/18.6.4:
     resolution: {integrity: sha512-I4BD3L+6AWiUobfxZ49DlU43gtI+FTHSv9pE2Zekg6KjMpre4ByusaljW3vYSLJrvQ1ck1hUaeVu8HVlY3vzHg==}
@@ -3127,8 +3124,8 @@ packages:
   /browser-or-node/2.0.0:
     resolution: {integrity: sha512-3Lrks/Okgof+/cRguUNG+qRXSeq79SO3hY4QrXJayJofwJwHiGC0qi99uDjsfTwULUFSr1OGVsBkdIkygKjTUA==}
 
-  /bson/4.6.5:
-    resolution: {integrity: sha512-uqrgcjyOaZsHfz7ea8zLRCLe1u+QGUSzMZmvXqO24CDW7DWoW1qiN9folSwa7hSneTSgM2ykDIzF5kcQQ8cwNw==}
+  /bson/4.7.0:
+    resolution: {integrity: sha512-VrlEE4vuiO1WTpfof4VmaVolCVYkYTgB9iWgYNOrVlnifpME/06fhFRmONgBhClD5pFC1t9ZWqFUQEQAzY43bA==}
     engines: {node: '>=6.9.0'}
     dependencies:
       buffer: 5.7.1
@@ -5962,25 +5959,11 @@ packages:
       whatwg-url: 11.0.0
     dev: false
 
-  /mongodb/4.7.0:
-    resolution: {integrity: sha512-HhVar6hsUeMAVlIbwQwWtV36iyjKd9qdhY+s4wcU8K6TOj4Q331iiMy+FoPuxEntDIijTYWivwFJkLv8q/ZgvA==}
-    engines: {node: '>=12.9.0'}
-    requiresBuild: true
-    dependencies:
-      bson: 4.6.5
-      denque: 2.1.0
-      mongodb-connection-string-url: 2.5.3
-      socks: 2.7.0
-    optionalDependencies:
-      saslprep: 1.0.3
-    dev: false
-    optional: true
-
-  /mongodb/4.8.1:
-    resolution: {integrity: sha512-/NyiM3Ox9AwP5zrfT9TXjRKDJbXlLaUDQ9Rg//2lbg8D2A8GXV0VidYYnA/gfdK6uwbnL4FnAflH7FbGw3TS7w==}
+  /mongodb/4.10.0:
+    resolution: {integrity: sha512-My2QxLTw0Cc1O9gih0mz4mqo145Jq4rLAQx0Glk/Ha9iYBzYpt4I2QFNRIh35uNFNfe8KFQcdwY1/HKxXBkinw==}
     engines: {node: '>=12.9.0'}
     dependencies:
-      bson: 4.6.5
+      bson: 4.7.0
       denque: 2.1.0
       mongodb-connection-string-url: 2.5.3
       socks: 2.7.0
