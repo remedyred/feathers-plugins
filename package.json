@@ -19,7 +19,7 @@
 		"release:ci": "multi-semantic-release"
 	},
 	"lint-staged": {
-		"*.{ts,json}": "eslint --fix --cache"
+		"*.{ts,json,yml,yaml}": "eslint --fix --cache"
 	},
 	"devDependencies": {
 		"@snickbit/eslint-config": "0.0.10",
