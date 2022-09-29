@@ -5,7 +5,7 @@ importers:
   .:
     specifiers:
       '@snickbit/eslint-config': 0.0.10
-      '@snickbit/readmes': 0.0.2
+      '@snickbit/readmes': 0.0.13
       '@snickbit/semantic-release': ^1.5.3
       depcheck: 1.4.3
       eslint: 8.22.0
@@ -18,7 +18,7 @@ importers:
       typescript: 4.7.4
     devDependencies:
       '@snickbit/eslint-config': 0.0.10_4rv7y5c6xz3vfxwhbrcxxi73bq
-      '@snickbit/readmes': 0.0.2
+      '@snickbit/readmes': 0.0.13
       '@snickbit/semantic-release': 1.5.3_semantic-release@19.0.5
       depcheck: 1.4.3
       eslint: 8.22.0
@@ -2175,7 +2175,14 @@ packages:
     resolution: {integrity: sha512-hP/kU0+g9hRuvv1dtPEpq6qdtd0rxdLFLj/GZ6f8PqxqFTdxj4OeWtFn64Xlr1scsAQz9PYFCmf4hZ6tO+fGrw==}
     engines: {node: '>= 12'}
     dependencies:
-      '@snickbit/utilities': 3.2.1
+      '@snickbit/utilities': 3.4.2
+
+  /@snickbit/cycle/1.0.6:
+    resolution: {integrity: sha512-mLEXPT0VITJiO9BOKTSkyMafE0UwByjNZ+JE6y9oLSgLG7abvt2R3y5VUKF2gfn8foPYp6pymvQPktHMlvCdfA==}
+    engines: {node: '>= 12'}
+    dependencies:
+      '@snickbit/utilities': 3.4.10
+    dev: true
 
   /@snickbit/dates/1.0.50:
     resolution: {integrity: sha512-GPyFAckrzpETvD92QNVwcFqaZ1NKEoMFb+DRINifWPVB8D6UIEM+VI5oYD/DMdD5vZrnnvHNNHKtMDJIHyFA1w==}
@@ -2240,6 +2247,17 @@ packages:
       yargs-parser: 21.0.1
     dev: true
 
+  /@snickbit/node-cli/3.0.14:
+    resolution: {integrity: sha512-S+dXyFLF9XKM2hmxlfhuMnTZmcDHZYRU+v5W3jdaPo5J6zFmn8EVZVOFvlkbfAZ4IH1k8uOe1X92tbFSKbmgyg==}
+    engines: {node: '>= 12'}
+    dependencies:
+      '@snickbit/node-utilities': 4.4.9
+      '@snickbit/out': 2.0.40
+      '@snickbit/utilities': 3.4.2
+      lilconfig: 2.0.6
+      yargs-parser: 21.1.1
+    dev: true
+
   /@snickbit/node-cli/3.0.4:
     resolution: {integrity: sha512-z9trPbhQCoqh38ptSvwx0U6yZF1RCx6RnnSwEnJs63lSaYv2yCfCXzt0fwkn6GSG0127za+7szU5M4wRLVKj+g==}
     engines: {node: '>= 12'}
@@ -2249,6 +2267,7 @@ packages:
       '@snickbit/utilities': 3.2.1
       lilconfig: 2.0.6
       yargs-parser: 21.0.1
+    dev: false
 
   /@snickbit/node-utilities/4.4.2:
     resolution: {integrity: sha512-FJAENTpMfbg3BlXBuuCSD6Dy7DM6ha9PEq2mc3/r/fD7UytzNxauCTMbw10mbU02e82YMxyss/s18HKvpoH3YQ==}
@@ -2262,6 +2281,7 @@ packages:
       lodash.throttle: 4.1.1
       nanospinner: 1.1.0
       prompts: 2.4.2
+    dev: false
 
   /@snickbit/node-utilities/4.4.9:
     resolution: {integrity: sha512-FZPHi2JhujSIwGi113iHz2+0G9mEBR0m1H8y87kY9Sov3PdzCuBq8zBoy+i2cWjJzPHQj++MhLyCXmu2ArBOlg==}
@@ -2289,6 +2309,19 @@ packages:
       node-inspect-extracted: 1.1.0
       picomatch-browser: 2.2.6
 
+  /@snickbit/out/2.0.40:
+    resolution: {integrity: sha512-syS69rIaTCQUmIFwJVYyGh+ADnyMin1HpB4dgsG7HodX52YYLP+y7RwnbC2cjmqXoyDjYTA4sm0Bss+JuoJJLA==}
+    engines: {node: '>= 12'}
+    dependencies:
+      '@snickbit/ansi': 0.0.18
+      '@snickbit/cycle': 1.0.6
+      '@snickbit/utilities': 3.4.10
+      ansi-styles-template: 1.0.0
+      browser-or-node: 2.0.0
+      node-inspect-extracted: 1.1.0
+      picomatch-browser: 2.2.6
+    dev: true
+
   /@snickbit/plural/0.0.3:
     resolution: {integrity: sha512-t6I0o9EUlug3N8zpOrCECLVy02yd5BdGL/Z/0BS6cnhs8ryn7IxVl/ZBRD9aRwGbAsK7W76ZvfTjUGv8RHd+yQ==}
     engines: {node: '>= 12'}
@@ -2296,18 +2329,22 @@ packages:
   /@snickbit/plural/0.0.6:
     resolution: {integrity: sha512-Bmxmhi984QgV+Yo5T4uMuKGmfgkkv7BpFkfo0p1di/4ZZt379vDTOLCPf3+HZec12pabMFUCHcq8vyxjUCxcDA==}
     engines: {node: '>= 12'}
+
+  /@snickbit/plural/1.0.6:
+    resolution: {integrity: sha512-weteivKBoVIipbjzp71cegHKm7qVKkRrPMEQ7IarGnKckCImoqnQ0OptTXooE+A3wH2iDoA8Q1WcqVwFVTs7Iw==}
+    engines: {node: '>= 12'}
     dev: true
 
-  /@snickbit/readmes/0.0.2:
-    resolution: {integrity: sha512-BahHYKrOyih3x5veF4r6jZA3mTrT0Bn+RGLdXLmqc/7xKMQD8AbdSpzYoMZDNm6VsaP/bo7H4WN1bkKpR5i58g==}
+  /@snickbit/readmes/0.0.13:
+    resolution: {integrity: sha512-gXUj1sEm563KE39TtYDuMvZkDhHAyl4opvYvzKckJFlcLsrrEOSdNiGbPb/O0ycdt/gahsJNu+i+egWGGPMQMA==}
     engines: {node: '>= 12'}
     hasBin: true
     dependencies:
-      '@snickbit/node-cli': 3.0.4
-      '@snickbit/node-utilities': 4.4.2
-      '@snickbit/out': 2.0.37
-      '@snickbit/upwords': 2.0.21
-      '@snickbit/utilities': 3.2.1
+      '@snickbit/node-cli': 3.0.14
+      '@snickbit/node-utilities': 4.4.9
+      '@snickbit/out': 2.0.40
+      '@snickbit/upwords': 2.0.25
+      '@snickbit/utilities': 3.4.2
       ejs: 3.1.8
       fast-glob: 3.2.11
       lilconfig: 2.0.6
@@ -2331,8 +2368,8 @@ packages:
       - supports-color
     dev: true
 
-  /@snickbit/upwords/2.0.21:
-    resolution: {integrity: sha512-euKyZMt/rp0AoE/CIYRjMyYKj5vzq8Ij1JNJIl+7+T87RqvCrhbMZA/c8VrnLEPRCRttMtYLoChigQcYqZvNyw==}
+  /@snickbit/upwords/2.0.25:
+    resolution: {integrity: sha512-AHpyiACosZ0k2FZ1OZKl1GsQG3Xx5/aJp0yP22nascFbv6APb+dE/rp0tqvN12/9sYM5HDqdJTAymi7DeFTCNw==}
     engines: {node: '>= 12'}
     dev: true
 
@@ -2344,6 +2381,15 @@ packages:
       just-camel-case: 6.0.1
       nanoid: 3.3.4
 
+  /@snickbit/utilities/3.4.10:
+    resolution: {integrity: sha512-/prez4t1JMJx4L4dzoXe6uMPYsgVD+QSrUYPG1UNTWzpjpQ/tj8AxeeA63Pbsive65kibYbfR0YLjf4DosRu+g==}
+    engines: {node: '>= 12'}
+    dependencies:
+      '@snickbit/plural': 1.0.6
+      just-camel-case: 6.0.1
+      nanoid: 3.3.4
+    dev: true
+
   /@snickbit/utilities/3.4.2:
     resolution: {integrity: sha512-juE9uuScBQc11By89w7pf/VvRPQuU012ucMTPBeTTs18RzDXz2gEBAQIAnkoN1SNRN+LQUIp0hLGz9hxZB1ElQ==}
     engines: {node: '>= 12'}
@@ -2351,7 +2397,6 @@ packages:
       '@snickbit/plural': 0.0.6
       just-camel-case: 6.0.1
       nanoid: 3.3.4
-    dev: true
 
   /@tootallnate/once/2.0.0:
     resolution: {integrity: sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==}
@@ -8469,6 +8514,11 @@ packages:
   /yargs-parser/21.0.1:
     resolution: {integrity: sha512-9BK1jFpLzJROCI5TzwZL/TU4gqjK5xiHV/RfWLOahrjAko/e4DJkRDZQXfvqAsiZzzYhgAzbgz6lg48jcm4GLg==}
     engines: {node: '>=12'}
+
+  /yargs-parser/21.1.1:
+    resolution: {integrity: sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==}
+    engines: {node: '>=12'}
+    dev: true
 
   /yargs/16.2.0:
     resolution: {integrity: sha512-D1mvvtDG0L5ft/jGWkLpG1+m0eQxOfaBvTNELraWj22wSVUMWxZUvYgJYcKh6jGGIkJFhH4IZPQhR4TKpc8mBw==}
