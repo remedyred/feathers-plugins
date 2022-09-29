@@ -20,12 +20,11 @@
 		"depcheck": "depcheck",
 		"dev": "tsup",
 		"docs": "typedoc src/index.ts --tsconfig ./tsconfig.typedoc.json",
-		"release": "pnpm dlx semantic-release",
+		"release": "semantic-release",
 		"watch": "pnpm run dev --watch"
 	},
 	"release": {
 		"extends": [
-			"semantic-release-monorepo",
 			"@snickbit/semantic-release"
 		]
 	},
