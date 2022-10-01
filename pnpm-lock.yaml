@@ -57,7 +57,7 @@ importers:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/feathers-helpers': ~1.0.18
+      '@snickbit/feathers-helpers': 1.0.19
       '@snickbit/indexer': 2.5.12
       '@snickbit/node-utilities': ~4.4.2
       '@snickbit/out': ~2.0.37
@@ -389,7 +389,7 @@ importers:
       '@feathersjs/express': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
       '@feathersjs/socketio': 5.0.0-pre.26
-      '@sentry/node': 7.2.0
+      '@sentry/node': 7.14.0
       '@snickbit/feathers-hooks': ~1.0.9
       '@snickbit/feathers-logger': ~1.0.16
       '@snickbit/feathers-logs': ~1.0.24
@@ -419,7 +419,7 @@ importers:
       '@feathersjs/express': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
       '@feathersjs/socketio': 5.0.0-pre.26
-      '@sentry/node': 7.2.0
+      '@sentry/node': 7.14.0
       '@snickbit/feathers-hooks': link:../feathers-hooks
       '@snickbit/feathers-logger': link:../feathers-logger
       '@snickbit/feathers-logs': link:../feathers-logs
@@ -2119,33 +2119,33 @@ packages:
       - supports-color
     dev: true
 
-  /@sentry/core/7.2.0:
-    resolution: {integrity: sha512-9amsbB9/ePkJRgc0cVXCVW2hQUPImgTqBbnKu4frBXBza+9MBC5W3S8ZyZt2InCK22kuhNVo3z61a8mzCgXoCA==}
+  /@sentry/core/7.14.0:
+    resolution: {integrity: sha512-Hgn7De6CiCFnz868/Lrtei+9rj7/TIwhbDe3J+NeH+2ffXYn4VI8FxrlR/p2XfIq9iCfmG80EQXDtSh+Kh7mOw==}
     engines: {node: '>=8'}
     dependencies:
-      '@sentry/hub': 7.2.0
-      '@sentry/types': 7.2.0
-      '@sentry/utils': 7.2.0
+      '@sentry/hub': 7.14.0
+      '@sentry/types': 7.14.0
+      '@sentry/utils': 7.14.0
       tslib: 1.14.1
     dev: false
 
-  /@sentry/hub/7.2.0:
-    resolution: {integrity: sha512-uzd+GzD++Z4QopRh3AyRc4jz4AzomMnrXTOmdXgud1BH/Du9AYutVlBc5ZYwqCuJH7QPuAW3ySU3P+16UCinIg==}
+  /@sentry/hub/7.14.0:
+    resolution: {integrity: sha512-O+pxsipeiURC6Mxuivz1pX3yHlkQCI2yjP38bISxUZv1NIijHuxiDmgqrrcCJltiIfyY2+f9LAezKVCAXnPFuw==}
     engines: {node: '>=8'}
     dependencies:
-      '@sentry/types': 7.2.0
-      '@sentry/utils': 7.2.0
+      '@sentry/types': 7.14.0
+      '@sentry/utils': 7.14.0
       tslib: 1.14.1
     dev: false
 
-  /@sentry/node/7.2.0:
-    resolution: {integrity: sha512-dSI+2DrT98+eqSAv3QG3jMrq4YefBaxRbSCR9Ok7oLQW2/eskbRWH4mgYssrDXEx319SBYHh90qq/EwCOEkHtw==}
+  /@sentry/node/7.14.0:
+    resolution: {integrity: sha512-dI5kluEkvnKlW2dMYQGM9rAYmL+dVdaZPSnqnP2DcuW3taquCoBX1POXokD/GS6Qdv/eNeMu+rDxEGYTTkBXBg==}
     engines: {node: '>=8'}
     dependencies:
-      '@sentry/core': 7.2.0
-      '@sentry/hub': 7.2.0
-      '@sentry/types': 7.2.0
-      '@sentry/utils': 7.2.0
+      '@sentry/core': 7.14.0
+      '@sentry/hub': 7.14.0
+      '@sentry/types': 7.14.0
+      '@sentry/utils': 7.14.0
       cookie: 0.4.2
       https-proxy-agent: 5.0.1
       lru_map: 0.3.3
@@ -2154,21 +2154,21 @@ packages:
       - supports-color
     dev: false
 
-  /@sentry/types/7.2.0:
-    resolution: {integrity: sha512-e6w62C2AmE5ULr9w/BuVaKTRpKUMGWyw4PhcBlSdDRoS47QgURGgDFIvr3VlaDwkUfCbASwSv49fDhKRX3aoew==}
+  /@sentry/types/7.14.0:
+    resolution: {integrity: sha512-9iFZS9Hr5hAoL+M9oUH2dY9burOaQh+CHGH66fortuTp++YDWKdbPEeKcz8hRJaUyBBn53rdxiBmAyHsrlE6KA==}
     engines: {node: '>=8'}
     dev: false
 
-  /@sentry/utils/7.2.0:
-    resolution: {integrity: sha512-uUKIsIXyb6ZXBbl/L8UwG4gy8PBXZl5pGCUFRPbns+vi0U6vtmDRDYa1A/7E17VkBJNRPVNJQr9Pq5Yd0I0MRA==}
+  /@sentry/utils/7.14.0:
+    resolution: {integrity: sha512-q9em4ZBcaUk7J1WULiltZVEcbyCE0wwAIjqRaoNmHVe4FeK++uAPo2ULZM1kQgN8syZnQ1jcfLktIKkWfnE2cg==}
     engines: {node: '>=8'}
     dependencies:
-      '@sentry/types': 7.2.0
+      '@sentry/types': 7.14.0
       tslib: 1.14.1
     dev: false
 
-  /@snickbit/ansi/0.0.18:
-    resolution: {integrity: sha512-gCK0azCGO00+R2hgrxcNL+yvHMgEqUnsr1HPBKhfBUukFurjZ58GWNHDkFst5QvKBdJbpUxgudVW0UfJSSISXw==}
+  /@snickbit/ansi/0.0.20:
+    resolution: {integrity: sha512-jH1GEZe8vXph25lM5nzYJmrXhCCC6PwefWemIEIAtv0UNuCwktk6neJG0+Idcj6fBOcca8GtnBhWw1HIzRJGNA==}
     engines: {node: '>= 12'}
 
   /@snickbit/cycle/0.0.29:
@@ -2281,7 +2281,7 @@ packages:
     resolution: {integrity: sha512-fTVcE5QKVSNKMddUVqwXGsc5jx87L8sKm6ufA1z/02ygibz/pCGqmDI5lQZsv7qIFwm+9h0r3ydk59RCf7gw8Q==}
     engines: {node: '>= 12'}
     dependencies:
-      '@snickbit/ansi': 0.0.18
+      '@snickbit/ansi': 0.0.20
       '@snickbit/cycle': 0.0.29
       '@snickbit/utilities': 3.2.1
       ansi-styles-template: 1.0.0
