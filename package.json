@@ -23,7 +23,7 @@
 	},
 	"devDependencies": {
 		"@snickbit/eslint-config": "0.0.10",
-		"@snickbit/readmes": "0.0.2",
+		"@snickbit/readmes": "0.0.22",
 		"@snickbit/semantic-release": "^1.5.3",
 		"depcheck": "1.4.3",
 		"eslint": "8.24.0",
