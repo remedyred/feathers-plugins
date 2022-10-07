@@ -298,7 +298,7 @@ importers:
       '@snickbit/feathers-helpers': ~1.0.18
       '@snickbit/indexer': 2.5.12
       '@snickbit/utilities': ~3.2.0
-      ioredis: 5.2.2
+      ioredis: 5.2.3
       sift: 16.0.0
       tsup: 6.2.3
       typedoc: 0.23.12
@@ -309,7 +309,7 @@ importers:
       '@feathersjs/errors': 5.0.0-pre.26
       '@snickbit/feathers-helpers': link:../feathers-helpers
       '@snickbit/utilities': 3.2.1
-      ioredis: 5.2.2
+      ioredis: 5.2.3
       sift: 16.0.0
     devDependencies:
       '@feathersjs/feathers': 5.0.0-pre.26
@@ -358,7 +358,7 @@ importers:
       '@snickbit/out': ~2.0.37
       '@snickbit/utilities': ~3.2.0
       bullmq: 1.86.10
-      ioredis: 5.2.2
+      ioredis: 5.2.3
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.5
@@ -375,7 +375,7 @@ importers:
       '@snickbit/out': 2.0.37
       '@snickbit/utilities': 3.2.1
       bullmq: 1.86.10
-      ioredis: 5.2.2
+      ioredis: 5.2.3
     devDependencies:
       '@snickbit/indexer': 2.5.12
       tsup: 6.2.3_typescript@4.8.2
@@ -403,7 +403,7 @@ importers:
       cors: 2.8.5
       express: 4.18.1
       helmet: 5.1.1
-      ioredis: 5.0.6
+      ioredis: 5.2.3
       knex: 2.1.0
       mongodb: 4.7.0
       mysql: 2.18.1
@@ -436,7 +436,7 @@ importers:
       winston: 3.8.1
       winston-daily-rotate-file: 4.7.1_winston@3.8.1
     optionalDependencies:
-      ioredis: 5.0.6
+      ioredis: 5.2.3
       knex: 2.1.0_mysql@2.18.1
       mongodb: 4.7.0
       mysql: 2.18.1
@@ -486,14 +486,14 @@ importers:
   packages/feathers-up-redis:
     specifiers:
       '@snickbit/feathers-up': 1.0.35
-      ioredis: 5.2.2
+      ioredis: 5.2.3
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.5
       typescript: 4.8.2
     dependencies:
       '@snickbit/feathers-up': link:../feathers-up
-      ioredis: 5.2.2
+      ioredis: 5.2.3
     devDependencies:
       tsup: 6.2.3_typescript@4.8.2
       typedoc: 0.23.12_typescript@4.8.2
@@ -5041,27 +5041,8 @@ packages:
       - supports-color
     dev: false
 
-  /ioredis/5.0.6:
-    resolution: {integrity: sha512-KUm7wPzIet9QrFMoMm09/4bkfVKBUD9KXwBitP3hrNkZ+A6NBndweXGwYIB/7szHcTZgfo7Kvx88SxljJV4D9A==}
-    engines: {node: '>=12.22.0'}
-    requiresBuild: true
-    dependencies:
-      '@ioredis/commands': 1.2.0
-      cluster-key-slot: 1.1.0
-      debug: 4.3.4
-      denque: 2.1.0
-      lodash.defaults: 4.2.0
-      lodash.isarguments: 3.1.0
-      redis-errors: 1.2.0
-      redis-parser: 3.0.0
-      standard-as-callback: 2.1.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-    optional: true
-
-  /ioredis/5.2.2:
-    resolution: {integrity: sha512-wryKc1ur8PcCmNwfcGkw5evouzpbDXxxkMkzPK8wl4xQfQf7lHe11Jotell5ikMVAtikXJEu/OJVaoV51BggRQ==}
+  /ioredis/5.2.3:
+    resolution: {integrity: sha512-gQNcMF23/NpvjCaa1b5YycUyQJ9rBNH2xP94LWinNpodMWVUPP5Ai/xXANn/SM7gfIvI62B5CCvZxhg5pOgyMw==}
     engines: {node: '>=12.22.0'}
     dependencies:
       '@ioredis/commands': 1.2.0
