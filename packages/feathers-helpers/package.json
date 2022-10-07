@@ -32,14 +32,13 @@
 		"@feathersjs/adapter-commons": "5.0.0-pre.26",
 		"@feathersjs/commons": "5.0.0-pre.26",
 		"@feathersjs/errors": "5.0.0-pre.26",
-		"@snickbit/out": "~2.0.48",
-		"@snickbit/utilities": "~3.4.13",
+		"@snickbit/out": "2.0.48",
+		"@snickbit/utilities": "3.4.13",
 		"sift": "16.0.0"
 	},
 	"devDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.26",
-		"@snickbit/indexer": "2.5.27",
-		"shx": "0.3.4",
+		"@snickbit/indexer": "^2.5.27",
 		"tsup": "6.2.3",
 		"typedoc": "0.23.15",
 		"typedoc-plugin-markdown": "3.13.6",
