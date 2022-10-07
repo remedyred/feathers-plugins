@@ -404,7 +404,7 @@ importers:
       express: 4.18.1
       helmet: ^6.0.0
       ioredis: 5.2.3
-      knex: 2.1.0
+      knex: 2.3.0
       mongodb: 4.7.0
       mysql: 2.18.1
       socket.io: 4.5.2
@@ -437,7 +437,7 @@ importers:
       winston-daily-rotate-file: 4.7.1_winston@3.8.1
     optionalDependencies:
       ioredis: 5.2.3
-      knex: 2.1.0_mysql@2.18.1
+      knex: 2.3.0_mysql@2.18.1
       mongodb: 4.7.0
       mysql: 2.18.1
     devDependencies:
@@ -467,7 +467,7 @@ importers:
   packages/feathers-up-mysql:
     specifiers:
       '@snickbit/feathers-up': 1.0.35
-      knex: 2.2.0
+      knex: 2.3.0
       mysql: 2.18.1
       tsup: 6.2.3
       typedoc: 0.23.15
@@ -475,7 +475,7 @@ importers:
       typescript: 4.8.4
     dependencies:
       '@snickbit/feathers-up': link:../feathers-up
-      knex: 2.2.0_mysql@2.18.1
+      knex: 2.3.0_mysql@2.18.1
       mysql: 2.18.1
     devDependencies:
       tsup: 6.2.3_typescript@4.8.4
@@ -3410,11 +3410,6 @@ packages:
       color-string: 1.9.1
     dev: false
 
-  /colorette/2.0.16:
-    resolution: {integrity: sha512-hUewv7oMjCp+wkBv5Rm0v87eJhq4woh5rSR+42YSQJKecCqgIqNkZ6lAlQms/BwHPJA5NKMRlpxPRv0n8HQW6g==}
-    dev: false
-    optional: true
-
   /colorette/2.0.19:
     resolution: {integrity: sha512-3tlv/dIP7FWvj3BsbHrGLJ6l/oKh1O3TcgBqMn+yyCagOxc23fyzDS6HypQbgxWbkpDnf52p1LuR4eWDQ/K9WQ==}
 
@@ -5395,57 +5390,8 @@ packages:
     resolution: {integrity: sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==}
     engines: {node: '>=6'}
 
-  /knex/2.1.0_mysql@2.18.1:
-    resolution: {integrity: sha512-vVsnD6UJdSJy55TvCXfFF9syfwyXNxfE9mvr2hJL/4Obciy2EPGoqjDpgRSlMruHuPWDOeYAG25nyrGvU+jJog==}
-    engines: {node: '>=12'}
-    hasBin: true
-    requiresBuild: true
-    peerDependencies:
-      better-sqlite3: '*'
-      mysql: '*'
-      mysql2: '*'
-      pg: '*'
-      pg-native: '*'
-      sqlite3: '*'
-      tedious: '*'
-    peerDependenciesMeta:
-      better-sqlite3:
-        optional: true
-      mysql:
-        optional: true
-      mysql2:
-        optional: true
-      pg:
-        optional: true
-      pg-native:
-        optional: true
-      sqlite3:
-        optional: true
-      tedious:
-        optional: true
-    dependencies:
-      colorette: 2.0.16
-      commander: 9.4.0
-      debug: 4.3.4
-      escalade: 3.1.1
-      esm: 3.2.25
-      get-package-type: 0.1.0
-      getopts: 2.3.0
-      interpret: 2.2.0
-      lodash: 4.17.21
-      mysql: 2.18.1
-      pg-connection-string: 2.5.0
-      rechoir: 0.8.0
-      resolve-from: 5.0.0
-      tarn: 3.0.2
-      tildify: 2.0.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-    optional: true
-
-  /knex/2.2.0_mysql@2.18.1:
-    resolution: {integrity: sha512-yhm1Qe9Ok0TeXBq3nNHqZYJPrQ4Iw2tq9k/HxjrZ/EWec2ifOjJlkNHr26v8cQrWtk5iG3iwfUazTIWy+VKG5g==}
+  /knex/2.3.0_mysql@2.18.1:
+    resolution: {integrity: sha512-WMizPaq9wRMkfnwKXKXgBZeZFOSHGdtoSz5SaLAVNs3WRDfawt9O89T4XyH52PETxjV8/kRk0Yf+8WBEP/zbYw==}
     engines: {node: '>=12'}
     hasBin: true
     peerDependencies:
