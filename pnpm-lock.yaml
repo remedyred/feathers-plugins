@@ -5,16 +5,16 @@ importers:
   .:
     specifiers:
       '@snickbit/eslint-config': 0.1.2
-      '@snickbit/readmes': 0.0.22
+      '@snickbit/readmes': ^0.0.22
       '@snickbit/semantic-release': ^1.5.6
-      depcheck: 1.4.3
-      eslint: 8.24.0
+      depcheck: ^1.4.3
+      eslint: ~8.24.0
       husky: 8.0.1
-      lint-staged: 13.0.3
-      multi-semantic-release: ^3.0.1
+      lint-staged: ^13.0.3
+      multi-semantic-release: 3.0.1
       semantic-release: 19.0.5
-      shx: 0.3.4
-      turbo: 1.5.5
+      shx: ^0.3.4
+      turbo: ^1.5.5
       typescript: 4.8.4
     devDependencies:
       '@snickbit/eslint-config': 0.1.2_ypn2ylkkyfa5i233caldtndbqa
@@ -35,7 +35,6 @@ importers:
       '@feathersjs/authentication': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
-      shx: 0.3.4
       tsup: 6.2.3
       typedoc: 0.23.15
       typedoc-plugin-markdown: 3.13.6
@@ -45,7 +44,6 @@ importers:
       '@feathersjs/errors': 5.0.0-pre.26
     devDependencies:
       '@feathersjs/feathers': 5.0.0-pre.26
-      shx: 0.3.4
       tsup: 6.2.3_typescript@4.8.4
       typedoc: 0.23.15_typescript@4.8.4
       typedoc-plugin-markdown: 3.13.6_typedoc@0.23.15
@@ -58,18 +56,17 @@ importers:
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/feathers-helpers': 1.0.19
-      '@snickbit/indexer': 2.5.27
-      '@snickbit/node-utilities': ~4.4.14
-      '@snickbit/out': ~2.0.48
-      '@snickbit/utilities': ~3.4.13
+      '@snickbit/indexer': ^2.5.27
+      '@snickbit/node-utilities': 4.4.14
+      '@snickbit/out': 2.0.48
+      '@snickbit/utilities': 3.4.13
       '@types/express': 4.17.14
-      '@types/multer': 1.4.7
+      '@types/multer': ~1.4.7
       express: 4.18.1
       fast-glob: 3.2.12
       fs-extra: 10.1.0
       mime: 3.0.0
       multer: 1.4.5-lts.1
-      shx: 0.3.4
       sift: 16.0.0
       tsup: 6.2.3
       typedoc: 0.23.15
@@ -84,7 +81,6 @@ importers:
       '@snickbit/node-utilities': 4.4.14
       '@snickbit/out': 2.0.48
       '@snickbit/utilities': 3.4.13
-      '@types/express': 4.17.14
       express: 4.18.1
       fast-glob: 3.2.12
       fs-extra: 10.1.0
@@ -93,8 +89,8 @@ importers:
       sift: 16.0.0
     devDependencies:
       '@snickbit/indexer': 2.5.27
+      '@types/express': 4.17.14
       '@types/multer': 1.4.7
-      shx: 0.3.4
       tsup: 6.2.3_typescript@4.8.4
       typedoc: 0.23.15_typescript@4.8.4
       typedoc-plugin-markdown: 3.13.6_typedoc@0.23.15
@@ -106,10 +102,9 @@ importers:
       '@feathersjs/commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/indexer': 2.5.27
-      '@snickbit/out': ~2.0.48
-      '@snickbit/utilities': ~3.4.13
-      shx: 0.3.4
+      '@snickbit/indexer': ^2.5.27
+      '@snickbit/out': 2.0.48
+      '@snickbit/utilities': 3.4.13
       sift: 16.0.0
       tsup: 6.2.3
       typedoc: 0.23.15
@@ -125,7 +120,6 @@ importers:
     devDependencies:
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/indexer': 2.5.27
-      shx: 0.3.4
       tsup: 6.2.3_typescript@4.8.4
       typedoc: 0.23.15_typescript@4.8.4
       typedoc-plugin-markdown: 3.13.6_typedoc@0.23.15
@@ -134,7 +128,7 @@ importers:
   packages/feathers-hooks:
     specifiers:
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/indexer': 2.5.27
+      '@snickbit/indexer': ^2.5.27
       tsup: 6.2.3
       typedoc: 0.23.15
       typedoc-plugin-markdown: 3.13.6
@@ -150,8 +144,8 @@ importers:
   packages/feathers-logger:
     specifiers:
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/out': ~2.0.48
-      '@snickbit/utilities': ~3.4.13
+      '@snickbit/out': 2.0.48
+      '@snickbit/utilities': 3.4.13
       '@types/node': 18.8.3
       axios: 0.27.2
       browser-or-node: 2.0.0
@@ -175,8 +169,8 @@ importers:
   packages/feathers-logs:
     specifiers:
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/feathers-logger': ~1.0.17
-      '@snickbit/feathers-mongo': ~2.0.9
+      '@snickbit/feathers-logger': 1.0.17
+      '@snickbit/feathers-mongo': 2.0.9
       tsup: 6.2.3
       typedoc: 0.23.15
       typedoc-plugin-markdown: 3.13.6
@@ -196,8 +190,8 @@ importers:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/feathers-helpers': ~1.0.19
-      '@snickbit/model': ~1.0.65
+      '@snickbit/feathers-helpers': 1.0.19
+      '@snickbit/model': 1.0.65
       feathers-memory: 4.1.0
       tsup: 6.2.3
       typedoc: 0.23.15
@@ -222,9 +216,9 @@ importers:
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
       '@feathersjs/mongodb': 5.0.0-pre.26
-      '@snickbit/feathers-model': ~1.0.20
-      '@snickbit/out': ~2.0.48
-      '@snickbit/utilities': ~3.4.13
+      '@snickbit/feathers-model': 1.0.20
+      '@snickbit/out': 2.0.48
+      '@snickbit/utilities': 3.4.13
       mongodb: 4.10.0
       tsup: 6.2.3
       typedoc: 0.23.15
@@ -250,16 +244,15 @@ importers:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/feathers-helpers': ~1.0.19
-      '@snickbit/out': ~2.0.48
-      '@snickbit/utilities': ~3.4.13
+      '@snickbit/feathers-helpers': 1.0.19
+      '@snickbit/out': 2.0.48
+      '@snickbit/utilities': 3.4.13
       '@types/pouchdb': 6.4.0
       garbados-crypt: 3.0.0-beta
       pouchdb: 7.3.0
       pouchdb-adapter-memory: 7.3.0
       pouchdb-find: 7.3.0
       pouchdb-md5: 7.3.0
-      shx: 0.3.4
       transform-pouch: 2.0.0
       tsup: 6.2.3
       tweetnacl: 1.0.3
@@ -284,7 +277,6 @@ importers:
       tweetnacl-util: 0.15.1
     devDependencies:
       '@types/pouchdb': 6.4.0
-      shx: 0.3.4
       tsup: 6.2.3_typescript@4.8.4
       typedoc: 0.23.15_typescript@4.8.4
       typedoc-plugin-markdown: 3.13.6_typedoc@0.23.15
@@ -295,9 +287,9 @@ importers:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/feathers-helpers': ~1.0.19
-      '@snickbit/indexer': 2.5.27
-      '@snickbit/utilities': ~3.4.13
+      '@snickbit/feathers-helpers': 1.0.19
+      '@snickbit/indexer': ^2.5.27
+      '@snickbit/utilities': 3.4.13
       ioredis: 5.2.3
       sift: 16.0.0
       tsup: 6.2.3
@@ -323,9 +315,9 @@ importers:
     specifiers:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/feathers-helpers': ~1.0.19
-      '@snickbit/indexer': 2.5.27
-      '@snickbit/out': ~2.0.48
+      '@snickbit/feathers-helpers': 1.0.19
+      '@snickbit/indexer': ^2.5.27
+      '@snickbit/out': 2.0.48
       axios: 0.27.2
       tsup: 6.2.3
       typedoc: 0.23.15
@@ -349,14 +341,14 @@ importers:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/dates': ~1.0.62
-      '@snickbit/feathers-helpers': ~1.0.19
-      '@snickbit/feathers-model': ~1.0.20
-      '@snickbit/indexer': 2.5.27
-      '@snickbit/node-cli': ~3.0.24
-      '@snickbit/node-utilities': ~4.4.14
-      '@snickbit/out': ~2.0.48
-      '@snickbit/utilities': ~3.4.13
+      '@snickbit/dates': 1.0.62
+      '@snickbit/feathers-helpers': 1.0.19
+      '@snickbit/feathers-model': 1.0.20
+      '@snickbit/indexer': ^2.5.27
+      '@snickbit/node-cli': 3.0.24
+      '@snickbit/node-utilities': 4.4.14
+      '@snickbit/out': 2.0.48
+      '@snickbit/utilities': 3.4.13
       bullmq: 1.91.1
       ioredis: 5.2.3
       tsup: 6.2.3
@@ -393,16 +385,16 @@ importers:
       '@snickbit/feathers-hooks': 1.0.10
       '@snickbit/feathers-logger': 1.0.17
       '@snickbit/feathers-logs': 1.0.25
-      '@snickbit/indexer': 2.5.27
-      '@snickbit/model': ~1.0.65
-      '@snickbit/node-utilities': ~4.4.14
-      '@snickbit/out': ~2.0.48
-      '@snickbit/utilities': ~3.4.13
+      '@snickbit/indexer': ^2.5.27
+      '@snickbit/model': 1.0.65
+      '@snickbit/node-utilities': 4.4.14
+      '@snickbit/out': 2.0.48
+      '@snickbit/utilities': 3.4.13
       body-parser: 1.20.1
       compression: 1.7.4
       cors: 2.8.5
       express: 4.18.1
-      helmet: ^6.0.0
+      helmet: 6.0.0
       ioredis: 5.2.3
       knex: 2.3.0
       mongodb: 4.10.0
