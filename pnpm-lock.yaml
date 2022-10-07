@@ -5,7 +5,7 @@ importers:
   .:
     specifiers:
       '@snickbit/eslint-config': 0.0.10
-      '@snickbit/readmes': 0.0.2
+      '@snickbit/readmes': 0.0.22
       '@snickbit/semantic-release': ^1.5.3
       depcheck: 1.4.3
       eslint: 8.24.0
@@ -18,7 +18,7 @@ importers:
       typescript: 4.8.4
     devDependencies:
       '@snickbit/eslint-config': 0.0.10_ypn2ylkkyfa5i233caldtndbqa
-      '@snickbit/readmes': 0.0.2
+      '@snickbit/readmes': 0.0.22
       '@snickbit/semantic-release': 1.5.3_semantic-release@19.0.5
       depcheck: 1.4.3
       eslint: 8.24.0
@@ -2183,6 +2183,13 @@ packages:
     dependencies:
       '@snickbit/utilities': 3.4.2
 
+  /@snickbit/cycle/1.0.7:
+    resolution: {integrity: sha512-JjcG5Z8yuux3HqYGm7HfEmqy0TTT4McoqZQ6L7Irq6XBlu3/6N73FnVk7gxZ54XkKA/nvUkvyFc3RKbcLEzrkg==}
+    engines: {node: '>= 12'}
+    dependencies:
+      '@snickbit/utilities': 3.4.13
+    dev: true
+
   /@snickbit/dates/1.0.50:
     resolution: {integrity: sha512-GPyFAckrzpETvD92QNVwcFqaZ1NKEoMFb+DRINifWPVB8D6UIEM+VI5oYD/DMdD5vZrnnvHNNHKtMDJIHyFA1w==}
     engines: {node: '>= 12'}
@@ -2240,10 +2247,21 @@ packages:
     engines: {node: '>= 12'}
     dependencies:
       '@snickbit/node-utilities': 4.4.9
-      '@snickbit/out': 2.0.37
+      '@snickbit/out': 2.0.45
       '@snickbit/utilities': 3.4.2
       lilconfig: 2.0.6
-      yargs-parser: 21.0.1
+      yargs-parser: 21.1.1
+    dev: true
+
+  /@snickbit/node-cli/3.0.24:
+    resolution: {integrity: sha512-8JuelOjc0rheep3qJmwhB0SMs3NRhDa9hADVv53WaBLdtRVCaKL1nbwgIb26Bkvo9c8/sn76A74dcZ8hWYIPTw==}
+    engines: {node: '>= 12'}
+    dependencies:
+      '@snickbit/node-utilities': 4.4.9
+      '@snickbit/out': 2.0.45
+      '@snickbit/utilities': 3.4.2
+      lilconfig: 2.0.6
+      yargs-parser: 21.1.1
     dev: true
 
   /@snickbit/node-cli/3.0.4:
@@ -2255,6 +2273,7 @@ packages:
       '@snickbit/utilities': 3.4.2
       lilconfig: 2.0.6
       yargs-parser: 21.0.1
+    dev: false
 
   /@snickbit/node-utilities/4.4.2:
     resolution: {integrity: sha512-FJAENTpMfbg3BlXBuuCSD6Dy7DM6ha9PEq2mc3/r/fD7UytzNxauCTMbw10mbU02e82YMxyss/s18HKvpoH3YQ==}
@@ -2268,12 +2287,13 @@ packages:
       lodash.throttle: 4.1.1
       nanospinner: 1.1.0
       prompts: 2.4.2
+    dev: false
 
   /@snickbit/node-utilities/4.4.9:
     resolution: {integrity: sha512-FZPHi2JhujSIwGi113iHz2+0G9mEBR0m1H8y87kY9Sov3PdzCuBq8zBoy+i2cWjJzPHQj++MhLyCXmu2ArBOlg==}
     engines: {node: '>= 12'}
     dependencies:
-      '@snickbit/out': 2.0.37
+      '@snickbit/out': 2.0.45
       '@snickbit/utilities': 3.4.2
       ansi-styles-template: 1.0.0
       cli-progress: 3.11.2
@@ -2295,22 +2315,40 @@ packages:
       node-inspect-extracted: 1.1.0
       picomatch-browser: 2.2.6
 
+  /@snickbit/out/2.0.45:
+    resolution: {integrity: sha512-ucCmuzTyVEzIxhksvpGbx7pFP/TvPqt2IhP0PPlPdT8ufBI6vYBWzW9kl+yrVb9reY51zh1TPYY+TccxjXUtjQ==}
+    engines: {node: '>= 12'}
+    dependencies:
+      '@snickbit/ansi': 0.0.23
+      '@snickbit/cycle': 1.0.7
+      '@snickbit/utilities': 3.4.13
+      ansi-styles-template: 1.0.0
+      browser-or-node: 2.0.0
+      node-inspect-extracted: 1.1.0
+      picomatch-browser: 2.2.6
+    dev: true
+
   /@snickbit/plural/0.0.6:
     resolution: {integrity: sha512-Bmxmhi984QgV+Yo5T4uMuKGmfgkkv7BpFkfo0p1di/4ZZt379vDTOLCPf3+HZec12pabMFUCHcq8vyxjUCxcDA==}
     engines: {node: '>= 12'}
 
-  /@snickbit/readmes/0.0.2:
-    resolution: {integrity: sha512-BahHYKrOyih3x5veF4r6jZA3mTrT0Bn+RGLdXLmqc/7xKMQD8AbdSpzYoMZDNm6VsaP/bo7H4WN1bkKpR5i58g==}
+  /@snickbit/plural/1.0.7:
+    resolution: {integrity: sha512-F8nlHKito8NFfM06T/oUePBPcEOcsLgPtB9HFfMD9M57wArgjLBGu7D8WyzWWn0RhGWL3q/Bl/AWHCaekS/Bmg==}
+    engines: {node: '>= 12'}
+    dev: true
+
+  /@snickbit/readmes/0.0.22:
+    resolution: {integrity: sha512-5BTBTRg8hQ69eeTUoS6QKJl2pbAJhqz81WNGL3NOk1lttyIcAwrmZJnJQ8DRyloIpJDcE77PAjj9PAuf26oQnA==}
     engines: {node: '>= 12'}
     hasBin: true
     dependencies:
-      '@snickbit/node-cli': 3.0.4
-      '@snickbit/node-utilities': 4.4.2
-      '@snickbit/out': 2.0.37
-      '@snickbit/upwords': 2.0.21
+      '@snickbit/node-cli': 3.0.24
+      '@snickbit/node-utilities': 4.4.9
+      '@snickbit/out': 2.0.45
+      '@snickbit/upwords': 2.0.25
       '@snickbit/utilities': 3.4.2
       ejs: 3.1.8
-      fast-glob: 3.2.12
+      fast-glob: 3.2.11
       lilconfig: 2.0.6
     dev: true
 
@@ -2332,9 +2370,18 @@ packages:
       - supports-color
     dev: true
 
-  /@snickbit/upwords/2.0.21:
-    resolution: {integrity: sha512-euKyZMt/rp0AoE/CIYRjMyYKj5vzq8Ij1JNJIl+7+T87RqvCrhbMZA/c8VrnLEPRCRttMtYLoChigQcYqZvNyw==}
+  /@snickbit/upwords/2.0.25:
+    resolution: {integrity: sha512-AHpyiACosZ0k2FZ1OZKl1GsQG3Xx5/aJp0yP22nascFbv6APb+dE/rp0tqvN12/9sYM5HDqdJTAymi7DeFTCNw==}
     engines: {node: '>= 12'}
+    dev: true
+
+  /@snickbit/utilities/3.4.13:
+    resolution: {integrity: sha512-RCRNL4+Xrs6QsYyFyt9YD8DTVci95nWuPyIPW8mNIHZ1gV1Gh2yj7qyQvUezdsCdZQBX0G8/FtZ+0Jg0WqE1Cg==}
+    engines: {node: '>= 12'}
+    dependencies:
+      '@snickbit/plural': 1.0.7
+      just-camel-case: 6.0.1
+      nanoid: 3.3.4
     dev: true
 
   /@snickbit/utilities/3.4.2:
@@ -8427,6 +8474,12 @@ packages:
   /yargs-parser/21.0.1:
     resolution: {integrity: sha512-9BK1jFpLzJROCI5TzwZL/TU4gqjK5xiHV/RfWLOahrjAko/e4DJkRDZQXfvqAsiZzzYhgAzbgz6lg48jcm4GLg==}
     engines: {node: '>=12'}
+    dev: false
+
+  /yargs-parser/21.1.1:
+    resolution: {integrity: sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==}
+    engines: {node: '>=12'}
+    dev: true
 
   /yargs/16.2.0:
     resolution: {integrity: sha512-D1mvvtDG0L5ft/jGWkLpG1+m0eQxOfaBvTNELraWj22wSVUMWxZUvYgJYcKh6jGGIkJFhH4IZPQhR4TKpc8mBw==}
