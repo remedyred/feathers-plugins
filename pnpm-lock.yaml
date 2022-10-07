@@ -402,7 +402,7 @@ importers:
       compression: 1.7.4
       cors: 2.8.5
       express: 4.18.1
-      helmet: 5.1.1
+      helmet: ^6.0.0
       ioredis: 5.2.3
       knex: 2.1.0
       mongodb: 4.7.0
@@ -431,7 +431,7 @@ importers:
       compression: 1.7.4
       cors: 2.8.5
       express: 4.18.1
-      helmet: 5.1.1
+      helmet: 6.0.0
       socket.io: 4.5.2
       winston: 3.8.1
       winston-daily-rotate-file: 4.7.1_winston@3.8.1
@@ -4866,9 +4866,9 @@ packages:
     resolution: {integrity: sha512-7SW7ejyfnRxuOc7ptQHSf4LDoZaWOivfzqw+5rpcQku0nHfmicPKE51ra9BiRLAmT8+gGLestr1XroUkqdjL6w==}
     dev: false
 
-  /helmet/5.1.1:
-    resolution: {integrity: sha512-/yX0oVZBggA9cLJh8aw3PPCfedBnbd7J2aowjzsaWwZh7/UFY0nccn/aHAggIgWUFfnykX8GKd3a1pSbrmlcVQ==}
-    engines: {node: '>=12.0.0'}
+  /helmet/6.0.0:
+    resolution: {integrity: sha512-FO9RpR1wNJepH/GbLPQVtkE2eESglXL641p7SdyoT4LngHFJcZheHMoyUcjCZF4qpuMMO1u5q6RK0l9Ux8JBcg==}
+    engines: {node: '>=14.0.0'}
     dev: false
 
   /hook-std/2.0.0:
