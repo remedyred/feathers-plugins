@@ -63,7 +63,7 @@
 	"optionalDependencies": {
 		"ioredis": "5.2.3",
 		"knex": "2.3.0",
-		"mongodb": "4.7.0",
+		"mongodb": "4.10.0",
 		"mysql": "2.18.1"
 	},
 	"engines": {
