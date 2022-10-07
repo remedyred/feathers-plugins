@@ -4,7 +4,7 @@ importers:
 
   .:
     specifiers:
-      '@snickbit/eslint-config': 0.1.2
+      '@snickbit/eslint-config': 1.3.8
       '@snickbit/readmes': ^0.0.22
       '@snickbit/semantic-release': ^1.5.6
       depcheck: ^1.4.3
@@ -17,7 +17,7 @@ importers:
       turbo: ^1.5.5
       typescript: 4.8.4
     devDependencies:
-      '@snickbit/eslint-config': 0.1.2_ypn2ylkkyfa5i233caldtndbqa
+      '@snickbit/eslint-config': 1.3.8_ypn2ylkkyfa5i233caldtndbqa
       '@snickbit/readmes': 0.0.22
       '@snickbit/semantic-release': 1.5.6_semantic-release@19.0.5
       depcheck: 1.4.3
@@ -1420,8 +1420,8 @@ packages:
     engines: {node: '>=6.9.0'}
     dev: true
 
-  /@babel/helper-validator-identifier/7.18.6:
-    resolution: {integrity: sha512-MmetCkz9ej86nJQV+sFCxoGGrUbU3q02kgLciwkrt9QqEB7cP39oKEY0PakknEO0Gu20SskMRi+AYZ3b1TpN9g==}
+  /@babel/helper-validator-identifier/7.19.1:
+    resolution: {integrity: sha512-awrNfaMtnHUr653GgGEs++LlAvW6w+DcPrOliSMXWCKo597CwL5Acf/wWdNkf/tfEQE3mjkeD1YOVZOUV/od1w==}
     engines: {node: '>=6.9.0'}
     dev: true
 
@@ -1429,7 +1429,7 @@ packages:
     resolution: {integrity: sha512-u7stbOuYjaPezCuLj29hNW1v64M2Md2qupEKP1fHc7WdOA3DgLh37suiSrZYY7haUB7iBeQZ9P1uiRF359do3g==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/helper-validator-identifier': 7.18.6
+      '@babel/helper-validator-identifier': 7.19.1
       chalk: 2.4.2
       js-tokens: 4.0.0
     dev: true
@@ -1489,7 +1489,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/helper-string-parser': 7.18.10
-      '@babel/helper-validator-identifier': 7.18.6
+      '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
     dev: true
 
@@ -2184,8 +2184,8 @@ packages:
       dayjs: 1.11.4
     dev: false
 
-  /@snickbit/eslint-config/0.1.2_ypn2ylkkyfa5i233caldtndbqa:
-    resolution: {integrity: sha512-l0uHDSMp1Vbq0R4dqcp3if0edAaz4aMzLCF6k4Kt0K53VYV/PstSW+sRn+krix772NM1bkJUOS+MJp8/I6zpoA==}
+  /@snickbit/eslint-config/1.3.8_ypn2ylkkyfa5i233caldtndbqa:
+    resolution: {integrity: sha512-Z8GUd/cR4/Rt6FlmLbNrPoCL2isqzSljH+8V5xwUdr4PH0LD4snJ4CL3egNQgrZryOs8OC4z3XgOtzHY0p1mqA==}
     engines: {node: '>= 12'}
     peerDependencies:
       eslint: '>= 8.19.0'
@@ -2200,7 +2200,7 @@ packages:
       eslint-plugin-json-files: 1.3.0_eslint@8.24.0
       eslint-plugin-sort-annotation: 1.0.4_ypn2ylkkyfa5i233caldtndbqa
       eslint-plugin-sort-class-members: 1.15.2_eslint@8.24.0
-      eslint-plugin-unicorn: 43.0.2_eslint@8.24.0
+      eslint-plugin-unicorn: 44.0.2_eslint@8.24.0
       eslint-plugin-vue: 9.5.1_eslint@8.24.0
       eslint-plugin-yml: 1.2.0_eslint@8.24.0
       vue-eslint-parser: 9.1.0_eslint@8.24.0
@@ -4198,13 +4198,13 @@ packages:
       eslint: 8.24.0
     dev: true
 
-  /eslint-plugin-unicorn/43.0.2_eslint@8.24.0:
-    resolution: {integrity: sha512-DtqZ5mf/GMlfWoz1abIjq5jZfaFuHzGBZYIeuJfEoKKGWRHr2JiJR+ea+BF7Wx2N1PPRoT/2fwgiK1NnmNE3Hg==}
+  /eslint-plugin-unicorn/44.0.2_eslint@8.24.0:
+    resolution: {integrity: sha512-GLIDX1wmeEqpGaKcnMcqRvMVsoabeF0Ton0EX4Th5u6Kmf7RM9WBl705AXFEsns56ESkEs0uyelLuUTvz9Tr0w==}
     engines: {node: '>=14.18'}
     peerDependencies:
-      eslint: '>=8.18.0'
+      eslint: '>=8.23.1'
     dependencies:
-      '@babel/helper-validator-identifier': 7.18.6
+      '@babel/helper-validator-identifier': 7.19.1
       ci-info: 3.4.0
       clean-regexp: 1.0.0
       eslint: 8.24.0
@@ -4342,15 +4342,6 @@ packages:
     resolution: {integrity: sha512-U1suiZ2oDVWv4zPO56S0NcR5QriEahGtdN2OR6FiOG4WJvcjBVFB0qI4+eKoWFH483PKGuLuu6V8Z4T5g63UVA==}
     engines: {node: '>=6'}
     dev: false
-
-  /espree/9.3.3:
-    resolution: {integrity: sha512-ORs1Rt/uQTqUKjDdGCyrtYxbazf5umATSf/K4qxjmZHORR6HJk+2s/2Pqe+Kk49HHINC/xNIrGfgh8sZcll0ng==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    dependencies:
-      acorn: 8.8.0
-      acorn-jsx: 5.3.2_acorn@8.8.0
-      eslint-visitor-keys: 3.3.0
-    dev: true
 
   /espree/9.4.0:
     resolution: {integrity: sha512-DQmnRpLj7f6TgN/NYb0MTzJXL+vJF9h3pHy4JhCIs3zwcgez8xmGg3sXHcEO97BrmO2OSvCwMdfdlyl+E9KjOw==}
@@ -8141,7 +8132,7 @@ packages:
       eslint: 8.24.0
       eslint-scope: 7.1.1
       eslint-visitor-keys: 3.3.0
-      espree: 9.3.3
+      espree: 9.4.0
       esquery: 1.4.0
       lodash: 4.17.21
       semver: 7.3.7
