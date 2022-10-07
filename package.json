@@ -32,7 +32,7 @@
 		"multi-semantic-release": "^3.0.0",
 		"semantic-release": "19.0.5",
 		"shx": "0.3.4",
-		"turbo": "1.4.3",
+		"turbo": "1.4.4",
 		"typescript": "4.8.4"
 	},
 	"engines": {
