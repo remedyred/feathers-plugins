@@ -37,7 +37,7 @@ importers:
       '@feathersjs/feathers': 5.0.0-pre.26
       shx: 0.3.4
       tsup: 6.2.3
-      typedoc: 0.23.12
+      typedoc: 0.23.15
       typedoc-plugin-markdown: 3.13.6
       typescript: 4.8.4
     dependencies:
@@ -47,8 +47,8 @@ importers:
       '@feathersjs/feathers': 5.0.0-pre.26
       shx: 0.3.4
       tsup: 6.2.3_typescript@4.8.4
-      typedoc: 0.23.12_typescript@4.8.4
-      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
+      typedoc: 0.23.15_typescript@4.8.4
+      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.15
       typescript: 4.8.4
 
   packages/feathers-files:
@@ -72,7 +72,7 @@ importers:
       shx: 0.3.4
       sift: 16.0.0
       tsup: 6.2.3
-      typedoc: 0.23.12
+      typedoc: 0.23.15
       typedoc-plugin-markdown: 3.13.6
       typescript: 4.8.4
     dependencies:
@@ -96,8 +96,8 @@ importers:
       '@types/multer': 1.4.7
       shx: 0.3.4
       tsup: 6.2.3_typescript@4.8.4
-      typedoc: 0.23.12_typescript@4.8.4
-      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
+      typedoc: 0.23.15_typescript@4.8.4
+      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.15
       typescript: 4.8.4
 
   packages/feathers-helpers:
@@ -112,7 +112,7 @@ importers:
       shx: 0.3.4
       sift: 16.0.0
       tsup: 6.2.3
-      typedoc: 0.23.12
+      typedoc: 0.23.15
       typedoc-plugin-markdown: 3.13.6
       typescript: 4.8.4
     dependencies:
@@ -127,8 +127,8 @@ importers:
       '@snickbit/indexer': 2.5.12
       shx: 0.3.4
       tsup: 6.2.3_typescript@4.8.4
-      typedoc: 0.23.12_typescript@4.8.4
-      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
+      typedoc: 0.23.15_typescript@4.8.4
+      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.15
       typescript: 4.8.4
 
   packages/feathers-hooks:
@@ -136,15 +136,15 @@ importers:
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/indexer': 2.5.12
       tsup: 6.2.3
-      typedoc: 0.23.12
+      typedoc: 0.23.15
       typedoc-plugin-markdown: 3.13.6
       typescript: 4.8.4
     devDependencies:
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/indexer': 2.5.12
       tsup: 6.2.3_typescript@4.8.4
-      typedoc: 0.23.12_typescript@4.8.4
-      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
+      typedoc: 0.23.15_typescript@4.8.4
+      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.15
       typescript: 4.8.4
 
   packages/feathers-logger:
@@ -156,7 +156,7 @@ importers:
       axios: 0.27.2
       browser-or-node: 2.0.0
       tsup: 6.2.3
-      typedoc: 0.23.12
+      typedoc: 0.23.15
       typedoc-plugin-markdown: 3.13.6
       typescript: 4.8.4
     dependencies:
@@ -168,8 +168,8 @@ importers:
       '@feathersjs/feathers': 5.0.0-pre.26
       '@types/node': 18.6.4
       tsup: 6.2.3_typescript@4.8.4
-      typedoc: 0.23.12_typescript@4.8.4
-      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
+      typedoc: 0.23.15_typescript@4.8.4
+      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.15
       typescript: 4.8.4
 
   packages/feathers-logs:
@@ -178,7 +178,7 @@ importers:
       '@snickbit/feathers-logger': ~1.0.16
       '@snickbit/feathers-mongo': ~2.0.8
       tsup: 6.2.3
-      typedoc: 0.23.12
+      typedoc: 0.23.15
       typedoc-plugin-markdown: 3.13.6
       typescript: 4.8.4
     dependencies:
@@ -187,8 +187,8 @@ importers:
     devDependencies:
       '@feathersjs/feathers': 5.0.0-pre.26
       tsup: 6.2.3_typescript@4.8.4
-      typedoc: 0.23.12_typescript@4.8.4
-      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
+      typedoc: 0.23.15_typescript@4.8.4
+      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.15
       typescript: 4.8.4
 
   packages/feathers-model:
@@ -200,7 +200,7 @@ importers:
       '@snickbit/model': ~1.0.52
       feathers-memory: 4.1.0
       tsup: 6.2.3
-      typedoc: 0.23.12
+      typedoc: 0.23.15
       typedoc-plugin-markdown: 3.13.6
       typescript: 4.8.4
     dependencies:
@@ -212,8 +212,8 @@ importers:
     devDependencies:
       '@feathersjs/feathers': 5.0.0-pre.26
       tsup: 6.2.3_typescript@4.8.4
-      typedoc: 0.23.12_typescript@4.8.4
-      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
+      typedoc: 0.23.15_typescript@4.8.4
+      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.15
       typescript: 4.8.4
 
   packages/feathers-mongo:
@@ -227,7 +227,7 @@ importers:
       '@snickbit/utilities': ~3.4.0
       mongodb: 4.8.1
       tsup: 6.2.3
-      typedoc: 0.23.12
+      typedoc: 0.23.15
       typedoc-plugin-markdown: 3.13.6
       typescript: 4.8.4
     dependencies:
@@ -241,8 +241,8 @@ importers:
       mongodb: 4.8.1
     devDependencies:
       tsup: 6.2.3_typescript@4.8.4
-      typedoc: 0.23.12_typescript@4.8.4
-      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
+      typedoc: 0.23.15_typescript@4.8.4
+      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.15
       typescript: 4.8.4
 
   packages/feathers-pouchdb:
@@ -264,7 +264,7 @@ importers:
       tsup: 6.2.3
       tweetnacl: 1.0.3
       tweetnacl-util: 0.15.1
-      typedoc: 0.23.12
+      typedoc: 0.23.15
       typedoc-plugin-markdown: 3.13.6
       typescript: 4.8.4
     dependencies:
@@ -286,8 +286,8 @@ importers:
       '@types/pouchdb': 6.4.0
       shx: 0.3.4
       tsup: 6.2.3_typescript@4.8.4
-      typedoc: 0.23.12_typescript@4.8.4
-      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
+      typedoc: 0.23.15_typescript@4.8.4
+      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.15
       typescript: 4.8.4
 
   packages/feathers-redis:
@@ -301,7 +301,7 @@ importers:
       ioredis: 5.2.3
       sift: 16.0.0
       tsup: 6.2.3
-      typedoc: 0.23.12
+      typedoc: 0.23.15
       typedoc-plugin-markdown: 3.13.6
       typescript: 4.8.4
     dependencies:
@@ -315,8 +315,8 @@ importers:
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/indexer': 2.5.12
       tsup: 6.2.3_typescript@4.8.4
-      typedoc: 0.23.12_typescript@4.8.4
-      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
+      typedoc: 0.23.15_typescript@4.8.4
+      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.15
       typescript: 4.8.4
 
   packages/feathers-rest:
@@ -328,7 +328,7 @@ importers:
       '@snickbit/out': ~2.0.37
       axios: 0.27.2
       tsup: 6.2.3
-      typedoc: 0.23.12
+      typedoc: 0.23.15
       typedoc-plugin-markdown: 3.13.6
       typescript: 4.8.4
     dependencies:
@@ -340,8 +340,8 @@ importers:
     devDependencies:
       '@snickbit/indexer': 2.5.12
       tsup: 6.2.3_typescript@4.8.4
-      typedoc: 0.23.12_typescript@4.8.4
-      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
+      typedoc: 0.23.15_typescript@4.8.4
+      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.15
       typescript: 4.8.4
 
   packages/feathers-tasks:
@@ -360,7 +360,7 @@ importers:
       bullmq: 1.91.1
       ioredis: 5.2.3
       tsup: 6.2.3
-      typedoc: 0.23.12
+      typedoc: 0.23.15
       typedoc-plugin-markdown: 3.13.6
       typescript: 4.8.4
     dependencies:
@@ -379,8 +379,8 @@ importers:
     devDependencies:
       '@snickbit/indexer': 2.5.12
       tsup: 6.2.3_typescript@4.8.4
-      typedoc: 0.23.12_typescript@4.8.4
-      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
+      typedoc: 0.23.15_typescript@4.8.4
+      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.15
       typescript: 4.8.4
 
   packages/feathers-up:
@@ -409,7 +409,7 @@ importers:
       mysql: 2.18.1
       socket.io: 4.5.2
       tsup: 6.2.3
-      typedoc: 0.23.12
+      typedoc: 0.23.15
       typedoc-plugin-markdown: 3.13.6
       typescript: 4.8.4
       winston: 3.8.1
@@ -443,8 +443,8 @@ importers:
     devDependencies:
       '@snickbit/indexer': 2.5.12
       tsup: 6.2.3_typescript@4.8.4
-      typedoc: 0.23.12_typescript@4.8.4
-      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
+      typedoc: 0.23.15_typescript@4.8.4
+      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.15
       typescript: 4.8.4
 
   packages/feathers-up-mongodb:
@@ -452,7 +452,7 @@ importers:
       '@snickbit/feathers-up': 1.0.35
       mongodb: 4.8.1
       tsup: 6.2.3
-      typedoc: 0.23.12
+      typedoc: 0.23.15
       typedoc-plugin-markdown: 3.13.6
       typescript: 4.8.4
     dependencies:
@@ -460,8 +460,8 @@ importers:
       mongodb: 4.8.1
     devDependencies:
       tsup: 6.2.3_typescript@4.8.4
-      typedoc: 0.23.12_typescript@4.8.4
-      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
+      typedoc: 0.23.15_typescript@4.8.4
+      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.15
       typescript: 4.8.4
 
   packages/feathers-up-mysql:
@@ -470,7 +470,7 @@ importers:
       knex: 2.2.0
       mysql: 2.18.1
       tsup: 6.2.3
-      typedoc: 0.23.12
+      typedoc: 0.23.15
       typedoc-plugin-markdown: 3.13.6
       typescript: 4.8.4
     dependencies:
@@ -479,8 +479,8 @@ importers:
       mysql: 2.18.1
     devDependencies:
       tsup: 6.2.3_typescript@4.8.4
-      typedoc: 0.23.12_typescript@4.8.4
-      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
+      typedoc: 0.23.15_typescript@4.8.4
+      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.15
       typescript: 4.8.4
 
   packages/feathers-up-redis:
@@ -488,7 +488,7 @@ importers:
       '@snickbit/feathers-up': 1.0.35
       ioredis: 5.2.3
       tsup: 6.2.3
-      typedoc: 0.23.12
+      typedoc: 0.23.15
       typedoc-plugin-markdown: 3.13.6
       typescript: 4.8.4
     dependencies:
@@ -496,8 +496,8 @@ importers:
       ioredis: 5.2.3
     devDependencies:
       tsup: 6.2.3_typescript@4.8.4
-      typedoc: 0.23.12_typescript@4.8.4
-      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
+      typedoc: 0.23.15_typescript@4.8.4
+      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.15
       typescript: 4.8.4
 
 packages:
@@ -8085,17 +8085,17 @@ packages:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
     dev: false
 
-  /typedoc-plugin-markdown/3.13.6_typedoc@0.23.12:
+  /typedoc-plugin-markdown/3.13.6_typedoc@0.23.15:
     resolution: {integrity: sha512-ISSc9v3BK7HkokxSBuJPttXox4tJ6hP0N9wfSIk0fmLN67+eqtAxbk97gs2nDiuha+RTO5eW9gdeAb+RPP0mgg==}
     peerDependencies:
       typedoc: '>=0.23.0'
     dependencies:
       handlebars: 4.7.7
-      typedoc: 0.23.12_typescript@4.8.4
+      typedoc: 0.23.15_typescript@4.8.4
     dev: true
 
-  /typedoc/0.23.12_typescript@4.8.4:
-    resolution: {integrity: sha512-wr7r/ufgGSsw2ntKTkLDJA7a+0hDdk2oRPouJGd9lwpFj305ZV6gjUwVxncp3ZuD92iKpc+kqsl5ag109rvkmA==}
+  /typedoc/0.23.15_typescript@4.8.4:
+    resolution: {integrity: sha512-x9Zu+tTnwxb9YdVr+zvX7LYzyBl1nieOr6lrSHbHsA22/RJK2m4Y525WIg5Mj4jWCmfL47v6f4hUzY7EIuwS5w==}
     engines: {node: '>= 14.14'}
     hasBin: true
     peerDependencies:
