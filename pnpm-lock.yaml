@@ -412,7 +412,7 @@ importers:
       typedoc: 0.23.15
       typedoc-plugin-markdown: 3.13.6
       typescript: 4.8.4
-      winston: 3.8.1
+      winston: 3.8.2
       winston-daily-rotate-file: 4.7.1
     dependencies:
       '@feathersjs/configuration': 5.0.0-pre.26
@@ -433,8 +433,8 @@ importers:
       express: 4.18.1
       helmet: 6.0.0
       socket.io: 4.5.2
-      winston: 3.8.1
-      winston-daily-rotate-file: 4.7.1_winston@3.8.1
+      winston: 3.8.2
+      winston-daily-rotate-file: 4.7.1_winston@3.8.2
     optionalDependencies:
       ioredis: 5.2.3
       knex: 2.3.0_mysql@2.18.1
@@ -1739,8 +1739,8 @@ packages:
       lodash: 4.17.21
     dev: false
 
-  /@humanwhocodes/config-array/0.10.7:
-    resolution: {integrity: sha512-MDl6D6sBsaV452/QSdX+4CXIjZhIcI0PELsxUjk4U828yd58vk3bTIvk/6w5FY+4hIy9sLW0sfrV7K7Kc++j/w==}
+  /@humanwhocodes/config-array/0.10.6:
+    resolution: {integrity: sha512-U/piU+VwXZsIgwnl+N+nRK12jCpHdc3s0UAc6zc1+HUgiESJxClpvYao/x9JwaN7onNeVb7kTlxlAvuEoaJ3ig==}
     engines: {node: '>=10.10.0'}
     dependencies:
       '@humanwhocodes/object-schema': 1.2.1
@@ -4241,7 +4241,7 @@ packages:
     hasBin: true
     dependencies:
       '@eslint/eslintrc': 1.3.2
-      '@humanwhocodes/config-array': 0.10.7
+      '@humanwhocodes/config-array': 0.10.6
       '@humanwhocodes/gitignore-to-minimatch': 1.0.2
       '@humanwhocodes/module-importer': 1.0.1
       ajv: 6.12.6
@@ -4267,7 +4267,7 @@ packages:
       import-fresh: 3.3.0
       imurmurhash: 0.1.4
       is-glob: 4.0.3
-      js-sdsl: 4.1.5
+      js-sdsl: 4.1.4
       js-yaml: 4.1.0
       json-stable-stringify-without-jsonify: 1.0.1
       levn: 0.4.1
@@ -4287,15 +4287,6 @@ packages:
     resolution: {integrity: sha512-U1suiZ2oDVWv4zPO56S0NcR5QriEahGtdN2OR6FiOG4WJvcjBVFB0qI4+eKoWFH483PKGuLuu6V8Z4T5g63UVA==}
     engines: {node: '>=6'}
     dev: false
-
-  /espree/9.3.3:
-    resolution: {integrity: sha512-ORs1Rt/uQTqUKjDdGCyrtYxbazf5umATSf/K4qxjmZHORR6HJk+2s/2Pqe+Kk49HHINC/xNIrGfgh8sZcll0ng==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    dependencies:
-      acorn: 8.8.0
-      acorn-jsx: 5.3.2_acorn@8.8.0
-      eslint-visitor-keys: 3.3.0
-    dev: true
 
   /espree/9.4.0:
     resolution: {integrity: sha512-DQmnRpLj7f6TgN/NYb0MTzJXL+vJF9h3pHy4JhCIs3zwcgez8xmGg3sXHcEO97BrmO2OSvCwMdfdlyl+E9KjOw==}
@@ -5250,8 +5241,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /js-sdsl/4.1.5:
-    resolution: {integrity: sha512-08bOAKweV2NUC1wqTtf3qZlnpOX/R2DU9ikpjOHs0H+ibQv3zpncVQg6um4uYtRtrwIX8M4Nh3ytK4HGlYAq7Q==}
+  /js-sdsl/4.1.4:
+    resolution: {integrity: sha512-Y2/yD55y5jteOAmY50JbUZYwk3CP3wnLPEZnlR1w9oKhITrBEtAxwuWKebFf8hMrPMgbYwFoWK/lH2sBkErELw==}
     dev: true
 
   /js-tokens/4.0.0:
@@ -8230,7 +8221,7 @@ packages:
       eslint: 8.24.0
       eslint-scope: 7.1.1
       eslint-visitor-keys: 3.3.0
-      espree: 9.3.3
+      espree: 9.4.0
       esquery: 1.4.0
       lodash: 4.17.21
       semver: 7.3.7
@@ -8291,7 +8282,7 @@ packages:
       isexe: 2.0.0
     dev: true
 
-  /winston-daily-rotate-file/4.7.1_winston@3.8.1:
+  /winston-daily-rotate-file/4.7.1_winston@3.8.2:
     resolution: {integrity: sha512-7LGPiYGBPNyGHLn9z33i96zx/bd71pjBn9tqQzO3I4Tayv94WPmBNwKC7CO1wPHdP9uvu+Md/1nr6VSH9h0iaA==}
     engines: {node: '>=8'}
     peerDependencies:
@@ -8300,7 +8291,7 @@ packages:
       file-stream-rotator: 0.6.1
       object-hash: 2.2.0
       triple-beam: 1.3.0
-      winston: 3.8.1
+      winston: 3.8.2
       winston-transport: 4.5.0
     dev: false
 
@@ -8313,10 +8304,11 @@ packages:
       triple-beam: 1.3.0
     dev: false
 
-  /winston/3.8.1:
-    resolution: {integrity: sha512-r+6YAiCR4uI3N8eQNOg8k3P3PqwAm20cLKlzVD9E66Ch39+LZC+VH1UKf9JemQj2B3QoUHfKD7Poewn0Pr3Y1w==}
+  /winston/3.8.2:
+    resolution: {integrity: sha512-MsE1gRx1m5jdTTO9Ld/vND4krP2To+lgDoMEHGGa4HIlAUyXJtfc7CxQcGXVyz2IBpw5hbFkj2b/AtUdQwyRew==}
     engines: {node: '>= 12.0.0'}
     dependencies:
+      '@colors/colors': 1.5.0
       '@dabh/diagnostics': 2.0.3
       async: 3.2.4
       is-stream: 2.0.1
