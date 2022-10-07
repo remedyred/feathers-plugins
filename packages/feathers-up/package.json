@@ -51,7 +51,7 @@
 		"winston-daily-rotate-file": "4.7.1"
 	},
 	"devDependencies": {
-		"@snickbit/indexer": "2.5.12",
+		"@snickbit/indexer": "2.5.27",
 		"tsup": "6.2.3",
 		"typedoc": "0.23.15",
 		"typedoc-plugin-markdown": "3.13.6",
