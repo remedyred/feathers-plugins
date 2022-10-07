@@ -244,8 +244,8 @@ export default class MongoAdapter<T extends Partial<D> = any,
 					this.Model.createIndex(index.keys, index.options)
 				}
 			}
-		}).catch((err: Error) => {
-			this.out.error(err)
+		}).catch((error: Error) => {
+			this.out.error(error)
 		})
 	}
 
@@ -274,8 +274,8 @@ export default class MongoAdapter<T extends Partial<D> = any,
 				if (cache) {
 					return cache.result
 				}
-				this.clearCached(params, skipParamParse).catch(err => this.out.error(err))
-			} catch (e) {
+				this.clearCached(params, skipParamParse).catch(error => this.out.error(error))
+			} catch {
 				this.out.warn('MongoService: failed to get cache for query', parsed)
 			}
 		}
@@ -296,28 +296,28 @@ export default class MongoAdapter<T extends Partial<D> = any,
 
 	async destroy(id: NullableId, params: P = {} as P): Promise<T> {
 		if (id === null && !this.allowsMulti('destroy')) {
-			return Promise.reject(new MethodNotAllowed(`Can not destroy multiple entries`))
+			throw new MethodNotAllowed(`Can not destroy multiple entries`)
 		}
 		return this.$destroy(id, params)
 	}
 
 	async restore(id: NullableId, params: P = {} as P): Promise<T> {
 		if (id === null && !this.allowsMulti('restore')) {
-			return Promise.reject(new MethodNotAllowed(`Can not restore multiple entries`))
+			throw new MethodNotAllowed(`Can not restore multiple entries`)
 		}
 		return this.$restore(id, params)
 	}
 
 	async getOrCreate(id: NullableId, data, params: P = {} as P): Promise<T> {
 		if (id === null && !this.allowsMulti('patch')) {
-			return Promise.reject(new MethodNotAllowed(`Can not getOrCreate multiple entries`))
+			throw new MethodNotAllowed(`Can not getOrCreate multiple entries`)
 		}
 		return this.$getOrCreate(id, data, params)
 	}
 
 	async touch(id: NullableId, params: P = {} as P): Promise<T> {
 		if (id === null && !this.allowsMulti('touch')) {
-			return Promise.reject(new MethodNotAllowed(`Can not touch multiple entries`))
+			throw new MethodNotAllowed(`Can not touch multiple entries`)
 		}
 		return this.$touch(id, params)
 	}
@@ -403,7 +403,7 @@ export default class MongoAdapter<T extends Partial<D> = any,
 	async $upsert(data: any[] | any, params: P = {} as P): Promise<T | T[]> {
 		if (Array.isArray(data)) {
 			if (!this.allowsMulti('patch')) {
-				return Promise.reject(new MethodNotAllowed(`Can not patch multiple entries`))
+				throw new MethodNotAllowed(`Can not patch multiple entries`)
 			}
 			return Promise.all(data.map((item: any) => this.$upsert(item, params)))
 		}
@@ -417,22 +417,22 @@ export default class MongoAdapter<T extends Partial<D> = any,
 				return this.$update(result[this.id], payload, params)
 			}
 			return this.$create(payload, params)
-		}).catch(err => {
-			if (err instanceof NotFound || err?.name === 'NotFound') {
+		}).catch(error => {
+			if (error instanceof NotFound || error?.name === 'NotFound') {
 				return this.$create(payload, params)
 			}
-			this.out.verbose('MongoService: Supsert error is not an instance of NotFound', err)
-			throw err
+			this.out.verbose('MongoService: Supsert error is not an instance of NotFound', error)
+			throw error
 		})
 	}
 
 	async $destroy(id: NullableId, params: P = {} as P): Promise<T> {
-		params.query = {...params.query || {}, force: true, $withDeleted: true}
+		params.query = {...params.query, force: true, $withDeleted: true}
 		return this.$remove(id, params)
 	}
 
 	async $restore(id: NullableId, params: P = {} as P): Promise<T> {
-		params.query = {...params.query || {}, $withDeleted: true}
+		params.query = {...params.query, $withDeleted: true}
 		if (this.timestamps) {
 			const data = {$unset: {[this.timestamps.deleted as string]: 1}} as unknown as T
 			return this.$patch(id, data, params)
@@ -481,12 +481,12 @@ export default class MongoAdapter<T extends Partial<D> = any,
 	async $getOrCreate(id: NullableId, data: any, params: P = {} as P): Promise<any> {
 		try {
 			return await this.$get(id)
-		} catch (e) {
-			if (e.code === 404) {
+		} catch (error) {
+			if (error.code === 404) {
 				return await this.$create(data, params)
 			}
-			this.out.error({error: e.message, code: e.code})
-			throw e
+			this.out.error({error: error.message, code: error.code})
+			throw error
 		}
 	}
 

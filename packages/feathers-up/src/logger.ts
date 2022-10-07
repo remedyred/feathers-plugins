@@ -17,8 +17,8 @@ export async function initLogger(app: Application) {
 				const logger = useLogger()
 				logger.context({app_type: app.get('appType'), app: app.get('name'), version: app.get('version')})
 				app.log.addLogger(logger)
-			} catch (e) {
-				app.out.error('Failed to initialize logger', e)
+			} catch (error) {
+				app.out.error('Failed to initialize logger', error)
 			}
 		} else {
 			app.out.warn('Skipping mongodb logger')

@@ -76,7 +76,7 @@ export class Task extends Model {
 			strict: true,
 			schema,
 			service,
-			...options || {}
+			...options
 		}
 
 		options.disableCommit = !!options?.synchronous
@@ -133,10 +133,10 @@ export class Task extends Model {
 		if (this.options.logs) {
 			this.job().then(job => {
 				if (job) {
-					job.log(JSON.stringify(args)).catch(err => out.error(err))
+					job.log(JSON.stringify(args)).catch(error => out.error(error))
 				}
 			})
-				.catch(e => this.out.error('Error logging to job', e))
+				.catch(error => this.out.error('Error logging to job', error))
 		}
 	}
 
@@ -203,7 +203,7 @@ export class Task extends Model {
 		if (progress.current >= progress.total) {
 			progress.eta = 0
 		} else if (!progress.current || !progress.rate || !progress.total) {
-			progress.eta = Infinity
+			progress.eta = Number.POSITIVE_INFINITY
 		} else {
 			progress.eta = Math.max(0, (progress.total - progress.current) / progress.rate)
 		}
@@ -240,8 +240,8 @@ export class Task extends Model {
 		return this
 	}
 
-	async fail(errorInfo = {message: 'Task failed'}) {
-		await this.stop('failed', errorInfo)
+	async fail(errorInfo: Error | {message: string}) {
+		await this.stop('failed', {message: 'Task failed', ...errorInfo})
 		return this
 	}
 

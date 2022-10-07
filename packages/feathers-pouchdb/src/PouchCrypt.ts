@@ -81,7 +81,7 @@ export class PouchCrypt<Content extends object = any> implements PouchDB.Databas
 					return doc
 				}
 				if (!this._crypt) {
-					return Promise.reject(new Error('Crypt not initialized'))
+					throw new Error('Crypt not initialized')
 				}
 
 				// encrypt the doc
@@ -106,12 +106,12 @@ export class PouchCrypt<Content extends object = any> implements PouchDB.Databas
 			incoming: async doc => {
 				if (doc.isEncrypted) {
 					if (!this._crypt) {
-						return Promise.reject(new Error('Crypt not initialized'))
+						throw new Error('Crypt not initialized')
 					}
 
 					// decrypt encrypted payloads being fed back from the encrypted db
-					const json = await this._crypt.decrypt(doc.payload).catch(e => {
-						throw e
+					const json = await this._crypt.decrypt(doc.payload).catch(error => {
+						throw error
 					})
 					const decrypted = JSON.parse(json)
 					if (!('_rev' in decrypted)) {
@@ -124,8 +124,8 @@ export class PouchCrypt<Content extends object = any> implements PouchDB.Databas
 					doc._id = uuid()
 				}
 
-				await this._encrypted.bulkDocs([doc]).catch(e => {
-					throw e
+				await this._encrypted.bulkDocs([doc]).catch(error => {
+					throw error
 				})
 				return doc
 			}
@@ -167,24 +167,24 @@ export class PouchCrypt<Content extends object = any> implements PouchDB.Databas
 			// first we try to get saved creds from the local doc
 			const {exportString} = await this._encrypted.get(LOCAL_ID)
 			this._crypt = await Crypt.import(password, exportString)
-		} catch (err) {
-			if (err.status === 404) {
+		} catch (error) {
+			if (error.status === 404) {
 				// but if the doc doesn't exist, we do first-time setup
 				this._crypt = new Crypt(password)
 				const exportString = await this._crypt.export()
 				try {
 					await this._encrypted.put({_id: LOCAL_ID, exportString})
-				} catch (err2) {
-					if (err2.status === 409) {
+				} catch (encrypt_error) {
+					if (encrypt_error.status === 409) {
 						// if the doc was created while we were setting up,
 						// try setting up again to retrieve the saved credentials.
 						await this.setupCrypt(password)
 					} else {
-						throw err2
+						throw encrypt_error
 					}
 				}
 			} else {
-				throw err
+				throw error
 			}
 		}
 	}
@@ -201,7 +201,7 @@ export class PouchCrypt<Content extends object = any> implements PouchDB.Databas
 			throw new Error(PASSWORD_REQUIRED)
 		}
 		if (typeof password !== 'string') {
-			throw new Error(PASSWORD_NOT_STRING)
+			throw new TypeError(PASSWORD_NOT_STRING)
 		}
 		this.setupEncrypt(opts)
 		await this.setupCrypt(password)
@@ -212,13 +212,13 @@ export class PouchCrypt<Content extends object = any> implements PouchDB.Databas
 			throw new Error(PASSWORD_REQUIRED)
 		}
 		if (typeof password !== 'string') {
-			throw new Error(PASSWORD_NOT_STRING)
+			throw new TypeError(PASSWORD_NOT_STRING)
 		}
 		if (!exportString) {
 			throw new Error(EXPORT_STRING_REQUIRED)
 		}
 		if (typeof exportString !== 'string') {
-			throw new Error(EXPORT_STRING_NOT_STRING)
+			throw new TypeError(EXPORT_STRING_NOT_STRING)
 		}
 		this.setupEncrypt(opts)
 		await this.importCrypt(password, exportString)
@@ -229,9 +229,9 @@ export class PouchCrypt<Content extends object = any> implements PouchDB.Databas
 		this._crypt = await Crypt.import(password, exportString)
 		try {
 			await this._encrypted.put({_id: LOCAL_ID, exportString})
-		} catch (err) {
-			if (err.status !== 409) {
-				throw err
+		} catch (error) {
+			if (error.status !== 409) {
+				throw error
 			}
 		}
 	}
@@ -259,17 +259,17 @@ export default function(PouchDB) {
 		return PouchDB_replicate.call(this, source, target, opts)
 	}
 
-	// mixin helper
-	function applyMixins(derivedCtor: any, baseCtors: any[]) {
-		baseCtors.forEach(baseCtor => {
-			Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-				if (name !== 'constructor') {
-					derivedCtor.prototype[name] = baseCtor.prototype[name]
-				}
-			})
-		})
-	}
-
 	// apply class as mixin
 	applyMixins(PouchDB, [PouchCrypt])
+}
+
+// mixin helper
+function applyMixins(derivedCtor: any, baseCtors: any[]) {
+	for (const baseCtor of baseCtors) {
+		for (const name of Object.getOwnPropertyNames(baseCtor.prototype)) {
+			if (name !== 'constructor') {
+				derivedCtor.prototype[name] = baseCtor.prototype[name]
+			}
+		}
+	}
 }

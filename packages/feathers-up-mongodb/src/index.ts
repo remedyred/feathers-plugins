@@ -38,6 +38,6 @@ export function connectToMongoDB(app: Application, config: MongoClientOptions): 
 		auth: config.auth
 	}
 	const mongoClientPromise = MongoClient.connect(config.uri, mongoOptions)
-	mongoClientPromise.catch(err => app.out.error(err))
+	mongoClientPromise.catch(error => app.out.error(error))
 	return mongoClientPromise
 }

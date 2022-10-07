@@ -18,8 +18,6 @@ import queue from './queue'
 import services from './services'
 import status from './status'
 
-export {Application}
-
 let app: Application
 
 export function useApp(appType = 'server', setup: AppSetup = {}): Application {
@@ -103,3 +101,5 @@ export function feathersUp(appType = 'server', setup: AppSetup | Model = {}, opt
 }
 
 export default feathersUp
+
+export {Application} from './definitions'

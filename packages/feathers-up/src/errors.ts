@@ -9,8 +9,8 @@ export default function(app: Application) {
 
 		promise.then(response => {
 			logger.error('Promise error response', response)
-		}).catch(err => {
-			logger.error('Promise rejection', err)
+		}).catch(error => {
+			logger.error('Promise rejection', error)
 		})
 	})
 

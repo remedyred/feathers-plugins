@@ -34,7 +34,7 @@ export const event_args: EventArgs = {
 /**
  * @type {QueueEvent[]}
  */
-export const all_events: QueueEvent[] = Object.keys(event_args).concat(['all']) as QueueEvent[]
+export const all_events: QueueEvent[] = [...Object.keys(event_args), 'all'] as QueueEvent[]
 
 export interface TasksConfig {
 	connection: ConnectionOptions
@@ -77,7 +77,7 @@ export const defaultJobConfig: JobConfig = {
 	backoff: {
 		type: 'exponential',
 		delay: 1000,
-		max: 600000
+		max: 600_000
 	}
 }
 

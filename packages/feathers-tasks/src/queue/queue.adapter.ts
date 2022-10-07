@@ -184,12 +184,7 @@ export class QueueAdapter extends AdapterBase {
 		const payload: Partial<TaskPayload> = {}
 		let options = {}
 
-		let request: TaskRequest
-		if ('toJSON' in data) {
-			request = data.toJSON()
-		} else {
-			request = data as TaskRequest
-		}
+		const request: TaskRequest = 'toJSON' in data ? data.toJSON() : data as TaskRequest
 
 		if (request.payload) {
 			request.data = {payload: request.payload}
@@ -333,14 +328,14 @@ export class QueueAdapter extends AdapterBase {
 			fetched_job_ids = fetched_job_ids.filter(job_id => !job_ids.includes(job_id))
 
 			// add filtered job_ids to list of fetched job_ids
-			job_ids = job_ids.concat(fetched_job_ids)
+			job_ids = [...job_ids, ...fetched_job_ids]
 			const fetched_jobs = await Promise.all(fetched_job_ids.map(job_id => this.$get(job_id, params)))
 
 			// filter jobs
-			const filtered_jobs = filterResults(fetched_jobs, {...params}, this.options)
+			const filtered_jobs = filterResults(fetched_jobs, {...params}, this.options) as any[]
 
 			// add filtered jobs to jobs array
-			jobs = jobs.concat(filtered_jobs)
+			jobs = [...jobs, ...filtered_jobs]
 
 			// increment start by fetched_job_ids.length
 			start += fetched_job_ids.length
@@ -395,7 +390,7 @@ export class QueueAdapter extends AdapterBase {
 
 		if (id === null) {
 			const entries = await this.getEntries(params)
-			return Promise.all(entries.map(patchEntry))
+			return Promise.all(entries.map(entry => patchEntry(entry)))
 		}
 		return patchEntry(data)
 	}

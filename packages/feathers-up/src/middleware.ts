@@ -6,8 +6,8 @@ export default function(app: Application) {
 	if (app.get('appType') === 'server' && middleware) {
 		try {
 			app.configure(middleware)
-		} catch (e) {
-			app.out.error('Error configuring middleware', e)
+		} catch (error) {
+			app.out.error('Error configuring middleware', error)
 		}
 	}
 }

@@ -81,13 +81,7 @@ export class FileService {
 			pathOrParams = {}
 		}
 
-		let params
-
-		if (isString(pathOrParams)) {
-			params = {query: {id: pathOrParams as string}} as AdapterParams
-		} else {
-			params = pathOrParams as AdapterParams
-		}
+		const params = (isString(pathOrParams) ? {query: {id: pathOrParams as string}} : pathOrParams) as ParsedParams
 
 		if (params?.query?.path && !params?.query?.id) {
 			params.query.id = params.query.path
@@ -206,7 +200,7 @@ export class FileService {
 		if (isArray(data)) {
 			data = data as FileData[]
 			if (!this.allowsMulti('create')) {
-				return Promise.reject(new MethodNotAllowed(`Can not create multiple entries`))
+				throw new MethodNotAllowed(`Can not create multiple entries`)
 			}
 			return Promise.all(data.map(async file => await callMethod(this, '_create', file, params)))
 		}
@@ -216,7 +210,7 @@ export class FileService {
 
 	async update(id: FileId | FileId[], data?: FileData, params?: Params): Promise<any> {
 		if (id === null || Array.isArray(id)) {
-			return Promise.reject(new BadRequest(`You can not replace multiple instances. Did you mean 'patch'?`))
+			throw new BadRequest(`You can not replace multiple instances. Did you mean 'patch'?`)
 		}
 
 		return callMethod(this, '_update', id, data, params)
@@ -226,7 +220,7 @@ export class FileService {
 		if (!id && isArray(data)) {
 			data = data as FileData[]
 			if (!this.allowsMulti('patch')) {
-				return Promise.reject(new MethodNotAllowed(`Can not patch multiple entries`))
+				throw new MethodNotAllowed(`Can not patch multiple entries`)
 			}
 			return Promise.all(data.map(async file => await callMethod(this, '_patch', id, file, params)))
 		}
@@ -238,7 +232,7 @@ export class FileService {
 		if (isArray(id)) {
 			id = id as FileId[]
 			if (!this.allowsMulti('remove')) {
-				return Promise.reject(new MethodNotAllowed(`Can not remove multiple entries`))
+				throw new MethodNotAllowed(`Can not remove multiple entries`)
 			}
 			return Promise.all(id.map(async file => await callMethod(this, '_remove', file, params)))
 		}

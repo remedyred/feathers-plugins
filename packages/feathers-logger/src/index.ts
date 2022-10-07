@@ -52,7 +52,7 @@ export class Logger {
 	constructor(options?: LoggerOptions, context?: LoggerContext)
 	constructor(channel?: string, options?: LoggerOptions, context?: LoggerContext)
 	constructor(...args) {
-		const {channel, options, context} = this.#parseLoggerArgs(args, [{channel: 'string', options: 'object', context: 'object'}, {options: 'object', context: 'object'}, {options: 'object'}])
+		const {channel, options, context} = this.#parseLoggerArgs(args, [ {channel: 'string', options: 'object', context: 'object'}, {options: 'object', context: 'object'}, {options: 'object'} ])
 
 		this.#out = new Out('logger')
 
@@ -79,12 +79,12 @@ export class Logger {
 			immediate: true,
 			global: false,
 			defaultLevel: 'log',
-			...options || {}
+			...options
 		}
 
 		context = {
 			...this.payload.context,
-			...context || {}
+			...context
 		}
 		return {
 			channel,
@@ -154,13 +154,13 @@ export class Logger {
 			if (this.out && this.out[level]) {
 				this.out[level](message)
 			}
-		} catch (e) {
-			this.#out.error(e)
+		} catch (error) {
+			this.#out.error(error)
 		}
 		this.payload.messages.push({
 			level,
 			message,
-			timestamp: (new Date).getTime()
+			timestamp: Date.now()
 		})
 
 		if (send && this.options.immediate) {
@@ -220,7 +220,7 @@ export class Logger {
 
 			this.#out.log(...this.logs)
 
-			return undefined
+			return
 		}
 
 		if (!this.options.global && this.request) {
@@ -243,7 +243,7 @@ export class Logger {
 			const config = {
 				headers: {
 					'Content-Type': 'application/json',
-					...this.options?.headers || {}
+					...this.options?.headers
 				},
 				auth: this.options?.auth
 			}
@@ -253,11 +253,7 @@ export class Logger {
 			const service = this.options?.service
 			this.#out.debug('Sending Logger data to service', `${this.logs.length} logs`)
 
-			if (payload?._id) {
-				this.request = service.patch(payload._id, payload)
-			} else {
-				this.request = service.create(payload)
-			}
+			this.request = payload?._id ? service.patch(payload._id, payload) : service.create(payload)
 		}
 
 		return this.request.then(response => {
@@ -268,7 +264,7 @@ export class Logger {
 				this.sent_messages += sending_messages
 			}
 			return response
-		}).catch(err => this.#out.error('Error sending Logger data', err))
+		}).catch(error => this.#out.error('Error sending Logger data', error))
 	}
 }
 
@@ -288,7 +284,7 @@ let _defaultContext
 
 function getDefaultBrowserContext() {
 	if (!_defaultContext) {
-		const {browser, version} = navigator?.userAgent.match(/(?<browser>MSIE|(?!Gecko.+)Firefox|(?!AppleWebKit.+Chrome.+)Safari|(?!AppleWebKit.+)Chrome|AppleWebKit(?!.+Chrome|.+Safari)|Gecko(?!.+Firefox))[ /](?<version>[\d.apre]+)/i)?.groups || {}
+		const {browser, version} = navigator?.userAgent.match(/(?<browser>msie|(?!gecko.+)firefox|(?!applewebkit.+chrome.+)safari|(?!applewebkit.+)chrome|applewebkit(?!.+chrome|.+safari)|gecko(?!.+firefox))[ /](?<version>[\d.aepr]+)/i)?.groups || {}
 		_defaultContext = {
 			runtime: 'browser',
 			browser,

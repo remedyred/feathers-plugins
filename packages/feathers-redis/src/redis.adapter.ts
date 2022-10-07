@@ -175,7 +175,7 @@ export default class RedisAdapter<T = any, D = Partial<T>, O extends RedisServic
 function stringifyValue(value) {
 	try {
 		return JSON.stringify(value)
-	} catch (e) {
+	} catch {
 		return isPrimitive(value) ? value : String(value)
 	}
 }

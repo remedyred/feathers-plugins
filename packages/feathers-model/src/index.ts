@@ -1,5 +1,5 @@
 import {InternalServiceMethods} from '@feathersjs/adapter-commons'
-import {Conflict, NotFound} from '@feathersjs/errors'
+import {Conflict, NotFound, Unprocessable} from '@feathersjs/errors'
 import {callMethod, safeCallMethod} from '@snickbit/feathers-helpers'
 import {Model as BaseModel, ModelOptions as BaseModelOptions, ModelSchema as BaseModelSchema} from '@snickbit/model'
 import {Service} from 'feathers-memory'
@@ -73,22 +73,22 @@ export class Model extends BaseModel {
 		} else if (this.is_new) {
 			try {
 				data = await this.service._create(payload)
-			} catch (e) {
-				if (e.code === 11000 && !attempts) {
+			} catch (error) {
+				if (error.code === 11_000 && !attempts) {
 					this.is_new = false
 					return this._save(1)
 				}
-				return Promise.reject(e)
+				throw new Unprocessable(error)
 			}
 		} else {
 			try {
 				data = await this.service._update(this.id, payload)
-			} catch (e) {
-				if (e instanceof NotFound || e?.name === 'NotFound' && !attempts) {
+			} catch (error) {
+				if (error instanceof NotFound || error?.name === 'NotFound' && !attempts) {
 					this.is_new = true
 					return this._save(1)
 				}
-				return Promise.reject(e)
+				throw new Unprocessable(error)
 			}
 		}
 		return this.#commitSaved(data)

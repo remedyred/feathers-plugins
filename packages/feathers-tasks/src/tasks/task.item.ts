@@ -36,10 +36,10 @@ export class TaskItem extends Model {
 		if (this.parent.options.logs) {
 			this.parent.job().then(job => {
 				if (job) {
-					job.log(JSON.stringify(args)).catch(err => out.error(err))
+					job.log(JSON.stringify(args)).catch(error => out.error(error))
 				}
 			})
-				.catch(e => this.out.error('Error logging to job', e))
+				.catch(error => this.out.error('Error logging to job', error))
 		}
 	}
 

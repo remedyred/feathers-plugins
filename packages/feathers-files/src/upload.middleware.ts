@@ -32,7 +32,10 @@ class Uploader {
 					return
 				}
 				if (isArray(file)) {
-					return file.forEach(f => addFile(f))
+					for (const f of file) {
+						addFile(f)
+					}
+					return
 				}
 				this.out.verbose(`[addFile] Adding file to "${file.fieldname}"`, file)
 				if (isArray(files[file.fieldname])) {
