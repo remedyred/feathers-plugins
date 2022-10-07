@@ -15,9 +15,9 @@ importers:
       semantic-release: 19.0.5
       shx: 0.3.4
       turbo: 1.4.3
-      typescript: 4.7.4
+      typescript: 4.8.4
     devDependencies:
-      '@snickbit/eslint-config': 0.0.10_oma37ntcsyoxqn5sr4l7ekf4na
+      '@snickbit/eslint-config': 0.0.10_ypn2ylkkyfa5i233caldtndbqa
       '@snickbit/readmes': 0.0.2
       '@snickbit/semantic-release': 1.5.3_semantic-release@19.0.5
       depcheck: 1.4.3
@@ -28,7 +28,7 @@ importers:
       semantic-release: 19.0.5
       shx: 0.3.4
       turbo: 1.4.3
-      typescript: 4.7.4
+      typescript: 4.8.4
 
   packages/feathers-auth-api:
     specifiers:
@@ -39,17 +39,17 @@ importers:
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.6
-      typescript: 4.8.2
+      typescript: 4.8.4
     dependencies:
       '@feathersjs/authentication': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
     devDependencies:
       '@feathersjs/feathers': 5.0.0-pre.26
       shx: 0.3.4
-      tsup: 6.2.3_typescript@4.8.2
-      typedoc: 0.23.12_typescript@4.8.2
+      tsup: 6.2.3_typescript@4.8.4
+      typedoc: 0.23.12_typescript@4.8.4
       typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
-      typescript: 4.8.2
+      typescript: 4.8.4
 
   packages/feathers-files:
     specifiers:
@@ -74,7 +74,7 @@ importers:
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.6
-      typescript: 4.8.2
+      typescript: 4.8.4
     dependencies:
       '@aws-sdk/client-s3': 3.181.0
       '@feathersjs/adapter-commons': 5.0.0-pre.26
@@ -95,10 +95,10 @@ importers:
       '@snickbit/indexer': 2.5.12
       '@types/multer': 1.4.7
       shx: 0.3.4
-      tsup: 6.2.3_typescript@4.8.2
-      typedoc: 0.23.12_typescript@4.8.2
+      tsup: 6.2.3_typescript@4.8.4
+      typedoc: 0.23.12_typescript@4.8.4
       typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
-      typescript: 4.8.2
+      typescript: 4.8.4
 
   packages/feathers-helpers:
     specifiers:
@@ -114,7 +114,7 @@ importers:
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.6
-      typescript: 4.8.2
+      typescript: 4.8.4
     dependencies:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/commons': 5.0.0-pre.26
@@ -126,10 +126,10 @@ importers:
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/indexer': 2.5.12
       shx: 0.3.4
-      tsup: 6.2.3_typescript@4.8.2
-      typedoc: 0.23.12_typescript@4.8.2
+      tsup: 6.2.3_typescript@4.8.4
+      typedoc: 0.23.12_typescript@4.8.4
       typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
-      typescript: 4.8.2
+      typescript: 4.8.4
 
   packages/feathers-hooks:
     specifiers:
@@ -138,14 +138,14 @@ importers:
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.6
-      typescript: 4.8.2
+      typescript: 4.8.4
     devDependencies:
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/indexer': 2.5.12
-      tsup: 6.2.3_typescript@4.8.2
-      typedoc: 0.23.12_typescript@4.8.2
+      tsup: 6.2.3_typescript@4.8.4
+      typedoc: 0.23.12_typescript@4.8.4
       typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
-      typescript: 4.8.2
+      typescript: 4.8.4
 
   packages/feathers-logger:
     specifiers:
@@ -158,7 +158,7 @@ importers:
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.6
-      typescript: 4.8.2
+      typescript: 4.8.4
     dependencies:
       '@snickbit/out': 2.0.37
       '@snickbit/utilities': 3.4.2
@@ -167,10 +167,10 @@ importers:
     devDependencies:
       '@feathersjs/feathers': 5.0.0-pre.26
       '@types/node': 18.6.4
-      tsup: 6.2.3_typescript@4.8.2
-      typedoc: 0.23.12_typescript@4.8.2
+      tsup: 6.2.3_typescript@4.8.4
+      typedoc: 0.23.12_typescript@4.8.4
       typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
-      typescript: 4.8.2
+      typescript: 4.8.4
 
   packages/feathers-logs:
     specifiers:
@@ -180,16 +180,16 @@ importers:
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.6
-      typescript: 4.8.2
+      typescript: 4.8.4
     dependencies:
       '@snickbit/feathers-logger': link:../feathers-logger
       '@snickbit/feathers-mongo': link:../feathers-mongo
     devDependencies:
       '@feathersjs/feathers': 5.0.0-pre.26
-      tsup: 6.2.3_typescript@4.8.2
-      typedoc: 0.23.12_typescript@4.8.2
+      tsup: 6.2.3_typescript@4.8.4
+      typedoc: 0.23.12_typescript@4.8.4
       typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
-      typescript: 4.8.2
+      typescript: 4.8.4
 
   packages/feathers-model:
     specifiers:
@@ -202,7 +202,7 @@ importers:
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.6
-      typescript: 4.8.2
+      typescript: 4.8.4
     dependencies:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
@@ -211,10 +211,10 @@ importers:
       feathers-memory: 4.1.0
     devDependencies:
       '@feathersjs/feathers': 5.0.0-pre.26
-      tsup: 6.2.3_typescript@4.8.2
-      typedoc: 0.23.12_typescript@4.8.2
+      tsup: 6.2.3_typescript@4.8.4
+      typedoc: 0.23.12_typescript@4.8.4
       typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
-      typescript: 4.8.2
+      typescript: 4.8.4
 
   packages/feathers-mongo:
     specifiers:
@@ -229,7 +229,7 @@ importers:
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.6
-      typescript: 4.8.2
+      typescript: 4.8.4
     dependencies:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
@@ -240,10 +240,10 @@ importers:
       '@snickbit/utilities': 3.4.2
       mongodb: 4.8.1
     devDependencies:
-      tsup: 6.2.3_typescript@4.8.2
-      typedoc: 0.23.12_typescript@4.8.2
+      tsup: 6.2.3_typescript@4.8.4
+      typedoc: 0.23.12_typescript@4.8.4
       typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
-      typescript: 4.8.2
+      typescript: 4.8.4
 
   packages/feathers-pouchdb:
     specifiers:
@@ -266,7 +266,7 @@ importers:
       tweetnacl-util: 0.15.1
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.6
-      typescript: 4.8.2
+      typescript: 4.8.4
     dependencies:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
@@ -285,10 +285,10 @@ importers:
     devDependencies:
       '@types/pouchdb': 6.4.0
       shx: 0.3.4
-      tsup: 6.2.3_typescript@4.8.2
-      typedoc: 0.23.12_typescript@4.8.2
+      tsup: 6.2.3_typescript@4.8.4
+      typedoc: 0.23.12_typescript@4.8.4
       typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
-      typescript: 4.8.2
+      typescript: 4.8.4
 
   packages/feathers-redis:
     specifiers:
@@ -303,7 +303,7 @@ importers:
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.6
-      typescript: 4.8.2
+      typescript: 4.8.4
     dependencies:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
@@ -314,10 +314,10 @@ importers:
     devDependencies:
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/indexer': 2.5.12
-      tsup: 6.2.3_typescript@4.8.2
-      typedoc: 0.23.12_typescript@4.8.2
+      tsup: 6.2.3_typescript@4.8.4
+      typedoc: 0.23.12_typescript@4.8.4
       typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
-      typescript: 4.8.2
+      typescript: 4.8.4
 
   packages/feathers-rest:
     specifiers:
@@ -330,7 +330,7 @@ importers:
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.6
-      typescript: 4.8.2
+      typescript: 4.8.4
     dependencies:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
@@ -339,10 +339,10 @@ importers:
       axios: 0.27.2
     devDependencies:
       '@snickbit/indexer': 2.5.12
-      tsup: 6.2.3_typescript@4.8.2
-      typedoc: 0.23.12_typescript@4.8.2
+      tsup: 6.2.3_typescript@4.8.4
+      typedoc: 0.23.12_typescript@4.8.4
       typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
-      typescript: 4.8.2
+      typescript: 4.8.4
 
   packages/feathers-tasks:
     specifiers:
@@ -362,7 +362,7 @@ importers:
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.6
-      typescript: 4.8.2
+      typescript: 4.8.4
     dependencies:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
@@ -378,10 +378,10 @@ importers:
       ioredis: 5.2.3
     devDependencies:
       '@snickbit/indexer': 2.5.12
-      tsup: 6.2.3_typescript@4.8.2
-      typedoc: 0.23.12_typescript@4.8.2
+      tsup: 6.2.3_typescript@4.8.4
+      typedoc: 0.23.12_typescript@4.8.4
       typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
-      typescript: 4.8.2
+      typescript: 4.8.4
 
   packages/feathers-up:
     specifiers:
@@ -411,7 +411,7 @@ importers:
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.6
-      typescript: 4.8.2
+      typescript: 4.8.4
       winston: 3.8.1
       winston-daily-rotate-file: 4.7.1
     dependencies:
@@ -442,10 +442,10 @@ importers:
       mysql: 2.18.1
     devDependencies:
       '@snickbit/indexer': 2.5.12
-      tsup: 6.2.3_typescript@4.8.2
-      typedoc: 0.23.12_typescript@4.8.2
+      tsup: 6.2.3_typescript@4.8.4
+      typedoc: 0.23.12_typescript@4.8.4
       typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
-      typescript: 4.8.2
+      typescript: 4.8.4
 
   packages/feathers-up-mongodb:
     specifiers:
@@ -454,15 +454,15 @@ importers:
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.6
-      typescript: 4.8.2
+      typescript: 4.8.4
     dependencies:
       '@snickbit/feathers-up': link:../feathers-up
       mongodb: 4.8.1
     devDependencies:
-      tsup: 6.2.3_typescript@4.8.2
-      typedoc: 0.23.12_typescript@4.8.2
+      tsup: 6.2.3_typescript@4.8.4
+      typedoc: 0.23.12_typescript@4.8.4
       typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
-      typescript: 4.8.2
+      typescript: 4.8.4
 
   packages/feathers-up-mysql:
     specifiers:
@@ -472,16 +472,16 @@ importers:
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.6
-      typescript: 4.8.2
+      typescript: 4.8.4
     dependencies:
       '@snickbit/feathers-up': link:../feathers-up
       knex: 2.2.0_mysql@2.18.1
       mysql: 2.18.1
     devDependencies:
-      tsup: 6.2.3_typescript@4.8.2
-      typedoc: 0.23.12_typescript@4.8.2
+      tsup: 6.2.3_typescript@4.8.4
+      typedoc: 0.23.12_typescript@4.8.4
       typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
-      typescript: 4.8.2
+      typescript: 4.8.4
 
   packages/feathers-up-redis:
     specifiers:
@@ -490,15 +490,15 @@ importers:
       tsup: 6.2.3
       typedoc: 0.23.12
       typedoc-plugin-markdown: 3.13.6
-      typescript: 4.8.2
+      typescript: 4.8.4
     dependencies:
       '@snickbit/feathers-up': link:../feathers-up
       ioredis: 5.2.3
     devDependencies:
-      tsup: 6.2.3_typescript@4.8.2
-      typedoc: 0.23.12_typescript@4.8.2
+      tsup: 6.2.3_typescript@4.8.4
+      typedoc: 0.23.12_typescript@4.8.4
       typedoc-plugin-markdown: 3.13.6_typedoc@0.23.12
-      typescript: 4.8.2
+      typescript: 4.8.4
 
 packages:
 
@@ -2191,15 +2191,15 @@ packages:
       dayjs: 1.11.4
     dev: false
 
-  /@snickbit/eslint-config/0.0.10_oma37ntcsyoxqn5sr4l7ekf4na:
+  /@snickbit/eslint-config/0.0.10_ypn2ylkkyfa5i233caldtndbqa:
     resolution: {integrity: sha512-iXf3l1/lztJAZTQ/r2GMq+QOgeCvaouzGACDPanI0Us6BU/EzajVgFlznwU+EGsoB0IcbeJZtIabWduVkqzSzQ==}
     engines: {node: '>= 12'}
     peerDependencies:
       eslint: '>= 8.19.0'
     dependencies:
       '@types/eslint': 8.4.5
-      '@typescript-eslint/eslint-plugin': 5.33.0_koqh7qisxprhv7dmbxve2v25nq
-      '@typescript-eslint/parser': 5.33.0_oma37ntcsyoxqn5sr4l7ekf4na
+      '@typescript-eslint/eslint-plugin': 5.33.0_ernc3josozgi2grpcumi5lvlfq
+      '@typescript-eslint/parser': 5.33.0_ypn2ylkkyfa5i233caldtndbqa
       eslint: 8.24.0
       eslint-plugin-beautiful-sort: 2.0.3
       eslint-plugin-json: 3.1.0
@@ -2617,7 +2617,7 @@ packages:
       '@types/webidl-conversions': 6.1.1
     dev: false
 
-  /@typescript-eslint/eslint-plugin/5.33.0_koqh7qisxprhv7dmbxve2v25nq:
+  /@typescript-eslint/eslint-plugin/5.33.0_ernc3josozgi2grpcumi5lvlfq:
     resolution: {integrity: sha512-jHvZNSW2WZ31OPJ3enhLrEKvAZNyAFWZ6rx9tUwaessTc4sx9KmgMNhVcqVAl1ETnT5rU5fpXTLmY9YvC1DCNg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     requiresBuild: true
@@ -2629,23 +2629,23 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@typescript-eslint/parser': 5.33.0_oma37ntcsyoxqn5sr4l7ekf4na
+      '@typescript-eslint/parser': 5.33.0_ypn2ylkkyfa5i233caldtndbqa
       '@typescript-eslint/scope-manager': 5.33.0
-      '@typescript-eslint/type-utils': 5.33.0_oma37ntcsyoxqn5sr4l7ekf4na
-      '@typescript-eslint/utils': 5.33.0_oma37ntcsyoxqn5sr4l7ekf4na
+      '@typescript-eslint/type-utils': 5.33.0_ypn2ylkkyfa5i233caldtndbqa
+      '@typescript-eslint/utils': 5.33.0_ypn2ylkkyfa5i233caldtndbqa
       debug: 4.3.4
       eslint: 8.24.0
       functional-red-black-tree: 1.0.1
       ignore: 5.2.0
       regexpp: 3.2.0
       semver: 7.3.7
-      tsutils: 3.21.0_typescript@4.7.4
-      typescript: 4.7.4
+      tsutils: 3.21.0_typescript@4.8.4
+      typescript: 4.8.4
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@typescript-eslint/parser/5.33.0_oma37ntcsyoxqn5sr4l7ekf4na:
+  /@typescript-eslint/parser/5.33.0_ypn2ylkkyfa5i233caldtndbqa:
     resolution: {integrity: sha512-cgM5cJrWmrDV2KpvlcSkelTBASAs1mgqq+IUGKJvFxWrapHpaRy5EXPQz9YaKF3nZ8KY18ILTiVpUtbIac86/w==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -2657,10 +2657,10 @@ packages:
     dependencies:
       '@typescript-eslint/scope-manager': 5.33.0
       '@typescript-eslint/types': 5.33.0
-      '@typescript-eslint/typescript-estree': 5.33.0_typescript@4.7.4
+      '@typescript-eslint/typescript-estree': 5.33.0_typescript@4.8.4
       debug: 4.3.4
       eslint: 8.24.0
-      typescript: 4.7.4
+      typescript: 4.8.4
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2673,7 +2673,7 @@ packages:
       '@typescript-eslint/visitor-keys': 5.33.0
     dev: true
 
-  /@typescript-eslint/type-utils/5.33.0_oma37ntcsyoxqn5sr4l7ekf4na:
+  /@typescript-eslint/type-utils/5.33.0_ypn2ylkkyfa5i233caldtndbqa:
     resolution: {integrity: sha512-2zB8uEn7hEH2pBeyk3NpzX1p3lF9dKrEbnXq1F7YkpZ6hlyqb2yZujqgRGqXgRBTHWIUG3NGx/WeZk224UKlIA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -2683,11 +2683,11 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@typescript-eslint/utils': 5.33.0_oma37ntcsyoxqn5sr4l7ekf4na
+      '@typescript-eslint/utils': 5.33.0_ypn2ylkkyfa5i233caldtndbqa
       debug: 4.3.4
       eslint: 8.24.0
-      tsutils: 3.21.0_typescript@4.7.4
-      typescript: 4.7.4
+      tsutils: 3.21.0_typescript@4.8.4
+      typescript: 4.8.4
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2697,7 +2697,7 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /@typescript-eslint/typescript-estree/5.33.0_typescript@4.7.4:
+  /@typescript-eslint/typescript-estree/5.33.0_typescript@4.8.4:
     resolution: {integrity: sha512-tqq3MRLlggkJKJUrzM6wltk8NckKyyorCSGMq4eVkyL5sDYzJJcMgZATqmF8fLdsWrW7OjjIZ1m9v81vKcaqwQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -2712,13 +2712,13 @@ packages:
       globby: 11.1.0
       is-glob: 4.0.3
       semver: 7.3.7
-      tsutils: 3.21.0_typescript@4.7.4
-      typescript: 4.7.4
+      tsutils: 3.21.0_typescript@4.8.4
+      typescript: 4.8.4
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@typescript-eslint/utils/5.33.0_oma37ntcsyoxqn5sr4l7ekf4na:
+  /@typescript-eslint/utils/5.33.0_ypn2ylkkyfa5i233caldtndbqa:
     resolution: {integrity: sha512-JxOAnXt9oZjXLIiXb5ZIcZXiwVHCkqZgof0O8KPgz7C7y0HS42gi75PdPlqh1Tf109M0fyUw45Ao6JLo7S5AHw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -2727,7 +2727,7 @@ packages:
       '@types/json-schema': 7.0.11
       '@typescript-eslint/scope-manager': 5.33.0
       '@typescript-eslint/types': 5.33.0
-      '@typescript-eslint/typescript-estree': 5.33.0_typescript@4.7.4
+      '@typescript-eslint/typescript-estree': 5.33.0_typescript@4.8.4
       eslint: 8.24.0
       eslint-scope: 5.1.1
       eslint-utils: 3.0.0_eslint@8.24.0
@@ -7844,7 +7844,7 @@ packages:
   /tslib/2.4.0:
     resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
 
-  /tsup/6.2.3_typescript@4.8.2:
+  /tsup/6.2.3_typescript@4.8.4:
     resolution: {integrity: sha512-J5Pu2Dx0E1wlpIEsVFv9ryzP1pZ1OYsJ2cBHZ7GrKteytNdzaSz5hmLX7/nAxtypq+jVkVvA79d7S83ETgHQ5w==}
     engines: {node: '>=14'}
     hasBin: true
@@ -7874,20 +7874,20 @@ packages:
       source-map: 0.8.0-beta.0
       sucrase: 3.25.0
       tree-kill: 1.2.2
-      typescript: 4.8.2
+      typescript: 4.8.4
     transitivePeerDependencies:
       - supports-color
       - ts-node
     dev: true
 
-  /tsutils/3.21.0_typescript@4.7.4:
+  /tsutils/3.21.0_typescript@4.8.4:
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
     engines: {node: '>= 6'}
     peerDependencies:
       typescript: '>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta'
     dependencies:
       tslib: 1.14.1
-      typescript: 4.7.4
+      typescript: 4.8.4
     dev: true
 
   /turbo-android-arm64/1.4.3:
@@ -8091,10 +8091,10 @@ packages:
       typedoc: '>=0.23.0'
     dependencies:
       handlebars: 4.7.7
-      typedoc: 0.23.12_typescript@4.8.2
+      typedoc: 0.23.12_typescript@4.8.4
     dev: true
 
-  /typedoc/0.23.12_typescript@4.8.2:
+  /typedoc/0.23.12_typescript@4.8.4:
     resolution: {integrity: sha512-wr7r/ufgGSsw2ntKTkLDJA7a+0hDdk2oRPouJGd9lwpFj305ZV6gjUwVxncp3ZuD92iKpc+kqsl5ag109rvkmA==}
     engines: {node: '>= 14.14'}
     hasBin: true
@@ -8105,17 +8105,11 @@ packages:
       marked: 4.1.0
       minimatch: 5.1.0
       shiki: 0.11.1
-      typescript: 4.8.2
+      typescript: 4.8.4
     dev: true
 
-  /typescript/4.7.4:
-    resolution: {integrity: sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==}
-    engines: {node: '>=4.2.0'}
-    hasBin: true
-    dev: true
-
-  /typescript/4.8.2:
-    resolution: {integrity: sha512-C0I1UsrrDHo2fYI5oaCGbSejwX4ch+9Y5jTQELvovfmFkK3HHSZJB8MSJcWLmCUBzQBchCrZ9rMRV6GuNrvGtw==}
+  /typescript/4.8.4:
+    resolution: {integrity: sha512-QCh+85mCy+h0IGff8r5XWzOVSbBO+KfeYrMQh7NJ58QujwcE22u+NUSmUxqF+un70P9GXKxa2HCNiTTMJknyjQ==}
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: true
