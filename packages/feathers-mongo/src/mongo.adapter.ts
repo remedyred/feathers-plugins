@@ -5,7 +5,7 @@ import {MongoDbAdapter, MongoDBAdapterOptions, MongoDBAdapterParams} from '@feat
 import {Model} from '@snickbit/feathers-model'
 import {Out} from '@snickbit/out'
 import {isArray, isObject, objectHasMethod, objectOnly} from '@snickbit/utilities'
-import {AggregateOptions, Collection, Db, IndexSpecification, ObjectId} from 'mongodb'
+import {AggregateOptions, Collection, CreateIndexesOptions, Db, IndexSpecification, ObjectId} from 'mongodb'
 import {transformSearchFieldsInQuery} from './fuzzy'
 import client from './client'
 
@@ -233,16 +233,14 @@ export default class MongoAdapter<T extends Partial<D> = any,
 		this.client = client(app)
 		this.asModel = this.options.asModel === true ? Model : this.options.asModel
 
-		this.client.then((db: Db) => {
+		this.client.then(async (db: Db) => {
 			this.options.Model = db.collection(this.options.collection) as Collection
 			if (this.options.cache) {
 				this.Cache = db.collection(`query_cache`)
 			}
 
 			if (this.options.indexes && this.options.indexes.length) {
-				for (const index of this.options.indexes) {
-					this.Model.createIndex(index.keys, index.options)
-				}
+				await Promise.all(this.options.indexes.map(index => this.Model.createIndex(index.keys, index.options as CreateIndexesOptions)))
 			}
 		}).catch((error: Error) => {
 			this.out.error(error)
