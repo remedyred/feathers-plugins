@@ -1,5 +1,5 @@
 import {AdapterBase, AdapterParams, AdapterServiceOptions, filterQuery, PaginationOptions} from '@feathersjs/adapter-commons'
-import {Application, Id, NullableId, Paginated} from '@feathersjs/feathers'
+import {Id, NullableId, Paginated} from '@feathersjs/feathers'
 import {parseResponse, parseResponseError} from '@snickbit/feathers-helpers'
 import {out} from '@snickbit/out'
 import axios, {AxiosInstance, AxiosRequestConfig, AxiosRequestHeaders, Method} from 'axios'
@@ -23,7 +23,7 @@ export default class RestAdapter<T = any, D = Partial<T>, O extends RestServiceO
 	declare options: O
 
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	constructor(options: O, app: Application) {
+	constructor(options: O) {
 		options = {
 			headers: {
 				Accept: 'application/json',
