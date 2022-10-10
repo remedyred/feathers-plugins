@@ -494,7 +494,7 @@ ___
 
 ### server
 
-• **server**: `Server`
+• **server**: `Server`<typeof `IncomingMessage`, typeof `ServerResponse`\>
 
 #### Inherited from
 
@@ -1056,7 +1056,7 @@ ___
 
 ### listen
 
-▸ **listen**(`options`): `Promise`<`Server`\>
+▸ **listen**(`options`): `Promise`<`Server`<typeof `IncomingMessage`, typeof `ServerResponse`\>\>
 
 #### Parameters
 
@@ -1066,13 +1066,13 @@ ___
 
 #### Returns
 
-`Promise`<`Server`\>
+`Promise`<`Server`<typeof `IncomingMessage`, typeof `ServerResponse`\>\>
 
 #### Inherited from
 
 ExpressApplication.listen
 
-▸ **listen**(`port`, `hostname`, `backlog`, `callback?`): `Promise`<`Server`\>
+▸ **listen**(`port`, `hostname`, `backlog`, `callback?`): `Promise`<`Server`<typeof `IncomingMessage`, typeof `ServerResponse`\>\>
 
 #### Parameters
 
@@ -1085,13 +1085,13 @@ ExpressApplication.listen
 
 #### Returns
 
-`Promise`<`Server`\>
+`Promise`<`Server`<typeof `IncomingMessage`, typeof `ServerResponse`\>\>
 
 #### Inherited from
 
 ExpressApplication.listen
 
-▸ **listen**(`port`, `hostname`, `callback?`): `Promise`<`Server`\>
+▸ **listen**(`port`, `hostname`, `callback?`): `Promise`<`Server`<typeof `IncomingMessage`, typeof `ServerResponse`\>\>
 
 #### Parameters
 
@@ -1103,13 +1103,13 @@ ExpressApplication.listen
 
 #### Returns
 
-`Promise`<`Server`\>
+`Promise`<`Server`<typeof `IncomingMessage`, typeof `ServerResponse`\>\>
 
 #### Inherited from
 
 ExpressApplication.listen
 
-▸ **listen**(`port`, `callback?`): `Promise`<`Server`\>
+▸ **listen**(`port`, `callback?`): `Promise`<`Server`<typeof `IncomingMessage`, typeof `ServerResponse`\>\>
 
 #### Parameters
 
@@ -1120,13 +1120,13 @@ ExpressApplication.listen
 
 #### Returns
 
-`Promise`<`Server`\>
+`Promise`<`Server`<typeof `IncomingMessage`, typeof `ServerResponse`\>\>
 
 #### Inherited from
 
 ExpressApplication.listen
 
-▸ **listen**(`callback?`): `Promise`<`Server`\>
+▸ **listen**(`callback?`): `Promise`<`Server`<typeof `IncomingMessage`, typeof `ServerResponse`\>\>
 
 #### Parameters
 
@@ -1136,7 +1136,7 @@ ExpressApplication.listen
 
 #### Returns
 
-`Promise`<`Server`\>
+`Promise`<`Server`<typeof `IncomingMessage`, typeof `ServerResponse`\>\>
 
 #### Inherited from
 
@@ -1490,7 +1490,7 @@ ___
 
 ▸ **prependOnceListener**(`eventName`, `listener`): `Express`
 
-Adds a **one-time**`listener` function for the event named `eventName` to the_beginning_ of the listeners array. The next time `eventName` is triggered, this
+Adds a **one-time**`listener` function for the event named `eventName` to the _beginning_ of the listeners array. The next time `eventName` is triggered, this
 listener is removed, and then invoked.
 
 ```js
@@ -1522,7 +1522,7 @@ ExpressApplication.prependOnceListener
 
 ▸ **prependOnceListener**(`eventName`, `listener`): [`Application`](Application.md)
 
-Adds a **one-time**`listener` function for the event named `eventName` to the_beginning_ of the listeners array. The next time `eventName` is triggered, this
+Adds a **one-time**`listener` function for the event named `eventName` to the _beginning_ of the listeners array. The next time `eventName` is triggered, this
 listener is removed, and then invoked.
 
 ```js
@@ -1686,8 +1686,8 @@ listener array for the specified `eventName`, then `removeListener()` must be
 called multiple times to remove each instance.
 
 Once an event is emitted, all listeners attached to it at the
-time of emitting are called in order. This implies that any`removeListener()` or `removeAllListeners()` calls _after_ emitting and_before_ the last listener finishes execution will
-not remove them from`emit()` in progress. Subsequent events behave as expected.
+time of emitting are called in order. This implies that any`removeListener()` or `removeAllListeners()` calls _after_ emitting and _before_ the last listener finishes execution
+will not remove them from`emit()` in progress. Subsequent events behave as expected.
 
 ```js
 const myEmitter = new MyEmitter();
@@ -1784,8 +1784,8 @@ listener array for the specified `eventName`, then `removeListener()` must be
 called multiple times to remove each instance.
 
 Once an event is emitted, all listeners attached to it at the
-time of emitting are called in order. This implies that any`removeListener()` or `removeAllListeners()` calls _after_ emitting and_before_ the last listener finishes execution will
-not remove them from`emit()` in progress. Subsequent events behave as expected.
+time of emitting are called in order. This implies that any`removeListener()` or `removeAllListeners()` calls _after_ emitting and _before_ the last listener finishes execution
+will not remove them from`emit()` in progress. Subsequent events behave as expected.
 
 ```js
 const myEmitter = new MyEmitter();

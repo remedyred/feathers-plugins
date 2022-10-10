@@ -65,7 +65,7 @@
 
 ### constructor
 
-• **new RestAdapter**<`T`, `D`, `O`\>(`options`, `app`)
+• **new RestAdapter**<`T`, `D`, `O`\>(`options`)
 
 #### Type parameters
 
@@ -80,7 +80,6 @@
 | Name | Type |
 | :------ | :------ |
 | `options` | `O` |
-| `app` | `Application`<`any`, `any`\> |
 
 #### Overrides
 

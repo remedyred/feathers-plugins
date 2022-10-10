@@ -73,7 +73,7 @@
 
 ### constructor
 
-• **new RestService**<`T`, `D`, `P`\>(`options`, `app`)
+• **new RestService**<`T`, `D`, `P`\>(`options`)
 
 #### Type parameters
 
@@ -88,7 +88,6 @@
 | Name | Type |
 | :------ | :------ |
 | `options` | `RestServiceOptions` |
-| `app` | `Application`<`any`, `any`\> |
 
 #### Inherited from
 
