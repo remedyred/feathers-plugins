@@ -1,6 +1,6 @@
 {
 	"name": "@snickbit/feathers-files",
-	"version": "2.0.28",
+	"version": "2.0.29",
 	"description": "Files adapter for FeathersJS",
 	"license": "MIT",
 	"exports": {
@@ -33,7 +33,7 @@
 		"@feathersjs/adapter-commons": "5.0.0-pre.26",
 		"@feathersjs/errors": "5.0.0-pre.26",
 		"@feathersjs/feathers": "5.0.0-pre.26",
-		"@snickbit/feathers-helpers": "1.0.19",
+		"@snickbit/feathers-helpers": "1.0.20",
 		"@snickbit/node-utilities": "4.4.14",
 		"@snickbit/out": "2.0.48",
 		"@snickbit/utilities": "3.4.13",
