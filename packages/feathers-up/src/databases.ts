@@ -11,8 +11,8 @@ export default async function(app: Application) {
 			const {config, loader} = databases[database]
 			try {
 				await loader(app, config)
-			} catch (e) {
-				app.out.error(`Failed to load ${database}`, e)
+			} catch (error) {
+				app.out.error(`Failed to load ${database}`, error)
 			}
 		}
 	}

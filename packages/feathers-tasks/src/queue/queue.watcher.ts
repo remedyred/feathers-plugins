@@ -54,7 +54,7 @@ export class QueueWatcher {
 		}
 
 		if (options.events === true) {
-			options.events = all_events.slice()
+			options.events = [...all_events]
 		} else if (options.events === false) {
 			options.events = []
 		}
@@ -80,7 +80,7 @@ export class QueueWatcher {
 		this.out.info('Setting up queue listener')
 		this.listener = new QueueEvents(this.name, {connection})
 
-		let events = Array.isArray(this.options.events) ? this.options.events.slice() : []
+		let events = Array.isArray(this.options.events) ? [...this.options.events] : []
 		events = events.filter(event => !this.options.suppress.includes(event))
 
 		this.out.debug(`Listening for queue events: ${events.join(', ')}`)

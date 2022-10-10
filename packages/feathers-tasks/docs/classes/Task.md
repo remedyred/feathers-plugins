@@ -404,14 +404,13 @@ ___
 
 ### fail
 
-▸ **fail**(`errorInfo?`): `Promise`<[`Task`](Task.md)\>
+▸ **fail**(`errorInfo`): `Promise`<[`Task`](Task.md)\>
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `errorInfo` | `Object` | `undefined` |
-| `errorInfo.message` | `string` | `'Task failed'` |
+| Name | Type |
+| :------ | :------ |
+| `errorInfo` | `Error` \| { `message`: `string`  } |
 
 #### Returns
 
@@ -427,7 +426,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `predicate` | `ObjectPredicate` |
+| `predicate` | `ObjectPredicate`<`any`\> |
 
 #### Returns
 
@@ -444,7 +443,7 @@ Model.find
 | Name | Type |
 | :------ | :------ |
 | `key` | `ModelKey` |
-| `predicate` | `ObjectPredicate` |
+| `predicate` | `ObjectPredicate`<`any`\> |
 
 #### Returns
 
@@ -464,7 +463,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `predicate` | `ObjectPredicate` |
+| `predicate` | `ObjectPredicate`<`any`\> |
 
 #### Returns
 
@@ -481,7 +480,7 @@ Model.findKey
 | Name | Type |
 | :------ | :------ |
 | `key` | `ModelKey` |
-| `predicate` | `ObjectPredicate` |
+| `predicate` | `ObjectPredicate`<`any`\> |
 
 #### Returns
 

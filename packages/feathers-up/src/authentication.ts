@@ -7,8 +7,8 @@ export default function(app: Application) {
 		app.out.verbose('Configure authentication')
 		try {
 			app.configure(authentication)
-		} catch (e) {
-			app.out.error('Error configuring authentication', e)
+		} catch (error) {
+			app.out.error('Error configuring authentication', error)
 		}
 	}
 }

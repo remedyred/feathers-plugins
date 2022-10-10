@@ -42,7 +42,7 @@ export function makeQueue(name, options?) {
 		const queueOptions: QueueServiceOptions = {
 			name,
 			...getConfig(),
-			...options || {}
+			...options
 		}
 
 		state.app.use(`/queue/${name}`, new QueueService(queueOptions) as ServiceInterface)

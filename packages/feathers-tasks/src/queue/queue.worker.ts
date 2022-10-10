@@ -51,6 +51,7 @@ export class QueueWorker {
 
 	start() {
 		this.out.extra(this.options).info('Starting Worker in current process')
+		// eslint-disable-next-line unicorn/consistent-function-scoping
 		const processor = async job => {
 			this.out.info(`Processing job: ${job.name}`)
 			const task = new Task(job, {queue: job.queue.name})
@@ -58,8 +59,8 @@ export class QueueWorker {
 				try {
 					await task.run()
 					this.out.success(`Job ${job.name} Complete`)
-				} catch (e) {
-					this.out.extra(e).error(`Job ${job.name} failed with error: ${e.message}`)
+				} catch (error) {
+					this.out.extra(error).error(`Job ${job.name} failed with error: ${error.message}`)
 				}
 			} else {
 				this.out.error(`Job Not Found: ${job.name}`)

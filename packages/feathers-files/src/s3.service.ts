@@ -95,7 +95,7 @@ export class S3Service extends FileService {
 			}
 			try {
 				payload.Body = makeBuffer(payload.Body as string) as Buffer
-			} catch (e) {
+			} catch {
 				throw new Error(`Invalid content!`)
 			}
 		}
@@ -119,7 +119,7 @@ export class S3Service extends FileService {
 			}
 			try {
 				params.Body = makeBuffer(payload.content)
-			} catch (e) {
+			} catch {
 				this.out.error(payload.content)
 				throw new Error(`Invalid content!`)
 			}
@@ -169,7 +169,7 @@ export class S3Service extends FileService {
 		try {
 			await this.client.send(new HeadObjectCommand(this.buildRequest({Key: id}, params)))
 			return this.makeUrl(id)
-		} catch (e) {
+		} catch {
 			// Head command does not throw any kind of detailed error, use _get to get the error
 			return false
 		}

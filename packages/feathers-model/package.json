@@ -31,16 +31,16 @@
 	"dependencies": {
 		"@feathersjs/adapter-commons": "5.0.0-pre.26",
 		"@feathersjs/errors": "5.0.0-pre.26",
-		"@snickbit/feathers-helpers": "~1.0.18",
-		"@snickbit/model": "~1.0.52",
+		"@snickbit/feathers-helpers": "1.0.19",
+		"@snickbit/model": "1.0.65",
 		"feathers-memory": "4.1.0"
 	},
 	"devDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.26",
 		"tsup": "6.2.3",
-		"typedoc": "0.23.12",
-		"typedoc-plugin-markdown": "3.13.5",
-		"typescript": "4.8.2"
+		"typedoc": "0.23.15",
+		"typedoc-plugin-markdown": "3.13.6",
+		"typescript": "4.8.4"
 	},
 	"peerDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.26"

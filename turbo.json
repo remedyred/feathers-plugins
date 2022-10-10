@@ -63,7 +63,7 @@
 			"outputs": ["CHANGELOG.md", "package.json", "docs/**", "README.md"]
 		},
 		"//#release:ci": {
-			"dependsOn": ["$GITHUB_TOKEN", "$NPM_TOKEN"],
+			"env": ["GITHUB_TOKEN", "NPM_TOKEN"],
 			"outputs": ["CHANGELOG.md", "package.json", "docs/**", "README.md"],
 			"outputMode": "new-only"
 		}

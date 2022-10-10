@@ -39,8 +39,8 @@ export function serverInit(app: Application) {
 		if (middleware) {
 			try {
 				app.configure(middleware)
-			} catch (e) {
-				app.out.error('Error configuring middleware', e)
+			} catch (error) {
+				app.out.error('Error configuring middleware', error)
 			}
 		}
 	}

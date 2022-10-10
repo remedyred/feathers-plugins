@@ -32,22 +32,22 @@
 		"@feathersjs/adapter-commons": "5.0.0-pre.26",
 		"@feathersjs/errors": "5.0.0-pre.26",
 		"@feathersjs/feathers": "5.0.0-pre.26",
-		"@snickbit/dates": "~1.0.48",
-		"@snickbit/feathers-helpers": "~1.0.18",
-		"@snickbit/feathers-model": "~1.0.19",
-		"@snickbit/node-cli": "~3.0.4",
-		"@snickbit/node-utilities": "~4.4.2",
-		"@snickbit/out": "~2.0.37",
-		"@snickbit/utilities": "~3.2.0",
-		"bullmq": "1.86.10",
-		"ioredis": "5.2.2"
+		"@snickbit/dates": "1.0.62",
+		"@snickbit/feathers-helpers": "1.0.19",
+		"@snickbit/feathers-model": "1.0.20",
+		"@snickbit/node-cli": "3.0.24",
+		"@snickbit/node-utilities": "4.4.14",
+		"@snickbit/out": "2.0.48",
+		"@snickbit/utilities": "3.4.13",
+		"bullmq": "1.91.1",
+		"ioredis": "5.2.3"
 	},
 	"devDependencies": {
-		"@snickbit/indexer": "2.5.12",
+		"@snickbit/indexer": "^2.5.27",
 		"tsup": "6.2.3",
-		"typedoc": "0.23.12",
-		"typedoc-plugin-markdown": "3.13.5",
-		"typescript": "4.8.2"
+		"typedoc": "0.23.15",
+		"typedoc-plugin-markdown": "3.13.6",
+		"typescript": "4.8.4"
 	},
 	"peerDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.26"

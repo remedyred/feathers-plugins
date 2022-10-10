@@ -126,10 +126,10 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 			try {
 				this.out.debug('Waiting for encryption key...')
 				encryptionKey = await this.encryptionReady(app)
-			} catch (e) {
-				const error = new PouchError('Failed to initialize encryption', e)
-				this.out.error(error)
-				throw error
+			} catch (error) {
+				const pouch_error = new PouchError('Failed to initialize encryption', error)
+				this.out.error(pouch_error)
+				throw pouch_error
 			}
 
 			if (encryptionKey) {
@@ -139,10 +139,10 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 					this.out.debug('Encrypting remote data', this.options.encrypt, encryptOptions)
 					try {
 						await this.client.setPassword(encryptionKey, {opts: encryptOptions})
-					} catch (e) {
-						const error = new PouchError('Failed to encrypt remote data', e)
-						this.out.error(error)
-						throw error
+					} catch (error) {
+						const pouch_error = new PouchError('Failed to encrypt remote data', error)
+						this.out.error(pouch_error)
+						throw pouch_error
 					}
 
 					// We only need to load the encrypted data if we are using e2e encryption
@@ -150,10 +150,10 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 						this.out.debug('Loading encrypted data')
 						try {
 							await this.client.loadEncrypted()
-						} catch (e) {
-							const error = new PouchError('Failed to load encrypted data', e)
-							this.out.error(error)
-							throw error
+						} catch (error) {
+							const pouch_error = new PouchError('Failed to load encrypted data', error)
+							this.out.error(pouch_error)
+							throw pouch_error
 						}
 					}
 
@@ -242,10 +242,10 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 		try {
 			const res = await this.client.find(options)
 			results.data = this.filterDocs(res.docs)
-		} catch (e) {
-			const error = new PouchError('Failed to find documents', e)
-			this.out.error(error)
-			throw error
+		} catch (error) {
+			const pouch_error = new PouchError('Failed to find documents', error)
+			this.out.error(pouch_error)
+			throw pouch_error
 		}
 
 		if (paginate === false) {
@@ -273,7 +273,7 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 		let doc: any
 		try {
 			doc = await this.client.get(String(id))
-		} catch (e) {
+		} catch {
 			throw new NotFound(`No record found for id '${id}'`)
 		}
 		if (doc) {
@@ -294,10 +294,10 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 		try {
 			const result = await this.client.put(data as PutDocument<Document>)
 			return this.$get(result.id, params)
-		} catch (e) {
-			const error = new PouchError('Failed to put document', e)
-			this.out.error(error)
-			throw error
+		} catch (error) {
+			const pouch_error = new PouchError('Failed to put document', error)
+			this.out.error(pouch_error)
+			throw pouch_error
 		}
 	}
 
@@ -313,10 +313,10 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 		try {
 			const result = await this.client.post(data as PostDocument<Document>)
 			return this.$get(result.id, params)
-		} catch (e) {
-			const error = new PouchError('Failed to create document', e)
-			this.out.error(error)
-			throw error
+		} catch (error) {
+			const pouch_error = new PouchError('Failed to create document', error)
+			this.out.error(pouch_error)
+			throw pouch_error
 		}
 	}
 
@@ -378,10 +378,10 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 		const attachment = attachmentOrAttachments as PouchAttachment
 		try {
 			return this.client.putAttachment(id, attachment.name, attachment.data, attachment.type)
-		} catch (e) {
-			const error = new PouchError('Failed to attach object', e)
-			this.out.error(error)
-			throw error
+		} catch (error) {
+			const pouch_error = new PouchError('Failed to attach object', error)
+			this.out.error(pouch_error)
+			throw pouch_error
 		}
 	}
 

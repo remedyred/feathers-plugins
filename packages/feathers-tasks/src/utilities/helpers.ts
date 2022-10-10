@@ -93,8 +93,8 @@ export async function setTaskStore(tasksOrDirectory: ImportRecords | RecordOfImp
 		_out.verbose(`Importing tasks from: ${task_dir}`)
 		try {
 			tasks = await import(task_dir)
-		} catch (e) {
-			_out.error('Error loading task store', e)
+		} catch (error) {
+			_out.error('Error loading task store', error)
 		}
 	} else {
 		tasks = tasksOrDirectory

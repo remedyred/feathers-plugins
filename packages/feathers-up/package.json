@@ -33,37 +33,37 @@
 		"@feathersjs/express": "5.0.0-pre.26",
 		"@feathersjs/feathers": "5.0.0-pre.26",
 		"@feathersjs/socketio": "5.0.0-pre.26",
-		"@sentry/node": "7.14.0",
+		"@sentry/node": "7.14.2",
 		"@snickbit/feathers-hooks": "1.0.10",
 		"@snickbit/feathers-logger": "1.0.17",
 		"@snickbit/feathers-logs": "1.0.25",
-		"@snickbit/model": "~1.0.52",
-		"@snickbit/node-utilities": "~4.4.2",
-		"@snickbit/out": "~2.0.37",
-		"@snickbit/utilities": "~3.2.0",
-		"body-parser": "1.20.0",
+		"@snickbit/model": "1.0.65",
+		"@snickbit/node-utilities": "4.4.14",
+		"@snickbit/out": "2.0.48",
+		"@snickbit/utilities": "3.4.13",
+		"body-parser": "1.20.1",
 		"compression": "1.7.4",
 		"cors": "2.8.5",
 		"express": "4.18.1",
-		"helmet": "5.1.1",
-		"socket.io": "4.5.1",
-		"winston": "3.8.1",
+		"helmet": "6.0.0",
+		"socket.io": "4.5.2",
+		"winston": "3.8.2",
 		"winston-daily-rotate-file": "4.7.1"
 	},
 	"devDependencies": {
-		"@snickbit/indexer": "2.5.12",
+		"@snickbit/indexer": "^2.5.27",
 		"tsup": "6.2.3",
-		"typedoc": "0.23.12",
-		"typedoc-plugin-markdown": "3.13.5",
-		"typescript": "4.8.2"
+		"typedoc": "0.23.15",
+		"typedoc-plugin-markdown": "3.13.6",
+		"typescript": "4.8.4"
 	},
 	"peerDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.26"
 	},
 	"optionalDependencies": {
-		"ioredis": "5.0.6",
-		"knex": "2.1.0",
-		"mongodb": "4.7.0",
+		"ioredis": "5.2.3",
+		"knex": "2.3.0",
+		"mongodb": "4.10.0",
 		"mysql": "2.18.1"
 	},
 	"engines": {

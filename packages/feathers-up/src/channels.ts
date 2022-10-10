@@ -7,8 +7,8 @@ export default function(app: Application) {
 		app.out.verbose('Set up event channels')
 		try {
 			app.configure(channels)
-		} catch (e) {
-			app.out.error('Error configuring channels', e)
+		} catch (error) {
+			app.out.error('Error configuring channels', error)
 		}
 	}
 }

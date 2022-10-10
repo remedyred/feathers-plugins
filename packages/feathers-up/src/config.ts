@@ -30,7 +30,7 @@ export function initialize(app: Application, setup: AppSetup | Model = {}) {
 	initDatabases()
 }
 
-export function useConfig(key: string, fallback = undefined) {
+export function useConfig(key: string, fallback?) {
 	if ($setup.has(key)) {
 		return $setup.get(key)
 	}
@@ -40,7 +40,7 @@ export function useConfig(key: string, fallback = undefined) {
 	return fallback
 }
 
-export function useSetup(key: string, fallback = undefined) {
+export function useSetup(key: string, fallback?) {
 	return $setup.has(key) ? $setup.get(key) : fallback
 }
 

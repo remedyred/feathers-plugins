@@ -312,7 +312,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `predicate` | `ObjectPredicate` |
+| `predicate` | `ObjectPredicate`<`any`\> |
 
 #### Returns
 
@@ -329,7 +329,7 @@ BaseModel.find
 | Name | Type |
 | :------ | :------ |
 | `key` | `ModelKey` |
-| `predicate` | `ObjectPredicate` |
+| `predicate` | `ObjectPredicate`<`any`\> |
 
 #### Returns
 
@@ -349,7 +349,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `predicate` | `ObjectPredicate` |
+| `predicate` | `ObjectPredicate`<`any`\> |
 
 #### Returns
 
@@ -366,7 +366,7 @@ BaseModel.findKey
 | Name | Type |
 | :------ | :------ |
 | `key` | `ModelKey` |
-| `predicate` | `ObjectPredicate` |
+| `predicate` | `ObjectPredicate`<`any`\> |
 
 #### Returns
 

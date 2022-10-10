@@ -10,23 +10,23 @@ export default function(app: Application) {
 			for (const service of services) {
 				try {
 					app.configure(service)
-				} catch (e) {
-					app.out.error('Error configuring service', e)
+				} catch (error) {
+					app.out.error('Error configuring service', error)
 				}
 			}
 		} else if (isObject(services)) {
 			for (const service in services) {
 				try {
 					app.configure(services[service])
-				} catch (e) {
-					app.out.error(`Error configuring service ${service}`, e)
+				} catch (error) {
+					app.out.error(`Error configuring service ${service}`, error)
 				}
 			}
 		} else {
 			try {
 				app.configure(services)
-			} catch (e) {
-				app.out.error('Error configuring services', e)
+			} catch (error) {
+				app.out.error('Error configuring services', error)
 			}
 		}
 	}

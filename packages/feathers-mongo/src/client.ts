@@ -14,7 +14,7 @@ export default function(app) {
 
 		const mongoClientPromise = MongoClient.connect(conf.uri, mongoOptions)
 		app.set('mongoClientPromise', mongoClientPromise)
-		mongoClientPromise.catch(err => out.throw(err))
+		mongoClientPromise.catch(error => out.throw(error))
 		app.set('mongoClient', mongoClientPromise.then(client => client.db(conf.database)))
 	}
 	return app.get('mongoClient')

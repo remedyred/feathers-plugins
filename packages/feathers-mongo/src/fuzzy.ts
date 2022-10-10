@@ -16,11 +16,11 @@ export function transformSearchFieldsInQuery(query: any, options: SearchOptions,
 			value =
 				value.split(/\W/)
 					.map(v => v.trim())
-					.filter(v => v)
+					.filter(Boolean)
 					.join('.*')
 			return query.$caseSensitive ? new RegExp(value) : new RegExp(value, 'i')
-		} catch (e) {
-			out.throw('Error making regex', e)
+		} catch (error) {
+			out.throw('Error making regex', error)
 		}
 	}
 
