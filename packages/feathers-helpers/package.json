@@ -1,6 +1,6 @@
 {
 	"name": "@snickbit/feathers-helpers",
-	"version": "1.0.19",
+	"version": "1.0.20",
 	"description": "Helper functions for FeathersJS",
 	"license": "MIT",
 	"exports": {
