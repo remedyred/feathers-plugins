@@ -55,7 +55,7 @@ importers:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/feathers-helpers': 1.0.19
+      '@snickbit/feathers-helpers': 1.0.20
       '@snickbit/indexer': ^2.5.27
       '@snickbit/node-utilities': 4.4.14
       '@snickbit/out': 2.0.48
@@ -169,8 +169,8 @@ importers:
   packages/feathers-logs:
     specifiers:
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/feathers-logger': 1.0.17
-      '@snickbit/feathers-mongo': 2.0.9
+      '@snickbit/feathers-logger': 1.0.18
+      '@snickbit/feathers-mongo': 2.0.10
       tsup: 6.2.3
       typedoc: 0.23.15
       typedoc-plugin-markdown: 3.13.6
@@ -190,7 +190,7 @@ importers:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/feathers-helpers': 1.0.19
+      '@snickbit/feathers-helpers': 1.0.20
       '@snickbit/model': 1.0.65
       feathers-memory: 4.1.0
       tsup: 6.2.3
@@ -216,7 +216,7 @@ importers:
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
       '@feathersjs/mongodb': 5.0.0-pre.26
-      '@snickbit/feathers-model': 1.0.20
+      '@snickbit/feathers-model': 1.0.21
       '@snickbit/out': 2.0.48
       '@snickbit/utilities': 3.4.13
       mongodb: 4.10.0
@@ -244,7 +244,7 @@ importers:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/feathers-helpers': 1.0.19
+      '@snickbit/feathers-helpers': 1.0.20
       '@snickbit/out': 2.0.48
       '@snickbit/utilities': 3.4.13
       '@types/pouchdb': 6.4.0
@@ -287,7 +287,7 @@ importers:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/feathers-helpers': 1.0.19
+      '@snickbit/feathers-helpers': 1.0.20
       '@snickbit/indexer': ^2.5.27
       '@snickbit/utilities': 3.4.13
       ioredis: 5.2.3
@@ -315,7 +315,7 @@ importers:
     specifiers:
       '@feathersjs/adapter-commons': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
-      '@snickbit/feathers-helpers': 1.0.19
+      '@snickbit/feathers-helpers': 1.0.20
       '@snickbit/indexer': ^2.5.27
       '@snickbit/out': 2.0.48
       axios: 0.27.2
@@ -342,8 +342,8 @@ importers:
       '@feathersjs/errors': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
       '@snickbit/dates': 1.0.62
-      '@snickbit/feathers-helpers': 1.0.19
-      '@snickbit/feathers-model': 1.0.20
+      '@snickbit/feathers-helpers': 1.0.20
+      '@snickbit/feathers-model': 1.0.21
       '@snickbit/indexer': ^2.5.27
       '@snickbit/node-cli': 3.0.24
       '@snickbit/node-utilities': 4.4.14
@@ -382,9 +382,9 @@ importers:
       '@feathersjs/feathers': 5.0.0-pre.26
       '@feathersjs/socketio': 5.0.0-pre.26
       '@sentry/node': 7.14.2
-      '@snickbit/feathers-hooks': 1.0.10
-      '@snickbit/feathers-logger': 1.0.17
-      '@snickbit/feathers-logs': 1.0.25
+      '@snickbit/feathers-hooks': 1.0.11
+      '@snickbit/feathers-logger': 1.0.18
+      '@snickbit/feathers-logs': 1.0.26
       '@snickbit/indexer': ^2.5.27
       '@snickbit/model': 1.0.65
       '@snickbit/node-utilities': 4.4.14
@@ -393,6 +393,7 @@ importers:
       body-parser: 1.20.1
       compression: 1.7.4
       cors: 2.8.5
+      dotenv: 16.0.3
       express: 4.18.1
       helmet: 6.0.0
       ioredis: 5.2.3
@@ -422,6 +423,7 @@ importers:
       body-parser: 1.20.1
       compression: 1.7.4
       cors: 2.8.5
+      dotenv: 16.0.3
       express: 4.18.1
       helmet: 6.0.0
       socket.io: 4.5.2
@@ -441,7 +443,7 @@ importers:
 
   packages/feathers-up-mongodb:
     specifiers:
-      '@snickbit/feathers-up': 1.0.35
+      '@snickbit/feathers-up': 1.0.36
       mongodb: 4.10.0
       tsup: 6.2.3
       typedoc: 0.23.15
@@ -458,7 +460,7 @@ importers:
 
   packages/feathers-up-mysql:
     specifiers:
-      '@snickbit/feathers-up': 1.0.35
+      '@snickbit/feathers-up': 1.0.36
       knex: 2.3.0
       mysql: 2.18.1
       tsup: 6.2.3
@@ -477,7 +479,7 @@ importers:
 
   packages/feathers-up-redis:
     specifiers:
-      '@snickbit/feathers-up': 1.0.35
+      '@snickbit/feathers-up': 1.0.36
       ioredis: 5.2.3
       tsup: 6.2.3
       typedoc: 0.23.15
@@ -3779,6 +3781,11 @@ packages:
     dependencies:
       is-obj: 2.0.0
     dev: true
+
+  /dotenv/16.0.3:
+    resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
+    engines: {node: '>=12'}
+    dev: false
 
   /double-ended-queue/2.1.0-0:
     resolution: {integrity: sha1-ED01J/0xUo9AGIEwyEHv3XgmTlw=}
