@@ -2,6 +2,7 @@ import {Model} from '@snickbit/model'
 import {isObject} from '@snickbit/utilities'
 import {Application, AppSetup, DatabaseDefinitions} from './definitions'
 import configuration from '@feathersjs/configuration'
+import dotenv from 'dotenv'
 
 let $setup: Model
 let $app: Application
@@ -9,6 +10,9 @@ let $app: Application
 export function initialize(app: Application, setup: AppSetup | Model = {}) {
 	$app = app
 	$setup = new Model(setup)
+
+	// load environment variables
+	dotenv.config()
 
 	// Load app configuration
 	if ($setup.has('config')) {
