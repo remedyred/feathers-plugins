@@ -3,7 +3,7 @@ import {useConfig} from './config'
 import {Application, DatabaseDefinitions} from './definitions'
 
 export default async function(app: Application) {
-	const databases = useConfig('databases') as DatabaseDefinitions
+	const databases = useConfig<DatabaseDefinitions>('databases')
 	if (!isEmpty(databases)) {
 		app.out.verbose('Set up databases')
 		for (const database in databases) {
