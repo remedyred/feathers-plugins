@@ -15,11 +15,12 @@
 	],
 	"scripts": {
 		"build": "tsup --minify --dts",
-		"clean": "shx rm -rf ./dist ./.types",
+		"clean": "shx rm -rf ./dist",
 		"depcheck": "depcheck",
 		"dev": "tsup",
 		"docs": "typedoc src/index.ts --tsconfig ./tsconfig.typedoc.json",
 		"release": "semantic-release",
+		"types": "tsc --project ./tsconfig.types.json",
 		"watch": "pnpm run dev --watch"
 	},
 	"release": {

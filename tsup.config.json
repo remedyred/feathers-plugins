@@ -11,5 +11,6 @@
 		"redis",
 		"mysql",
 		"mongodb"
-	]
+	],
+	"onSuccess": "pnpm run types"
 }

@@ -32,7 +32,7 @@ Renames and re-exports [feathersUp](README.md#feathersup)
 | Name | Type | Default value |
 | :------ | :------ | :------ |
 | `appType` | `string` | `'server'` |
-| `setup` | `Model`<`any`, `Partial`<`any`\>\> \| `AppSetup` | `{}` |
+| `setup` | `AppSetup` \| `Model`<`any`, `Partial`<`any`\>\> | `{}` |
 | `options` | `FeathersUpOptions` | `{}` |
 
 #### Returns
