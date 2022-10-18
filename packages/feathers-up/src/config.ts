@@ -1,6 +1,6 @@
 import {Model} from '@snickbit/model'
 import {isObject} from '@snickbit/utilities'
-import {Application, AppSetup, DatabaseDefinitions} from './definitions'
+import {Application, AppSetup, DatabaseDefinitions, DatabaseDriver} from './definitions'
 import configuration from '@feathersjs/configuration'
 import dotenv from 'dotenv'
 
@@ -34,14 +34,14 @@ export function initialize(app: Application, setup: AppSetup | Model = {}) {
 	initDatabases()
 }
 
-export function useConfig(key: string, fallback?) {
+export function useConfig<T = any, U = T | undefined>(key: string, fallback?: U): T | U {
 	if ($setup.has(key)) {
-		return $setup.get(key)
+		return $setup.get(key) as T
 	}
 	if ($app.get(key) !== undefined) {
-		return $app.get(key)
+		return $app.get(key) as T
 	}
-	return fallback
+	return fallback as U
 }
 
 export function useSetup(key: string, fallback?) {
@@ -49,10 +49,8 @@ export function useSetup(key: string, fallback?) {
 }
 
 function initDatabases() {
-	const databaseOptions = ['mysql', 'redis', 'mongodb']
-
-	const databases: DatabaseDefinitions = {}
-	for (const database of databaseOptions) {
+	const databases: Partial<DatabaseDefinitions> = {}
+	for (const database of Object.values(DatabaseDriver)) {
 		const config = $app.get(database)
 		const loader = $setup.get(database)
 
@@ -65,4 +63,11 @@ function initDatabases() {
 	}
 
 	$setup.set('databases', databases)
+}
+
+export function useDatabase(database: DatabaseDriver) {
+	const databases = $setup.get('databases') as DatabaseDefinitions
+	if (databases && databases[database]) {
+		return databases[database]
+	}
 }

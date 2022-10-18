@@ -83,4 +83,10 @@ export interface DatabaseDefinition {
 	loader: DatabaseLoader
 }
 
-export type DatabaseDefinitions = Record<string, DatabaseDefinition>
+export enum DatabaseDriver {
+	MongoDB = 'mongodb',
+	Redis = 'redis',
+	MySQL = 'mysql'
+}
+
+export type DatabaseDefinitions = Record<DatabaseDriver, DatabaseDefinition>
