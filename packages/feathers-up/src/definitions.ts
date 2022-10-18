@@ -6,8 +6,7 @@ import {RequestHandler} from 'express'
 import {HelmetOptions} from 'helmet'
 import {ServerOptions} from 'socket.io'
 import {ZlibOptions} from 'zlib'
-import {ProxyLogger} from './logger'
-import Logger from '@snickbit/feathers-logger'
+import {LeveledLogMethod, Logger} from 'winston'
 
 export interface CompressOptions extends ZlibOptions {
 	filter?(): boolean
@@ -62,14 +61,14 @@ export type AppSetupPaths = {
 
 export interface FeathersUpOverrides {
 	out: Out
-	log: typeof Logger
-	error: typeof Logger
+	log: Logger
+	error: LeveledLogMethod
 }
 
 export interface Application extends ExpressApplication {
 	out: Out
-	log: ProxyLogger | typeof Logger
-	error: typeof Logger
+	log: Logger
+	error: LeveledLogMethod
 }
 
 export interface FeathersUpOptions {

@@ -177,7 +177,7 @@ ___
 
 ### error
 
-• **error**: `Logger`
+• **error**: `LeveledLogMethod`
 
 ___
 
@@ -223,7 +223,7 @@ ___
 
 ### log
 
-• **log**: `ProxyLogger` \| `Logger`
+• **log**: `Logger`
 
 ___
 

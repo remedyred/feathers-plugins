@@ -383,8 +383,6 @@ importers:
       '@feathersjs/socketio': 5.0.0-pre.26
       '@sentry/node': 7.14.2
       '@snickbit/feathers-hooks': 1.0.11
-      '@snickbit/feathers-logger': 1.0.18
-      '@snickbit/feathers-logs': 1.0.26
       '@snickbit/indexer': ^2.5.27
       '@snickbit/model': 1.0.65
       '@snickbit/node-utilities': 4.4.14
@@ -407,6 +405,7 @@ importers:
       typescript: 4.8.4
       winston: 3.8.2
       winston-daily-rotate-file: 4.7.1
+      winston-transport: 4.5.0
     dependencies:
       '@feathersjs/configuration': 5.0.0-pre.26
       '@feathersjs/express': 5.0.0-pre.26
@@ -414,8 +413,6 @@ importers:
       '@feathersjs/socketio': 5.0.0-pre.26
       '@sentry/node': 7.14.2
       '@snickbit/feathers-hooks': link:../feathers-hooks
-      '@snickbit/feathers-logger': link:../feathers-logger
-      '@snickbit/feathers-logs': link:../feathers-logs
       '@snickbit/model': 1.0.65
       '@snickbit/node-utilities': 4.4.14
       '@snickbit/out': 2.0.48
@@ -429,6 +426,7 @@ importers:
       socket.io: 4.5.2
       winston: 3.8.2
       winston-daily-rotate-file: 4.7.1_winston@3.8.2
+      winston-transport: 4.5.0
     optionalDependencies:
       ioredis: 5.2.3
       knex: 2.3.0_mysql@2.18.1
