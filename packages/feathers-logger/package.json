@@ -46,7 +46,7 @@
 		"@feathersjs/feathers": "5.0.0-pre.26"
 	},
 	"engines": {
-		"node": ">= 12"
+		"node": ">= 14.17"
 	},
 	"desciption": "Client for @snickbit/feathers-logs"
 }
