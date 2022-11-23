@@ -441,7 +441,7 @@ importers:
 
   packages/feathers-up-mongodb:
     specifiers:
-      '@snickbit/feathers-up': 1.1.0
+      '@snickbit/feathers-up': 1.2.0
       mongodb: 4.10.0
       tsup: 6.2.3
       typedoc: 0.23.15
@@ -458,7 +458,7 @@ importers:
 
   packages/feathers-up-mysql:
     specifiers:
-      '@snickbit/feathers-up': 1.1.0
+      '@snickbit/feathers-up': 1.2.0
       knex: 2.3.0
       mysql: 2.18.1
       tsup: 6.2.3
@@ -477,7 +477,7 @@ importers:
 
   packages/feathers-up-redis:
     specifiers:
-      '@snickbit/feathers-up': 1.1.0
+      '@snickbit/feathers-up': 1.2.0
       ioredis: 5.2.3
       tsup: 6.2.3
       typedoc: 0.23.15
