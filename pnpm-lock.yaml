@@ -5,7 +5,7 @@ importers:
   .:
     specifiers:
       '@snickbit/eslint-config': ~1.3.8
-      '@snickbit/readmes': 0.0.22
+      '@snickbit/readmes': 0.0.23
       '@snickbit/semantic-release': ~1.5.6
       depcheck: 1.4.3
       eslint: 8.24.0
@@ -18,7 +18,7 @@ importers:
       typescript: 4.8.4
     devDependencies:
       '@snickbit/eslint-config': 1.3.8_ypn2ylkkyfa5i233caldtndbqa
-      '@snickbit/readmes': 0.0.22
+      '@snickbit/readmes': 0.0.23
       '@snickbit/semantic-release': 1.5.6_semantic-release@19.0.5
       depcheck: 1.4.3
       eslint: 8.24.0
@@ -2312,8 +2312,8 @@ packages:
     resolution: {integrity: sha512-F8nlHKito8NFfM06T/oUePBPcEOcsLgPtB9HFfMD9M57wArgjLBGu7D8WyzWWn0RhGWL3q/Bl/AWHCaekS/Bmg==}
     engines: {node: '>= 12'}
 
-  /@snickbit/readmes/0.0.22:
-    resolution: {integrity: sha512-5BTBTRg8hQ69eeTUoS6QKJl2pbAJhqz81WNGL3NOk1lttyIcAwrmZJnJQ8DRyloIpJDcE77PAjj9PAuf26oQnA==}
+  /@snickbit/readmes/0.0.23:
+    resolution: {integrity: sha512-yBEVXUuqbm7PFUlGYdRWeMhfj6K2ekf4RgxMaTTNGaR40A4eE/kC0ywjGbgjMZgq7wXtwmDvtdIZ6AEmtCdLxw==}
     engines: {node: '>= 12'}
     hasBin: true
     dependencies:
