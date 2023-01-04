@@ -52,7 +52,7 @@
 		"winston-transport": "4.5.0"
 	},
 	"devDependencies": {
-		"@snickbit/indexer": "^2.5.27",
+		"@snickbit/indexer": "2.5.28",
 		"tsup": "6.2.3",
 		"typedoc": "0.23.15",
 		"typedoc-plugin-markdown": "3.13.6",
