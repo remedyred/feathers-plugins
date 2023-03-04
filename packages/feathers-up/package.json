@@ -30,22 +30,22 @@
 		]
 	},
 	"dependencies": {
-		"@feathersjs/configuration": "5.0.0-pre.26",
-		"@feathersjs/express": "5.0.0-pre.26",
-		"@feathersjs/feathers": "5.0.0-pre.26",
-		"@feathersjs/socketio": "5.0.0-pre.26",
+		"@feathersjs/configuration": "5.0.0",
+		"@feathersjs/express": "5.0.0",
+		"@feathersjs/feathers": "5.0.0",
+		"@feathersjs/socketio": "5.0.0",
 		"@sentry/node": "7.14.2",
 		"@snickbit/feathers-hooks": "1.0.11",
-		"@snickbit/model": "1.0.65",
+		"@snickbit/model": "1.0.73",
 		"@snickbit/node-utilities": "4.4.14",
 		"@snickbit/out": "2.0.48",
-		"@snickbit/utilities": "3.4.13",
-		"body-parser": "1.20.1",
+		"@snickbit/utilities": "3.4.20",
+		"body-parser": "1.20.2",
 		"compression": "1.7.4",
 		"cors": "2.8.5",
 		"dotenv": "16.0.3",
-		"express": "4.18.1",
-		"helmet": "6.0.0",
+		"express": "4.18.2",
+		"helmet": "6.0.1",
 		"socket.io": "4.5.2",
 		"winston": "3.8.2",
 		"winston-daily-rotate-file": "4.7.1",
@@ -59,7 +59,7 @@
 		"typescript": "4.8.4"
 	},
 	"peerDependencies": {
-		"@feathersjs/feathers": "5.0.0-pre.26"
+		"@feathersjs/feathers": "5.0.0"
 	},
 	"optionalDependencies": {
 		"ioredis": "5.2.3",

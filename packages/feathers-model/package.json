@@ -30,21 +30,21 @@
 		]
 	},
 	"dependencies": {
-		"@feathersjs/adapter-commons": "5.0.0-pre.26",
-		"@feathersjs/errors": "5.0.0-pre.26",
+		"@feathersjs/adapter-commons": "5.0.0",
+		"@feathersjs/errors": "5.0.0",
 		"@snickbit/feathers-helpers": "1.0.20",
-		"@snickbit/model": "1.0.65",
+		"@snickbit/model": "1.0.73",
 		"feathers-memory": "4.1.0"
 	},
 	"devDependencies": {
-		"@feathersjs/feathers": "5.0.0-pre.26",
+		"@feathersjs/feathers": "5.0.0",
 		"tsup": "6.2.3",
 		"typedoc": "0.23.15",
 		"typedoc-plugin-markdown": "3.13.6",
 		"typescript": "4.8.4"
 	},
 	"peerDependencies": {
-		"@feathersjs/feathers": "5.0.0-pre.26"
+		"@feathersjs/feathers": "5.0.0"
 	},
 	"engines": {
 		"node": ">= 12"
