@@ -47,8 +47,8 @@
 	},
 	"devDependencies": {
 		"@snickbit/indexer": "^2.5.27",
-		"@types/express": "4.17.14",
-		"@types/multer": "~1.4.7",
+		"@types/express": "4.17.17",
+		"@types/multer": "1.4.7",
 		"tsup": "6.2.3",
 		"typedoc": "0.23.15",
 		"typedoc-plugin-markdown": "3.13.6",

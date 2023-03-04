@@ -36,7 +36,7 @@
 	},
 	"devDependencies": {
 		"@feathersjs/feathers": "5.0.0-pre.26",
-		"@types/node": "18.8.3",
+		"@types/node": "18.14.6",
 		"tsup": "6.2.3",
 		"typedoc": "0.23.15",
 		"typedoc-plugin-markdown": "3.13.6",
