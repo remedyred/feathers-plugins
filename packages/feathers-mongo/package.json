@@ -37,7 +37,7 @@
 		"@snickbit/feathers-model": "1.0.21",
 		"@snickbit/out": "2.0.48",
 		"@snickbit/utilities": "3.4.13",
-		"mongodb": "4.10.0"
+		"mongodb": "4.14.0"
 	},
 	"devDependencies": {
 		"tsup": "6.2.3",
