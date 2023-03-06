@@ -349,7 +349,7 @@ importers:
       '@snickbit/node-utilities': 4.4.14
       '@snickbit/out': 2.0.48
       '@snickbit/utilities': 3.4.13
-      bullmq: 1.91.1
+      bullmq: 3.10.1
       ioredis: 5.2.3
       tsup: 6.2.3
       typedoc: 0.23.15
@@ -366,7 +366,7 @@ importers:
       '@snickbit/node-utilities': 4.4.14
       '@snickbit/out': 2.0.48
       '@snickbit/utilities': 3.4.13
-      bullmq: 1.91.1
+      bullmq: 3.10.1
       ioredis: 5.2.3
     devDependencies:
       '@snickbit/indexer': 2.5.27
@@ -3268,13 +3268,12 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /bullmq/1.91.1:
-    resolution: {integrity: sha512-u7dat9I8ZwouZ651AMZkBSvB6NVUPpnAjd4iokd9DM41whqIBnDjuL11h7+kEjcpiDKj6E+wxZiER00FqirZQg==}
+  /bullmq/3.10.1:
+    resolution: {integrity: sha512-NHysIgywLRB0C1OXY1YQPXsDRnozBWBREPTyeX72ARolkHMkj0IXY+nG36N1pxc2OToPkMHyhSQxaY4jmaM0VQ==}
     dependencies:
       cron-parser: 4.6.0
-      get-port: 6.1.2
       glob: 8.0.3
-      ioredis: 5.2.3
+      ioredis: 5.3.1
       lodash: 4.17.21
       msgpackr: 1.6.2
       semver: 7.3.7
@@ -4855,11 +4854,6 @@ packages:
     engines: {node: '>=8.0.0'}
     dev: false
 
-  /get-port/6.1.2:
-    resolution: {integrity: sha512-BrGGraKm2uPqurfGVj/z97/zv8dPleC6x9JBNRTrDNtCkkRF4rPwrQXFgL7+I+q8QSdU4ntLQX2D7KIxSy8nGw==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
-    dev: false
-
   /get-stream/5.2.0:
     resolution: {integrity: sha512-nBF+F1rAZVCu/p7rjzgA+Yb4lfYXrpl7a6VmJrU8wF9I1CKvP/QwPNZHnOlwbTkY6dvtFIzFMSyQXbLoTQPRpA==}
     engines: {node: '>=8'}
@@ -5196,6 +5190,23 @@ packages:
 
   /ioredis/5.2.3:
     resolution: {integrity: sha512-gQNcMF23/NpvjCaa1b5YycUyQJ9rBNH2xP94LWinNpodMWVUPP5Ai/xXANn/SM7gfIvI62B5CCvZxhg5pOgyMw==}
+    engines: {node: '>=12.22.0'}
+    dependencies:
+      '@ioredis/commands': 1.2.0
+      cluster-key-slot: 1.1.0
+      debug: 4.3.4
+      denque: 2.1.0
+      lodash.defaults: 4.2.0
+      lodash.isarguments: 3.1.0
+      redis-errors: 1.2.0
+      redis-parser: 3.0.0
+      standard-as-callback: 2.1.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /ioredis/5.3.1:
+    resolution: {integrity: sha512-C+IBcMysM6v52pTLItYMeV4Hz7uriGtoJdz7SSBDX6u+zwSYGirLdQh3L7t/OItWITcw3gTFMjJReYUwS4zihg==}
     engines: {node: '>=12.22.0'}
     dependencies:
       '@ioredis/commands': 1.2.0
