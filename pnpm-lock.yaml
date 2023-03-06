@@ -381,7 +381,7 @@ importers:
       '@feathersjs/express': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
       '@feathersjs/socketio': 5.0.0-pre.26
-      '@sentry/node': 7.14.2
+      '@sentry/node': 7.41.0
       '@snickbit/feathers-hooks': 1.0.11
       '@snickbit/indexer': ^2.5.27
       '@snickbit/model': 1.0.65
@@ -411,7 +411,7 @@ importers:
       '@feathersjs/express': 5.0.0-pre.26
       '@feathersjs/feathers': 5.0.0-pre.26
       '@feathersjs/socketio': 5.0.0-pre.26
-      '@sentry/node': 7.14.2
+      '@sentry/node': 7.41.0
       '@snickbit/feathers-hooks': link:../feathers-hooks
       '@snickbit/model': 1.0.65
       '@snickbit/node-utilities': 4.4.14
@@ -2204,33 +2204,22 @@ packages:
       - supports-color
     dev: true
 
-  /@sentry/core/7.14.2:
-    resolution: {integrity: sha512-AXcH6nROugziO5KsKSQ9TmAXq6HJa8Fn+kDqAL/sNY65w6YYlHifMO2xHkSXVJxGw7vx9DYh/5SF+KnLn6NDNA==}
+  /@sentry/core/7.41.0:
+    resolution: {integrity: sha512-yT3wl3wMfPymstIZRWNjuov4xhieIEPD0z9MIW9VmoemqkD5BEZsgPuvGaVIyQVMyx61GsN4H4xd0JCyNqNvLg==}
     engines: {node: '>=8'}
     dependencies:
-      '@sentry/hub': 7.14.2
-      '@sentry/types': 7.14.2
-      '@sentry/utils': 7.14.2
+      '@sentry/types': 7.41.0
+      '@sentry/utils': 7.41.0
       tslib: 1.14.1
     dev: false
 
-  /@sentry/hub/7.14.2:
-    resolution: {integrity: sha512-18cuSesTn9VAF0JC107flLmtCRt/6DBn38uz0G9cPThKtTSNwjGvGZ/ag4J1iq+IDjVS5MA6iTncXOsSpVP2Wg==}
+  /@sentry/node/7.41.0:
+    resolution: {integrity: sha512-JAz0TAVvq4z7dNrDBECLB5Fd4bGDGXSOR1f63iV/8fUNsZPqqdh8LXnctPXTpcTjsdlfmjUL1CC2RQ6yKYMtTQ==}
     engines: {node: '>=8'}
     dependencies:
-      '@sentry/types': 7.14.2
-      '@sentry/utils': 7.14.2
-      tslib: 1.14.1
-    dev: false
-
-  /@sentry/node/7.14.2:
-    resolution: {integrity: sha512-k2MsbF+ddEE8qoweRgrLh5853RqHN1a8MNlgsq8ibr8CKREbMzBvq14oVnvL61F/aojMlSMK2E6Z+SXBs7M6BA==}
-    engines: {node: '>=8'}
-    dependencies:
-      '@sentry/core': 7.14.2
-      '@sentry/hub': 7.14.2
-      '@sentry/types': 7.14.2
-      '@sentry/utils': 7.14.2
+      '@sentry/core': 7.41.0
+      '@sentry/types': 7.41.0
+      '@sentry/utils': 7.41.0
       cookie: 0.4.2
       https-proxy-agent: 5.0.1
       lru_map: 0.3.3
@@ -2239,16 +2228,16 @@ packages:
       - supports-color
     dev: false
 
-  /@sentry/types/7.14.2:
-    resolution: {integrity: sha512-JzkOtenArOXmJBAk/FBbxKKX7XC650HqkhGL4ugT/f+RyxfiDZ0X1TAYMrvKIe+qpn5Nh7JUBfR+BARKAiu2wQ==}
+  /@sentry/types/7.41.0:
+    resolution: {integrity: sha512-4z9VdObynwd64i0VHCqkeIAHmsFzapL21qN41Brzb7jY/eGxjn/0rxInDGH+vkoE9qacGqiYfWj4vRNPLsC/bw==}
     engines: {node: '>=8'}
     dev: false
 
-  /@sentry/utils/7.14.2:
-    resolution: {integrity: sha512-vpZolN+k1IoxWXhKyOVcRl7V1bgww+96gHqTJdcMzOB83x/ofels7L0kqxb03WukKTYcnc7Ep+yBiKi/OYX9og==}
+  /@sentry/utils/7.41.0:
+    resolution: {integrity: sha512-SL+MGitvkakbkrOTb48rDuJp9GYx/veB6EOzYygh49+zwz4DGM7dD4/rvf/mVlgmXUzPgdGDgkVmxgX3nT7I7g==}
     engines: {node: '>=8'}
     dependencies:
-      '@sentry/types': 7.14.2
+      '@sentry/types': 7.41.0
       tslib: 1.14.1
     dev: false
 
