@@ -34,7 +34,7 @@
 		"@feathersjs/express": "5.0.0-pre.26",
 		"@feathersjs/feathers": "5.0.0-pre.26",
 		"@feathersjs/socketio": "5.0.0-pre.26",
-		"@sentry/node": "7.14.2",
+		"@sentry/node": "7.41.0",
 		"@snickbit/feathers-hooks": "1.0.11",
 		"@snickbit/model": "1.0.65",
 		"@snickbit/node-utilities": "4.4.14",
