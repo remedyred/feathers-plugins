@@ -31,7 +31,7 @@
 	"dependencies": {
 		"@snickbit/out": "2.0.48",
 		"@snickbit/utilities": "3.4.13",
-		"axios": "0.27.2",
+		"axios": "1.3.4",
 		"browser-or-node": "2.0.0"
 	},
 	"devDependencies": {
