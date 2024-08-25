@@ -42,4 +42,4 @@ jobs:
         run: pnpm turbo run build docs //#fix
 
       - name: Release
-        run: pnpm turbo run release:ci
+        run: pnpm run release:ci
