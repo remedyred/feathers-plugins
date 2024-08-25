@@ -20,6 +20,7 @@
 - [error](Application.md#error)
 - [head](Application.md#head)
 - [io](Application.md#io)
+- [link](Application.md#link)
 - [locals](Application.md#locals)
 - [lock](Application.md#lock)
 - [log](Application.md#log)
@@ -54,6 +55,7 @@
 - [stack](Application.md#stack)
 - [subscribe](Application.md#subscribe)
 - [trace](Application.md#trace)
+- [unlink](Application.md#unlink)
 - [unlock](Application.md#unlock)
 - [unsubscribe](Application.md#unsubscribe)
 - [use](Application.md#use)
@@ -201,9 +203,19 @@ ExpressApplication.io
 
 ___
 
+### link
+
+• **link**: `IRouterMatcher`<`Express`, `any`\>
+
+#### Inherited from
+
+ExpressApplication.link
+
+___
+
 ### locals
 
-• **locals**: `Record`<`string`, `any`\>
+• **locals**: `Record`<`string`, `any`\> & `Locals`
 
 #### Inherited from
 
@@ -532,7 +544,7 @@ ___
 
 ### stack
 
-• **stack**: `any`[]
+• **stack**: `ILayer`[]
 
 Stack of configured routes
 
@@ -559,6 +571,16 @@ ___
 #### Inherited from
 
 ExpressApplication.trace
+
+___
+
+### unlink
+
+• **unlink**: `IRouterMatcher`<`Express`, `any`\>
+
+#### Inherited from
+
+ExpressApplication.unlink
 
 ___
 
