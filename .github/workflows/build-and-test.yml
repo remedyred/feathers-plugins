@@ -9,7 +9,13 @@ jobs:
     name: Build Checks
     timeout-minutes: 15
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
+      - name: Print environment variables
+        run: printenv
+
       - name: Checkout
         uses: actions/checkout@v4.1.4
         with:
