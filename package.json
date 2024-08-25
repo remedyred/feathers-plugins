@@ -4,6 +4,7 @@
 	"private": true,
 	"scripts": {
 		"check": "turbo run build //#lint",
+		"ci": "turbo run build docs && pnpm run fix",
 		"clean": "pnpm run clean:builds && pnpm run clean:modules",
 		"clean:builds": "turbo run clean",
 		"clean:modules": "shx rm -rf **/node_modules",

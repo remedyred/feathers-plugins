@@ -17,7 +17,7 @@ jobs:
       - name: Build, Test, and Lint
         uses: remedyred/check-action@v1.2.10
         with:
-          SCRIPTS: prerelease
+          SCRIPTS: ci
 
       - name: Check npm whoami
         run: npm whoami

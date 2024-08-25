@@ -24,7 +24,7 @@ jobs:
       - name: Build, Test, and Lint
         uses: remedyred/check-action@v1.2.10
         with:
-          SCRIPTS: prerelease
+          SCRIPTS: ci
           NO_BAIL: true
           AUTO_COMMIT: true
 
