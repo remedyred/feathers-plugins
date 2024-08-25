@@ -17,7 +17,7 @@
 		"prepare": "husky install",
 		"prerelease": "turbo run build docs ///#fix",
 		"release": "turbo run release",
-		"release:ci": "multi-semantic-release"
+		"release:ci": "multi-semantic-release --deps.bump=satisfy --ignore-private-packages"
 	},
 	"lint-staged": {
 		"*.{ts,json,yml,yaml}": "eslint --fix --cache"
