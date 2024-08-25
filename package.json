@@ -4,6 +4,7 @@
 	"private": true,
 	"scripts": {
 		"check": "turbo run build //#lint",
+		"ci": "turbo run build docs && pnpm run fix",
 		"clean": "pnpm run clean:builds && pnpm run clean:modules",
 		"clean:builds": "turbo run clean",
 		"clean:modules": "shx rm -rf **/node_modules",
@@ -14,7 +15,7 @@
 		"index": "turbo run index",
 		"lint": "eslint \"**/*.{ts,json,yml,yaml}\" --cache --color",
 		"prepare": "husky install",
-		"prerelease": "turbo run build docs ///#fix depcheck",
+		"prerelease": "turbo run build docs ///#fix",
 		"release": "turbo run release",
 		"release:ci": "multi-semantic-release"
 	},

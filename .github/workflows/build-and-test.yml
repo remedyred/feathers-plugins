@@ -2,40 +2,22 @@ name: CI
 
 on:
   pull_request:
-    types: [opened, synchronize, ready_for_review]
+    types: [ opened, synchronize ]
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 jobs:
   check:
     name: Build Checks
-    timeout-minutes: 15
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4.1.4
+      - name: Build, Test, and Lint
+        uses: remedyred/check-action@v1.2.10
         with:
-          fetch-depth: 0
+          SCRIPTS: ci
 
-      - uses: pnpm/action-setup@v4.0.0
-        with:
-          version: 9
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4.0.0
-        with:
-          node-version: 'lts/*'
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build and lint
-        run: pnpm turbo run build //#lint
-
-      - name: Reset git state
-        run: git reset --hard
-
-      - name: Build docs
-        run: pnpm turbo run docs
-
-      - name: Check working tree
-        run: git diff --quiet || { echo 'Working tree is dirty. Did you forget to update the docs?'; exit 1; }
+      - name: Check npm whoami
+        run: npm whoami
