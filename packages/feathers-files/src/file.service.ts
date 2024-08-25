@@ -52,12 +52,12 @@ export class FileService {
 
 	protected out: Out
 
-	constructor(options) {
+	constructor(options: FileServiceOptions = {}) {
 		this.options = {
 			events: [],
 			paginate: {},
 			multi: false,
-			filters: [],
+			filters: {},
 			operators: [],
 			matcher: sift,
 			root: process.cwd(),
@@ -88,15 +88,7 @@ export class FileService {
 
 		if (!params.path) {
 			data = data as FileRecord
-			if (data && data?.path) {
-				params.path = data.path
-			} else if (params.query?.id) {
-				params.path = params.query.id
-			} else if (data && data?.fieldname) {
-				params.path = data.fieldname
-			} else if (data && data?.originalname) {
-				params.path = data.originalname
-			}
+			params.path = data?.path || params.query?.id || data?.fieldname || data?.originalname
 		}
 
 		if (!params.path && !isArray(data)) {

@@ -142,9 +142,10 @@ export class PouchCrypt<Content extends object = any> implements PouchDB.Databas
 
 	async destroy(opts: PouchCryptDestroyOptions & PouchDB.Core.Options = {}) {
 		if (!this._encrypted || opts.onlyUnencrypted) {
-			return !this._destroyed ? this.destroy(opts) : true
-		} else if (opts.onlyEncrypted) {
-			return !this._encrypted._destroyed ? this._encrypted.destroy(opts) : true
+			return this._destroyed || this.destroy(opts)
+		}
+		if (opts.onlyEncrypted) {
+			return this._encrypted._destroyed || this._encrypted.destroy(opts)
 		}
 
 		const promises = []

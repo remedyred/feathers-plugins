@@ -195,7 +195,9 @@ export class Task extends Model {
 			const deltaTimestamp = 0.001 * (timestamp - progress.lastTick)
 			const currentRate = deltaProgress / deltaTimestamp
 
-			progress.rate = !progress.rate ? currentRate : progress.rate + deltaTimestamp / (deltaTimestamp + 2.5) * (currentRate - progress.rate)
+			progress.rate = progress.rate
+				? progress.rate + deltaTimestamp / (deltaTimestamp + 2.5) * (currentRate - progress.rate)
+				: currentRate
 		}
 
 		if (progress.current >= progress.total) {

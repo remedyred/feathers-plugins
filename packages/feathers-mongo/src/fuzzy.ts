@@ -10,12 +10,12 @@ import {SearchOptions} from './mongo.adapter'
 const escape = str => `"${str.replace(/"/g, '')}"`
 
 export function transformSearchFieldsInQuery(query: any, options: SearchOptions, fieldName?: string) {
-	const makeRegex = value => {
+	const makeRegex = (value: string) => {
 		try {
 			value = escapeRegExp(value)
 			value =
 				value.split(/\W/)
-					.map(v => v.trim())
+					.map((v: string) => v.trim())
 					.filter(Boolean)
 					.join('.*')
 			return query.$caseSensitive ? new RegExp(value) : new RegExp(value, 'i')
