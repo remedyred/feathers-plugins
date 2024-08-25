@@ -14,7 +14,7 @@
 		"index": "turbo run index",
 		"lint": "eslint \"**/*.{ts,json,yml,yaml}\" --cache --color",
 		"prepare": "husky install",
-		"prerelease": "turbo run build docs ///#fix depcheck",
+		"prerelease": "turbo run build docs ///#fix",
 		"release": "turbo run release",
 		"release:ci": "multi-semantic-release"
 	},
