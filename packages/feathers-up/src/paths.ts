@@ -1,4 +1,4 @@
-import {findUp} from '@snickbit/node-utilities'
+import {fileExists, findUp, getFileJSON} from '@snickbit/node-utilities'
 import {useConfig} from './config'
 import {Application} from './definitions'
 import path from 'path'
@@ -29,10 +29,13 @@ export default function(app: Application) {
 	}
 	app.set('paths', paths)
 
-	// Load package.json info
-	/* eslint @typescript-eslint/no-var-requires: off */
-	const packageJson = require(path.join(paths.root, 'package.json'))
-	app.set('name', packageJson.name)
-	app.set('version', packageJson.version)
-	app.set('description', packageJson.description)
+	// package.json path
+	const pkgPath = path.join(paths.root, 'package.json')
+	if (fileExists(pkgPath)) {
+		// Load package.json info
+		const {name, version, description} = getFileJSON(pkgPath)
+		app.set('name', name)
+		app.set('version', version)
+		app.set('description', description)
+	}
 }
