@@ -35,13 +35,13 @@
 
 ### constructor
 
-• **new FileService**(`options`)
+• **new FileService**(`options?`)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `options` | `any` |
+| `options` | [`FileServiceOptions`](../interfaces/FileServiceOptions.md) |
 
 ## Accessors
 

@@ -4,7 +4,14 @@ import {Application, Id, NullableId, Paginated, Params, Query} from '@feathersjs
 import {filterParams} from '@snickbit/feathers-helpers'
 import {Out} from '@snickbit/out'
 import {merge, objectExcept} from '@snickbit/utilities'
-import {ExistingDocument, PostDocument, PouchAttachment, PouchDatabase, PouchServiceOptions, PutDocument} from './definitions'
+import {
+	ExistingDocument,
+	PostDocument,
+	PouchAttachment,
+	PouchDatabase,
+	PouchServiceOptions,
+	PutDocument
+} from './definitions'
 import {PouchError} from './PouchError'
 import pouchCrypt, {PouchCrypt} from './PouchCrypt'
 import PouchDB from 'pouchdb'
@@ -193,7 +200,8 @@ export class PouchAdapter<T = any, P extends Params = Params, O extends PouchSer
 	private async encryptionReady(app: Application): Promise<string | false> {
 		if (!this.options.encrypt) {
 			return false
-		} else if (this.options.encryptionKey) {
+		}
+		if (this.options.encryptionKey) {
 			this.out.debug('Encrypting with preset key')
 			return this.options.encryptionKey
 		}

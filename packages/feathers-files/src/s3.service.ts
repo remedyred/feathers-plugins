@@ -1,4 +1,11 @@
-import {DeleteObjectCommand, GetObjectCommand, HeadObjectCommand, ListObjectsCommand, PutObjectCommand, S3} from '@aws-sdk/client-s3'
+import {
+	DeleteObjectCommand,
+	GetObjectCommand,
+	HeadObjectCommand,
+	ListObjectsCommand,
+	PutObjectCommand,
+	S3
+} from '@aws-sdk/client-s3'
 import {AdapterParams} from '@feathersjs/adapter-commons'
 import {bufferStream, getFile, makeBuffer, saveFile} from '@snickbit/node-utilities'
 import {Out} from '@snickbit/out'
@@ -76,9 +83,7 @@ export class S3Service extends FileService {
 		super(options)
 		this.client = new S3(options)
 
-		if (!this.options.url) {
-			this.options.url = `${this.options.endpoint}/${this.options.Bucket}`
-		}
+		this.options.url ||= `${this.options.endpoint}/${this.options.Bucket}`
 
 		this.out = new Out(`s3:${this.options.Bucket}`)
 	}
@@ -90,9 +95,7 @@ export class S3Service extends FileService {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	private buildRequest(payload: S3Payload, _params?: AdapterParams): S3Request {
 		if (payload.Body) {
-			if (!payload.ContentType) {
-				payload.ContentType = mime.getType(payload.Key) || undefined
-			}
+			payload.ContentType ||= mime.getType(payload.Key) || undefined
 			try {
 				payload.Body = makeBuffer(payload.Body as string) as Buffer
 			} catch {
@@ -114,9 +117,7 @@ export class S3Service extends FileService {
 			...params
 		}
 		if (payload.content) {
-			if (!params.ContentType) {
-				params.ContentType = mime.getType(params.Key, 'application/octet-stream')
-			}
+			params.ContentType ||= mime.getType(params.Key, 'application/octet-stream')
 			try {
 				params.Body = makeBuffer(payload.content)
 			} catch {

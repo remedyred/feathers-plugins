@@ -1,4 +1,10 @@
-import {AdapterBase, AdapterParams as Params, AdapterServiceOptions, filterQuery, PaginationOptions} from '@feathersjs/adapter-commons'
+import {
+	AdapterBase,
+	AdapterParams as Params,
+	AdapterServiceOptions,
+	filterQuery,
+	PaginationOptions
+} from '@feathersjs/adapter-commons'
 import {Unprocessable} from '@feathersjs/errors'
 import {FeathersService, Paginated} from '@feathersjs/feathers'
 import {filterResults} from '@snickbit/feathers-helpers'
@@ -109,9 +115,7 @@ export class QueueAdapter extends AdapterBase {
 		if (typeof options === 'string') {
 			options = {name: options}
 		}
-		if (!options.name) {
-			options.name = 'default'
-		}
+		options.name ||= 'default'
 
 		super(options)
 		this.out = new Out(`queue:${options.name}`)

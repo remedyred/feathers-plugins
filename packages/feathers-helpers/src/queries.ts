@@ -1,5 +1,12 @@
 import {Params, Query} from '@feathersjs/feathers'
-import {AdapterParams, AdapterServiceOptions, filterQuery, PaginationParams, select, sorter} from '@feathersjs/adapter-commons'
+import {
+	AdapterParams,
+	AdapterServiceOptions,
+	filterQuery,
+	PaginationParams,
+	select,
+	sorter
+} from '@feathersjs/adapter-commons'
 import {objectCopy} from '@snickbit/utilities'
 import {_} from '@feathersjs/commons'
 import sift from 'sift'
@@ -37,7 +44,7 @@ export function _select(data: any, params: Params, ...args: any[]): any {
 }
 
 export function filterParams(params: AdapterParams = {}, options: QueryOptions = {}): FilteredQuery {
-	const paginate = typeof params.paginate !== 'undefined' ? params.paginate : options.paginate
+	const paginate = params.paginate ?? options.paginate
 	const {query = {}} = params
 	options = {
 		operators: options.operators || [],

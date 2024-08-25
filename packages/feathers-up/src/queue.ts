@@ -6,17 +6,14 @@ export default function(app: Application) {
 	// ensure the queue worker/watcher is NOT running in CLI mode
 	const queue = useConfig('queue')
 	if (app.get('appType') === 'server' && queue) {
-		if (!isObject(queue.watcher)) {
-			queue.watcher = {enabled: false}
-		} else {
-			queue.watcher.enabled = false
-		}
+		queue.watcher = isObject(queue.watcher)
+			? {enabled: false}
+			: queue.watcher
 
-		if (!isObject(queue.worker)) {
-			queue.worker = {enabled: false}
-		} else {
-			queue.worker.enabled = false
-		}
+		queue.worker = isObject(queue.worker)
+			? {enabled: false}
+			: queue.worker
+
 		app.set('queue', queue)
 	}
 }
