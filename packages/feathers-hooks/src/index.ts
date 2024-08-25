@@ -21,7 +21,7 @@ export interface HookImport {
 export default function setHooks(app: Application, hooks: Hooks = {}) {
 	const app_hooks = {}
 
-	hooks = hooks || {}
+	hooks ||= {}
 
 	for (const hook_type of hook_types) {
 		app_hooks[hook_type] = {}

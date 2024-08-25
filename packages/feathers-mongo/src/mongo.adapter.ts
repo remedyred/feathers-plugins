@@ -192,7 +192,7 @@ export default class MongoAdapter<T extends Partial<D> = any,
 	}
 
 	protected parseParams(params: P = {} as P) {
-		params.query = params.query || {}
+		params.query ||= {}
 
 		// don't cache global searches
 		if (params.query.$search) {

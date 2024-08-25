@@ -113,9 +113,7 @@ export default class RedisAdapter<T = any, D = Partial<T>, O extends RedisServic
 		if (key && await this.$get(key, params)) {
 			throw new Conflict(`Redis value with key ${key} already exists`)
 		}
-		if (!key) {
-			key = uuid()
-		}
+		key ||= uuid()
 		await this.$set(key, data, params)
 		return this.$get(key, params)
 	}

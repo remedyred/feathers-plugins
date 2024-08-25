@@ -77,9 +77,7 @@ export class FileService {
 	protected parseParams(filePath?: string, data?: FileData): ParsedParams
 	protected parseParams(params?: AdapterParams, data?: FileData): ParsedParams
 	protected parseParams(pathOrParams?: AdapterParams | string, data?: FileData): ParsedParams {
-		if (!pathOrParams) {
-			pathOrParams = {}
-		}
+		pathOrParams ||= {}
 
 		const params = (isString(pathOrParams) ? {query: {id: pathOrParams as string}} : pathOrParams) as ParsedParams
 

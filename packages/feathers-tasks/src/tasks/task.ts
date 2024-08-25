@@ -35,7 +35,7 @@ export class Task extends Model {
 			out.throw(`Error finding task '${job?.name}'. Available tasks: `, Object.keys(useTasks()).join(', '))
 		}
 
-		options.queue = options.queue || 'default'
+		options.queue ||= 'default'
 		const service = useQueue(options.queue)
 		if (!service) {
 			out.throw(`Error finding queue '${options.queue}'. It may not have been initialized.`)
@@ -181,9 +181,7 @@ export class Task extends Model {
 	}
 
 	async job() {
-		if (!this._job) {
-			this._job = await this.service._get(this.id, {asTask: false})
-		}
+		this._job ||= await this.service._get(this.id, {asTask: false})
 		return this._job
 	}
 

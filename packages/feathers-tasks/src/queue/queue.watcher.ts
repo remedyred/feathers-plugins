@@ -59,8 +59,8 @@ export class QueueWatcher {
 			options.events = []
 		}
 
-		options.events = (options.events || []) as QueueEvent[]
-		options.suppress = options.suppress || []
+		options.events ||= [] as QueueEvent[]
+		options.suppress ||= []
 
 		this.out = new Out(`watcher:${options.name}`)
 

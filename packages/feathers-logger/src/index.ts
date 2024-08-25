@@ -72,7 +72,7 @@ export class Logger {
 	#parseLoggerArgs(args, schemas) {
 		let {channel, options, context} = overloadOptions(args, schemas) as ParsedLoggerOptions
 
-		channel = channel || 'default'
+		channel ||= 'default'
 
 		options = {
 			...this.options,
@@ -145,9 +145,7 @@ export class Logger {
 	}
 
 	addLog(message, level, send = true) {
-		if (!this.payload.messages) {
-			this.payload.messages = []
-		}
+		this.payload.messages ||= []
 		level = level || this.options.defaultLevel || 'log'
 
 		try {
@@ -300,13 +298,11 @@ function getDefaultBrowserContext() {
 }
 
 function getDefaultNodeContext() {
-	if (!_defaultContext) {
-		_defaultContext = {
-			runtime: 'node',
-			env: process.env.NODE_ENV || 'development',
-			cwd: process.cwd(),
-			pid: process.pid
-		}
+	_defaultContext ||= {
+		runtime: 'node',
+		env: process.env.NODE_ENV || 'development',
+		cwd: process.cwd(),
+		pid: process.pid
 	}
 
 	return _defaultContext

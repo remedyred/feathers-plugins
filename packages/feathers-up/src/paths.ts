@@ -6,27 +6,13 @@ import path from 'path'
 export default function(app: Application) {
 	// Check path configuration
 	const paths = useConfig('paths', {})
-	if (!paths.root) {
-		paths.root = path.dirname(findUp('package.json', {cwd: process.cwd()}) || '.')
-	}
-	if (!paths.storage) {
-		paths.storage = path.resolve(path.join(paths.root, '..', 'storage'))
-	}
-	if (!paths.uploads) {
-		paths.uploads = path.join(paths.storage, 'uploads')
-	}
-	if (!paths.logs) {
-		paths.logs = path.join(paths.storage, 'logs')
-	}
-	if (!paths.temp) {
-		paths.temp = path.join(paths.storage, 'temp')
-	}
-	if (!paths.templates) {
-		paths.templates = path.join(paths.root, 'templates')
-	}
-	if (!paths.public) {
-		paths.public = path.join(paths.root, 'public')
-	}
+	paths.root ||= path.dirname(findUp('package.json', {cwd: process.cwd()}) || '.')
+	paths.storage ||= path.resolve(path.join(paths.root, '..', 'storage'))
+	paths.uploads ||= path.join(paths.storage, 'uploads')
+	paths.logs ||= path.join(paths.storage, 'logs')
+	paths.temp ||= path.join(paths.storage, 'temp')
+	paths.templates ||= path.join(paths.root, 'templates')
+	paths.public ||= path.join(paths.root, 'public')
 	app.set('paths', paths)
 
 	// package.json path
