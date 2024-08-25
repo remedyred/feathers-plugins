@@ -16,6 +16,9 @@ jobs:
       pull-requests: write
       issues: write
       contents: write
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.4
@@ -39,7 +42,4 @@ jobs:
         run: pnpm turbo run build docs //#fix
 
       - name: Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: pnpm turbo run release:ci
